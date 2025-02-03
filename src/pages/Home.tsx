@@ -45,7 +45,7 @@ const Home = () => {
             <div className="card">
               <Phone className="w-12 h-12 text-[#FF8C00] mb-4" />
               <h3 className="text-xl font-bold mb-2">Phone Number</h3>
-              <p className="text-gray-300">(603) 842-342</p>
+              <p className="text-gray-300">+1 (603) 842-342</p>
             </div>
           </div>
         </div>
