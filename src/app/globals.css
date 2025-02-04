@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --primary: #1B2B3B;
-  --accent: #FF8C00;
+  --color-primary: #1B2B3B;
+  --color-accent: #FF8C00;
 }
 
 body {
@@ -16,7 +16,11 @@ body {
 }
 
 .nav-link {
-  @apply text-white/80 hover:text-white transition-colors;
+  @apply text-white/80 hover:text-[--color-accent] transition-colors;
+}
+
+.nav-link.active {
+  @apply text-[--color-accent] transition-colors;
 }
 
 .section-title {
