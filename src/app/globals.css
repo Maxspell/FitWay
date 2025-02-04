@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #1B2B3B;
+  --accent: #FF8C00;
+}
+
+body {
+  @apply bg-[#1B2B3B] text-white;
+}
+
+.btn-primary {
+  @apply bg-[#FF8C00] text-white px-6 py-3 rounded-lg hover:bg-[#E67E00] transition-colors;
+}
+
+.nav-link {
+  @apply text-white/80 hover:text-white transition-colors;
+}
+
+.section-title {
+  @apply text-4xl font-bold mb-6;
+}
+
+.card {
+  @apply bg-[#243447] rounded-lg p-6 shadow-lg;
+}
