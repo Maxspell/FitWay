@@ -1,9 +1,23 @@
 import { ArrowRight, Calendar, User, Phone, ArrowUpRight, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { blogPosts } from "./blog/page";
 
-export default function Home() {
+async function getBlogPosts() {
+  const response = await fetch("http://localhost:1337/api/posts?populate=image", {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      "Content-Type": "application/json"
+    }
+  });
+  const result = await response.json();
+
+  return result.data ? result.data.slice(0, 3) : [];
+}
+
+export default async function Home() {
+  const blogPosts = await getBlogPosts();
+
   return (
     <>
       {/* Hero Section */}
@@ -70,7 +84,7 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-3 gap-8">
-            {blogPosts.slice(0, 3).map((post, index) => (
+            {blogPosts.map((post: any, index: number) => (
               <Link 
                 href={`/blog/${post.slug}`} 
                 key={post.slug}
@@ -84,7 +98,7 @@ export default function Home() {
                 >
                   <div className="relative h-48 mb-4 overflow-hidden rounded-lg">
                     <Image 
-                      src={post.image}
+                      src={process.env.NEXT_PUBLIC_STRAPI_URL + post.image.formats.small.url}
                       alt={post.title}
                       fill
                       className="object-cover transform group-hover:scale-105 transition-transform duration-500"

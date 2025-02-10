@@ -1,10 +1,28 @@
 import { notFound } from "next/navigation";
 import { Clock, User, Tag, Calendar } from "lucide-react";
 import Image from "next/image";
-import { blogPosts } from "../page";
+import ReactMarkdown from "react-markdown";
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  const post = blogPosts.find((post) => post.slug === params.slug);
+async function getBlogPostBySlug(slug: string) {
+  const response = await fetch(`http://localhost:1337/api/posts?populate=image&filters[slug][$eq]=${slug}`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      "Content-Type": "application/json"
+    }
+  });
+
+  const result = await response.json();
+
+  if (!result.data || result.data.length === 0) {
+    return null;
+  }
+
+  return result.data[0];
+}
+
+export default async function BlogPost({ params }: { params: { slug: string } }) {
+  const post = await getBlogPostBySlug(params.slug);
 
   if (!post) {
     notFound();
@@ -16,7 +34,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         {/* Hero Section */}
         <div className="relative h-[500px] mb-8 rounded-xl overflow-hidden">
           <Image
-            src={post.image}
+            src={process.env.NEXT_PUBLIC_STRAPI_URL + post.image.formats.large.url}
             alt={post.title}
             fill
             className="object-cover"
@@ -31,7 +49,11 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
               </span>
               <span className="flex items-center gap-2">
                 <Calendar className="h-5 w-5" />
-                {post.date}
+                {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
               </span>
               <span className="flex items-center gap-2">
                 <Clock className="h-5 w-5" />
@@ -50,18 +72,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-8">
             <div className="card prose prose-invert prose-orange max-w-none">
-              {post.content.split('\n').map((paragraph, index) => {
-                if (paragraph.startsWith('##')) {
-                  return <h2 key={index} className="text-2xl font-bold mt-8 mb-4">{paragraph.replace('##', '').trim()}</h2>;
-                }
-                if (paragraph.startsWith('-')) {
-                  return <li key={index} className="text-gray-300">{paragraph.replace('-', '').trim()}</li>;
-                }
-                if (paragraph.match(/^\d\./)) {
-                  return <li key={index} className="text-gray-300">{paragraph.replace(/^\d\./, '').trim()}</li>;
-                }
-                return paragraph.trim() && <p key={index} className="text-gray-300 mb-4">{paragraph}</p>;
-              })}
+              <ReactMarkdown>{post.content}</ReactMarkdown>
             </div>
           </div>
 
