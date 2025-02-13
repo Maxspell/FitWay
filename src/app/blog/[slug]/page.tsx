@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Clock, User, Tag, Calendar } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
 async function getBlogPostBySlug(slug: string) {
@@ -21,8 +22,23 @@ async function getBlogPostBySlug(slug: string) {
   return result.data[0];
 }
 
+async function getRelatedBlogPosts(slug: string) {
+  const response = await fetch(`http://localhost:1337/api/posts?populate=image&filters[slug][$ne]=${slug}&pagination[limit]=2`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      "Content-Type": "application/json"
+    }
+  });
+
+  const result = await response.json();
+
+  return result.data || [];
+}
+
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const post = await getBlogPostBySlug(params.slug);
+  const relatedPosts = await getRelatedBlogPosts(params.slug);
 
   if (!post) {
     notFound();
@@ -106,6 +122,47 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Related Articles */}
+        <div className="mt-12">
+          <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
+          <div className="grid grid-cols-2 gap-8">
+            {relatedPosts.map((relatedPost: any) => (
+              <Link 
+                href={`/blog/${relatedPost.slug}`} 
+                key={relatedPost.slug}
+                className="group"
+              >
+                <article className="card hover:-translate-y-2 transition-all duration-300">
+                  <div className="relative h-48 mb-4 overflow-hidden rounded-lg">
+                    <Image 
+                      src={process.env.NEXT_PUBLIC_STRAPI_URL + relatedPost.image.formats.small.url}
+                      alt={relatedPost.title}
+                      fill
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="flex items-center gap-4 text-[#FF8C00] text-sm mb-2">
+                    <span className="flex items-center gap-1">
+                      <User className="h-4 w-4" />
+                      {relatedPost.author}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      {relatedPost.readTime}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-[#FF8C00] transition-colors">
+                    {relatedPost.title}
+                  </h3>
+                  <p className="text-gray-300">
+                    {relatedPost.excerpt}
+                  </p>
+                </article>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
