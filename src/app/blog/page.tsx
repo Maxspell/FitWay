@@ -2,6 +2,7 @@ import { Clock, User, Tag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BlogPost } from "@/interfaces/blog";
 
 async function getBlogPosts() {
   const response = await fetch("http://localhost:1337/api/posts?populate=image", {
@@ -17,7 +18,7 @@ async function getBlogPosts() {
 }
 
 export default async function Blog() {
-  const blogPosts = await getBlogPosts();
+  const blogPosts: BlogPost[] = await getBlogPosts();
 
   if (!blogPosts) {
     notFound();
@@ -66,7 +67,7 @@ export default async function Blog() {
         
         {/* Recent Posts Grid */}
         <div className="grid grid-cols-2 gap-8">
-          {blogPosts.slice(1).map((post: any) => (
+          {blogPosts.slice(1).map(post => (
             <div key={post.slug} className="card">
               <div className="relative h-48 mb-4">
                 <Image 

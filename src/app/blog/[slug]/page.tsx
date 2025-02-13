@@ -1,14 +1,20 @@
+import type { BlogPost } from "@/interfaces/blog";
 import { notFound } from "next/navigation";
 import { Clock, User, Tag, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 
-async function getBlogPostBySlug(slug: string) {
-  const response = await fetch(`http://localhost:1337/api/posts?populate=image&filters[slug][$eq]=${slug}`, {
+// Constants
+const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
+const API_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+
+// Functions
+async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
+  const response = await fetch(`${API_URL}/api/posts?populate=image&filters[slug][$eq]=${slug}`, {
     method: "GET",
     headers: {
-      "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      "Authorization": `Bearer ${API_TOKEN}`,
       "Content-Type": "application/json"
     }
   });
@@ -22,11 +28,11 @@ async function getBlogPostBySlug(slug: string) {
   return result.data[0];
 }
 
-async function getRelatedBlogPosts(slug: string) {
-  const response = await fetch(`http://localhost:1337/api/posts?populate=image&filters[slug][$ne]=${slug}&pagination[limit]=2`, {
+async function getRelatedBlogPosts(slug: string): Promise<BlogPost[]> {
+  const response = await fetch(`${API_URL}/api/posts?populate=image&filters[slug][$ne]=${slug}&pagination[limit]=2`, {
     method: "GET",
     headers: {
-      "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      "Authorization": `Bearer ${API_TOKEN}`,
       "Content-Type": "application/json"
     }
   });
@@ -36,9 +42,10 @@ async function getRelatedBlogPosts(slug: string) {
   return result.data || [];
 }
 
+// Component
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const post = await getBlogPostBySlug(params.slug);
-  const relatedPosts = await getRelatedBlogPosts(params.slug);
+  const relatedPosts: BlogPost[] = await getRelatedBlogPosts(params.slug);
 
   if (!post) {
     notFound();
@@ -129,7 +136,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
           <div className="grid grid-cols-2 gap-8">
-            {relatedPosts.map((relatedPost: any) => (
+            {relatedPosts.map((relatedPost) => (
               <Link 
                 href={`/blog/${relatedPost.slug}`} 
                 key={relatedPost.slug}
