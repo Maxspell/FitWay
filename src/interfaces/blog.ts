@@ -3,7 +3,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
-  image: {
+  image: { // TODO: Refactoring required
     formats: {
       small: {
         url: string;

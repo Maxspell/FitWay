@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { BlogPost } from "@/interfaces/blog";
 
 async function getBlogPosts() {
-  const response = await fetch("http://localhost:1337/api/posts?populate=image", {
+  const response = await fetch("http://localhost:1337/api/posts?populate=image", { // Add constant
     method: "GET",
     headers: {
       "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
@@ -34,7 +34,7 @@ export default async function Blog() {
           <div className="flex gap-8">
             <div className="w-1/2 relative h-[400px]">
               <Image 
-                src={process.env.NEXT_PUBLIC_STRAPI_URL + blogPosts[0].image.formats.large.url}
+                src={process.env.NEXT_PUBLIC_STRAPI_URL + blogPosts[0].image.formats.large.url} // Add constant
                 alt={blogPosts[0].title}
                 fill
                 className="rounded-lg object-cover"

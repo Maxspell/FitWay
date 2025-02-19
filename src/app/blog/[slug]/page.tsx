@@ -2,8 +2,8 @@ import type { BlogPost } from "@/interfaces/blog";
 import { notFound } from "next/navigation";
 import { Clock, User, Tag, Calendar } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import RelatedArticles from "@/components/BlogPost/RelatedArticles";
 
 // Constants
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
@@ -57,7 +57,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         {/* Hero Section */}
         <div className="relative h-[500px] mb-8 rounded-xl overflow-hidden">
           <Image
-            src={process.env.NEXT_PUBLIC_STRAPI_URL + post.image.formats.large.url}
+            src={process.env.NEXT_PUBLIC_STRAPI_URL + post.image.formats.large.url} // TODO: Replace on constant
             alt={post.title}
             fill
             className="object-cover"
@@ -133,45 +133,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         </div>
 
         {/* Related Articles */}
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">Related Articles</h2>
-          <div className="grid grid-cols-2 gap-8">
-            {relatedPosts.map((relatedPost) => (
-              <Link 
-                href={`/blog/${relatedPost.slug}`} 
-                key={relatedPost.slug}
-                className="group"
-              >
-                <article className="card hover:-translate-y-2 transition-all duration-300">
-                  <div className="relative h-48 mb-4 overflow-hidden rounded-lg">
-                    <Image 
-                      src={process.env.NEXT_PUBLIC_STRAPI_URL + relatedPost.image.formats.small.url}
-                      alt={relatedPost.title}
-                      fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="flex items-center gap-4 text-[#FF8C00] text-sm mb-2">
-                    <span className="flex items-center gap-1">
-                      <User className="h-4 w-4" />
-                      {relatedPost.author}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      {relatedPost.readTime}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-[#FF8C00] transition-colors">
-                    {relatedPost.title}
-                  </h3>
-                  <p className="text-gray-300">
-                    {relatedPost.excerpt}
-                  </p>
-                </article>
-              </Link>
-            ))}
-          </div>
-        </div>
+        <RelatedArticles relatedPosts={relatedPosts} />
       </div>
     </article>
   );
