@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_fitness_nutrition_tips",
+  "info": {
+    "displayName": "Nutrition Tips",
+    "icon": "restaurant"
+  },
+  "options": {},
+  "attributes": {
+    "preWorkout": {
+      "type": "text"
+    },
+    "postWorkout": {
+      "type": "text"
+    },
+    "hydration": {
+      "type": "text"
+    }
+  }
+}

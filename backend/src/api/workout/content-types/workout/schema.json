@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "workouts",
+  "info": {
+    "singularName": "workout",
+    "pluralName": "workouts",
+    "displayName": "Workout",
+    "description": "Professional fitness workout program"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "difficulty": {
+      "type": "enumeration",
+      "enum": [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+      ],
+      "default": "Beginner",
+      "required": true
+    },
+    "duration": {
+      "type": "integer",
+      "required": true
+    },
+    "calories": {
+      "type": "integer"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "weight-loss",
+        "muscle-gain",
+        "toning",
+        "flexibility",
+        "strength"
+      ],
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "required": true
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    },
+    "equipment": {
+      "type": "string"
+    },
+    "targetMuscleGroups": {
+      "type": "string"
+    },
+    "frequency": {
+      "type": "string"
+    },
+    "nutritionAdvice": {
+      "type": "component",
+      "repeatable": false,
+      "component": "fitness.nutrition-tips"
+    },
+    "exercises": {
+      "type": "component",
+      "repeatable": true,
+      "component": "fitness.exercise"
+    }
+  }
+}

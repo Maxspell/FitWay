@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_fitness_exercises",
+  "info": {
+    "displayName": "Exercise",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "sets": {
+      "type": "integer",
+      "required": true,
+      "default": 3
+    },
+    "reps": {
+      "type": "string",
+      "required": true,
+      "default": "12"
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "technique": {
+      "type": "text",
+      "required": true
+    },
+    "tips": {
+      "type": "text"
+    },
+    "commonMistakes": {
+      "type": "text"
+    },
+    "muscles": {
+      "type": "string"
+    }
+  }
+}
