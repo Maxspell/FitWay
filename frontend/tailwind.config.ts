@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       animation: {
         'gradient-x': 'gradient-x 3s ease infinite',
+        'shimmer': 'shimmer 2s infinite linear',
       },
       keyframes: {
         'gradient-x': {
@@ -20,6 +21,11 @@ const config: Config = {
           '50%': {
             'background-size': '200% 200%',
             'background-position': 'right center',
+          },
+        },
+        'shimmer': {
+          '100%': {
+            'transform': 'translateX(100%)',
           },
         },
       },

@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import CalculatorPreview from "@/components/sections/CalculatorPreview";
 
+import StepsSection from "@/components/sections/steps/StepsSection";
+
 async function getBlogPosts() {
   const response = await fetch("http://localhost:1337/api/posts?populate=image", {
     method: "GET",
@@ -25,29 +27,8 @@ export default async function Home() {
       {/* Hero Section */}
       <Hero />
 
-
-      {/* Info Cards */}
-      <section className="bg-[#243447] py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-3 gap-8">
-            <div className="card hover:-translate-y-2 transition-transform duration-300">
-              <Calendar className="w-12 h-12 text-[#FF8C00] mb-4" />
-              <h3 className="text-xl font-bold mb-2">Choose Workout</h3>
-              <p className="text-gray-300">Split your Training</p>
-            </div>
-            <div className="card hover:-translate-y-2 transition-transform duration-300">
-              <User className="w-12 h-12 text-[#FF8C00] mb-4" />
-              <h3 className="text-xl font-bold mb-2">Trainer</h3>
-              <p className="text-gray-300">Richard Botich</p>
-            </div>
-            <div className="card hover:-translate-y-2 transition-transform duration-300">
-              <Phone className="w-12 h-12 text-[#FF8C00] mb-4" />
-              <h3 className="text-xl font-bold mb-2">Phone Number</h3>
-              <p className="text-gray-300">(603) 842-342</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Steps Journey Section */}
+      <StepsSection />
 
       {/* Calculator Preview Section */}
       <CalculatorPreview />
