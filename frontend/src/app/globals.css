@@ -54,3 +54,26 @@ body {
 ::-webkit-scrollbar-thumb {
   @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
 }
+
+/* Swiper Testimonials Custom Styles */
+.testimonials-slider .swiper-pagination {
+  @apply !bottom-0;
+}
+
+.testimonials-slider .swiper-slide {
+  @apply transition-transform duration-500 ease-in-out;
+}
+
+.testimonials-slider .swiper-slide-active {
+  @apply scale-105 z-10;
+}
+
+.testimonials-slider .swiper-slide:not(.swiper-slide-active) {
+  @apply opacity-40 blur-[2px];
+}
+
+@media (max-width: 768px) {
+  .testimonials-slider .swiper-slide:not(.swiper-slide-active) {
+    @apply opacity-0;
+  }
+}
