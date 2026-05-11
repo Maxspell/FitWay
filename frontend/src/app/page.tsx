@@ -1,3 +1,4 @@
+import Hero from "@/components/hero/Hero";
 import { ArrowRight, Calendar, User, Phone, ArrowUpRight, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,30 +23,8 @@ export default async function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[600px] bg-[#1B2B3B]">
-        <div className="container mx-auto px-4 h-full flex items-center">
-          <div className="w-1/2">
-            <h1 className="text-6xl font-bold mb-4">
-              PUTTING YOUR HEALTH<br />IN THE FIRST WAY
-            </h1>
-            <p className="text-xl mb-8 text-gray-300">
-              Make your day better and train your body in one of our new gyms
-            </p>
-            <Link href="/workouts" className="btn-primary inline-flex items-center gap-2">
-              Start Your Workout Now! <ArrowRight />
-            </Link>
-          </div>
-          <div className="w-1/2 relative h-[400px]">
-            <Image 
-              src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b"
-              alt="Fitness"
-              fill
-              className="rounded-lg shadow-xl object-cover"
-              priority
-            />
-          </div>
-        </div>
-      </section>
+      <Hero />
+
 
       {/* Info Cards */}
       <section className="bg-[#243447] py-16">
