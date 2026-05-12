@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
-
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -21,30 +20,33 @@ jobs:
           script: |
             cd /var/www/FitWay
 
-            git pull origin main
+            git fetch origin
+            git reset --hard origin/main
 
             CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
 
             # FRONTEND
-            if echo "$CHANGED_FILES" | grep '^frontend/'; then
+            if echo "$CHANGED_FILES" | grep -q '^frontend/'; then
 
               cd /var/www/FitWay/frontend
 
-              if echo "$CHANGED_FILES" | grep 'frontend/package'; then
+              if echo "$CHANGED_FILES" | grep -q 'frontend/package'; then
                 npm install
               fi
 
               npm run build
 
               pm2 restart fitway-frontend
+
+              cd /var/www/FitWay
             fi
 
             # BACKEND
-            if echo "$CHANGED_FILES" | grep '^backend/'; then
+            if echo "$CHANGED_FILES" | grep -q '^backend/'; then
 
               cd /var/www/FitWay/backend
 
-              if echo "$CHANGED_FILES" | grep 'backend/package'; then
+              if echo "$CHANGED_FILES" | grep -q 'backend/package'; then
                 npm install
               fi
 
