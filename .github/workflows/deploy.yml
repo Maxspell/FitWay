@@ -1,0 +1,52 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@master
+
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+
+          script: |
+            cd /var/www/FitWay
+
+            git pull origin main
+
+            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+
+            # FRONTEND
+            if echo "$CHANGED_FILES" | grep '^frontend/'; then
+
+              cd /var/www/FitWay/frontend
+
+              if echo "$CHANGED_FILES" | grep 'frontend/package'; then
+                npm install
+              fi
+
+              npm run build
+
+              pm2 restart fitway-frontend
+            fi
+
+            # BACKEND
+            if echo "$CHANGED_FILES" | grep '^backend/'; then
+
+              cd /var/www/FitWay/backend
+
+              if echo "$CHANGED_FILES" | grep 'backend/package'; then
+                npm install
+              fi
+
+              pm2 restart fitway-backend
+            fi
