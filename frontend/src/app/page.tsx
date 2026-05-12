@@ -97,7 +97,16 @@ export default async function Home() {
       {/* Featured Workouts */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="section-title">Featured Workouts</h2>
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="section-title mb-0">Featured Workouts</h2>
+            <Link 
+              href="/workouts" 
+              className="group flex items-center gap-2 text-[#FF8C00] hover:text-[#E67E00] transition-colors"
+            >
+              View All Workouts 
+              <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+          </div>
           <div className="grid grid-cols-3 gap-8">
             <div className="card group hover:-translate-y-2 transition-transform duration-300">
               <div className="relative h-48 mb-4 overflow-hidden rounded-lg">
