@@ -16,9 +16,7 @@ interface AccordionItemProps {
 export default function AccordionItem({ question, answer, isOpen, onClick }: AccordionItemProps) {
   return (
     <div 
-      className={`group border-b border-white/10 last:border-0 transition-all duration-300 ${
-        isOpen ? "bg-white/[0.02]" : "hover:bg-white/[0.01]"
-      }`}
+      className={`group border-b border-white/10 last:border-0 transition-all duration-300`}
     >
       <button
         onClick={onClick}
