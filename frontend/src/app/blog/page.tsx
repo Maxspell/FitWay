@@ -12,7 +12,10 @@ async function getBlogPosts() {
     headers: {
       "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
       "Content-Type": "application/json"
-    }
+    },
+    next: {
+      revalidate: 600, // 10 minutes
+    },
   });
   const result = await response.json();
 
