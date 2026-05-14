@@ -4,6 +4,7 @@ import { Clock, User, Tag, Calendar } from "lucide-react";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import RelatedArticles from "@/components/BlogPost/RelatedArticles";
+import { getPostImage } from "@/utils/image";
 
 // Constants
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
@@ -57,7 +58,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         {/* Hero Section */}
         <div className="relative h-[500px] mb-8 rounded-xl overflow-hidden">
           <Image
-            src={process.env.NEXT_PUBLIC_STRAPI_URL + post.image.formats.large.url} // TODO: Replace on constant
+            src={getPostImage(post, "large")}
             alt={post.title}
             fill
             className="object-cover"

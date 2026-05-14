@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BlogPost } from "@/interfaces/blog";
+import { getPostImage } from "@/utils/image";
 
 async function getBlogPosts() {
-  const response = await fetch("http://localhost:1337/api/posts?populate=image", { // Add constant
+  const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+  const response = await fetch(`${API_URL}/api/posts?populate=image`, { 
     method: "GET",
     headers: {
       "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
@@ -34,7 +36,7 @@ export default async function Blog() {
           <div className="flex gap-8">
             <div className="w-1/2 relative h-[400px]">
               <Image 
-                src={process.env.NEXT_PUBLIC_STRAPI_URL + blogPosts[0].image.formats.large.url} // Add constant
+                src={getPostImage(blogPosts[0], "large")}
                 alt={blogPosts[0].title}
                 fill
                 className="rounded-lg object-cover"
@@ -71,7 +73,7 @@ export default async function Blog() {
             <div key={post.slug} className="card">
               <div className="relative h-48 mb-4">
                 <Image 
-                  src={process.env.NEXT_PUBLIC_STRAPI_URL + post.image.formats.large.url}
+                  src={getPostImage(post, "large")}
                   alt={post.title}
                   fill
                   className="rounded-lg object-cover"

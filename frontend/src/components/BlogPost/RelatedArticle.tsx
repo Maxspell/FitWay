@@ -4,6 +4,8 @@ import { Clock, User } from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { getPostImage } from "@/utils/image";
+
 interface RelatedArticleProps {
   post: BlogPost;
 }
@@ -14,7 +16,7 @@ const RelatedArticle: React.FC<RelatedArticleProps> = ({ post }) => {
       <article className="card hover:-translate-y-2 transition-all duration-300">
         <div className="relative h-48 mb-4 overflow-hidden rounded-lg">
           <Image
-            src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${post.image.formats.small.url}`} // TODO: Replace on constant
+            src={getPostImage(post, "small")}
             alt={post.title}
             fill
             className="object-cover transform group-hover:scale-105 transition-transform duration-500"

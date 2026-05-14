@@ -3,14 +3,13 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
-  image: { // TODO: Refactoring required
-    formats: {
-      small: {
-        url: string;
-      },
-      large: {
-        url: string;
-      };
+  image: {
+    url: string;
+    formats?: {
+      thumbnail?: { url: string };
+      small?: { url: string };
+      medium?: { url: string };
+      large?: { url: string };
     };
   };
   author: string;
@@ -18,4 +17,4 @@ export interface BlogPost {
   category: string;
   readTime: string;
   publishedAt: string;
-}
+}
