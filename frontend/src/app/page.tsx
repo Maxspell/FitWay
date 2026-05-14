@@ -65,7 +65,7 @@ const fallbackFAQs = [
 ];
 
 async function getBlogPosts() {
-  const response = await fetch("http://localhost:1337/api/posts?populate=image", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/posts?populate=image`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
