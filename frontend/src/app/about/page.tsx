@@ -51,7 +51,7 @@ export default function About() {
       <div className="container mx-auto px-4">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="section-title mb-4">About 6FIT</h1>
+          <h1 className="section-title mb-4">About FitWay</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             We're dedicated to helping you achieve your fitness goals through expert guidance,
             supportive community, and state-of-the-art facilities.

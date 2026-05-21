@@ -11,13 +11,13 @@ const Footer = () => {
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Dumbbell className="h-8 w-8 text-[#FF8C00]" />
-              <span className="text-2xl font-bold">6FIT</span>
+              <span className="text-2xl font-bold">FitWay</span>
             </Link>
             <p className="text-gray-300">
               Your journey to a healthier lifestyle starts here.
             </p>
           </div>
-          
+
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -25,19 +25,20 @@ const Footer = () => {
               <li><Link href="/blog" className="nav-link">Blog</Link></li>
               <li><Link href="/tools" className="nav-link">Tools</Link></li>
               <li><Link href="/about" className="nav-link">About Us</Link></li>
+              <li><Link href="/contact" className="nav-link">Contact</Link></li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-xl font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-gray-300">
               <li>123 Fitness Street</li>
               <li>New York, NY 10001</li>
               <li>Phone: (603) 842-342</li>
-              <li>Email: info@6fit.com</li>
+              <li>Email: info@fitway.com</li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-xl font-bold mb-4">Follow Us</h3>
             <div className="flex gap-4">
@@ -53,9 +54,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
-          <p>&copy; 2024 6FIT. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} FitWay. All rights reserved.</p>
         </div>
       </div>
     </footer>
