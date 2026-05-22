@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  other: {
+    "google-adsense-account": process.env.NEXT_PUBLIC_GA_ID ?? "",
+  },
 };
 
 export default function RootLayout({
