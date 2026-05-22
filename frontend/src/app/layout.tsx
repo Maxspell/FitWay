@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     icon: "/favicon.svg",
   },
   other: {
-    "google-adsense-account": process.env.NEXT_PUBLIC_GA_ID ?? "",
+    "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "",
   },
 };
 
