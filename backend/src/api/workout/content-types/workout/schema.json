@@ -85,6 +85,9 @@
       "type": "component",
       "repeatable": true,
       "component": "fitness.exercise"
+    },
+    "text": {
+      "type": "richtext"
     }
   }
 }

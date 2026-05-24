@@ -27,11 +27,10 @@ export default function WorkoutHero({ workout }: Props) {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl"
         >
           <div className="flex flex-wrap gap-3 mb-6">
             <span className="px-3 py-1 bg-[#FF8C00] text-white text-xs font-bold rounded-full uppercase tracking-wider">
@@ -45,8 +44,8 @@ export default function WorkoutHero({ workout }: Props) {
           <h1 className="text-5xl md:text-7xl font-black mb-4 leading-tight uppercase">
             {workout.title}
           </h1>
-          
-          <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl font-light leading-relaxed">
+
+          <p className="text-lg md:text-xl text-gray-200 mb-8 font-light leading-relaxed">
             {workout.description}
           </p>
 

@@ -40,4 +40,5 @@ export interface Workout {
     hydration?: string;
   };
   exercises: Exercise[];
+  text?: string;
 }
