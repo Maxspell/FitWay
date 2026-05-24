@@ -1,0 +1,91 @@
+[
+    {
+        "title": "Full Body Strength Workout: 7 Compound Barbell & Dumbbell Exercises",
+        "slug": "full-body-strength-workout-compound-barbell-dumbbell",
+        "description": "If you're training for maximum strength — not just muscle size — this 55-minute full body program delivers exactly that. Built around the foundational compound movements that have defined strength training for decades, this workout targets every major muscle group through heavy, multi-joint exercises that recruit the highest number of motor units per rep.\n\nThe session follows a proven strength-focused structure: heavier bilateral movements first when your central nervous system is fresh, followed by unilateral and accessory work to address imbalances and reinforce joint stability. Rest periods are intentionally longer than you'd find in a hypertrophy program — 2 to 3 minutes between sets — because full strength expression requires near-complete phosphocreatine replenishment between efforts.\n\nProgressive overload is the only principle that matters for long-term strength gains. This means adding weight to the bar systematically — even 2.5 kg per session on upper body lifts and 5 kg on lower body — rather than chasing pump or fatigue. Track your working weights every session. If you cannot add load, focus on improving bar speed on the concentric phase before attempting heavier weight the following week.\n\nThe program runs most effectively 3 times per week with at least one full rest day between sessions. A Monday / Wednesday / Friday split allows adequate recovery while maintaining training frequency. Intermediate lifters typically see meaningful strength increases within 6 to 8 weeks of consistent application when combined with adequate sleep and protein intake of 1.6 to 2.2 grams per kilogram of bodyweight.\n\nAll exercises in this program are performed with gym equipment — barbell, dumbbells, cable machine, and a power rack. Each movement is technically demanding. Prioritize form over load, especially during the first two weeks. A set performed with compromised mechanics does not build strength — it builds injury risk. If you are new to any of these movements, spend two sessions at 60% of your estimated working weight to groove the pattern before going heavy.",
+        "difficulty": "Intermediate",
+        "duration": 55,
+        "calories": 430,
+        "category": "strength",
+        "equipment": "Barbell, Power Rack, Dumbbells, Cable Machine, Bench",
+        "targetMuscleGroups": "Quadriceps, Hamstrings, Glutes, Back, Chest, Shoulders, Core",
+        "frequency": "3 times per week",
+        "nutritionAdvice": {
+            "preWorkout": "Eat a substantial meal 90 minutes before training — this is not the session to train fasted. Aim for 40–60g complex carbohydrates and 25–35g lean protein. Brown rice with chicken breast, oatmeal with eggs, or whole grain pasta with tuna all work well. Carbohydrates directly fuel high-intensity strength output through the phosphocreatine and glycolytic systems. Avoid high-fiber vegetables immediately before training to minimize gastrointestinal discomfort under heavy load.",
+            "postWorkout": "Within 45 minutes of finishing, consume 30–40g fast-digesting protein combined with 50–70g simple carbohydrates to maximize muscle protein synthesis and replenish glycogen stores. Whey protein with white rice, a protein shake with a banana and honey, or low-fat Greek yogurt with granola are effective options. For strength-focused training, total daily protein and calories matter more than the post-workout window — but the window still counts.",
+            "hydration": "Drink 500–600ml of water 2 hours before training. During the session, drink 200–300ml every 15–20 minutes — dehydration of even 2% of body weight measurably reduces force output. For a 55-minute strength session, total intra-workout intake should be around 600–800ml. If you sweat heavily, add an electrolyte tablet or a pinch of salt to your intra-workout water to maintain sodium balance and prevent cramping under heavy loads."
+        },
+        "exercises": [
+            {
+                "name": "Barbell Back Squat",
+                "sets": 4,
+                "reps": "4–6",
+                "duration": null,
+                "technique": "Set the barbell on the rack at mid-chest height. Step under it and position it across your upper traps — not your neck. Grip the bar just outside shoulder width and create full-body tension before unracking: chest up, lats engaged, core braced. Unrack with control and take two steps back. Stand with feet shoulder-width apart, toes pointed out 15–30 degrees. Take a deep diaphragmatic breath and brace hard before initiating the descent. Push your knees out in line with your toes as you sit into the squat. Descend until your hip crease is at or below parallel. Drive through the whole foot on the ascent — do not shift onto your toes. Lock out completely at the top before taking your next breath.",
+                "tips": "Brace your core as if absorbing a punch — not just tightening your abs. The Valsalva maneuver (breath-hold during the rep) is appropriate for heavy sets of 1–5 reps. Keep the bar path vertical when viewed from the side — any forward lean of the bar indicates the hips are rising faster than the chest.",
+                "commonMistakes": "Caving knees on the ascent — push knees out actively with your glutes. Squatting high — parallel or below is non-negotiable for full hamstring and glute recruitment. Losing upper back tightness, which causes the torso to collapse forward under heavy loads.",
+                "muscles": "Quadriceps, Gluteus Maximus, Hamstrings, Adductors, Erector Spinae, Core"
+            },
+            {
+                "name": "Conventional Deadlift",
+                "sets": 3,
+                "reps": "4–5",
+                "duration": null,
+                "technique": "Load the barbell on the floor. Stand with feet hip-width apart, bar directly over mid-foot — roughly 2–3 cm from your shins. Hinge at the hips and grip the bar just outside your legs with a double overhand or mixed grip. Drop your hips until your shins touch the bar. Take your slack out of the bar by pulling upward without the plates leaving the floor — you will hear a small click. Take a big breath, brace your entire trunk, and then drive your feet into the floor while simultaneously pulling the bar into your body. Keep the bar dragging up your shins and thighs. Lock out by squeezing your glutes and driving your hips forward at the top — do not hyperextend the lumbar spine.",
+                "tips": "Think 'leg press the floor away' rather than 'pull the bar up' — this cue engages the quads properly at initiation. Engage your lats by thinking about protecting your armpits from being tickled — this keeps the bar tight to your body and protects the lower back.",
+                "commonMistakes": "Jerking the bar off the floor instead of building tension first — this puts sudden stress on the lower back. Allowing the bar to drift away from the body mid-lift. Hyperextending the lumbar spine at lockout instead of a neutral finish.",
+                "muscles": "Hamstrings, Gluteus Maximus, Erector Spinae, Trapezius, Latissimus Dorsi, Quadriceps, Forearms"
+            },
+            {
+                "name": "Barbell Bench Press",
+                "sets": 4,
+                "reps": "4–6",
+                "duration": null,
+                "technique": "Lie on a flat bench with eyes directly under the bar. Grip the bar just outside shoulder width — thumbs wrapped around. Plant your feet flat on the floor. Retract and depress your shoulder blades hard into the bench and maintain this position throughout the set. Unrack the bar and position it over your sternum. Lower the bar with control to your lower chest, keeping elbows at 45–60 degrees from your torso. Touch the chest lightly — no bouncing — then drive the bar back up in a slight diagonal path toward the rack. Lock out at the top without losing shoulder blade retraction.",
+                "tips": "Leg drive matters even on bench press — pressing your feet into the floor and driving your traps into the bench creates a stable base that allows more force transfer. Squeeze the bar hard as if trying to bend it — this activates the triceps and creates full-arm tension.",
+                "commonMistakes": "Flaring elbows to 90 degrees — this strains the shoulder joint under load. Losing shoulder blade retraction mid-set, causing the shoulder to roll forward. Bouncing the bar off the chest to complete a rep.",
+                "muscles": "Pectoralis Major, Anterior Deltoid, Triceps Brachii"
+            },
+            {
+                "name": "Barbell Bent-Over Row",
+                "sets": 4,
+                "reps": "5–6",
+                "duration": null,
+                "technique": "Stand over the barbell with feet hip-width apart. Hinge at the hips until your torso is at 45–70 degrees from the floor — lower is more back-dominant, higher engages more traps. Grip the bar overhand just outside shoulder width. Brace your core and keep your lower back in a neutral arch throughout. Pull the bar toward your lower sternum or upper abdomen by driving your elbows back and up — think about touching your elbows to the ceiling behind you. Squeeze the lats and rhomboids at the top for a half-second. Lower with control — do not let the bar drop.",
+                "tips": "Initiate the pull with your elbows, not your hands. Your hands are just hooks — the drive comes from the back. Maintain hip hinge position throughout the set — if your torso rises as the weight gets heavier, lower the load.",
+                "commonMistakes": "Using momentum by jerking the torso upright to swing the bar. Pulling to the wrong position — too high (neck) engages too much rear delt, too low (navel) loses lat involvement. Rounding the lower back under fatigue.",
+                "muscles": "Latissimus Dorsi, Rhomboids, Trapezius, Rear Deltoid, Biceps Brachii, Erector Spinae"
+            },
+            {
+                "name": "Overhead Press (Barbell)",
+                "sets": 3,
+                "reps": "5–6",
+                "duration": null,
+                "technique": "Stand with feet hip-to-shoulder-width apart. Take the barbell from a rack at upper-chest height with a grip just outside shoulder width. Elbows should be slightly in front of the bar — not directly below. Brace your core and glutes to create a rigid torso. Press the bar directly overhead, moving your head back slightly to allow bar clearance — then push your head through as the bar passes your forehead. Finish with the bar directly over your shoulder joints with arms fully locked out and biceps near your ears. Lower under control back to the starting position.",
+                "tips": "The bar path should be as vertical as possible when viewed from the side. Create a 'shelf' with your upper chest to rest the bar between reps — this maintains tightness. Avoid pressing in a Smith machine for strength development — free bar pressing builds the stabilizer strength that transfers to other lifts.",
+                "commonMistakes": "Pressing the bar forward rather than vertically — this reduces mechanical advantage and loads the anterior shoulder disproportionately. Leaning back excessively at lockout, turning the press into an incline press and stressing the lumbar spine. Losing core tension on the ascent.",
+                "muscles": "Anterior Deltoid, Medial Deltoid, Triceps Brachii, Upper Trapezius, Serratus Anterior, Core"
+            },
+            {
+                "name": "Romanian Deadlift",
+                "sets": 3,
+                "reps": "6–8",
+                "duration": null,
+                "technique": "Start standing with the barbell at hip height, held with an overhand grip shoulder-width apart. Push your hips back while maintaining a slight bend in the knees — this is a hip hinge, not a squat. Lower the bar along your thighs, keeping it close to your body, until you feel a strong stretch in your hamstrings — typically when the bar reaches mid-shin for most people. Your back remains flat throughout: chest up, neutral spine. Drive your hips forward to return to the starting position, squeezing your glutes at the top. The movement is entirely hip-driven.",
+                "tips": "Think about pushing your hips to the back wall rather than lowering the bar. The depth is determined by your hamstring flexibility — stop before your lower back rounds. This exercise is particularly effective as a hamstring strength builder when performed with a slow 3-second eccentric.",
+                "commonMistakes": "Bending the knees too much, turning it into a conventional deadlift. Allowing the lower back to round at the bottom stretch position — this shifts load from the hamstrings to the lumbar spine. Losing bar contact with the thighs on the descent.",
+                "muscles": "Hamstrings, Gluteus Maximus, Erector Spinae, Adductor Magnus"
+            },
+            {
+                "name": "Cable Face Pull",
+                "sets": 3,
+                "reps": "12–15",
+                "duration": null,
+                "technique": "Set a cable pulley to upper-chest or face height. Attach a rope handle. Grip both ends of the rope with an overhand grip and step back until there is tension in the cable. Stand in a slight staggered stance for stability. Pull the rope toward your face, separating your hands as you pull — aim to bring the rope ends to either side of your face while externally rotating your upper arms. Your elbows should flare out and up, finishing above your shoulders. Hold the contracted position for one second, feeling the rear deltoids and external rotators engage. Return slowly under control.",
+                "tips": "This exercise is as much a shoulder health drill as it is a strength movement. Use a weight that allows clean execution — this is not an exercise to go heavy on. Include it in every upper body session as a preventive measure for rotator cuff health and postural balance against heavy pressing volume.",
+                "commonMistakes": "Pulling too low — the elbows should end up above shoulder height, not at shoulder height. Using too much weight and turning it into a row with no external rotation. Rushing the movement and losing the mind-muscle connection with the rear delts.",
+                "muscles": "Posterior Deltoid, External Rotators (Infraspinatus, Teres Minor), Middle Trapezius, Rhomboids"
+            }
+        ]
+    }
+]

@@ -1,4 +1,5 @@
 // import type { Core } from '@strapi/strapi';
+import path from 'path';
 
 export default {
   /**
@@ -16,5 +17,17 @@ export default {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  async bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {
+    // Run the workout importer only when IMPORT_WORKOUTS=true is set.
+    // Example: $env:IMPORT_WORKOUTS="true"; npm run start
+    if (process.env.IMPORT_WORKOUTS === 'true') {
+      // __dirname at runtime = dist/src/ → ../../scripts = backend/scripts/
+      const scriptPath = path.join(__dirname, '../../scripts/import-workouts');
+      const importWorkouts = require(scriptPath);
+      await importWorkouts();
+      // Unset so subsequent hot-reloads don't re-import
+      delete process.env.IMPORT_WORKOUTS;
+    }
+  },
 };
+
