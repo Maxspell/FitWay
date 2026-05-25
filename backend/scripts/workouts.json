@@ -1,90 +1,102 @@
 [
     {
-        "title": "Full Body Strength Workout: 7 Compound Barbell & Dumbbell Exercises",
-        "slug": "full-body-strength-workout-compound-barbell-dumbbell",
-        "description": "If you're training for maximum strength — not just muscle size — this 55-minute full body program delivers exactly that. Built around the foundational compound movements that have defined strength training for decades, this workout targets every major muscle group through heavy, multi-joint exercises that recruit the highest number of motor units per rep.\n\nThe session follows a proven strength-focused structure: heavier bilateral movements first when your central nervous system is fresh, followed by unilateral and accessory work to address imbalances and reinforce joint stability. Rest periods are intentionally longer than you'd find in a hypertrophy program — 2 to 3 minutes between sets — because full strength expression requires near-complete phosphocreatine replenishment between efforts.\n\nProgressive overload is the only principle that matters for long-term strength gains. This means adding weight to the bar systematically — even 2.5 kg per session on upper body lifts and 5 kg on lower body — rather than chasing pump or fatigue. Track your working weights every session. If you cannot add load, focus on improving bar speed on the concentric phase before attempting heavier weight the following week.\n\nThe program runs most effectively 3 times per week with at least one full rest day between sessions. A Monday / Wednesday / Friday split allows adequate recovery while maintaining training frequency. Intermediate lifters typically see meaningful strength increases within 6 to 8 weeks of consistent application when combined with adequate sleep and protein intake of 1.6 to 2.2 grams per kilogram of bodyweight.\n\nAll exercises in this program are performed with gym equipment — barbell, dumbbells, cable machine, and a power rack. Each movement is technically demanding. Prioritize form over load, especially during the first two weeks. A set performed with compromised mechanics does not build strength — it builds injury risk. If you are new to any of these movements, spend two sessions at 60% of your estimated working weight to groove the pattern before going heavy.",
-        "difficulty": "Intermediate",
-        "duration": 55,
-        "calories": 430,
-        "category": "strength",
-        "equipment": "Barbell, Power Rack, Dumbbells, Cable Machine, Bench",
-        "targetMuscleGroups": "Quadriceps, Hamstrings, Glutes, Back, Chest, Shoulders, Core",
+        "id": 1,
+        "title": "Beginner HIIT Workout at Home: 8 Exercises with Dumbbells & Bands",
+        "slug": "beginner-hiit-workout-home-dumbbells-resistance-bands",
+        "description": "A 30-minute fat-burning interval workout designed for beginners training at home with dumbbells and a resistance band. Eight straightforward exercises, no gym required — just enough space to move and the motivation to start.",
+        "text": "Starting a fat loss program does not require a gym membership, a treadmill, or hours of steady-state cardio. This 30-minute beginner HIIT workout uses only a pair of light dumbbells and a resistance band — the kind of equipment that fits in a gym bag and works in a living room, backyard, or hotel room.\n\nThe session is built around the core principle of interval training: alternating periods of elevated effort with short recovery. For beginners, this means working at a pace that feels challenging but controllable — not all-out sprinting, but enough effort that holding a conversation becomes difficult. You should finish each work interval slightly breathless, not destroyed. That distinction matters: the goal is to build aerobic capacity and fat-burning habits sustainably, not to burn out in week one.\n\nFrom a physiology standpoint, HIIT creates an oxygen debt that your body spends hours recovering from after the workout ends. This phenomenon — known as EPOC, or excess post-exercise oxygen consumption — means your metabolism stays elevated for 12 to 24 hours following the session, burning additional calories even at rest. For weight loss, this makes interval training significantly more time-efficient than equal-duration steady-state cardio.\n\nThe eight exercises in this workout are selected specifically for beginners: movements that are technically simple enough to learn quickly, but physically effective enough to elevate heart rate and engage multiple muscle groups simultaneously. Dumbbells add just enough external load to increase calorie expenditure compared to pure bodyweight training, while resistance bands allow targeted work on the glutes and shoulders without requiring heavy weights or complex setups.\n\nWork intervals are 35 seconds, rest intervals are 25 seconds. This 35:25 ratio is gentler than the classic Tabata 20:10 split and is appropriate for people who are new to structured interval training. As your fitness improves over 4 to 6 weeks, you can progress to 40:20, then eventually 45:15 — the same exercises, meaningfully higher demand.\n\nFrequency matters more than session intensity at this stage. Three sessions per week with a rest day between each is the optimal starting point — enough stimulus to drive fat loss and cardiovascular adaptation, enough recovery to prevent the overuse fatigue that causes beginners to quit. Two sessions per week will still produce results, just more slowly. Four sessions per week is not recommended until you have completed at least 6 weeks at three.\n\nFor dumbbells: most women start effectively with 3–5 kg per hand, most men with 6–8 kg. The weight should feel challenging in the last 10 seconds of each work interval — if you finish every set with energy to spare, increase the load next session.",
+        "difficulty": "Beginner",
+        "duration": 30,
+        "calories": 165,
+        "category": "weight-loss",
+        "equipment": "Dumbbells, Resistance Band",
+        "targetMuscleGroups": "Glutes, Quadriceps, Hamstrings, Core, Shoulders, Back",
         "frequency": "3 times per week",
         "nutritionAdvice": {
-            "preWorkout": "Eat a substantial meal 90 minutes before training — this is not the session to train fasted. Aim for 40–60g complex carbohydrates and 25–35g lean protein. Brown rice with chicken breast, oatmeal with eggs, or whole grain pasta with tuna all work well. Carbohydrates directly fuel high-intensity strength output through the phosphocreatine and glycolytic systems. Avoid high-fiber vegetables immediately before training to minimize gastrointestinal discomfort under heavy load.",
-            "postWorkout": "Within 45 minutes of finishing, consume 30–40g fast-digesting protein combined with 50–70g simple carbohydrates to maximize muscle protein synthesis and replenish glycogen stores. Whey protein with white rice, a protein shake with a banana and honey, or low-fat Greek yogurt with granola are effective options. For strength-focused training, total daily protein and calories matter more than the post-workout window — but the window still counts.",
-            "hydration": "Drink 500–600ml of water 2 hours before training. During the session, drink 200–300ml every 15–20 minutes — dehydration of even 2% of body weight measurably reduces force output. For a 55-minute strength session, total intra-workout intake should be around 600–800ml. If you sweat heavily, add an electrolyte tablet or a pinch of salt to your intra-workout water to maintain sodium balance and prevent cramping under heavy loads."
+            "preWorkout": "Eat a light meal or snack 60–90 minutes before training — not immediately before, as high-intensity movement on a full stomach causes discomfort. A banana with a tablespoon of nut butter, a small bowl of oatmeal, or two rice cakes with cottage cheese all provide fast-burning carbohydrates without weighing you down. If you are training first thing in the morning and prefer to work out fasted, drink 300ml of water and have a small piece of fruit to prevent lightheadedness during the higher-intensity intervals.",
+            "postWorkout": "Within 45 minutes of finishing the session, eat a combination of protein and carbohydrates to support recovery and prevent muscle breakdown. Greek yogurt with berries and a drizzle of honey, a protein shake with half a banana, or two eggs on whole grain toast are all effective, low-calorie options. For weight loss, keep the post-workout meal moderate — roughly 300–400 kcal — and ensure it contributes to your daily protein target of at least 1.4–1.6g per kilogram of bodyweight.",
+            "hydration": "Drink 400–500ml of water in the hour before training. During the session, drink 150–200ml every 10 minutes — keep a bottle visible. After the workout, drink at least 400ml within 30 minutes. For morning sessions, start hydrating immediately upon waking since you will have been fasted from fluids for 7–8 hours. Avoid sugary sports drinks for a session this length — plain water is sufficient and avoids replacing calories you just burned."
         },
         "exercises": [
             {
-                "name": "Barbell Back Squat",
-                "sets": 4,
-                "reps": "4–6",
-                "duration": null,
-                "technique": "Set the barbell on the rack at mid-chest height. Step under it and position it across your upper traps — not your neck. Grip the bar just outside shoulder width and create full-body tension before unracking: chest up, lats engaged, core braced. Unrack with control and take two steps back. Stand with feet shoulder-width apart, toes pointed out 15–30 degrees. Take a deep diaphragmatic breath and brace hard before initiating the descent. Push your knees out in line with your toes as you sit into the squat. Descend until your hip crease is at or below parallel. Drive through the whole foot on the ascent — do not shift onto your toes. Lock out completely at the top before taking your next breath.",
-                "tips": "Brace your core as if absorbing a punch — not just tightening your abs. The Valsalva maneuver (breath-hold during the rep) is appropriate for heavy sets of 1–5 reps. Keep the bar path vertical when viewed from the side — any forward lean of the bar indicates the hips are rising faster than the chest.",
-                "commonMistakes": "Caving knees on the ascent — push knees out actively with your glutes. Squatting high — parallel or below is non-negotiable for full hamstring and glute recruitment. Losing upper back tightness, which causes the torso to collapse forward under heavy loads.",
-                "muscles": "Quadriceps, Gluteus Maximus, Hamstrings, Adductors, Erector Spinae, Core"
-            },
-            {
-                "name": "Conventional Deadlift",
+                "name": "Jumping Jacks",
                 "sets": 3,
-                "reps": "4–5",
-                "duration": null,
-                "technique": "Load the barbell on the floor. Stand with feet hip-width apart, bar directly over mid-foot — roughly 2–3 cm from your shins. Hinge at the hips and grip the bar just outside your legs with a double overhand or mixed grip. Drop your hips until your shins touch the bar. Take your slack out of the bar by pulling upward without the plates leaving the floor — you will hear a small click. Take a big breath, brace your entire trunk, and then drive your feet into the floor while simultaneously pulling the bar into your body. Keep the bar dragging up your shins and thighs. Lock out by squeezing your glutes and driving your hips forward at the top — do not hyperextend the lumbar spine.",
-                "tips": "Think 'leg press the floor away' rather than 'pull the bar up' — this cue engages the quads properly at initiation. Engage your lats by thinking about protecting your armpits from being tickled — this keeps the bar tight to your body and protects the lower back.",
-                "commonMistakes": "Jerking the bar off the floor instead of building tension first — this puts sudden stress on the lower back. Allowing the bar to drift away from the body mid-lift. Hyperextending the lumbar spine at lockout instead of a neutral finish.",
-                "muscles": "Hamstrings, Gluteus Maximus, Erector Spinae, Trapezius, Latissimus Dorsi, Quadriceps, Forearms"
+                "reps": "35 sec",
+                "duration": 35,
+                "technique": "Stand with feet together and arms at your sides. Jump your feet out to slightly wider than shoulder width while raising both arms overhead until your hands nearly meet at the top. Immediately reverse — jump feet back together as arms return to your sides. Land softly with knees slightly bent each time to absorb impact through the joints rather than the spine. Keep your core lightly engaged and maintain an upright chest throughout. The movement should be continuous and rhythmic. If jumping is uncomfortable, step side-to-side instead and raise your arms in the same pattern.",
+                "tips": "Use this as your warm-up exercise — the first set should feel easy. Focus on smooth, controlled arm movement rather than speed. Establish your breathing rhythm here before the harder exercises begin.",
+                "commonMistakes": "Landing with straight knees — always bend them on contact to protect the knee and ankle joints. Letting the arms go limp on the descent rather than controlling the movement. Tensing the shoulders and neck instead of keeping the upper body relaxed.",
+                "muscles": "Gastrocnemius, Hip Abductors, Anterior Deltoid, Core"
             },
             {
-                "name": "Barbell Bench Press",
-                "sets": 4,
-                "reps": "4–6",
-                "duration": null,
-                "technique": "Lie on a flat bench with eyes directly under the bar. Grip the bar just outside shoulder width — thumbs wrapped around. Plant your feet flat on the floor. Retract and depress your shoulder blades hard into the bench and maintain this position throughout the set. Unrack the bar and position it over your sternum. Lower the bar with control to your lower chest, keeping elbows at 45–60 degrees from your torso. Touch the chest lightly — no bouncing — then drive the bar back up in a slight diagonal path toward the rack. Lock out at the top without losing shoulder blade retraction.",
-                "tips": "Leg drive matters even on bench press — pressing your feet into the floor and driving your traps into the bench creates a stable base that allows more force transfer. Squeeze the bar hard as if trying to bend it — this activates the triceps and creates full-arm tension.",
-                "commonMistakes": "Flaring elbows to 90 degrees — this strains the shoulder joint under load. Losing shoulder blade retraction mid-set, causing the shoulder to roll forward. Bouncing the bar off the chest to complete a rep.",
-                "muscles": "Pectoralis Major, Anterior Deltoid, Triceps Brachii"
-            },
-            {
-                "name": "Barbell Bent-Over Row",
-                "sets": 4,
-                "reps": "5–6",
-                "duration": null,
-                "technique": "Stand over the barbell with feet hip-width apart. Hinge at the hips until your torso is at 45–70 degrees from the floor — lower is more back-dominant, higher engages more traps. Grip the bar overhand just outside shoulder width. Brace your core and keep your lower back in a neutral arch throughout. Pull the bar toward your lower sternum or upper abdomen by driving your elbows back and up — think about touching your elbows to the ceiling behind you. Squeeze the lats and rhomboids at the top for a half-second. Lower with control — do not let the bar drop.",
-                "tips": "Initiate the pull with your elbows, not your hands. Your hands are just hooks — the drive comes from the back. Maintain hip hinge position throughout the set — if your torso rises as the weight gets heavier, lower the load.",
-                "commonMistakes": "Using momentum by jerking the torso upright to swing the bar. Pulling to the wrong position — too high (neck) engages too much rear delt, too low (navel) loses lat involvement. Rounding the lower back under fatigue.",
-                "muscles": "Latissimus Dorsi, Rhomboids, Trapezius, Rear Deltoid, Biceps Brachii, Erector Spinae"
-            },
-            {
-                "name": "Overhead Press (Barbell)",
+                "name": "Dumbbell Squat",
                 "sets": 3,
-                "reps": "5–6",
-                "duration": null,
-                "technique": "Stand with feet hip-to-shoulder-width apart. Take the barbell from a rack at upper-chest height with a grip just outside shoulder width. Elbows should be slightly in front of the bar — not directly below. Brace your core and glutes to create a rigid torso. Press the bar directly overhead, moving your head back slightly to allow bar clearance — then push your head through as the bar passes your forehead. Finish with the bar directly over your shoulder joints with arms fully locked out and biceps near your ears. Lower under control back to the starting position.",
-                "tips": "The bar path should be as vertical as possible when viewed from the side. Create a 'shelf' with your upper chest to rest the bar between reps — this maintains tightness. Avoid pressing in a Smith machine for strength development — free bar pressing builds the stabilizer strength that transfers to other lifts.",
-                "commonMistakes": "Pressing the bar forward rather than vertically — this reduces mechanical advantage and loads the anterior shoulder disproportionately. Leaning back excessively at lockout, turning the press into an incline press and stressing the lumbar spine. Losing core tension on the ascent.",
-                "muscles": "Anterior Deltoid, Medial Deltoid, Triceps Brachii, Upper Trapezius, Serratus Anterior, Core"
+                "reps": "35 sec",
+                "duration": 35,
+                "technique": "Hold a dumbbell in each hand at your sides, palms facing your thighs. Stand with feet shoulder-width apart, toes pointing out 15–20 degrees. Brace your core and keep your chest tall. Push your hips back and bend your knees simultaneously — sit down and back as if lowering onto a chair behind you. Descend until your thighs are at or near parallel to the floor, keeping knees tracking over your toes. Push through your whole foot to stand, squeezing your glutes at the top. The dumbbells hang at your sides throughout — do not let them swing forward.",
+                "tips": "If you struggle to keep your chest upright, hold both dumbbells at shoulder height in a goblet position instead — it acts as a counterbalance and naturally encourages an upright torso. Depth matters: a parallel squat recruits significantly more glute muscle than a quarter squat.",
+                "commonMistakes": "Letting the knees collapse inward on the ascent — push them out actively. Rising onto the toes, which indicates the weight is too heavy or ankle mobility is limited. Looking down at the floor, which causes the torso to round forward.",
+                "muscles": "Quadriceps, Gluteus Maximus, Hamstrings, Adductors, Core"
             },
             {
-                "name": "Romanian Deadlift",
+                "name": "Resistance Band Glute Bridge",
                 "sets": 3,
-                "reps": "6–8",
-                "duration": null,
-                "technique": "Start standing with the barbell at hip height, held with an overhand grip shoulder-width apart. Push your hips back while maintaining a slight bend in the knees — this is a hip hinge, not a squat. Lower the bar along your thighs, keeping it close to your body, until you feel a strong stretch in your hamstrings — typically when the bar reaches mid-shin for most people. Your back remains flat throughout: chest up, neutral spine. Drive your hips forward to return to the starting position, squeezing your glutes at the top. The movement is entirely hip-driven.",
-                "tips": "Think about pushing your hips to the back wall rather than lowering the bar. The depth is determined by your hamstring flexibility — stop before your lower back rounds. This exercise is particularly effective as a hamstring strength builder when performed with a slow 3-second eccentric.",
-                "commonMistakes": "Bending the knees too much, turning it into a conventional deadlift. Allowing the lower back to round at the bottom stretch position — this shifts load from the hamstrings to the lumbar spine. Losing bar contact with the thighs on the descent.",
-                "muscles": "Hamstrings, Gluteus Maximus, Erector Spinae, Adductor Magnus"
+                "reps": "35 sec",
+                "duration": 35,
+                "technique": "Place a looped resistance band just above your knees. Lie on your back with knees bent, feet flat on the floor hip-width apart, toes pointed slightly outward. Arms rest at your sides with palms down. Press your knees out against the band to activate the gluteus medius. Drive through your heels and lift your hips toward the ceiling by squeezing your glutes. At the top, your body should form a straight line from shoulders to knees. Hold for one second, actively pressing knees out against the band. Lower slowly over two seconds — do not drop. Repeat continuously for the work interval.",
+                "tips": "The band is not optional — actively pushing against it doubles glute activation compared to the movement without it. Place feet close enough to your glutes that you could touch your heels with your fingertips when lying down; this is the mechanically optimal foot position for glute recruitment.",
+                "commonMistakes": "Allowing the knees to cave inward during the lift — the band should be under constant outward tension. Hyperextending the lower back at the top instead of maintaining a neutral pelvis. Driving through the toes rather than the heels, which shifts load to the quadriceps.",
+                "muscles": "Gluteus Maximus, Gluteus Medius, Hamstrings, Core"
             },
             {
-                "name": "Cable Face Pull",
+                "name": "Dumbbell Bent-Over Row",
                 "sets": 3,
-                "reps": "12–15",
-                "duration": null,
-                "technique": "Set a cable pulley to upper-chest or face height. Attach a rope handle. Grip both ends of the rope with an overhand grip and step back until there is tension in the cable. Stand in a slight staggered stance for stability. Pull the rope toward your face, separating your hands as you pull — aim to bring the rope ends to either side of your face while externally rotating your upper arms. Your elbows should flare out and up, finishing above your shoulders. Hold the contracted position for one second, feeling the rear deltoids and external rotators engage. Return slowly under control.",
-                "tips": "This exercise is as much a shoulder health drill as it is a strength movement. Use a weight that allows clean execution — this is not an exercise to go heavy on. Include it in every upper body session as a preventive measure for rotator cuff health and postural balance against heavy pressing volume.",
-                "commonMistakes": "Pulling too low — the elbows should end up above shoulder height, not at shoulder height. Using too much weight and turning it into a row with no external rotation. Rushing the movement and losing the mind-muscle connection with the rear delts.",
-                "muscles": "Posterior Deltoid, External Rotators (Infraspinatus, Teres Minor), Middle Trapezius, Rhomboids"
+                "reps": "35 sec",
+                "duration": 35,
+                "technique": "Hold a dumbbell in each hand with a neutral grip. Hinge forward at the hips until your torso is at roughly 45 degrees — knees softly bent, back flat, core engaged. Let the dumbbells hang directly below your shoulders. Drive your elbows back and up, pulling the dumbbells toward your lower ribs. Squeeze your shoulder blades together at the top for a half-second. Lower under control. Your torso angle should remain constant throughout the set. Think about driving your elbows toward the ceiling behind you rather than pulling your hands toward your body.",
+                "tips": "Keep your neck in line with your spine — do not crane your head up to look forward. If your lower back fatigues before your arms, the weight is too heavy or your hip hinge has broken down.",
+                "commonMistakes": "Swinging the torso upright to generate momentum — the movement should be arm and back driven. Shrugging the shoulders up toward the ears instead of retracting the shoulder blades. Pulling the dumbbells to the stomach rather than the lower ribs, which reduces lat engagement.",
+                "muscles": "Latissimus Dorsi, Rhomboids, Rear Deltoid, Biceps Brachii, Erector Spinae"
+            },
+            {
+                "name": "Bodyweight Reverse Lunge",
+                "sets": 3,
+                "reps": "35 sec",
+                "duration": 35,
+                "technique": "Stand with feet hip-width apart and hands on your hips or arms extended forward for balance. Take a controlled step backward with one foot, landing on the ball of that foot. Lower your back knee toward the floor until both knees are bent at approximately 90 degrees — front shin vertical, front thigh parallel to the floor. Push through your front heel to return to the starting position. Alternate legs each rep. Keep your torso upright and core braced throughout — do not lean forward as you lower.",
+                "tips": "Focus your balance on the front foot — it carries all the load. If balance is challenging, complete all reps on one leg before switching. Hold a wall lightly if needed — the balance will improve within a few sessions.",
+                "commonMistakes": "Stepping too short and allowing the front knee to travel excessively past the toes. Letting the front knee cave inward — keep it aligned with the second toe. Rushing the descent and losing control on the way down.",
+                "muscles": "Quadriceps, Gluteus Maximus, Hamstrings, Hip Flexors, Core"
+            },
+            {
+                "name": "Dumbbell Shoulder Press",
+                "sets": 3,
+                "reps": "35 sec",
+                "duration": 35,
+                "technique": "Stand with feet shoulder-width apart or sit on a firm chair for stability. Hold a dumbbell in each hand at shoulder height, elbows bent at 90 degrees, palms facing forward. Brace your core to prevent the lower back from arching. Press both dumbbells directly overhead until arms are fully extended — directly above your shoulder joints, not in front. Lower with control back to the starting position. Keep your wrists stacked directly above your elbows throughout.",
+                "tips": "Use lighter dumbbells than you think you need — shoulder pressing is technically demanding and the smaller muscles of the shoulder girdle fatigue faster than larger muscle groups. For beginners, 3–5 kg is often the right starting point regardless of overall fitness level.",
+                "commonMistakes": "Pressing the dumbbells forward rather than straight overhead. Arching the lower back to help push the weight up, which stresses the lumbar spine. Letting the elbows flare wide rather than tracking under the wrists.",
+                "muscles": "Anterior Deltoid, Medial Deltoid, Triceps Brachii, Upper Trapezius"
+            },
+            {
+                "name": "Resistance Band Standing Hip Abduction",
+                "sets": 3,
+                "reps": "35 sec",
+                "duration": 35,
+                "technique": "Place a looped resistance band just above your ankles. Stand upright and lightly hold a wall for balance — do not lean on it. Shift your weight onto one foot. Keeping the opposite leg straight and toes pointing forward, raise it out to the side as far as you can without tilting your pelvis — typically 30–45 degrees. Hold for a half-second at the top, feeling the outer glute contract. Lower under control. Complete all reps on one side before switching. Keep your standing leg slightly bent throughout.",
+                "tips": "The quality of the contraction matters more than the height of the lift. A controlled 30-degree movement with full glute squeeze outperforms a sloppy 50-degree kick. This exercise directly targets the gluteus medius — the muscle responsible for pelvic stability during walking and squatting.",
+                "commonMistakes": "Tilting the pelvis sideways to increase range — this removes load from the glute and places it on the lower back. Swinging the leg using momentum rather than controlled effort. Using a band that is too strong, forcing compensation through the hip flexors.",
+                "muscles": "Gluteus Medius, Gluteus Minimus, Tensor Fasciae Latae"
+            },
+            {
+                "name": "Plank Hold",
+                "sets": 3,
+                "reps": "30 sec",
+                "duration": 30,
+                "technique": "Start on the floor in a push-up position then lower onto your forearms — elbows directly under your shoulders, forearms flat and parallel. Curl your toes under and lift your body so only forearms and toes contact the ground. Your body should form a straight line from the back of your head to your heels — no sagging hips, no raised glutes. Squeeze your quads, glutes, and core simultaneously. Pull your navel gently toward your spine without holding your breath. Keep your neck neutral and breathe steadily throughout the hold.",
+                "tips": "Actively squeeze your glutes and press your forearms into the floor as if trying to pull them apart — this dramatically increases core activation. If 30 seconds is too long initially, start with 15 seconds and build up each session.",
+                "commonMistakes": "Allowing the hips to sag downward, which removes core tension and compresses the lumbar spine. Raising the hips too high, which turns the plank into a resting position. Holding the breath instead of maintaining steady, controlled breathing.",
+                "muscles": "Rectus Abdominis, Transverse Abdominis, Obliques, Gluteus Maximus, Quadriceps, Anterior Deltoid"
             }
         ]
     }
