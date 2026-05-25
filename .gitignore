@@ -50,5 +50,10 @@ thumbs.db
 skills-lock.json
 .bolt/
 
+# Obsidian
+.obsidian/cache/
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
 # Project specific context (optional - uncomment if you don't want to track it)
 # PROJECT_CONTEXT.md
