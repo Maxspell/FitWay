@@ -1,0 +1,237 @@
+{
+  "main": {
+    "id": "c3ca76f6766020bc",
+    "type": "split",
+    "children": [
+      {
+        "id": "359cd09dc055e493",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dffac79fff177dd6",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      },
+      {
+        "id": "7e38c6908541e37c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f752811cee6d2e51",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "77f52747f4e5fd54",
+    "type": "split",
+    "children": [
+      {
+        "id": "2f4b6de3921aa3fb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0cb2934b0f466ce1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "0c42d96ec96ce12a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "ffcc01700a5c1398",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "1aa60051b50a8672",
+    "type": "split",
+    "children": [
+      {
+        "id": "2711d23edc097c12",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "37b44813447a5990",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "backend/deployment.md.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for deployment.md"
+            }
+          },
+          {
+            "id": "829404224e20460f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "backend/deployment.md.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from deployment.md"
+            }
+          },
+          {
+            "id": "612c84bcc3aa4bad",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "64d48beeb7170750",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "0d1382a2d0312183",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "backend/deployment.md.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of deployment.md"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "f752811cee6d2e51",
+  "lastOpenFiles": [
+    "architecture/strapi-schema.md",
+    "architecture/nextjs-architecture.md",
+    "architecture/caching-strategy.md",
+    "architecture/api-flow.md",
+    "core/project-overview.md.tmp.32248.0c3dc1173b99",
+    "core/project-overview.md.tmp.32248.cfa049f6cbbb",
+    "core/project-overview.md",
+    "core/stack.md.md",
+    "backend/deployment.md.md",
+    "architecture/caching-strategy.md.md",
+    "architecture/api-flow.md.md",
+    "architecture/strapi-schema.md.md",
+    "core/vision.md.md",
+    "core/project-overview.md.md",
+    "backend/auth.md.md",
+    "frontend/routing.md.md",
+    "frontend/seo.md.md",
+    "frontend/ui-system.md.md",
+    "deploy/vps-setup.md.md",
+    "deploy/pm2.md.md",
+    "deploy/ssl.md.md",
+    "deploy/nginx.md.md",
+    "bugs/hydration-errors.md.md",
+    "bugs/build-errors.md.md",
+    "bugs/strapi-admin-cache.md.md",
+    "decisions/image-strategy.md.md",
+    "decisions/use-strapi.md.md",
+    "decisions/use-isr.md.md",
+    "ideas",
+    "frontend",
+    "backend",
+    "core",
+    "decisions",
+    "bugs",
+    "prompts",
+    "deploy"
+  ]
+}
