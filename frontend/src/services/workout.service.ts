@@ -16,7 +16,7 @@ export async function getWorkoutBySlug(slug: string): Promise<Workout | null> {
     );
 
     const result = await response.json();
-    
+
     if (!result.data || result.data.length === 0) {
       // Fallback for development/demo if Strapi is not yet populated
       return getMockWorkout(slug);
@@ -31,10 +31,12 @@ export async function getWorkoutBySlug(slug: string): Promise<Workout | null> {
 
 export async function getWorkouts(category?: string): Promise<Workout[]> {
   try {
-    const query = category && category !== "all" 
-      ? `?filters[category][$eq]=${category}&populate=*` 
+    const base = category && category !== "all"
+      ? `?filters[category][$eq]=${category}&populate=*`
       : "?populate=*";
-      
+
+    const query = `${base}&sort[0]=publishedAt:desc`;
+
     const response = await fetch(`${STRAPI_URL}/api/workouts${query}`, {
       headers: {
         Authorization: `Bearer ${STRAPI_TOKEN}`,
