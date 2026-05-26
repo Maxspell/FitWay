@@ -6,6 +6,7 @@ import WorkoutMetadata from "@/components/workouts/WorkoutMetadata";
 import ExerciseList from "@/components/workouts/ExerciseList";
 import RelatedWorkouts from "@/components/workouts/RelatedWorkouts";
 import NutritionTips from "@/components/workouts/NutritionTips";
+import ExpertTips from "@/components/workouts/ExpertTips";
 import ReactMarkdown from "react-markdown";
 import { Workout } from "@/interfaces/workout";
 
@@ -63,6 +64,7 @@ export default async function WorkoutDetailsPage({ params }: Props) {
                 <ReactMarkdown>{workout.text}</ReactMarkdown>
               </div>
             )}
+            <ExpertTips category={workout.category} />
           </div>
 
           {/* Sidebar */}
@@ -94,7 +96,7 @@ export default async function WorkoutDetailsPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "ExercisePlan",
+            "@type": ["ExercisePlan", "Course"],
             "name": workout.title,
             "description": workout.description,
             "exerciseType": workout.category,
@@ -102,6 +104,15 @@ export default async function WorkoutDetailsPage({ params }: Props) {
             "totalTime": `PT${workout.duration}M`,
             "caloriesBurned": workout.calories,
             "image": workout.image.url,
+            "provider": {
+              "@type": "Organization",
+              "name": "FitWay",
+              "sameAs": "https://fitway.best"
+            },
+            "hasCourseInstance": {
+              "@type": "CourseInstance",
+              "courseMode": "online"
+            }
           }),
         }}
       />
