@@ -9,8 +9,38 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FitWay - Health & Fitness",
+  metadataBase: new URL("https://fitway.best"),
+  title: {
+    default: "FitWay - Health & Fitness",
+    template: "%s | FitWay",
+  },
   description: "Your journey to a healthier lifestyle starts here",
+  keywords: [
+    "fitness",
+    "workouts",
+    "health",
+    "gym",
+    "exercise",
+    "training",
+  ],
+  alternates: {
+    canonical: "https://fitway.best",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  authors: [{ name: "FitWay" }],
+  creator: "FitWay",
+  publisher: "FitWay",
+  openGraph: {
+    title: "FitWay - Health & Fitness",
+    description: "Your journey to a healthier lifestyle starts here",
+    url: "https://fitway.best",
+    siteName: "FitWay",
+    locale: "en_US",
+    type: "website",
+  },
   icons: {
     icon: "/favicon.svg",
   },
