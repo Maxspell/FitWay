@@ -102,10 +102,9 @@ export default async function WorkoutDetailsPage({ params }: Props) {
             "name": workout.title,
             "description": workout.description,
             "exerciseType": workout.category,
-            "difficultyLevel": workout.difficulty,
-            "totalTime": `PT${workout.duration}M`,
-            "caloriesBurned": workout.calories,
+            "duration": `PT${workout.duration}M`,
             "image": workout.image.url,
+            "educationalLevel": workout.difficulty,
             "provider": {
               "@type": "Organization",
               "name": "FitWay",
