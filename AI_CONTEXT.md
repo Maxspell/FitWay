@@ -9,9 +9,6 @@ Before making architectural or implementation decisions, review:
 - brain/decisions/*
 - brain/bugs/*
 - brain/prompts/*
-- brain/ideas/*
-- brain/backend/*
-- brain/frontend/*
 
 # Core Principles
 
@@ -25,7 +22,22 @@ Before making architectural or implementation decisions, review:
 
 # Important Notes
 
-- Workout content is generated partially with AI
+- Workout content is partially AI-generated
 - Rich text from Strapi may require custom rendering
 - Production deploy uses PM2 + Nginx
 - Rebuild Strapi admin after schema changes
+
+# Knowledge Base Rules
+
+The /brain directory is a long-term engineering memory system.
+
+When updating it:
+
+- prefer updating existing notes instead of creating new files
+- avoid duplicates
+- document reusable knowledge only
+- keep notes concise
+- use semantic filenames
+- focus on architecture and debugging knowledge
+- do NOT document trivial code changes
+- prefer atomic notes over huge documents

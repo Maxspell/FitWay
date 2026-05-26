@@ -7,6 +7,7 @@ import ExerciseList from "@/components/workouts/ExerciseList";
 import RelatedWorkouts from "@/components/workouts/RelatedWorkouts";
 import NutritionTips from "@/components/workouts/NutritionTips";
 import ExpertTips from "@/components/workouts/ExpertTips";
+import ReviewSystem from "@/components/workouts/ReviewSystem";
 import ReactMarkdown from "react-markdown";
 import { Workout } from "@/interfaces/workout";
 
@@ -65,6 +66,7 @@ export default async function WorkoutDetailsPage({ params }: Props) {
               </div>
             )}
             <ExpertTips category={workout.category} />
+            <ReviewSystem workoutTitle={workout.title} />
           </div>
 
           {/* Sidebar */}
