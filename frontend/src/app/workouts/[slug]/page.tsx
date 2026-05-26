@@ -112,7 +112,11 @@ export default async function WorkoutDetailsPage({ params }: Props) {
             },
             "hasCourseInstance": {
               "@type": "CourseInstance",
-              "courseMode": "online"
+              "courseMode": "online",
+              "courseSchedule": {
+                "@type": "Schedule",
+                "duration": `PT${workout.duration}M`
+              }
             }
           }),
         }}
