@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: "FitWay - Health & Fitness",
     template: "%s | FitWay",
   },
-  description: "Your journey to a healthier lifestyle starts here",
+  description: "Transform your body with AI-powered workout programs and science-backed nutrition plans. Start your free fitness journey at FitWay today.",
   keywords: [
     "fitness",
     "workouts",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   publisher: "FitWay",
   openGraph: {
     title: "FitWay - Health & Fitness",
-    description: "Your journey to a healthier lifestyle starts here",
+    description: "Transform your body with AI-powered workout programs and science-backed nutrition plans. Start your free fitness journey at FitWay today.",
     url: "https://fitway.best",
     siteName: "FitWay",
     locale: "en_US",

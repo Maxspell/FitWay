@@ -55,5 +55,17 @@ skills-lock.json
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 
+FULL-AUDIT-REPORT.md
+ACTION-PLAN.md
+about.html
+blog.html
+tools.html
+workouts.html
+homepage.html
+contact.html
+sitemap.xml
+robots.txt
+llms.txt
+
 # Project specific context (optional - uncomment if you don't want to track it)
 # PROJECT_CONTEXT.md

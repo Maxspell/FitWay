@@ -14,7 +14,7 @@ const Footer = () => {
               <span className="text-2xl font-bold">FitWay</span>
             </Link>
             <p className="text-gray-300">
-              Your journey to a healthier lifestyle starts here.
+              Transform your body with AI-powered workout programs and science-backed nutrition plans. Start your free fitness journey at FitWay today.
             </p>
           </div>
 
