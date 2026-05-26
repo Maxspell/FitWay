@@ -197,6 +197,7 @@
   },
   "active": "f752811cee6d2e51",
   "lastOpenFiles": [
+    "bugs/runtime-errors.md",
     "prompts/workout-generation.md",
     "prompts/seo-content.md",
     "prompts/faq-generation.md",
@@ -224,7 +225,6 @@
     "architecture/api-flow.md",
     "core/project-overview.md.tmp.32248.0c3dc1173b99",
     "core/project-overview.md.tmp.32248.cfa049f6cbbb",
-    "core/project-overview.md",
     "ideas",
     "frontend",
     "backend",
