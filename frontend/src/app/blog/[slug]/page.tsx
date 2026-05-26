@@ -1,10 +1,17 @@
 import type { BlogPost } from "@/interfaces/blog";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Clock, User, Tag, Calendar } from "lucide-react";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import RelatedArticles from "@/components/BlogPost/RelatedArticles";
 import { getPostImage } from "@/utils/image";
+
+interface Props {
+  params: {
+    slug: string;
+  };
+}
 
 // Constants
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL;
@@ -43,8 +50,32 @@ async function getRelatedBlogPosts(slug: string): Promise<BlogPost[]> {
   return result.data || [];
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = await getBlogPostBySlug(params.slug);
+
+  if (!post) return { title: "Blog Post Not Found | FitWay" };
+
+  const imageUrl = getPostImage(post, "large");
+
+  return {
+    title: `${post.title} | FitWay Blog`,
+    description: post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: imageUrl ? [imageUrl] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: imageUrl ? [imageUrl] : [],
+    },
+  };
+}
+
 // Component
-export default async function BlogPost({ params }: { params: { slug: string } }) {
+export default async function BlogPost({ params }: Props) {
   const post = await getBlogPostBySlug(params.slug);
   const relatedPosts: BlogPost[] = await getRelatedBlogPosts(params.slug);
 
@@ -136,6 +167,26 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         {/* Related Articles */}
         <RelatedArticles relatedPosts={relatedPosts} />
       </div>
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.excerpt,
+            "image": getPostImage(post, "large"),
+            "author": {
+              "@type": "Person",
+              "name": post.author
+            },
+            "datePublished": post.publishedAt,
+            "articleSection": post.category,
+          }),
+        }}
+      />
     </article>
   );
 }
