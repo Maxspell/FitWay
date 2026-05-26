@@ -28,6 +28,14 @@ export default {
       // Unset so subsequent hot-reloads don't re-import
       delete process.env.IMPORT_WORKOUTS;
     }
+
+    // Run the post importer only when IMPORT_POSTS=true is set.
+    if (process.env.IMPORT_POSTS === 'true') {
+      const scriptPath = path.join(__dirname, '../../scripts/import-posts');
+      const importPosts = require(scriptPath);
+      await importPosts();
+      delete process.env.IMPORT_POSTS;
+    }
   },
 };
 
