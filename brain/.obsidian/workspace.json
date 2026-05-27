@@ -181,6 +181,14 @@
   },
   "active": "f752811cee6d2e51",
   "lastOpenFiles": [
+    "index.md",
+    "index.md.tmp.28620.968c7a455092",
+    "bugs/strapi-type-errors.md",
+    "bugs/strapi-type-errors.md.tmp.28620.06c3f552a283",
+    "frontend/contact-form.md",
+    "frontend/contact-form.md.tmp.28620.79298ef342c1",
+    "backend/strapi-v5-collections.md",
+    "backend/strapi-v5-collections.md.tmp.28620.b7bf0ee78385",
     "core/project-overview.md",
     "frontend/blog-ui.md",
     "frontend/blog-ui.md.tmp.28620.44c12f5155c0",
@@ -205,17 +213,9 @@
     "decisions/image-strategy.md",
     "core/vision.md.md",
     "core/stack.md.md",
-    "bugs/build-errors.md",
-    "architecture/strapi-schema.md",
-    "architecture/nextjs-architecture.md",
-    "architecture/api-flow.md",
     "backend/import-process.md.tmp.28620.c1ffd5db4547",
     "core/llm-wiki.md.tmp.28620.53ef05be0293",
     "core/project-overview.md.tmp.32248.0c3dc1173b99",
-    "core/project-overview.md.tmp.32248.cfa049f6cbbb",
-    "ideas",
-    "frontend",
-    "backend",
-    "core"
+    "core/project-overview.md.tmp.32248.cfa049f6cbbb"
   ]
 }
