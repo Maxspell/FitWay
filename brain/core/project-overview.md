@@ -16,7 +16,7 @@ The platform combines structured workout data from a headless CMS, rich content 
 - Generate high organic SEO traffic through workout libraries and blog content.
 - Create a reusable content architecture for fitness programs.
 - Utilize AI-assisted content generation for scaling the content library.
-- Maintain superior frontend performance and Core Web Vitals for SEO ranking.
+- Maintain superior frontend performance and Core Web Vitals for [[seo]] ranking.
 
 ---
 

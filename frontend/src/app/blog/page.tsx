@@ -1,4 +1,4 @@
-import { Clock, User, Tag } from "lucide-react";
+import { Clock, User, Tag, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -7,7 +7,7 @@ import { getPostImage } from "@/utils/image";
 
 async function getBlogPosts() {
   const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-  const response = await fetch(`${API_URL}/api/posts?populate=image`, { 
+  const response = await fetch(`${API_URL}/api/posts?populate=image&sort=publishedAt:desc`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
@@ -23,11 +23,13 @@ async function getBlogPosts() {
 }
 
 export default async function Blog() {
-  const blogPosts: BlogPost[] = await getBlogPosts();
+  const postsData: BlogPost[] = await getBlogPosts();
 
-  if (!blogPosts || blogPosts.length === 0) {
+  if (!postsData || postsData.length === 0) {
     notFound();
   }
+
+  const blogPosts = postsData;
 
   return (
     <div className="py-12">
@@ -35,7 +37,7 @@ export default async function Blog() {
         <h1 className="section-title text-center">Latest Health & Fitness Articles</h1>
         
         {/* Featured Post */}
-        <div className="card mb-12">
+        <Link href={`/blog/${blogPosts[0].slug}`} className="card mb-12 block hover:ring-2 hover:ring-[#FF8C00] transition-all">
           <div className="flex gap-8">
             <div className="w-1/2 relative h-[400px]">
               <Image 
@@ -53,8 +55,12 @@ export default async function Blog() {
                   {blogPosts[0].author}
                 </span>
                 <span className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
+                  <Calendar className="h-4 w-4" />
                   {blogPosts[0].date}
+                </span>
+                <span className="flex items-center gap-2">
+                  <Clock className="h-4 w-4" />
+                  {blogPosts[0].readTime}
                 </span>
                 <span className="flex items-center gap-2">
                   <Tag className="h-4 w-4" />
@@ -63,17 +69,17 @@ export default async function Blog() {
               </div>
               <h2 className="text-3xl font-bold mb-4">{blogPosts[0].title}</h2>
               <p className="text-gray-300 mb-6">{blogPosts[0].excerpt}</p>
-              <Link href={`/blog/${blogPosts[0].slug}`} className="btn-primary inline-block">
+              <span className="btn-primary inline-block w-fit">
                 Read More
-              </Link>
+              </span>
             </div>
           </div>
-        </div>
+        </Link>
         
         {/* Recent Posts Grid */}
         <div className="grid grid-cols-2 gap-8">
           {blogPosts.slice(1).map(post => (
-            <div key={post.slug} className="card">
+            <Link key={post.slug} href={`/blog/${post.slug}`} className="card block hover:ring-2 hover:ring-[#FF8C00] transition-all">
               <div className="relative h-48 mb-4">
                 <Image 
                   src={getPostImage(post, "large")}
@@ -88,16 +94,20 @@ export default async function Blog() {
                   {post.author}
                 </span>
                 <span className="flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
+                  <Calendar className="h-4 w-4" />
                   {post.date}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Clock className="h-4 w-4" />
+                  {post.readTime}
                 </span>
               </div>
               <h3 className="text-xl font-bold mb-2">{post.title}</h3>
               <p className="text-gray-300 mb-4">{post.excerpt}</p>
-              <Link href={`/blog/${post.slug}`} className="btn-primary inline-block">
+              <span className="btn-primary inline-block w-fit">
                 Read More
-              </Link>
-            </div>
+              </span>
+            </Link>
           ))}
         </div>
         
