@@ -35,12 +35,12 @@ export default async function Blog() {
     <div className="py-12">
       <div className="container mx-auto px-4">
         <h1 className="section-title text-center">Latest Health & Fitness Articles</h1>
-        
+
         {/* Featured Post */}
         <Link href={`/blog/${blogPosts[0].slug}`} className="card mb-12 block hover:ring-2 hover:ring-[#FF8C00] transition-all">
           <div className="flex gap-8">
             <div className="w-1/2 relative h-[400px]">
-              <Image 
+              <Image
                 src={getPostImage(blogPosts[0], "large")}
                 alt={blogPosts[0].title}
                 fill
@@ -56,7 +56,11 @@ export default async function Blog() {
                 </span>
                 <span className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
-                  {blogPosts[0].date}
+                  {new Date(blogPosts[0].publishedAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
                 </span>
                 <span className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
@@ -75,13 +79,13 @@ export default async function Blog() {
             </div>
           </div>
         </Link>
-        
+
         {/* Recent Posts Grid */}
         <div className="grid grid-cols-2 gap-8">
           {blogPosts.slice(1).map(post => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="card block hover:ring-2 hover:ring-[#FF8C00] transition-all">
               <div className="relative h-48 mb-4">
-                <Image 
+                <Image
                   src={getPostImage(post, "large")}
                   alt={post.title}
                   fill
@@ -95,7 +99,11 @@ export default async function Blog() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
-                  {post.date}
+                  {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
                 </span>
                 <span className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
@@ -110,7 +118,7 @@ export default async function Blog() {
             </Link>
           ))}
         </div>
-        
+
         {/* Categories */}
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-6">Categories</h2>
