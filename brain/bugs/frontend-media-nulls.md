@@ -19,9 +19,9 @@
 // Плохо: упадет, если image === null
 <Image src={getStrapiMedia(workout.image.url)} ... />
 
-// Хорошо: безопасно обрабатывает отсутствие данных
+// Хорошо: безопасно обрабатывает отсутствие данных и использует локальную заглушку
 <Image 
-  src={workout.image?.url ? getStrapiMedia(workout.image.url) : "https://via.placeholder.com/600x400?text=No+Image"} 
+  src={workout.image?.url ? getStrapiMedia(workout.image.url) : "/images/placeholder-workout.jpg"} 
   ... 
 />
 ```

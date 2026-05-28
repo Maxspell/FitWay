@@ -9,6 +9,9 @@
 ## 🎨 Frontend
 - [[frontend/contact-form]] — Design and implementation of the contact system.
 
+## 🚀 Deployment
+- [[deploy/nextjs-build-failure]] — Handling missing .next manifests and 502 errors.
+
 ## 🐞 Bugs & Workarounds
 - [[bugs/strapi-type-errors]] — Fixing TS2345 during new collection creation.
 - [[bugs/frontend-media-nulls]] — Fixing TypeError when Strapi images are missing.
