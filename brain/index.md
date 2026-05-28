@@ -11,6 +11,7 @@
 
 ## 🐞 Bugs & Workarounds
 - [[bugs/strapi-type-errors]] — Fixing TS2345 during new collection creation.
+- [[bugs/frontend-media-nulls]] — Fixing TypeError when Strapi images are missing.
 
 ## ⚙️ Core & Wiki
 - [[core/llm-wiki]] — Documentation on this wiki's pattern.

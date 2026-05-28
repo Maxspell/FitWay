@@ -60,8 +60,8 @@ export default async function Workouts({ searchParams }: Props) {
               >
                 <div className="card h-full flex flex-col border border-white/5 bg-[#243447] hover:bg-[#2d4258] transition-all duration-500 hover:-translate-y-2 overflow-hidden group">
                   <div className="relative h-64 overflow-hidden">
-                    <Image 
-                      src={getStrapiMedia(workout.image.url)}
+                    <Image
+                      src={workout.image?.url ? getStrapiMedia(workout.image.url) : "https://via.placeholder.com/600x400?text=No+Image"}
                       alt={workout.title}
                       fill
                       className="object-cover transform group-hover:scale-110 transition-transform duration-700"
