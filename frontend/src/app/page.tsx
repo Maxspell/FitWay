@@ -7,6 +7,7 @@ import TestimonialsSection from "@/components/sections/testimonials/Testimonials
 import NewsletterSection from "@/components/sections/NewsletterSection";
 import FeaturedWorkouts from "@/components/sections/workouts/FeaturedWorkouts";
 import { getWorkouts } from "@/services/workout.service";
+import { getStrapiMedia } from "@/lib/utils";
 
 import StepsSection from "@/components/sections/steps/StepsSection";
 import FAQSection from "@/components/sections/faq/FAQSection";
@@ -135,7 +136,7 @@ export default async function Home() {
                 >
                   <div className="relative h-48 mb-4 overflow-hidden rounded-lg">
                     <Image 
-                      src={process.env.NEXT_PUBLIC_STRAPI_URL + post.image.formats.small.url}
+                      src={getStrapiMedia(post.image?.formats?.small?.url)}
                       alt={post.title}
                       fill
                       className="object-cover transform group-hover:scale-105 transition-transform duration-500"

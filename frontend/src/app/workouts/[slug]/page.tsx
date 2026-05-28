@@ -28,13 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: workout.title,
       description: workout.description,
-      images: [workout.image.url],
+      images: [workout.image?.url || ""],
     },
     twitter: {
       card: "summary_large_image",
       title: workout.title,
       description: workout.description,
-      images: [workout.image.url],
+      images: [workout.image?.url || ""],
     },
   };
 }
@@ -103,7 +103,7 @@ export default async function WorkoutDetailsPage({ params }: Props) {
             "description": workout.description,
             "exerciseType": workout.category,
             "duration": `PT${workout.duration}M`,
-            "image": workout.image.url,
+            "image": workout.image?.url || "",
             "educationalLevel": workout.difficulty,
             "provider": {
               "@type": "Organization",

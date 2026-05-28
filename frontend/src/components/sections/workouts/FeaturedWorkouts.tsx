@@ -29,7 +29,7 @@ const WorkoutCard = ({ workout, index }: { workout: Workout; index: number }) =>
           {/* Image Container */}
           <div className="relative h-64 overflow-hidden">
             <Image
-              src={getStrapiMedia(workout.image.url)}
+              src={getStrapiMedia(workout.image?.url)}
               alt={workout.title}
               fill
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
