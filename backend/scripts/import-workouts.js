@@ -48,15 +48,10 @@ module.exports = async () => {
         };
 
         try {
-            // Create as draft first (Strapi v5 Document Service API)
+            // Create as draft (Strapi v5 Document Service API)
             const created = await strapi.documents("api::workout.workout").create({ data });
 
-            // Publish immediately (draftAndPublish is enabled on this content-type)
-            await strapi.documents("api::workout.workout").publish({
-                documentId: created.documentId,
-            });
-
-            console.log(`✓ Created & published: "${data.title}" (${created.documentId})`);
+            console.log(`✓ Created as draft: "${data.title}" (${created.documentId})`);
         } catch (err) {
             console.error(`✗ Failed to import "${data.title}":`, err.message);
         }
