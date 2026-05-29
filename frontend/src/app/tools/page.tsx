@@ -6,7 +6,7 @@ import CalorieCalculator from "@/components/calculators/CalorieCalculator";
 
 export default function Tools() {
   return (
-    <div className="py-24 bg-[#1B2B3B]">
+    <div className="pt-12 pb-16 bg-[#1B2B3B]">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16 space-y-4">
@@ -15,7 +15,7 @@ export default function Tools() {
               Science-backed calculators to help you reach your goals faster.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 gap-12">
             {/* BMI Calculator Section */}
             <div className="space-y-8">
@@ -49,7 +49,7 @@ export default function Tools() {
               </div>
             </div>
           </div>
-          
+
           {/* Future Tools Placeholder */}
           <div className="mt-24 pt-24 border-t border-white/5">
             <h2 className="text-2xl font-bold mb-8">Coming Soon</h2>

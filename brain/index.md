@@ -8,6 +8,7 @@
 
 ## 🎨 Frontend
 - [[frontend/contact-form]] — Design and implementation of the contact system.
+- [[frontend/breadcrumbs]] — Global Breadcrumbs component and layout integration.
 
 ## 🚀 Deployment
 - [[deploy/nextjs-build-failure]] — Handling missing .next manifests and 502 errors.

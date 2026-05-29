@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -59,7 +60,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col">
           <Header />
-          <main className="flex-grow">{children}</main>
+          <main className="flex-grow relative">
+            <div className="absolute top-0 w-full z-10 pointer-events-none">
+              <div className="container mx-auto px-4 pointer-events-auto">
+                <Breadcrumbs baseUrl="https://fitway.best" className="pt-4 pb-0 drop-shadow-md" />
+              </div>
+            </div>
+            {children}
+          </main>
           <Footer />
         </div>
 
