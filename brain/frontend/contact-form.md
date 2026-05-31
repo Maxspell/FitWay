@@ -15,5 +15,18 @@ The implementation follows the "High-End Fitness" aesthetic used in the [[Newsle
   - Spring animations for success checkmarks.
 - **Inputs**: Clean, dark-themed inputs with `#FF8C00` focus rings.
 
+## Архитектура файлов (Server / Client Split)
+
+В Next.js App Router `metadata` и хуки React несовместимы в одном файле.
+Контактная страница разделена на два файла:
+
+```
+src/app/contact/
+├── page.tsx          ← Server Component: экспортирует metadata, рендерит ContactClient
+└── ContactClient.tsx ← Client Component: "use client", весь интерактивный UI и хуки
+```
+
+> ⚠️ Это **обязательный паттерн** для любой страницы, которая одновременно нуждается в SEO-метаданных и интерактивном UI. Подробнее: [[bugs/build-errors#конфликт-usestate-и-metadata-в-одном-файле-app-router]]
+
 ## Integration Flow
 The form submits to `/api/contact`, which validates the input and forwards it to the `contact-messages` Strapi collection.
