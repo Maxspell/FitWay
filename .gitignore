@@ -49,6 +49,7 @@ thumbs.db
 .agents/
 skills-lock.json
 .bolt/
+.claude/
 
 # Obsidian
 .obsidian/cache/

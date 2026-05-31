@@ -4,6 +4,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BlogPost } from "@/interfaces/blog";
 import { getPostImage } from "@/utils/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Fitness & Nutrition Blog",
+  description: "Read the latest articles on fitness, workouts, nutrition, and health from the FitWay experts.",
+  alternates: {
+    canonical: "/blog",
+  },
+};
 
 async function getBlogPosts() {
   const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";

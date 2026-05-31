@@ -58,8 +58,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const imageUrl = getPostImage(post, "large");
 
   return {
-    title: `${post.title} | FitWay Blog`,
+    title: `${post.title} | Blog`,
     description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${params.slug}`,
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
