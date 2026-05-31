@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!workout) return { title: "Workout Not Found | FitWay" };
 
   return {
-    title: `${workout.title} | Premium Fitness Workout | FitWay`,
+    title: `${workout.title} | Premium Fitness Workout`,
     description: workout.description,
     openGraph: {
       title: workout.title,

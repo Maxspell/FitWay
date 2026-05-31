@@ -66,6 +66,7 @@ contact.html
 sitemap.xml
 robots.txt
 llms.txt
+ads.txt
 
 # Project specific context (optional - uncomment if you don't want to track it)
 # PROJECT_CONTEXT.md
