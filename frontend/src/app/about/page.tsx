@@ -1,5 +1,14 @@
 import { Award, Users, Target, Heart } from "lucide-react";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Learn about FitWay's mission, values, and the expert team behind our fitness community.",
+  alternates: {
+    canonical: "/about",
+  },
+};
 
 export default function About() {
   const team = [
@@ -93,7 +102,7 @@ export default function About() {
               <div className="flex justify-between items-start mb-1">
                 <h3 className="text-xl font-bold">{member.name}</h3>
                 <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[#FF8C00] transition-colors" title="LinkedIn Profile">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
                 </a>
               </div>
               <p className="text-[#FF8C00] mb-3">{member.role}</p>

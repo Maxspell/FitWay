@@ -3,6 +3,15 @@
 import { Scale, Apple, Calculator } from "lucide-react";
 import BmiCalculator from "@/components/calculators/BmiCalculator";
 import CalorieCalculator from "@/components/calculators/CalorieCalculator";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tools",
+  description: "Enhance your fitness journey with FitWay's AI-powered tools, including BMI and Calorie Calculators.",
+  alternates: {
+    canonical: "/tools",
+  },
+};
 
 export default function Tools() {
   return (

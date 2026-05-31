@@ -3,6 +3,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Get in touch with FitWay support, share feedback, or inquire about partnership opportunities.",
+  alternates: {
+    canonical: "/contact",
+  },
+};
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
