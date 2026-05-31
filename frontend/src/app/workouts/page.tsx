@@ -3,6 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { getWorkouts } from "@/services/workout.service";
 import { getStrapiMedia } from "@/lib/utils";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Workout Library",
+  description: "Explore our collection of premium fitness workouts for weight loss, muscle gain, and toning.",
+  alternates: {
+    canonical: "/workouts",
+  },
+};
 
 interface Props {
   searchParams: {
@@ -38,8 +47,8 @@ export default async function Workouts({ searchParams }: Props) {
                   key={filter.id}
                   href={`/workouts${filter.id === "all" ? "" : `?category=${filter.id}`}`}
                   className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${selectedFilter === filter.id
-                      ? "bg-[#FF8C00] text-white shadow-lg shadow-[#FF8C00]/20"
-                      : "text-gray-400 hover:text-white hover:bg-white/5"
+                    ? "bg-[#FF8C00] text-white shadow-lg shadow-[#FF8C00]/20"
+                    : "text-gray-400 hover:text-white hover:bg-white/5"
                     }`}
                 >
                   {filter.label}

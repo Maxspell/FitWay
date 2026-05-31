@@ -25,6 +25,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${workout.title} | Premium Fitness Workout`,
     description: workout.description,
+    alternates: {
+      canonical: `/workouts/${params.slug}`,
+    },
     openGraph: {
       title: workout.title,
       description: workout.description,
