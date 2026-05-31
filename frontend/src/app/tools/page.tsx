@@ -1,5 +1,3 @@
-"use client";
-
 import { Scale, Apple, Calculator } from "lucide-react";
 import BmiCalculator from "@/components/calculators/BmiCalculator";
 import CalorieCalculator from "@/components/calculators/CalorieCalculator";
