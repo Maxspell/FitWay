@@ -6,6 +6,18 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import RelatedArticles from "@/components/BlogPost/RelatedArticles";
 import { getPostImage } from "@/utils/image";
+import TableOfContents from "@/components/BlogPost/TableOfContents";
+import { slugify } from "@/utils/slugify";
+import React from "react";
+
+// Helper to extract text from ReactMarkdown children
+function flatten(text: string, child: React.ReactNode): string {
+  if (typeof child === "string") return text + child;
+  if (React.isValidElement(child) && child.props.children) {
+    return React.Children.toArray(child.props.children).reduce(flatten, text);
+  }
+  return text;
+}
 
 interface Props {
   params: {
@@ -130,12 +142,29 @@ export default async function BlogPost({ params }: Props) {
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-8">
             <div className="card prose prose-invert prose-orange max-w-none">
-              <ReactMarkdown>{post.content}</ReactMarkdown>
+              <ReactMarkdown
+                components={{
+                  h2: ({ node, ...props }) => {
+                    const text = React.Children.toArray(props.children).reduce(flatten, "");
+                    const id = slugify(text);
+                    return <h2 id={id} {...props} />;
+                  },
+                  h3: ({ node, ...props }) => {
+                    const text = React.Children.toArray(props.children).reduce(flatten, "");
+                    const id = slugify(text);
+                    return <h3 id={id} {...props} />;
+                  }
+                }}
+              >
+                {post.content}
+              </ReactMarkdown>
             </div>
           </div>
 
           {/* Sidebar */}
-          <div className="col-span-4 space-y-6">
+          <div className="col-span-4 space-y-6 sticky top-24 h-fit">
+            <TableOfContents />
+
             {/* Author Card */}
             <div className="card">
               <h3 className="text-xl font-bold mb-4">About the Author</h3>

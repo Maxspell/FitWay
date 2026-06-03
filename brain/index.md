@@ -7,6 +7,7 @@
 - [[backend/strapi-v5-collections]] — How to create collections and handle API Token permissions.
 
 ## 🎨 Frontend
+- [[frontend/table-of-contents]] — Premium Table of Contents with Scroll Spy for blog articles.
 - [[frontend/contact-form]] — Design, архитектура Server/Client split и реализация контактной системы.
 - [[frontend/breadcrumbs]] — Global Breadcrumbs component and layout integration.
 
