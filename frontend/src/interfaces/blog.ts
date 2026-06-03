@@ -17,4 +17,5 @@ export interface BlogPost {
   category: string;
   readTime: string;
   publishedAt: string;
+  createdAt: string;
 }

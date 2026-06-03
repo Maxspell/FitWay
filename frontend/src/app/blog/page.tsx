@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 async function getBlogPosts() {
   const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-  const response = await fetch(`${API_URL}/api/posts?populate=image&sort=publishedAt:desc`, {
+  const response = await fetch(`${API_URL}/api/posts?populate=image&sort=createdAt:desc`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
@@ -65,7 +65,7 @@ export default async function Blog() {
                 </span>
                 <span className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
-                  {new Date(blogPosts[0].publishedAt).toLocaleDateString("en-US", {
+                  {new Date(blogPosts[0].createdAt).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
@@ -108,7 +108,7 @@ export default async function Blog() {
                 </span>
                 <span className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
-                  {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                  {new Date(post.createdAt).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
