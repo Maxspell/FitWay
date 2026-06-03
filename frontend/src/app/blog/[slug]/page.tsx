@@ -36,7 +36,10 @@ async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
     headers: {
       "Authorization": `Bearer ${API_TOKEN}`,
       "Content-Type": "application/json"
-    }
+    },
+    next: {
+      revalidate: 600, // 10 minutes
+    },
   });
 
   const result = await response.json();
