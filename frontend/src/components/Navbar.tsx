@@ -9,22 +9,22 @@ const Navbar = () => {
   return (
     <nav aria-label="main nav">
       <ul className="flex gap-8">
-        <li><Link href="/" className={`nav-link ${pathname === "/" ? "active" : ""}`}>
+        <li><Link href="/" className={`nav-link ${pathname === "/" ? "active" : ""}`} title="FitWay Home">
           Home
         </Link></li>
-        <li><Link href="/blog" className={`nav-link ${pathname === "/blog" ? "active" : ""}`}>
+        <li><Link href="/blog" className={`nav-link ${pathname === "/blog" ? "active" : ""}`} title="Fitness Blog">
           Blog
         </Link></li>
-        <li><Link href="/workouts" className={`nav-link ${pathname === "/workouts" ? "active" : ""}`}>
+        <li><Link href="/workouts" className={`nav-link ${pathname === "/workouts" ? "active" : ""}`} title="Workout Programs & Exercises">
           Workouts
         </Link></li>
-        <li><Link href="/tools" className={`nav-link ${pathname === "/tools" ? "active" : ""}`}>
+        <li><Link href="/tools" className={`nav-link ${pathname === "/tools" ? "active" : ""}`} title="Fitness Calculators">
           Tools
         </Link></li>
-        <li><Link href="/about" className={`nav-link ${pathname === "/about" ? "active" : ""}`}>
+        <li><Link href="/about" className={`nav-link ${pathname === "/about" ? "active" : ""}`} title="About Us">
           About Us
         </Link></li>
-        <li><Link href="/contact" className={`nav-link ${pathname === "/contact" ? "active" : ""}`}>
+        <li><Link href="/contact" className={`nav-link ${pathname === "/contact" ? "active" : ""}`} title="Contact Us">
           Contact
         </Link></li>
       </ul>
