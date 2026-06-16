@@ -2,6 +2,7 @@
 
 ## 🏗️ Architecture
 - [[architecture/overview]]
+- [[frontend/data-fetching-pattern]] — Service + UI Component extraction pattern for Next.js App Router.
 
 ## 🛠️ Backend (Strapi v5)
 - [[backend/strapi-v5-collections]] — How to create collections and handle API Token permissions.
