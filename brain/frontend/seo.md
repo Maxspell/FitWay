@@ -13,9 +13,11 @@ This document outlines the core SEO practices and specific implementations used 
 - **Workouts as Courses**: On workout detail pages (`workouts/[slug]/page.tsx`), we use a multi-type JSON-LD schema: `["ExercisePlan", "Course"]`. 
   - Using `Course` allows us to target rich snippets in Google SERPs for fitness programs. 
   - Required properties for `Course` include `provider` (FitWay) and `hasCourseInstance` (to denote it as an online format).
+- **FAQ Page Schema**: On pages featuring a Q&A format (e.g., `/tools` page), we embed `FAQPage` JSON-LD schema (via `@graph` array or dedicated components). This ensures Google recognizes the questions and answers for FAQ Rich Snippets.
 
 ## 4. Internal Linking Strategy
 - **Matrix Approach**: We use an internal link matrix to connect top-of-funnel content (Blog posts) to mid/bottom-funnel content (Workouts and Tools).
+- **CTA Blocks**: We systematically append contextual CTA blocks with deep links (e.g., to `/workouts` or `/blog`) using Next.js `<Link>` components styled consistently with the site's design pattern.
 - **Best Practices**: 
   - Use descriptive, keyword-rich anchor text (avoid "click here").
   - Aim for 2-3 deep internal links per 1000 words.
