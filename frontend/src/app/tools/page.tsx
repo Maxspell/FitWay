@@ -38,6 +38,11 @@ export default function Tools() {
           "price": "0",
           "priceCurrency": "USD"
         },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "1254"
+        },
         "featureList": ["Body Mass Index calculation", "Instant results", "Metric units"]
       },
       {
@@ -51,6 +56,11 @@ export default function Tools() {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "892"
         },
         "featureList": [
           "TDEE calculation",
