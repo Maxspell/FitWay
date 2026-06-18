@@ -7,7 +7,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="main nav">
+    <nav aria-label="main nav" className="hidden md:block">
       <ul className="flex gap-8">
         <li><Link href="/" className={`nav-link ${pathname === "/" ? "active" : ""}`} title="FitWay Home">
           Home

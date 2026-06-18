@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Dumbbell } from "lucide-react";
 import Navbar from "./Navbar";
+import MobileMenu from "./MobileMenu";
 
 const Header = () => {
   const pathname = usePathname();
@@ -16,7 +17,10 @@ const Header = () => {
           <span className="text-2xl font-bold">FITWAY</span>
         </Link>
         
-        <Navbar />
+        <div className="flex items-center">
+          <Navbar />
+          <MobileMenu />
+        </div>
       </div>
     </header>
   );
