@@ -77,17 +77,17 @@ export default function MobileMenu() {
   };
 
   const menuVariants = {
-    hidden: { x: "100%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } },
+    hidden: { x: "100%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } },
     visible: { 
       x: 0, 
       transition: { 
         duration: 0.4, 
-        ease: [0.76, 0, 0.24, 1],
+        ease: [0.76, 0, 0.24, 1] as [number, number, number, number],
         when: "beforeChildren",
         staggerChildren: 0.05,
       } 
     },
-    exit: { x: "100%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } }
+    exit: { x: "100%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } }
   };
 
   const itemVariants = {

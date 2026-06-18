@@ -17,6 +17,7 @@
 - [[deploy/nextjs-build-failure]] — Handling missing .next manifests and 502 errors.
 
 ## 🐞 Bugs & Workarounds
+- [[bugs/framer-motion-type-errors]] — Фикс ошибки TypeScript с массивом ease во Framer Motion.
 - [[bugs/strapi-type-errors]] — Fixing TS2345 during new collection creation.
 - [[bugs/frontend-media-nulls]] — Fixing TypeError when Strapi images are missing.
 - [[bugs/build-errors]] — Ошибки сборки: OOM на VPS, конфликт `useState`/`metadata` в App Router.
