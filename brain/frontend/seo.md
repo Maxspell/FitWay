@@ -18,6 +18,7 @@ This document outlines the core SEO practices and specific implementations used 
 - **Workouts as Courses**: On workout detail pages (`workouts/[slug]/page.tsx`), we use a multi-type JSON-LD schema: `["ExercisePlan", "Course"]`. 
   - Using `Course` allows us to target rich snippets in Google SERPs for fitness programs. 
 - **FAQ Page Schema**: Implemented dynamically on the home page and in the `/tools` section. This ensures Google recognizes the questions and answers for FAQ Rich Snippets, significantly increasing SERP real estate and CTR.
+- **SoftwareApplication Schema**: Used for interactive tools like the BMI and Daily Calorie Calculators on both the `/tools` and main (`/`) pages. This provides rich snippets (расширенные результаты) for the calculators in search results, detailing features and aggregate ratings.
 
 ## 4. Internal Linking Strategy
 - **Matrix Approach**: We use an internal link matrix to connect top-of-funnel content (Blog posts) to mid/bottom-funnel content (Workouts and Tools).

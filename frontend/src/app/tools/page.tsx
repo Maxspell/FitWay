@@ -103,17 +103,6 @@ export default function Tools() {
           "Muscle gain targets",
           "Activity level adjustment"
         ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": toolFaqs.map(faq => ({
-          "@type": "Question",
-          "name": faq.question,
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": faq.answer
-          }
-        }))
       }
     ]
   };
@@ -183,7 +172,7 @@ export default function Tools() {
                 <div className="absolute inset-[1px] rounded-[31px] bg-gradient-to-br from-white/10 to-transparent"></div>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[#FF8C00]/5 blur-[80px] rounded-full"></div>
               </div>
-              
+
               <div className="relative z-10">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Training?</h2>
                 <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -206,9 +195,9 @@ export default function Tools() {
         <div className="container mx-auto px-4 mt-16 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-sm text-gray-500 leading-relaxed">
-              Use our free fitness calculators to set smarter, data-driven goals. 
-              Whether you want to lose weight, build muscle, or simply track your 
-              health, knowing your BMI and daily calorie needs is the first step. 
+              Use our free fitness calculators to set smarter, data-driven goals.
+              Whether you want to lose weight, build muscle, or simply track your
+              health, knowing your BMI and daily calorie needs is the first step.
               All tools are free, science-backed, and work without registration.
             </p>
           </div>

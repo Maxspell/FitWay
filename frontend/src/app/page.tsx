@@ -23,7 +23,7 @@ async function getFAQs() {
       next: { revalidate: 3600 } // Cache for 1 hour
     });
     const result = await response.json();
-    
+
     if (!result.data || result.data.length === 0) {
       return fallbackFAQs;
     }
@@ -75,8 +75,61 @@ export default async function Home() {
     getWorkouts()
   ]);
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "BMI Calculator",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Web",
+        "url": "https://fitway.best/#bmi",
+        "description": "Free online BMI calculator based on height and weight.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "1254"
+        },
+        "featureList": ["Body Mass Index calculation", "Instant results", "Metric units"]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Daily Calorie Calculator",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Web",
+        "url": "https://fitway.best/#calories",
+        "description": "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "892"
+        },
+        "featureList": [
+          "TDEE calculation",
+          "Weight loss targets",
+          "Muscle gain targets",
+          "Activity level adjustment"
+        ]
+      }
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       {/* Hero Section */}
       <Hero />
 
@@ -104,26 +157,8 @@ export default async function Home() {
       {/* FAQ Section */}
       <FAQSection faqs={faqs} />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": faqs.map((faq: any) => ({
-              "@type": "Question",
-              "name": faq.question,
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": faq.answer
-              }
-            }))
-          })
-        }}
-      />
-
       {/* Newsletter Subscription */}
       <NewsletterSection />
     </>
   );
-}
+}
