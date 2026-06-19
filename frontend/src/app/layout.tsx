@@ -12,10 +12,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://fitway.best"),
   title: {
-    default: "FitWay - Health & Fitness",
+    default: "AI Fitness Plans & Science-Backed Workouts | FitWay",
     template: "%s | FitWay",
   },
-  description: "Transform your body with AI-powered workout programs and science-backed nutrition plans. Start your free fitness journey at FitWay today.",
+  description: "Get hyper-personalized workout programs and nutrition plans powered by AI and exercise science. Optimize your health with FitWay's data-driven fitness tools.",
   keywords: [
     "fitness",
     "workouts",
@@ -70,6 +70,37 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "FitWay",
+              "url": "https://fitway.best",
+              "logo": "https://fitway.best/favicon.svg",
+              "description": "AI-powered fitness platform providing science-backed workout programs and personalized nutrition plans.",
+              "sameAs": [
+                "https://facebook.com/fitway",
+                "https://instagram.com/fitway",
+                "https://twitter.com/fitway"
+              ]
+            }),
+          }}
+        />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "FitWay",
+              "url": "https://fitway.best"
+            }),
+          }}
+        />
 
         {/* Google AdSense */}
         {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (

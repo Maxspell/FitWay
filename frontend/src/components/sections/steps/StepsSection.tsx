@@ -8,7 +8,7 @@ const STEPS = [
   {
     number: 1,
     title: "Set Your Goal",
-    description: "Whether it's weight loss, muscle gain, or just staying healthy, we help you define your path.",
+    description: "Define your objectives with precision. From hypertrophic muscle growth and sustainable fat loss to cardiovascular endurance, we help you establish SMART goals backed by physiological benchmarks.",
     icon: Target,
     visual: (
       <div className="relative w-full h-full flex items-center justify-center p-4">
@@ -36,7 +36,7 @@ const STEPS = [
   {
     number: 2,
     title: "Get Your Plan",
-    description: "Receive a personalized workout and nutrition roadmap tailored specifically to your metrics.",
+    description: "Our AI analyzes your biometric data and fitness level to synthesize a roadmap. You'll receive a periodized training schedule and a macronutrient-optimized meal plan tailored to your specific metabolic rate.",
     icon: ClipboardList,
     visual: (
       <div className="w-full h-full flex flex-col gap-2 p-6 justify-center">
@@ -56,7 +56,7 @@ const STEPS = [
   {
     number: 3,
     title: "Train & Track",
-    description: "Follow high-quality workout videos and track your progress with our smart stat widgets.",
+    description: "Execute your workouts with confidence using our professional form guides. Use our integrated tracking tools to monitor volume, intensity, and recovery—the three pillars of physical transformation.",
     icon: Activity,
     visual: (
       <div className="relative w-full h-full flex items-center justify-center p-4 gap-4">
@@ -95,7 +95,7 @@ const STEPS = [
   {
     number: 4,
     title: "Build Habits",
-    description: "Transform your results into a long-term lifestyle. Build consistency and stay motivated.",
+    description: "Shift from short-term gains to a lifelong health architecture. We provide the psychological tools and community support needed to turn discipline into effortless habit.",
     icon: Trophy,
     visual: (
       <div className="relative w-full h-full flex items-center justify-center">

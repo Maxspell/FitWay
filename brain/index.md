@@ -9,9 +9,10 @@
 
 ## 🎨 Frontend
 - [[frontend/mobile-menu]] — Премиальное мобильное меню с использованием Framer Motion и Tailwind CSS.
-- [[frontend/table-of-contents]] — Premium Table of Contents with Scroll Spy for blog articles.
+- [[frontend/table-of_contents]] — Premium Table of Contents with Scroll Spy for blog articles.
 - [[frontend/contact-form]] — Design, архитектура Server/Client split и реализация контактной системы.
 - [[frontend/breadcrumbs]] — Global Breadcrumbs component and layout integration.
+- [[frontend/seo]] — Стратегия борьбы с Thin Content, внедрение E-E-A-T сигналов и Schema.org разметки.
 
 ## 🚀 Deployment
 - [[deploy/nextjs-build-failure]] — Handling missing .next manifests and 502 errors.

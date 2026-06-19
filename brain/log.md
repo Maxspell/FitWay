@@ -1,6 +1,8 @@
 # Knowledge Base Activity Log
-
-## 2026-06-18
+## 2026-06-19
+- Проведен комплексный SEO-аудит главной страницы для устранения ошибки "Thin Content" (Google AdSense). Внедрена стратегия "Trust Funnel": добавлены глубокие текстовые описания методологии, раздел с сертификациями экспертов (NASM, RD, CSCS) и профессиональный медицинский дисклеймер. Обновлены мета-теги и внедрена микроразметка JSON-LD (Organization, WebSite, FAQPage) для улучшения Rich Snippets. [[frontend/seo]]
+- 
+[38;2;153;153;153m## 2026-06-18[39m
 - Разработано современное мобильное меню с использованием `framer-motion` и Tailwind CSS. Интегрировано в `Header` с условным скрытием десктопной навигации. Реализована обработка Accessibility (ARIA), предотвращение layout shift при блокировке скролла и анимация пунктов меню. [[frontend/mobile-menu]]
 - Зафиксирована и решена ошибка компиляции TypeScript при использовании кастомных кривых Безье (массивов `ease`) во Framer Motion. Добавлено явное приведение типов (Type Assertion) к `[number, number, number, number]`. [[bugs/framer-motion-type-errors]]
 

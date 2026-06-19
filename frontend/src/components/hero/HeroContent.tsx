@@ -53,7 +53,7 @@ export default function HeroContent() {
           with AI Precision
         </h1>
         <p className="text-xl text-gray-400 max-w-xl leading-relaxed">
-          Transform your body with science-backed workout programs, personalized nutrition plans, and real-time progress tracking.
+          Stop guessing and start progressing. FitWay integrates advanced AI algorithms with core exercise science to deliver hyper-personalized training and nutrition strategies. Whether you're breaking plateaus or starting your journey, our data-driven approach ensures every rep and every meal contributes to your peak performance.
         </p>
       </motion.div>
 

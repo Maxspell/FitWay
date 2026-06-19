@@ -55,9 +55,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
-          <p>&copy; {new Date().getFullYear()} FitWay. All rights reserved.</p>
-        </div>
+          <div className="col-span-4 border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-xs leading-relaxed max-w-4xl mx-auto">
+            <p className="mb-4">
+              <strong>Medical Disclaimer:</strong> The content provided by FitWay, including text, graphics, images, and other material, is for informational and educational purposes only. It is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read on this website.
+            </p>
+            <p>&copy; {new Date().getFullYear()} FitWay. All rights reserved.</p>
+          </div>
+
       </div>
     </footer>
   );

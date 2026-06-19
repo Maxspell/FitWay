@@ -9,6 +9,8 @@ import { getBlogPosts } from "@/services/post.service";
 
 import StepsSection from "@/components/sections/steps/StepsSection";
 import FAQSection from "@/components/sections/faq/FAQSection";
+import WhyFitWay from "@/components/sections/WhyFitWay";
+import ExpertsSection from "@/components/sections/ExpertsSection";
 
 async function getFAQs() {
   try {
@@ -81,6 +83,12 @@ export default async function Home() {
       {/* Steps Journey Section */}
       <StepsSection />
 
+      {/* Why FitWay - Scientific Proof */}
+      <WhyFitWay />
+
+      {/* Experts Section - Human Authority */}
+      <ExpertsSection />
+
       {/* Calculator Preview Section */}
       <CalculatorPreview />
 
@@ -95,6 +103,24 @@ export default async function Home() {
 
       {/* FAQ Section */}
       <FAQSection faqs={faqs} />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": faqs.map((faq: any) => ({
+              "@type": "Question",
+              "name": faq.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+              }
+            }))
+          })
+        }}
+      />
 
       {/* Newsletter Subscription */}
       <NewsletterSection />

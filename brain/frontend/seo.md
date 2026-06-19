@@ -6,14 +6,18 @@ This document outlines the core SEO practices and specific implementations used 
 - **`llms.txt`**: We maintain a `public/llms.txt` file at the root level. This file provides clear instructions and context for LLMs and AI crawlers, detailing the site's purpose, key sections (workouts, blog, tools), and preferred citation styles. This is critical for visibility in generative search engines.
 
 ## 2. E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)
-- **Author Profiles**: The `/about` page must explicitly display team credentials. We render specific certifications (e.g., "NASM-CPT", "RD") and provide outgoing links to professional profiles (e.g., LinkedIn). This builds trust with both users and search evaluators.
+- **Author Profiles**: The `/about` page must explicitly display team credentials. We render specific certifications (e.g., "NASM-CPT", "RD") and provide outgoing links to professional profiles. This builds trust with both users and search evaluators.
+- **Trust Funnel Implementation**: We implement a "Trust Funnel" on the home page to combat "Thin Content" flags and satisfy YMYL requirements:
+  - **Medical Disclaimer**: A professional disclaimer is placed in the footer to signal safety and compliance.
+  - **Scientific Proof**: A dedicated "Why FitWay" section explains the physiological basis of the platform (Progressive Overload, Bio-Individual Analysis, Metabolic Optimization).
+  - **Human Authority**: An "Experts" section showcases the credentials of the core team (NASM, RD, CSCS) directly on the main page, not just in the about page.
 - **Content Depth**: Workout pages include dynamic "Expert Tips" and "Common Mistakes" sections. This increases the uniqueness and authority of the content compared to generic workout descriptions.
 
 ## 3. Structured Data (Schema.org)
+- **Organization & WebSite**: Implemented globally in `layout.tsx` to define the brand identity and official URL for Google's Knowledge Graph.
 - **Workouts as Courses**: On workout detail pages (`workouts/[slug]/page.tsx`), we use a multi-type JSON-LD schema: `["ExercisePlan", "Course"]`. 
   - Using `Course` allows us to target rich snippets in Google SERPs for fitness programs. 
-  - Required properties for `Course` include `provider` (FitWay) and `hasCourseInstance` (to denote it as an online format).
-- **FAQ Page Schema**: On pages featuring a Q&A format (e.g., `/tools` page), we embed `FAQPage` JSON-LD schema (via `@graph` array or dedicated components). This ensures Google recognizes the questions and answers for FAQ Rich Snippets.
+- **FAQ Page Schema**: Implemented dynamically on the home page and in the `/tools` section. This ensures Google recognizes the questions and answers for FAQ Rich Snippets, significantly increasing SERP real estate and CTR.
 
 ## 4. Internal Linking Strategy
 - **Matrix Approach**: We use an internal link matrix to connect top-of-funnel content (Blog posts) to mid/bottom-funnel content (Workouts and Tools).
