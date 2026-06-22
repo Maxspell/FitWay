@@ -211,7 +211,7 @@ export default async function AuthorProfilePage({ params }: Props) {
             {/* Evidence-Based Statement */}
             <div className="card bg-[#1B2B3B] p-6 rounded-2xl border border-[#FF8C00]/20 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF8C00] opacity-5 rounded-full blur-[40px]" />
-              <h3 className="text-lg font-bold mb-3 text-white">Trust & Quality</h3
+              <h3 className="text-lg font-bold mb-3 text-white">Trust & Quality</h3>
               <p className="text-sm text-gray-400 leading-relaxed">
                 FitWay content is created and reviewed by certified professionals to ensure it is evidence-based, safe, and effective. We adhere to strict editorial guidelines.
               </p>
