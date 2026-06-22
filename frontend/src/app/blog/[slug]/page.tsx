@@ -3,10 +3,13 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Clock, User, Tag, Calendar } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import RelatedArticles from "@/components/BlogPost/RelatedArticles";
 import { getPostImage } from "@/utils/image";
 import TableOfContents from "@/components/BlogPost/TableOfContents";
+import AuthorBox from "@/components/common/AuthorBox";
+import AuthorSidebarCard from "@/components/common/AuthorSidebarCard";
 import { slugify } from "@/utils/slugify";
 import React from "react";
 
@@ -31,7 +34,7 @@ const API_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
 // Functions
 async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
-  const response = await fetch(`${API_URL}/api/posts?populate=image&filters[slug][$eq]=${slug}`, {
+  const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&filters[slug][$eq]=${slug}`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${API_TOKEN}`,
@@ -52,7 +55,7 @@ async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
 }
 
 async function getRelatedBlogPosts(slug: string): Promise<BlogPost[]> {
-  const response = await fetch(`${API_URL}/api/posts?populate=image&filters[slug][$ne]=${slug}&pagination[limit]=2`, {
+  const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&filters[slug][$ne]=${slug}&pagination[limit]=2`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${API_TOKEN}`,
@@ -116,10 +119,12 @@ export default async function BlogPost({ params }: Props) {
           <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B3B] to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8">
             <div className="flex items-center gap-4 text-[#FF8C00] mb-4">
-              <span className="flex items-center gap-2">
-                <User className="h-5 w-5" />
-                {post.author}
-              </span>
+              {post.author && (
+                <span className="flex items-center gap-2">
+                  <User className="h-5 w-5" />
+                  {post.author.name}
+                </span>
+              )}
               <span className="flex items-center gap-2">
                 <Calendar className="h-5 w-5" />
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {
@@ -162,25 +167,17 @@ export default async function BlogPost({ params }: Props) {
                 {post.content}
               </ReactMarkdown>
             </div>
+            
+            {/* Full Author Box below content */}
+            {post.author && <AuthorBox author={post.author} />}
           </div>
 
           {/* Sidebar */}
           <div className="col-span-4 space-y-6 sticky top-24 h-fit">
             <TableOfContents />
 
-            {/* Author Card */}
-            <div className="card">
-              <h3 className="text-xl font-bold mb-4">About the Author</h3>
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-[#FF8C00] flex items-center justify-center">
-                  <User className="h-8 w-8 text-white" />
-                </div>
-                <div>
-                  <h4 className="font-bold">{post.author}</h4>
-                  <p className="text-gray-300">Fitness Expert</p>
-                </div>
-              </div>
-            </div>
+            {/* Author Sidebar Card */}
+            {post.author && <AuthorSidebarCard author={post.author} />}
 
             {/* Related Categories */}
             <div className="card">
@@ -213,10 +210,20 @@ export default async function BlogPost({ params }: Props) {
             "headline": post.title,
             "description": post.excerpt,
             "image": getPostImage(post, "large"),
-            "author": {
-              "@type": "Person",
-              "name": post.author
-            },
+            ...(post.author && {
+              "author": {
+                "@type": "Person",
+                "name": post.author.name,
+                "url": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/authors/${post.author.slug}`
+              }
+            }),
+            ...(post.reviewedBy && post.reviewedBy.length > 0 && {
+              "reviewedBy": post.reviewedBy.map(reviewer => ({
+                "@type": "Person",
+                "name": reviewer.name,
+                "url": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/authors/${reviewer.slug}`
+              }))
+            }),
             "datePublished": post.publishedAt,
             "articleSection": post.category,
           }),

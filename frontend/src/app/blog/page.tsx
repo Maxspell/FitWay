@@ -61,7 +61,7 @@ export default async function Blog() {
               <div className="flex items-center gap-4 text-[#FF8C00] mb-4">
                 <span className="flex items-center gap-2">
                   <User className="h-4 w-4" />
-                  {blogPosts[0].author}
+                  {blogPosts[0].author?.name}
                 </span>
                 <span className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
@@ -104,7 +104,7 @@ export default async function Blog() {
               <div className="flex items-center gap-4 text-[#FF8C00] text-sm mb-2">
                 <span className="flex items-center gap-1">
                   <User className="h-4 w-4" />
-                  {post.author}
+                  {post.author?.name}
                 </span>
                 <span className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />

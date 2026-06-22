@@ -47,7 +47,7 @@ export default function LatestPosts({ posts }: LatestPostsProps) {
                 <div className="flex flex-wrap items-center gap-4 text-[#FF8C00] text-sm mb-2">
                   <span className="flex items-center gap-1">
                     <User className="h-4 w-4" />
-                    {post.author}
+                    {post.author?.name}
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />

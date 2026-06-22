@@ -7,12 +7,15 @@ When creating a new collection via the filesystem, TypeScript throws errors like
 This happens because Strapi's types are generated dynamically at runtime. During the `npm run build` phase, the compiler doesn't yet know about the new collection.
 
 ## The Solution
-Use a type cast to `any` when passing the collection identifier to `factories`:
+Strapi 5 uses strong typing. The proper fix is to generate the TypeScript definitions before building:
 
-```typescript
-export default factories.createCoreController('api::collection.collection' as any);
+```bash
+npx strapi ts:generate-types
+npm run build
 ```
 
-This bypasses the static type check and allows the build to proceed. Once the server runs, the real types are generated.
+This updates `types/generated/contentTypes.d.ts` so the compiler recognizes the new collection.
+
+*(Old workaround: Use a type cast to `any` when passing the collection identifier to `factories` e.g., `'api::collection.collection' as any`)*
 
 Related: [[strapi-v5-collections]]

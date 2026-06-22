@@ -11,6 +11,7 @@ This document outlines the core SEO practices and specific implementations used 
   - **Medical Disclaimer**: A professional disclaimer is placed in the footer to signal safety and compliance.
   - **Scientific Proof**: A dedicated "Why FitWay" section explains the physiological basis of the platform (Progressive Overload, Bio-Individual Analysis, Metabolic Optimization).
   - **Human Authority**: An "Experts" section showcases the credentials of the core team (NASM, RD, CSCS) directly on the main page, not just in the about page.
+- **Dedicated Authors System**: We implemented a complete [[frontend/authors-system]] to provide detailed profiles, certifications, and lists of published/reviewed content for each expert, directly linking these profiles in the `Person` JSON-LD schema on articles and workouts.
 - **Content Depth**: Workout pages include dynamic "Expert Tips" and "Common Mistakes" sections. This increases the uniqueness and authority of the content compared to generic workout descriptions.
 
 ## 3. Structured Data (Schema.org)

@@ -1,3 +1,5 @@
+import { Author } from './author';
+
 export interface Exercise {
   id: number;
   name: string;
@@ -41,4 +43,6 @@ export interface Workout {
   };
   exercises: Exercise[];
   text?: string;
+  author?: Author;
+  reviewedBy?: Author[];
 }

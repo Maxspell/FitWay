@@ -369,6 +369,90 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
+  collectionName: 'authors';
+  info: {
+    description: 'Premium Author profile for content and workouts';
+    displayName: 'Author';
+    pluralName: 'authors';
+    singularName: 'author';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    articles: Schema.Attribute.Relation<'oneToMany', 'api::post.post'>;
+    articlesReviewed: Schema.Attribute.Relation<'manyToMany', 'api::post.post'>;
+    bio: Schema.Attribute.Text;
+    certifications: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    credentials: Schema.Attribute.String;
+    fullBio: Schema.Attribute.RichText;
+    instagram: Schema.Attribute.String;
+    jobTitle: Schema.Attribute.String;
+    linkedin: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::author.author'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    photo: Schema.Attribute.Media<'images'>;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    specializations: Schema.Attribute.JSON;
+    twitter: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    workoutsCreated: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::workout.workout'
+    >;
+    workoutsReviewed: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::workout.workout'
+    >;
+    yearsExperience: Schema.Attribute.Integer;
+  };
+}
+
+export interface ApiContactMessageContactMessage
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'contact_messages';
+  info: {
+    description: 'Messages received from the contact form';
+    displayName: 'Contact Message';
+    pluralName: 'contact-messages';
+    singularName: 'contact-message';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact-message.contact-message'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    submittedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFaqFaq extends Struct.CollectionTypeSchema {
   collectionName: 'faqs';
   info: {
@@ -451,7 +535,7 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    author: Schema.Attribute.String;
+    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     content: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -463,6 +547,7 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     readTime: Schema.Attribute.String;
+    reviewedBy: Schema.Attribute.Relation<'manyToMany', 'api::author.author'>;
     slug: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
@@ -489,6 +574,7 @@ export interface ApiWorkoutWorkout extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
     calories: Schema.Attribute.Integer;
     category: Schema.Attribute.Enumeration<
       ['weight-loss', 'muscle-gain', 'toning', 'flexibility', 'strength']
@@ -519,8 +605,10 @@ export interface ApiWorkoutWorkout extends Struct.CollectionTypeSchema {
       false
     >;
     publishedAt: Schema.Attribute.DateTime;
+    reviewedBy: Schema.Attribute.Relation<'manyToMany', 'api::author.author'>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     targetMuscleGroups: Schema.Attribute.String;
+    text: Schema.Attribute.RichText;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1038,6 +1126,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::author.author': ApiAuthorAuthor;
+      'api::contact-message.contact-message': ApiContactMessageContactMessage;
       'api::faq.faq': ApiFaqFaq;
       'api::newsletter-subscriber.newsletter-subscriber': ApiNewsletterSubscriberNewsletterSubscriber;
       'api::post.post': ApiPostPost;

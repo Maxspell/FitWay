@@ -1,0 +1,87 @@
+{
+  "kind": "collectionType",
+  "collectionName": "authors",
+  "info": {
+    "singularName": "author",
+    "pluralName": "authors",
+    "displayName": "Author",
+    "description": "Premium Author profile for content and workouts"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "credentials": {
+      "type": "string"
+    },
+    "jobTitle": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "text"
+    },
+    "fullBio": {
+      "type": "richtext"
+    },
+    "yearsExperience": {
+      "type": "integer"
+    },
+    "specializations": {
+      "type": "json"
+    },
+    "certifications": {
+      "type": "json"
+    },
+    "linkedin": {
+      "type": "string"
+    },
+    "twitter": {
+      "type": "string"
+    },
+    "instagram": {
+      "type": "string"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::post.post",
+      "mappedBy": "author"
+    },
+    "articlesReviewed": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::post.post",
+      "mappedBy": "reviewedBy"
+    },
+    "workoutsCreated": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::workout.workout",
+      "mappedBy": "author"
+    },
+    "workoutsReviewed": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::workout.workout",
+      "mappedBy": "reviewedBy"
+    }
+  }
+}

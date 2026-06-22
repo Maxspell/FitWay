@@ -8,6 +8,9 @@ import RelatedWorkouts from "@/components/workouts/RelatedWorkouts";
 import NutritionTips from "@/components/workouts/NutritionTips";
 import ExpertTips from "@/components/workouts/ExpertTips";
 import ReviewSystem from "@/components/workouts/ReviewSystem";
+import WorkoutExpertReviewBox from "@/components/common/WorkoutExpertReviewBox";
+import AuthorBox from "@/components/common/AuthorBox";
+import AuthorSidebarCard from "@/components/common/AuthorSidebarCard";
 import ReactMarkdown from "react-markdown";
 import { Workout } from "@/interfaces/workout";
 
@@ -70,11 +73,19 @@ export default async function WorkoutDetailsPage({ params }: Props) {
             )}
             <ExpertTips category={workout.category} />
             <ReviewSystem workoutTitle={workout.title} />
+            {workout.reviewedBy && workout.reviewedBy.length > 0 && (
+              <WorkoutExpertReviewBox reviewer={workout.reviewedBy[0]} />
+            )}
           </div>
 
           {/* Sidebar */}
           <div className="space-y-8">
-            <div className="sticky top-24">
+            <div className="sticky top-24 space-y-8">
+              {/* Author Box */}
+              {workout.author && (
+                <AuthorSidebarCard author={workout.author} />
+              )}
+
               <RelatedWorkouts workouts={relatedWorkouts} />
 
               {/* Promotion or AdSense placeholder */}
@@ -108,6 +119,20 @@ export default async function WorkoutDetailsPage({ params }: Props) {
             "duration": `PT${workout.duration}M`,
             "image": workout.image?.url || "",
             "educationalLevel": workout.difficulty,
+            ...(workout.author && {
+              "author": {
+                "@type": "Person",
+                "name": workout.author.name,
+                "url": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/authors/${workout.author.slug}`
+              }
+            }),
+            ...(workout.reviewedBy && workout.reviewedBy.length > 0 && {
+              "reviewedBy": workout.reviewedBy.map(reviewer => ({
+                "@type": "Person",
+                "name": reviewer.name,
+                "url": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/authors/${reviewer.slug}`
+              }))
+            }),
             "provider": {
               "@type": "Organization",
               "name": "FitWay",

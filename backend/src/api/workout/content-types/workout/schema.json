@@ -88,6 +88,18 @@
     },
     "text": {
       "type": "richtext"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "workoutsCreated"
+    },
+    "reviewedBy": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::author.author",
+      "inversedBy": "workoutsReviewed"
     }
   }
 }

@@ -40,7 +40,16 @@
       "type": "text"
     },
     "author": {
-      "type": "string"
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "articles"
+    },
+    "reviewedBy": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::author.author",
+      "inversedBy": "articlesReviewed"
     },
     "readTime": {
       "type": "string"

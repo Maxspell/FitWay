@@ -1,3 +1,5 @@
+import { Author } from './author';
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -12,7 +14,8 @@ export interface BlogPost {
       large?: { url: string };
     };
   };
-  author: string;
+  author?: Author;
+  reviewedBy?: Author[];
   date: string;
   category: string;
   readTime: string;

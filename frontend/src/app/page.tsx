@@ -6,6 +6,7 @@ import FeaturedWorkouts from "@/components/sections/workouts/FeaturedWorkouts";
 import LatestPosts from "@/components/sections/blog/LatestPosts";
 import { getWorkouts } from "@/services/workout.service";
 import { getBlogPosts } from "@/services/post.service";
+import { getAuthors } from "@/services/author.service";
 
 import StepsSection from "@/components/sections/steps/StepsSection";
 import FAQSection from "@/components/sections/faq/FAQSection";
@@ -69,10 +70,11 @@ const fallbackFAQs = [
 
 
 export default async function Home() {
-  const [blogPosts, faqs, workouts] = await Promise.all([
+  const [blogPosts, faqs, workouts, authors] = await Promise.all([
     getBlogPosts(),
     getFAQs(),
-    getWorkouts()
+    getWorkouts(),
+    getAuthors()
   ]);
 
   const structuredData = {
@@ -140,7 +142,7 @@ export default async function Home() {
       <WhyFitWay />
 
       {/* Experts Section - Human Authority */}
-      <ExpertsSection />
+      <ExpertsSection authors={authors} />
 
       {/* Calculator Preview Section */}
       <CalculatorPreview />
