@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!author) return { title: "Author Not Found | FitWay" };
 
   return {
-    title: `${author.name} - ${author.credentials || author.jobTitle || 'Fitness Expert'} | FitWay`,
+    title: `${author.name} - ${author.credentials || author.jobTitle || 'Fitness Expert'}`,
     description: author.bio || `View the full profile of ${author.name} on FitWay.`,
     alternates: {
       canonical: `/authors/${params.slug}`,
@@ -229,7 +229,7 @@ export default async function AuthorProfilePage({ params }: Props) {
             "@type": "Person",
             "name": author.name,
             "jobTitle": author.jobTitle || author.credentials,
-            "description": author.fullBio || author.bio,
+            "description": author.bio,
             "image": imageUrl,
             "url": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/authors/${author.slug}`,
             "sameAs": [author.linkedin, author.twitter, author.instagram].filter(Boolean),
