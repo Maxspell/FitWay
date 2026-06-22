@@ -15,6 +15,11 @@ const nextConfig = {
         hostname: "images.unsplash.com",
       },
       {
+        protocol: "https",
+        hostname: "api.fitway.best",
+        pathname: "/uploads/**",
+      },
+      {
         protocol: 'http',
         hostname: '173.242.62.179',
         port: '1337',
