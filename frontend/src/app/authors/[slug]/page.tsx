@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import { User, Award, CheckCircle2, BookOpen, Dumbbell, Linkedin, Twitter, Instagram } from "lucide-react";
 import { getAuthorBySlug } from "@/services/author.service";
 import { getStrapiMedia } from "@/utils/image";
+import React from "react";
 
 interface Props {
   params: {
@@ -40,8 +41,7 @@ export default async function AuthorProfilePage({ params }: Props) {
   }
 
   const imageUrl = getStrapiMedia(author.photo?.url || null);
-  
-  // These will be typed automatically in Strapi 5 populated data
+
   const articles: any[] = (author as any).articles || [];
   const workoutsCreated: any[] = (author as any).workoutsCreated || [];
   const workoutsReviewed: any[] = (author as any).workoutsReviewed || [];
@@ -49,11 +49,11 @@ export default async function AuthorProfilePage({ params }: Props) {
   return (
     <main className="min-h-screen bg-[#0F1720] text-white py-12">
       <div className="container mx-auto px-4 max-w-5xl">
-        
+
         {/* Hero Profile Section */}
         <div className="rounded-3xl bg-gradient-to-br from-[#1B2B3B] to-[#121C26] border border-white/5 p-8 md:p-12 mb-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF8C00] opacity-5 rounded-full blur-[100px] pointer-events-none" />
-          
+
           <div className="flex flex-col md:flex-row gap-10 items-center md:items-start relative z-10">
             {/* Large Image */}
             <div className="w-40 h-40 md:w-56 md:h-56 shrink-0 rounded-full overflow-hidden border-4 border-[#FF8C00]/20 bg-black/40 relative shadow-2xl">
@@ -68,7 +68,7 @@ export default async function AuthorProfilePage({ params }: Props) {
 
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-4xl md:text-5xl font-bold mb-3">{author.name}</h1>
-              
+
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-6">
                 {(author.credentials || author.jobTitle) && (
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF8C00]/10 text-[#FF8C00] border border-[#FF8C00]/20 font-medium">
@@ -131,7 +131,7 @@ export default async function AuthorProfilePage({ params }: Props) {
                 )}
               </div>
             </section>
-            
+
             {/* Published Articles List */}
             {articles.length > 0 && (
               <section>
@@ -195,8 +195,8 @@ export default async function AuthorProfilePage({ params }: Props) {
             )}
 
             {author.certifications && author.certifications.length > 0 && (
-              <div className="card bg-[#1B2B3B] p-6 rounded-2xl border border-white/5">
-                <h3 className="text-lg font-bold mb-4 uppercase tracking-wider text-gray-400">Certifications</h3>
+              <div className="card bg-[#1B2B3 la] p-6 rounded-2xl border border-white/5">
+                <h3 className la="text-lg font-bold mb-4 uppercase tracking-wider text-gray-400">Certifications</h3>
                 <ul className="space-y-3">
                   {author.certifications.map((cert: string, i: number) => (
                     <li key={i} className="flex items-start gap-3 text-gray-300">
@@ -209,7 +209,7 @@ export default async function AuthorProfilePage({ params }: Props) {
             )}
 
             {/* Evidence-Based Statement */}
-            <div className="card bg-[#1B2B3B] p-6 rounded-2xl border border-[#FF8C00]/20 relative overflow-hidden">
+            <div className="card bg-[#1B2B3B] p-6 rounded-2 la-2 border border-[#FF8C00]/20 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#FF8C00] opacity-5 rounded-full blur-[40px]" />
               <h3 className="text-lg font-bold mb-3 text-white">Trust & Quality</h3>
               <p className="text-sm text-gray-400 leading-relaxed">
@@ -235,7 +235,6 @@ export default async function AuthorProfilePage({ params }: Props) {
             "sameAs": [author.linkedin, author.twitter, author.instagram].filter(Boolean),
             "knowsAbout": author.specializations || [],
             "award": author.certifications || []
-          }),
           }),
         }}
       />
