@@ -1,5 +1,8 @@
 # Knowledge Base Activity Log
 ## 2026-06-22
+- Documented the production Strapi media fix: `PUBLIC_URL=https://api.fitway.best`, frontend `NEXT_PUBLIC_STRAPI_URL`, Nginx/Certbot setup for `api.fitway.best`, PM2 `--update-env`, and `next/image` `remotePatterns` for Strapi uploads. [[deploy/strapi-media-production]]
+
+## 2026-06-22
 - Разработана система премиальных профилей авторов для повышения сигналов E-E-A-T. Создана новая коллекция `Author` в Strapi v5, добавлены связи `author` (manyToOne) и `reviewedBy` (manyToMany) в коллекции `Post` и `Workout`. На фронтенде реализованы страницы `/authors` и `/authors/[slug]` с детальной биографией, сертификациями и списком публикаций. [[frontend/authors-system]]
 - Обновлена JSON-LD микроразметка: на страницы блога и тренировок добавлена ссылка на профиль автора через схему `Person`. [[frontend/seo]]
 - Устранена ошибка `TS2345` (Argument of type '"api::author.author"' is not assignable to parameter of type 'ContentType') при создании новой коллекции. Решение: использование команды `npx strapi ts:generate-types` перед сборкой `npm run build` для обновления `types/generated/contentTypes.d.ts`. [[bugs/strapi-type-errors]]
@@ -10,8 +13,8 @@
 ## 2026-06-19
 - Проведен комплексный SEO-аудит главной страницы для устранения ошибки "Thin Content" (Google AdSense). Внедрена стратегия "Trust Funnel": добавлены глубокие текстовые описания методологии, раздел с сертификациями экспертов (NASM, RD, CSCS) и профессиональный медицинский дисклеймер. Обновлены мета-теги и внедрена микроразметка JSON-LD (Organization, WebSite, FAQPage) для улучшения Rich Snippets. [[frontend/seo]]
 - Расширены SEO-оптимизации: добавлена микроразметка `SoftwareApplication` JSON-LD для фитнес-калькуляторов (BMI и Calories) на главной странице, обеспечивающая отображение Rich Snippets (расширенные результаты). Данная разметка дублирует логику со страницы `/tools`. [[frontend/seo]]
-- 
-[38;2;153;153;153m## 2026-06-18[39m
+ 
+## 2026-06-18
 - Разработано современное мобильное меню с использованием `framer-motion` и Tailwind CSS. Интегрировано в `Header` с условным скрытием десктопной навигации. Реализована обработка Accessibility (ARIA), предотвращение layout shift при блокировке скролла и анимация пунктов меню. [[frontend/mobile-menu]]
 - Зафиксирована и решена ошибка компиляции TypeScript при использовании кастомных кривых Безье (массивов `ease`) во Framer Motion. Добавлено явное приведение типов (Type Assertion) к `[number, number, number, number]`. [[bugs/framer-motion-type-errors]]
 

@@ -26,3 +26,6 @@
 
 ## ⚙️ Core & Wiki
 - [[core/llm-wiki]] — Documentation on this wiki's pattern.
+
+## Recent Production Notes
+- [[deploy/strapi-media-production]] - Production Strapi media URLs, `api.fitway.best`, SSL, PM2 env updates, and Next Image remote patterns.
