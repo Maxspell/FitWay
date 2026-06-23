@@ -22,10 +22,16 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link href="/workouts" className="nav-link">Workouts</Link></li>
+              <li><Link href="/authors" className="nav-link">Authors</Link></li>
               <li><Link href="/blog" className="nav-link">Blog</Link></li>
               <li><Link href="/tools" className="nav-link">Tools</Link></li>
               <li><Link href="/about" className="nav-link">About Us</Link></li>
               <li><Link href="/contact" className="nav-link">Contact</Link></li>
+            </ul>
+            <h3 className="text-xl font-bold mt-8 mb-4">Legal</h3>
+            <ul className="space-y-2">
+              <li><Link href="/privacy-policy" className="nav-link">Privacy Policy</Link></li>
+              <li><Link href="/terms-of-service" className="nav-link">Terms of Service</Link></li>
             </ul>
           </div>
 
@@ -55,12 +61,12 @@ const Footer = () => {
           </div>
         </div>
 
-          <div className="col-span-4 border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-xs leading-relaxed max-w-4xl mx-auto">
-            <p className="mb-4">
-              <strong>Medical Disclaimer:</strong> The content provided by FitWay, including text, graphics, images, and other material, is for informational and educational purposes only. It is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read on this website.
-            </p>
-            <p>&copy; {new Date().getFullYear()} FitWay. All rights reserved.</p>
-          </div>
+        <div className="col-span-4 border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-xs leading-relaxed max-w-4xl mx-auto">
+          <p className="mb-4">
+            <strong>Medical Disclaimer:</strong> The content provided by FitWay, including text, graphics, images, and other material, is for informational and educational purposes only. It is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read on this website.
+          </p>
+          <p>&copy; {new Date().getFullYear()} FitWay. All rights reserved.</p>
+        </div>
 
       </div>
     </footer>
