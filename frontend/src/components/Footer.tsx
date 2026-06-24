@@ -38,10 +38,10 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-gray-300">
-              <li>123 Fitness Street</li>
+              <li>456 Wellness Ave</li>
               <li>New York, NY 10001</li>
-              <li>Phone: (603) 842-342</li>
-              <li>Email: info@fitway.com</li>
+              <li>Phone: +1 (603) 842-3420</li>
+              <li>Email: info@fitway.best</li>
             </ul>
           </div>
 

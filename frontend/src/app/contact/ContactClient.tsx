@@ -254,7 +254,8 @@ export default function ContactClient() {
               transition={{ delay: 0.3 }}
               className="card"
             >
-              <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+              <h2 className="text-2xl font-bold mb-6">Quick Help</h2>
+              <p className="text-gray-400 mb-6 text-sm">Get instant answers to the most common questions.</p>
               <div className="space-y-4">
                 <div className="group">
                   <h3 className="font-semibold mb-2 group-hover:text-[#FF8C00] transition-colors">What are your membership options?</h3>
