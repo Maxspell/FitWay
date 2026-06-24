@@ -14,6 +14,7 @@ The implementation follows the "High-End Fitness" aesthetic used in the [[Newsle
   - `AnimatePresence` for smooth swapping of form and success messages.
   - Spring animations for success checkmarks.
 - **Inputs**: Clean, dark-themed inputs with `#FF8C00` focus rings.
+- **Trust Signals**: Inclusion of an explicit response time SLA and a link to the Privacy Policy to satisfy AdSense compliance.
 
 ## Архитектура файлов (Server / Client Split)
 
@@ -30,3 +31,10 @@ src/app/contact/
 
 ## Integration Flow
 The form submits to `/api/contact`, which validates the input and forwards it to the `contact-messages` Strapi collection.
+
+## SEO & Trust Enhancements
+To satisfy Google AdSense and E-E-A-T requirements, the contact page includes:
+- **Structured Data**: `ContactPage` JSON-LD implemented in `page.tsx` for organization identity verification.
+- **Content Depth**: Full integration of the `FAQSection` component (fetching dynamic data from Strapi) and a "Quick Help" sidebar to avoid "Thin Content" flags.
+- **Identity Verification**: Consistent use of the `fitway.best` email domain and realistic contact information to prevent "placeholder" flags during moderation.
+- Linked to: [[frontend/seo]]

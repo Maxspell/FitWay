@@ -7,7 +7,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Workout Library",
-  description: "Explore our collection of premium fitness workouts for weight loss, muscle gain, and toning.",
+  description: "Transform your body with FitWay's expert-led workout library. Access science-backed routines for sustainable weight loss, lean muscle gain, and full-body toning. Tailored for all fitness levels to help you achieve maximum results with professional guidance.",
   alternates: {
     canonical: "/workouts",
   },
@@ -56,6 +56,41 @@ export default async function Workouts({ searchParams }: Props) {
               ))}
             </div>
           </div>
+        </div>
+
+        <div className="max-w-3xl mx-auto text-gray-400 mb-12 text-center leading-relaxed">
+          <p className="mb-4">
+            Welcome to the FitWay Workout Library, your comprehensive destination for science-backed fitness programming designed to deliver real, sustainable results. Our library is built on the principle of functional movement and progressive overload, ensuring that every routine—whether it's a high-intensity fat-burning session or a focused hypertrophy program—is optimized for safety and effectiveness.
+          </p>
+          <p className="mb-4">
+            We believe that fitness should be accessible and adaptable. That's why our curated collection spans a wide spectrum of goals and experience levels. From beginners looking to build a solid foundation to advanced athletes seeking to break through plateaus, our routines provide the structure and guidance needed to stay consistent and motivated.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mt-8 mb-8">
+            <div className="p-4 bg-[#243447] rounded-xl border border-white/5">
+              <h4 className="text-white font-bold mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF8C00] rounded-full"></span>
+                Weight Loss
+              </h4>
+              <p className="text-xs">Focuses on metabolic conditioning and caloric expenditure to help you lean out and improve cardiovascular health.</p>
+            </div>
+            <div className="p-4 bg-[#243447] rounded-xl border border-white/5">
+              <h4 className="text-white font-bold mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF8C00] rounded-full"></span>
+                Muscle Gain
+              </h4>
+              <p className="text-xs">Emphasizes resistance training and hypertrophy-specific rep ranges to build strength and lean muscle mass.</p>
+            </div>
+            <div className="p-4 bg-[#243447] rounded-xl border border-white/5">
+              <h4 className="text-white font-bold mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF8C00] rounded-full"></span>
+                Toning
+              </h4>
+              <p className="text-xs">A balanced approach combining light weights and high reps to define muscle and improve overall body composition.</p>
+            </div>
+          </div>
+          <p>
+            Each workout is categorized by difficulty, duration, and required equipment, allowing you to seamlessly integrate these professional routines into your daily schedule. Explore the library, choose the path that aligns with your current ambition, and start transforming your physique today.
+          </p>
         </div>
 
         {workouts.length > 0 ? (
@@ -131,6 +166,21 @@ export default async function Workouts({ searchParams }: Props) {
             <p className="text-gray-400">Try adjusting your filters or check back later.</p>
           </div>
         )}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ItemList",
+              "itemListElement": workouts.map((workout, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "url": `https://fitway.best/workouts/${workout.slug}`,
+                "name": workout.title,
+              })),
+            }),
+          }}
+        />
       </div>
     </div>
   );

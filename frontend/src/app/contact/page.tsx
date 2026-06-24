@@ -3,7 +3,7 @@ import ContactClient from "./ContactClient";
 import FAQSection from "@/components/sections/faq/FAQSection";
 
 export const metadata: Metadata = {
-  title: "Contact Us | FitWay — Expert Fitness Guidance & Support",
+  title: "Contact Us | Expert Fitness Guidance & Support",
   description: "Get in touch with the FitWay team for professional fitness advice, partnership opportunities, or technical support. We're here to help you reach your goals.",
   alternates: {
     canonical: "/contact",
