@@ -40,10 +40,50 @@ export default async function Blog() {
 
   const blogPosts = postsData;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": blogPosts.map((post, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://fitway.com/blog/${post.slug}`,
+      "name": post.title,
+      "description": post.excerpt,
+    })),
+  };
+
   return (
     <div className="py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="container mx-auto px-4">
         <h1 className="section-title text-center">Latest Health & Fitness Articles</h1>
+
+        <section className="bg-gray-800 rounded-lg p-8 mb-12 shadow-xl">
+          <h2 className="text-3xl font-bold text-white mb-4">Unlock Your Potential with FitWay Insights</h2>
+          <p className="text-gray-300 leading-relaxed mb-6">
+            Welcome to the FitWay Blog, your ultimate resource for evidence-based fitness, nutrition, and wellness information.
+            Our mission is to empower you with the knowledge and tools to achieve your health goals, whether you're a beginner
+            embarking on your fitness journey or an experienced athlete looking to optimize performance. Dive into expertly
+            crafted articles covering a wide range of topics, from effective workout routines and cutting-edge training methodologies
+            to balanced nutrition plans, mental well-being strategies, and injury prevention tips.
+          </p>
+          <p className="text-gray-300 leading-relaxed mb-6">
+            Each piece of content is developed and reviewed by our team of certified fitness professionals, registered dietitians,
+            and health experts, ensuring accuracy, relevance, and actionable advice. We believe in a holistic approach to health,
+            integrating the latest scientific research with practical applications to help you build sustainable habits and
+            transform your life. Explore our categories to find articles tailored to your interests, and join a community
+            dedicated to living a stronger, healthier, and more vibrant life.
+          </p>
+          <p className="text-gray-300 leading-relaxed">
+            From in-depth guides on strength training and cardio to comprehensive breakdowns of macronutrients and meal prep ideas,
+            the FitWay Blog is designed to be your go-to source for reliable information. Stay updated with our latest posts and
+            discover new ways to elevate your fitness journey. Our content is regularly updated to reflect the evolving landscape
+            of health and fitness, providing you with fresh perspectives and proven strategies.
+          </p>
+        </section>
 
         {/* Featured Post */}
         <Link href={`/blog/${blogPosts[0].slug}`} className="card mb-12 block hover:ring-2 hover:ring-[#FF8C00] transition-all">

@@ -37,4 +37,6 @@ This document outlines the core SEO practices and specific implementations used 
   - **Accessibility**: Guidance for all fitness levels (Beginner to Advanced).
   - **Path Selection**: Clear definitions for "Weight Loss", "Muscle Gain", and "Toning" tracks to help users navigate the library.
 - **Benefit-Driven Metadata**: Updated the page description from a feature list to a benefit-focused statement ("Transform your body...", "science-backed routines"), improving CTR and perceived value.
-- **Directory Structured Data**: Implemented `ItemList` JSON-LD on the hub page. This programmatically lists all available workouts with their positions and URLs, enabling Google to recognize the page as a high-value directory and potentially trigger list-based rich snippets.
+- **Directory Structured Data**: Implemented `ItemList` JSON-LD on hub pages. This programmatically lists available items with their positions and URLs, enabling Google to recognize the page as a high-value directory and potentially trigger list-based rich snippets.
+  - **Workouts Hub**: Implemented on `/workouts` to index the workout catalog.
+  - **Blog Hub**: Implemented on `/blog` to index the list of articles, including titles and excerpts, improving visibility of the content library.
