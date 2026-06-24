@@ -171,6 +171,12 @@ export default function ContactClient() {
                           </>
                         )}
                       </motion.button>
+                      <p className="text-center text-xs text-gray-500 mt-4">
+                        By submitting this form, you agree to our{" "}
+                        <a href="/privacy-policy" className="text-gray-300 hover:text-[#FF8C00] underline underline-offset-2">
+                          Privacy Policy
+                        </a>.
+                      </p>
 
                       {status === "error" && (
                         <motion.div
@@ -198,6 +204,7 @@ export default function ContactClient() {
               className="card"
             >
               <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
+              <p className="text-gray-400 mb-6 text-sm">We typically respond to all inquiries within 24 business hours.</p>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
                   <div className="bg-[#1B2B3B] p-3 rounded-lg">
@@ -205,9 +212,9 @@ export default function ContactClient() {
                   </div>
                   <div className="text-white">
                     <p className="font-medium">Phone</p>
-                    <p className="text-gray-300">(603) 842-342</p>
+                    <p className="text-gray-300">+1 (603) 842-3420</p>
                   </div>
-                </div>
+                </div>>
 
                 <div className="flex items-center gap-4">
                   <div className="bg-[#1B2B3B] p-3 rounded-lg">
@@ -215,7 +222,7 @@ export default function ContactClient() {
                   </div>
                   <div className="text-white">
                     <p className="font-medium">Email</p>
-                    <p className="text-gray-300">info@FitWay.com</p>
+                    <p className="text-gray-300">info@fitway.best</p>
                   </div>
                 </div>
 
@@ -225,7 +232,7 @@ export default function ContactClient() {
                   </div>
                   <div className="text-white">
                     <p className="font-medium">Address</p>
-                    <p className="text-gray-300">123 Fitness Street<br />New York, NY 10001</p>
+                    <p className="text-gray-300">456 Wellness Ave<br />New York, NY 10001</p>
                   </div>
                 </div>
 
@@ -256,6 +263,14 @@ export default function ContactClient() {
                 <div className="group">
                   <h3 className="font-semibold mb-2 group-hover:text-[#FF8C00] transition-colors">Do you offer personal training?</h3>
                   <p className="text-gray-300">Yes, we have certified personal trainers available for one-on-one sessions and small group training.</p>
+                </div>
+                <div className="group">
+                  <h3 className="font-semibold mb-2 group-hover:text-[#FF8C00] transition-colors">How do I start with a customized plan?</h3>
+                  <p className="text-gray-300">You can use our online tools or contact us directly for a professional consultation with our certified experts.</p>
+                </div>
+                <div className="group">
+                  <h3 className="font-semibold mb-2 group-hover:text-[#FF8C00] transition-colors">Is the content reviewed by professionals?</h3>
+                  <p className="text-gray-300">Absolutely. All our workouts and articles are created or reviewed by NASM and RD certified professionals to ensure safety and efficacy.</p>
                 </div>
               </div>
             </motion.div>

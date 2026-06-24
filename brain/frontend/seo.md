@@ -30,3 +30,13 @@ This document outlines the core SEO practices and specific implementations used 
 
 ## 5. User-Generated Content (UGC)
 - **Review System**: We include a review system on workout pages. Even if the backend integration is pending, rendering the frontend UI with keyword-rich reviews helps search engines index long-tail keywords associated with social proof (e.g., "results", "consistency", "easy to follow").
+
+## 6. AdSense Compliance & Transparency
+- **Legal Transparency**: To satisfy Google AdSense requirements and user trust, we implement dedicated legal pages:
+  - `/privacy-policy`: Details data collection, cookie usage, and Google AdSense's role in serving personalized ads.
+  - `/terms-of-service`: Defines platform usage rules and includes a critical **Medical Disclaimer** for YMYL (Your Money Your Life) compliance.
+- **Enhanced About Page**: The `/about` page serves as the primary trust anchor. It features:
+  - **Dynamic Expert Integration**: Team members are rendered via `ExpertsSection` using data from the [[frontend/authors-system]], ensuring consistency across the site.
+  - **Advanced Schema**: Implementation of `AboutPage` and a collection of `Person` entities in JSON-LD, linking authors' professional roles and LinkedIn profiles to the organization.
+  - **Mission-Driven Content**: An expanded "Our Mission" section that uses LSI keywords and strategic internal linking to tools, blog, and workouts, combating "Thin Content" flags.
+- **Footer Navigation**: Direct, visible links to legal pages and contact information are placed in the global footer for immediate crawler and user access.

@@ -1,4 +1,7 @@
 # Knowledge Base Activity Log
+## 2026-06-23
+- Проведен SEO-аудит страницы `/about` с целью прохождения проверки Google AdSense. Реализован комплекс мер по устранению проблем P0 (Critical Issues): созданы страницы `/privacy-policy` и `/terms-of-service` с медицинским дисклеймером, обновлен футер. Страница `/about` переработана для усиления E-E-A-T: внедрена динамическая загрузка экспертов через `ExpertsSection`, добавлена микроразметка `AboutPage` и `Person` JSON-LD, а раздел "Our Mission" расширен SEO-оптимизированным текстом с внутренней перелинковкой. [[frontend/seo]]
+- 
 ## 2026-06-22
 - Documented the production Strapi media fix: `PUBLIC_URL=https://api.fitway.best`, frontend `NEXT_PUBLIC_STRAPI_URL`, Nginx/Certbot setup for `api.fitway.best`, PM2 `--update-env`, and `next/image` `remotePatterns` for Strapi uploads. [[deploy/strapi-media-production]]
 
