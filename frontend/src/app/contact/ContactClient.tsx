@@ -214,7 +214,7 @@ export default function ContactClient() {
                     <p className="font-medium">Phone</p>
                     <p className="text-gray-300">+1 (603) 842-3420</p>
                   </div>
-                </div>>
+                </div>
 
                 <div className="flex items-center gap-4">
                   <div className="bg-[#1B2B3B] p-3 rounded-lg">
