@@ -20,6 +20,12 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::post.post",
+      "inversedBy": "category"
     }
   }
 }
