@@ -44,6 +44,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'daily',
       priority: 0.9,
     },
+    {
+      url: `${BASE_URL}/authors`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
   ];
 
   // 2. Dynamic Blog Posts from Strapi
@@ -100,5 +106,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Error generating dynamic sitemap for workouts:', error);
   }
 
-  return [...staticPages, ...blogEntries, ...workoutEntries];
+  // 4. Dynamic Authors from Strapi
+  let authorEntries: MetadataRoute.Sitemap = [];
+  try {
+    const response = await fetch(`${strapiUrl}/api/authors?fields[0]=slug&fields[1]=updatedAt`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${apiToken}`,
+        'Content-Type': 'application/json',
+      },
+      next: { revalidate: 3600 }, // Cache sitemap fetches for 1 hour
+    });
+    
+    if (response.ok) {
+      const result = await response.json();
+      if (result.data && Array.isArray(result.data)) {
+        authorEntries = result.data.map((author: any) => ({
+          url: `${BASE_URL}/authors/${author.slug}`,
+          lastModified: author.updatedAt ? new Date(author.updatedAt) : new Date(),
+          changeFrequency: 'monthly',
+          priority: 0.6,
+        }));
+      }
+    }
+  } catch (error) {
+    console.error('Error generating dynamic sitemap for authors:', error);
+  }
+
+  return [...staticPages, ...blogEntries, ...workoutEntries, ...authorEntries];
 }
