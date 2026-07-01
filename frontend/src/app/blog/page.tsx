@@ -2,7 +2,7 @@ import { Clock, User, Tag, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BlogPost } from "@/interfaces/blog";
+import { BlogPost, Category } from "@/interfaces/blog";
 import { getPostImage } from "@/utils/image";
 import { Metadata } from "next";
 
@@ -16,7 +16,24 @@ export const metadata: Metadata = {
 
 async function getBlogPosts() {
   const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-  const response = await fetch(`${API_URL}/api/posts?populate=image&sort=createdAt:desc`, {
+  const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=category&sort=createdAt:desc`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+      "Content-Type": "application/json"
+    },
+    next: {
+      revalidate: 600, // 10 minutes
+    },
+  });
+  const result = await response.json();
+
+  return result.data ? result.data : [];
+}
+
+async function getCategories() {
+  const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+  const response = await fetch(`${API_URL}/api/categories`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
@@ -33,6 +50,7 @@ async function getBlogPosts() {
 
 export default async function Blog() {
   const postsData: BlogPost[] = await getBlogPosts();
+  const categoriesData: Category[] = await getCategories();
 
   if (!postsData || postsData.length === 0) {
     notFound();
@@ -117,7 +135,7 @@ export default async function Blog() {
                 </span>
                 <span className="flex items-center gap-2">
                   <Tag className="h-4 w-4" />
-                  {blogPosts[0].category}
+                  {blogPosts[0].category?.name}
                 </span>
               </div>
               <h2 className="text-3xl font-bold mb-4">{blogPosts[0].title}</h2>
@@ -172,10 +190,10 @@ export default async function Blog() {
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-6">Categories</h2>
           <div className="grid grid-cols-4 gap-4">
-            {["Fitness Programs", "Nutrition", "Health", "Psychology"].map(category => (
-              <button key={category} className="card hover:bg-[#2d4258] transition-colors">
-                <h3 className="text-lg font-semibold text-center">{category}</h3>
-              </button>
+            {categoriesData.map(category => (
+              <Link key={category.slug} href={`/blog/category/${category.slug}`} className="card hover:bg-[#2d4258] transition-colors block text-center">
+                <h3 className="text-lg font-semibold">{category.name}</h3>
+              </Link>
             ))}
           </div>
         </div>

@@ -34,7 +34,7 @@ const API_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
 // Functions
 async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
-  const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&filters[slug][$eq]=${slug}`, {
+  const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&populate[3]=category&filters[slug][$eq]=${slug}`, {
     method: "GET",
     headers: {
       "Authorization": `Bearer ${API_TOKEN}`,
@@ -139,7 +139,7 @@ export default async function BlogPost({ params }: Props) {
               </span>
               <span className="flex items-center gap-2">
                 <Tag className="h-5 w-5" />
-                {post.category}
+                {post.category?.name}
               </span>
             </div>
             <h1 className="text-4xl font-bold text-white">{post.title}</h1>
@@ -181,16 +181,16 @@ export default async function BlogPost({ params }: Props) {
 
             {/* Related Categories */}
             <div className="card">
-              <h3 className="text-xl font-bold mb-4">Related Categories</h3>
+              <h3 className="text-xl font-bold mb-4">Category</h3>
               <div className="flex flex-wrap gap-2">
-                {["Fitness", "Workout", "Health", "Training"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-[#1B2B3B] text-[#FF8C00] rounded-full text-sm"
+                {post.category && (
+                  <Link
+                    href={`/blog/category/${post.category.slug}`}
+                    className="px-3 py-1 bg-[#1B2B3B] text-[#FF8C00] rounded-full text-sm hover:bg-[#2d4258] transition-colors"
                   >
-                    {tag}
-                  </span>
-                ))}
+                    {post.category.name}
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -225,7 +225,7 @@ export default async function BlogPost({ params }: Props) {
               }))
             }),
             "datePublished": post.publishedAt,
-            "articleSection": post.category,
+            "articleSection": post.category?.name,
           }),
         }}
       />

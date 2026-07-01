@@ -1,5 +1,11 @@
 import { Author } from './author';
 
+export interface Category {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -17,7 +23,7 @@ export interface BlogPost {
   author?: Author;
   reviewedBy?: Author[];
   date: string;
-  category: string;
+  category: Category | null;
   readTime: string;
   publishedAt: string;
   createdAt: string;
