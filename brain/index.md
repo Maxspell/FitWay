@@ -23,6 +23,7 @@
 - [[bugs/strapi-type-errors]] — Fixing TS2345 during new collection creation.
 - [[bugs/frontend-media-nulls]] — Fixing TypeError when Strapi images are missing.
 - [[bugs/build-errors]] — Ошибки сборки: OOM на VPS, конфликт `useState`/`metadata` в App Router.
+- [[bugs/strapi-reviews-400]] — Fix for 400 Bad Request when filtering reviews by workout (Permissions issue).
 
 ## ⚙️ Core & Wiki
 - [[core/llm-wiki]] — Documentation on this wiki's pattern.

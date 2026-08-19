@@ -29,6 +29,26 @@ export async function getWorkoutBySlug(slug: string): Promise<Workout | null> {
   }
 }
 
+export async function getReviewsByWorkoutId(workoutId: string) {
+  try {
+    const response = await fetch(
+      `${STRAPI_URL}/api/reviews?filters[workout][documentId][$eq]=${workoutId}&sort=createdAt:desc`,
+      {
+        headers: {
+          Authorization: `Bearer ${STRAPI_TOKEN}`,
+        },
+        next: { revalidate: 3600 },
+      }
+    );
+
+    const result = await response.json();
+    return result.data || [];
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    return [];
+  }
+}
+
 export async function getWorkouts(category?: string): Promise<Workout[]> {
   try {
     const base = category && category !== "all"

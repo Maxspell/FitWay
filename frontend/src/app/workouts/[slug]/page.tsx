@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getWorkoutBySlug, getRelatedWorkouts } from "@/services/workout.service";
+import { getWorkoutBySlug, getRelatedWorkouts, getReviewsByWorkoutId } from "@/services/workout.service";
 import WorkoutHero from "@/components/workouts/WorkoutHero";
 import WorkoutMetadata from "@/components/workouts/WorkoutMetadata";
 import ExerciseList from "@/components/workouts/ExerciseList";
@@ -52,7 +52,15 @@ export default async function WorkoutDetailsPage({ params }: Props) {
     notFound();
   }
 
-  const relatedWorkouts = await getRelatedWorkouts(workout.category, workout.slug);
+  const [relatedWorkouts, reviews] = await Promise.all([
+    getRelatedWorkouts(workout.category, workout.slug),
+    getReviewsByWorkoutId(workout.documentId)
+  ]);
+
+  const averageRating = reviews.length
+    ? (reviews.reduce((acc, curr: any) => acc + curr.rating, 0) / reviews.length).toFixed(1)
+    : "0.0";
+  const reviewCount = reviews.length;
 
   return (
     <main className="min-h-screen bg-[#1B2B3B] text-white">
@@ -119,6 +127,25 @@ export default async function WorkoutDetailsPage({ params }: Props) {
             "duration": `PT${workout.duration}M`,
             "image": workout.image?.url || "",
             "educationalLevel": workout.difficulty,
+            ...(reviewCount > 0 && {
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": averageRating,
+                "reviewCount": reviewCount,
+              },
+              "review": reviews.slice(0, 5).map((rev: any) => ({
+                "@type": "Review",
+                "author": {
+                  "@type": "Person",
+                  "name": rev.name,
+                },
+                "reviewRating": {
+                  "@type": "Rating",
+                  "ratingValue": rev.rating,
+                },
+                "reviewBody": rev.content,
+              })),
+            }),
             ...(workout.author && {
               "author": {
                 "@type": "Person",
