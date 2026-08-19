@@ -100,12 +100,6 @@
       "relation": "manyToMany",
       "target": "api::author.author",
       "inversedBy": "workoutsReviewed"
-    },
-    "reviews": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::review.review",
-      "mappedBy": "workout"
     }
   }
 }
