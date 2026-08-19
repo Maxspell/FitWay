@@ -72,7 +72,7 @@ export default async function WorkoutDetailsPage({ params }: Props) {
               </div>
             )}
             <ExpertTips category={workout.category} />
-            <ReviewSystem workoutTitle={workout.title} />
+            <ReviewSystem workoutTitle={workout.title} workoutDocumentId={workout.documentId} />
             {workout.reviewedBy && workout.reviewedBy.length > 0 && (
               <WorkoutExpertReviewBox reviewer={workout.reviewedBy[0]} />
             )}
