@@ -681,6 +681,7 @@ export interface ApiWorkoutWorkout extends Struct.CollectionTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     reviewedBy: Schema.Attribute.Relation<'manyToMany', 'api::author.author'>;
+    reviews: Schema.Attribute.Relation<'oneToMany', 'api::review.review'>;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     targetMuscleGroups: Schema.Attribute.String;
     text: Schema.Attribute.RichText;

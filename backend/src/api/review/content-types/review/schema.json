@@ -32,7 +32,8 @@
     "workout": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::workout.workout"
+      "target": "api::workout.workout",
+      "inversedBy": "reviews"
     }
   }
 }
