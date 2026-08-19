@@ -58,7 +58,7 @@ export default async function WorkoutDetailsPage({ params }: Props) {
   ]);
 
   const averageRating = reviews.length
-    ? (reviews.reduce((acc, curr: any) => acc + curr.rating, 0) / reviews.length).toFixed(1)
+    ? (reviews.reduce((acc: number, curr: any) => acc + curr.rating, 0) / reviews.length).toFixed(1)
     : "0.0";
   const reviewCount = reviews.length;
 
