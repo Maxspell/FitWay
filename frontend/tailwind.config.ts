@@ -8,6 +8,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            a: {
+              color: '#FF8C00',
+              '&:hover': {
+                textDecoration: 'none',
+              },
+            },
+          },
+        },
+      },
       animation: {
         'gradient-x': 'gradient-x 3s ease infinite',
         'shimmer': 'shimmer 2s infinite linear',

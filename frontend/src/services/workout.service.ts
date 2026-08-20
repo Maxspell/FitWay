@@ -6,7 +6,7 @@ const STRAPI_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 export async function getWorkoutBySlug(slug: string): Promise<Workout | null> {
   try {
     const response = await fetch(
-      `${STRAPI_URL}/api/workouts?filters[slug][$eq]=${slug}&populate=*`,
+      `${STRAPI_URL}/api/workouts?filters[slug][$eq]=${slug}&populate[author][populate]=*&populate[reviewedBy][populate]=*&populate[exercises][populate]=*&populate[image][populate]=*`,
       {
         headers: {
           Authorization: `Bearer ${STRAPI_TOKEN}`,

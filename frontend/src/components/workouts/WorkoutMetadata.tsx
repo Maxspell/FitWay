@@ -19,7 +19,7 @@ export default function WorkoutMetadata({ workout }: Props) {
     },
     {
       label: "Exercises",
-      value: `${workout.exercises.length} Movements`,
+      value: `${workout.exercises?.length || 0} Movements`,
       icon: Box,
     },
     {

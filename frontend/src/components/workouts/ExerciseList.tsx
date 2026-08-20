@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, Circle, Timer, Play, Pause, RotateCcw } from "lucide-react";
 
 interface Props {
-  exercises: Exercise[];
+  exercises?: Exercise[];
 }
 
 export default function ExerciseList({ exercises }: Props) {
@@ -42,67 +42,77 @@ export default function ExerciseList({ exercises }: Props) {
     }
   };
 
-  const progress = (completedExercises.length / exercises.length) * 100;
+  const progress = exercises?.length
+    ? (completedExercises.length / exercises.length) * 100
+    : 0;
 
   return (
     <div className="space-y-6 relative">
-      {/* Floating Rest Timer */}
-      <AnimatePresence>
-        {restTimer.active && (
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-[#FF8C00] text-white px-8 py-4 rounded-3xl shadow-2xl flex items-center gap-4 border-4 border-white/20 backdrop-blur-xl"
-          >
-            <Timer className="w-6 h-6 animate-pulse" />
-            <div className="flex flex-col">
-              <span className="text-[10px] font-black uppercase tracking-tighter opacity-80">Rest Period</span>
-              <span className="text-2xl font-black tabular-nums">{restTimer.seconds}s</span>
-            </div>
-            <button 
-              onClick={() => setRestTimer({ active: false, seconds: 0 })}
-              className="ml-4 p-2 bg-white/20 rounded-full hover:bg-white/40 transition-colors"
-            >
-              Skip
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl font-black uppercase tracking-tight">
-          Exercise List <span className="text-[#FF8C00] ml-2">({exercises.length})</span>
-        </h2>
-        <div className="flex items-center gap-4">
-          <div className="text-right hidden sm:block">
-            <p className="text-xs text-gray-400 uppercase font-bold">Progress</p>
-            <p className="text-lg font-black">{Math.round(progress)}%</p>
-          </div>
-          <div className="w-32 h-2 bg-gray-700 rounded-full overflow-hidden">
-            <motion.div 
-              className="h-full bg-[#FF8C00]" 
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 0.5 }}
-            />
-          </div>
+      {!exercises ? (
+        <div className="text-center py-12 bg-[#243447] rounded-2xl border border-white/5">
+          <p className="text-gray-400">No exercises found for this workout.</p>
         </div>
-      </div>
+      ) : (
+        <>
+          {/* Floating Rest Timer */}
+          <AnimatePresence>
+            {restTimer.active && (
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 50 }}
+                className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-[#FF8C00] text-white px-8 py-4 rounded-3xl shadow-2xl flex items-center gap-4 border-4 border-white/20 backdrop-blur-xl"
+              >
+                <Timer className="w-6 h-6 animate-pulse" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black uppercase tracking-tighter opacity-80">Rest Period</span>
+                  <span className="text-2xl font-black tabular-nums">{restTimer.seconds}s</span>
+                </div>
+                <button
+                  onClick={() => setRestTimer({ active: false, seconds: 0 })}
+                  className="ml-4 p-2 bg-white/20 rounded-full hover:bg-white/40 transition-colors"
+                >
+                  Skip
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-      <div className="space-y-4">
-        {exercises.map((exercise, index) => (
-          <ExerciseCard
-            key={exercise.id}
-            exercise={exercise}
-            index={index}
-            isActive={activeIndex === index}
-            isCompleted={completedExercises.includes(exercise.id)}
-            onToggleComplete={() => toggleComplete(exercise.id)}
-            onSelect={() => setActiveIndex(index)}
-          />
-        ))}
-      </div>
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-black uppercase tracking-tight">
+              Exercise List <span className="text-[#FF8C00] ml-2">({exercises.length})</span>
+            </h2>
+            <div className="flex items-center gap-4">
+              <div className="text-right hidden sm:block">
+                <p className="text-xs text-gray-400 uppercase font-bold">Progress</p>
+                <p className="text-lg font-black">{Math.round(progress)}%</p>
+              </div>
+              <div className="w-32 h-2 bg-gray-700 rounded-full overflow-hidden">
+                <motion.div
+                  className="h-full bg-[#FF8C00]"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.5 }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {exercises.map((exercise, index) => (
+              <ExerciseCard
+                key={exercise.id}
+                exercise={exercise}
+                index={index}
+                isActive={activeIndex === index}
+                isCompleted={completedExercises.includes(exercise.id)}
+                onToggleComplete={() => toggleComplete(exercise.id)}
+                onSelect={() => setActiveIndex(index)}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }

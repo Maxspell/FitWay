@@ -17,7 +17,7 @@ export default function WorkoutHero({ workout }: Props) {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
-          src={getStrapiMedia(workout.image?.url)}
+          src={workout.image?.url ? getStrapiMedia(workout.image.url) : 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438'}
           alt={workout.title}
           fill
           className="object-cover transition-transform duration-1000 group-hover:scale-105"
