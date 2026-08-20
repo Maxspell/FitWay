@@ -76,7 +76,7 @@ export default async function AuthorProfilePage({ params }: Props) {
                     <span>
                       {typeof author.credentials === 'string' ? author.credentials :
                        typeof author.jobTitle === 'string' ? author.jobTitle :
-                       (author.credentials?.name || author.jobTitle?.name || 'Fitness Expert')}
+                       ((author as any).credentials?.name || (author as any).jobTitle?.name || 'Fitness Expert')}
                     </span>
                   </div>
                 )}
