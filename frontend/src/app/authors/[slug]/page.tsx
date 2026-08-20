@@ -73,7 +73,11 @@ export default async function AuthorProfilePage({ params }: Props) {
                 {(author.credentials || author.jobTitle) && (
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF8C00]/10 text-[#FF8C00] border border-[#FF8C00]/20 font-medium">
                     <Award size={18} />
-                    <span>{author.credentials || author.jobTitle}</span>
+                    <span>
+                      {typeof author.credentials === 'string' ? author.credentials :
+                       typeof author.jobTitle === 'string' ? author.jobTitle :
+                       (author.credentials?.name || author.jobTitle?.name || 'Fitness Expert')}
+                    </span>
                   </div>
                 )}
                 {author.yearsExperience && (
@@ -185,9 +189,9 @@ export default async function AuthorProfilePage({ params }: Props) {
               <div className="card bg-[#1B2B3B] p-6 rounded-2xl border border-white/5">
                 <h3 className="text-lg font-bold mb-4 uppercase tracking-wider text-gray-400">Areas of Expertise</h3>
                 <div className="flex flex-wrap gap-2">
-                  {author.specializations.map((spec: string, i: number) => (
+                  {author.specializations.map((spec: any, i: number) => (
                     <span key={i} className="px-3 py-1.5 bg-[#0F1720] text-gray-300 rounded-lg text-sm border border-white/5 font-medium">
-                      {spec}
+                      {typeof spec === 'string' ? spec : (spec.name || JSON.stringify(spec))}
                     </span>
                   ))}
                 </div>
@@ -198,10 +202,12 @@ export default async function AuthorProfilePage({ params }: Props) {
               <div className="card bg-[#1B2B3B] p-6 rounded-2xl border border-white/5">
                 <h3 className="text-lg font-bold mb-4 uppercase tracking-wider text-gray-400">Certifications</h3>
                 <ul className="space-y-3">
-                  {author.certifications.map((cert: string, i: number) => (
+                  {author.certifications.map((cert: any, i: number) => (
                     <li key={i} className="flex items-start gap-3 text-gray-300">
                       <CheckCircle2 size={18} className="text-[#00C853] shrink-0 mt-0.5" />
-                      <span className="text-sm font-medium leading-tight">{cert}</span>
+                      <span className="text-sm font-medium leading-tight">
+                        {typeof cert === 'string' ? cert : (cert.name || JSON.stringify(cert))}
+                      </span>
                     </li>
                   ))}
                 </ul>
