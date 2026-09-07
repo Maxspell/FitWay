@@ -14,38 +14,48 @@ export const metadata: Metadata = {
   },
 };
 
-async function getBlogPosts() {
-  const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-  const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=category&sort=createdAt:desc`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      "Content-Type": "application/json"
-    },
-    next: {
-      revalidate: 600, // 10 minutes
-    },
-  });
-  const result = await response.json();
-
-  return result.data ? result.data : [];
+async function getBlogPosts(): Promise<BlogPost[]> {
+  try {
+    const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+    const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=category&sort=createdAt:desc`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      next: {
+        revalidate: 600, // 10 minutes
+      },
+    });
+    if (!response.ok) return [];
+    const result = await response.json();
+    return result.data ? result.data : [];
+  } catch (error) {
+    console.error("Error fetching blog posts on blog page:", error);
+    return [];
+  }
 }
 
-async function getCategories() {
-  const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-  const response = await fetch(`${API_URL}/api/categories`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      "Content-Type": "application/json"
-    },
-    next: {
-      revalidate: 600, // 10 minutes
-    },
-  });
-  const result = await response.json();
-
-  return result.data ? result.data : [];
+async function getCategories(): Promise<Category[]> {
+  try {
+    const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+    const response = await fetch(`${API_URL}/api/categories`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      next: {
+        revalidate: 600, // 10 minutes
+      },
+    });
+    if (!response.ok) return [];
+    const result = await response.json();
+    return result.data ? result.data : [];
+  } catch (error) {
+    console.error("Error fetching categories on blog page:", error);
+    return [];
+  }
 }
 
 export default async function Blog() {
@@ -53,7 +63,14 @@ export default async function Blog() {
   const categoriesData: Category[] = await getCategories();
 
   if (!postsData || postsData.length === 0) {
-    notFound();
+    return (
+      <div className="py-12">
+        <div className="container mx-auto px-4 text-center py-20">
+          <h1 className="section-title">Latest Health & Fitness Articles</h1>
+          <p className="text-gray-400 text-xl mt-6">No articles published yet. Check back soon!</p>
+        </div>
+      </div>
+    );
   }
 
   const blogPosts = postsData;

@@ -34,38 +34,50 @@ const API_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
 // Functions
 async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
-  const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&populate[3]=category&filters[slug][$eq]=${slug}`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${API_TOKEN}`,
-      "Content-Type": "application/json"
-    },
-    next: {
-      revalidate: 600, // 10 minutes
-    },
-  });
+  try {
+    const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&populate[3]=category&filters[slug][$eq]=${slug}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${API_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      next: {
+        revalidate: 600, // 10 minutes
+      },
+    });
 
-  const result = await response.json();
+    if (!response.ok) return null;
+    const result = await response.json();
 
-  if (!result.data || result.data.length === 0) {
+    if (!result.data || result.data.length === 0) {
+      return null;
+    }
+
+    return result.data[0];
+  } catch (error) {
+    console.error(`Error fetching blog post ${slug}:`, error);
     return null;
   }
-
-  return result.data[0];
 }
 
 async function getRelatedBlogPosts(slug: string): Promise<BlogPost[]> {
-  const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&filters[slug][$ne]=${slug}&pagination[limit]=2`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${API_TOKEN}`,
-      "Content-Type": "application/json"
-    }
-  });
+  try {
+    const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&filters[slug][$ne]=${slug}&pagination[limit]=2`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${API_TOKEN}`,
+        "Content-Type": "application/json"
+      }
+    });
 
-  const result = await response.json();
+    if (!response.ok) return [];
+    const result = await response.json();
 
-  return result.data || [];
+    return result.data || [];
+  } catch (error) {
+    console.error("Error fetching related blog posts:", error);
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

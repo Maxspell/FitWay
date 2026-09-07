@@ -7,31 +7,43 @@ import { getPostImage } from "@/utils/image";
 import { Metadata } from "next";
 
 async function getCategoryBySlug(slug: string): Promise<Category | null> {
-  const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-  const response = await fetch(`${API_URL}/api/categories?filters[slug][$eq]=${slug}`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      "Content-Type": "application/json"
-    },
-    next: { revalidate: 600 },
-  });
-  const result = await response.json();
-  return result.data && result.data.length > 0 ? result.data[0] : null;
+  try {
+    const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+    const response = await fetch(`${API_URL}/api/categories?filters[slug][$eq]=${slug}`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      next: { revalidate: 600 },
+    });
+    if (!response.ok) return null;
+    const result = await response.json();
+    return result.data && result.data.length > 0 ? result.data[0] : null;
+  } catch (error) {
+    console.error(`Error fetching category ${slug}:`, error);
+    return null;
+  }
 }
 
 async function getPostsByCategory(categorySlug: string): Promise<BlogPost[]> {
-  const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-  const response = await fetch(`${API_URL}/api/posts?filters[category][slug][$eq]=${categorySlug}&populate[0]=image&populate[1]=author&sort=createdAt:desc`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
-      "Content-Type": "application/json"
-    },
-    next: { revalidate: 600 },
-  });
-  const result = await response.json();
-  return result.data ? result.data : [];
+  try {
+    const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
+    const response = await fetch(`${API_URL}/api/posts?filters[category][slug][$eq]=${categorySlug}&populate[0]=image&populate[1]=author&sort=createdAt:desc`, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      next: { revalidate: 600 },
+    });
+    if (!response.ok) return [];
+    const result = await response.json();
+    return result.data ? result.data : [];
+  } catch (error) {
+    console.error(`Error fetching posts for category ${categorySlug}:`, error);
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
