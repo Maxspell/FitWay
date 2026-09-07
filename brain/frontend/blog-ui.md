@@ -12,5 +12,6 @@ The blog listing page was updated to improve UX and information density.
     - Updated iconography: `Calendar` for date, `Clock` for reading time.
 
 **Related:**
+- [[frontend/responsive-layout]] - Mobile-first grid layouts and responsive cards.
 - [[blog-api]] - API changes supporting the data.
 - [[ui-system]] - General design patterns used.

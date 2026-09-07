@@ -80,18 +80,42 @@ export default function ExerciseCard({
                 {/* Media/Visuals */}
                 <div className="relative aspect-video rounded-xl bg-black/40 overflow-hidden group">
                   {exercise.media ? (
-                    <Image
-                      src={getStrapiMedia(exercise.media.url)}
-                      alt={exercise.name}
-                      fill
-                      className="object-cover"
-                    />
+                    (() => {
+                      const mediaUrl = getStrapiMedia(exercise.media.url);
+                      const mime = exercise.media.mime || "";
+                      const isVideo =
+                        mime.startsWith("video/") ||
+                        /\.(webm|mp4|mov|ogg)$/i.test(exercise.media.url);
+
+                      if (isVideo) {
+                        return (
+                          <video
+                            src={mediaUrl}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            preload="metadata"
+                            className="w-full h-full object-cover"
+                          />
+                        );
+                      }
+
+                      return (
+                        <Image
+                          src={mediaUrl}
+                          alt={exercise.name}
+                          fill
+                          className="object-cover"
+                        />
+                      );
+                    })()
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
                        <p className="text-gray-500 italic">No animation available</p>
                     </div>
                   )}
-                  <div className="absolute top-4 left-4 p-2 bg-black/60 rounded-lg backdrop-blur-md">
+                  <div className="absolute top-4 left-4 p-2 bg-black/60 rounded-lg backdrop-blur-md pointer-events-none">
                     <p className="text-[10px] font-bold text-white uppercase tracking-tighter">Form Preview</p>
                   </div>
                 </div>

@@ -1,4 +1,13 @@
 # Knowledge Base Activity Log
+## 2026-09-07
+- Реализована адаптивная мобильная вёрстка для главной страницы, страниц блога и футера.
+    - **Mobile Grid Alignment**: Устранён эффект сплющивания контента из-за жестких классов `grid-cols-3` и `grid-cols-4`. Внедрена mobile-first сетка: на мобильных устройствах элементы выстраиваются в один столбец и растягиваются на 100% ширины девайса. [[frontend/responsive-layout]]
+    - **Home & Footer**: В компоненте `LatestPosts` установлена сетка `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` и адаптивный header; в `Footer` установлена сетка `grid-cols-1 md:grid-cols-2 lg:grid-cols-4`. [[frontend/responsive-layout]]
+    - **Blog & About Pages**: Синхронизированы сетки статей и категорий в `/blog`, `/blog/category/[slug]`, `RelatedArticles` и `/about`. [[frontend/responsive-layout]]
+- Локализован и устранён баг сбоя SSG-сборки Next.js и ошибки `404 Not Found` на статические файлы стилей и чанков (`.css`, `.js`) на продакшене.
+    - **Root Cause**: При выполнении `npm run build` во время деплоя сборка падала на этапе генерации `/blog` из-за необработанного `fetch` к Strapi (`TypeError: fetch failed (ECONNREFUSED)`) и аварийного вызова `notFound()`. В результате старая статика стиралась, новая не дособиралась, а PM2 отдавал закэшированный HTML с несуществующими хэшами файлов. [[bugs/nextjs-prerender-fetch-failed]]
+    - **Fix**: Все функции загрузки данных в `blog/page.tsx`, `blog/[slug]/page.tsx` и `blog/category/[slug]/page.tsx` обёрнуты в безопасные `try...catch` с fallback-массивами, а `notFound()` на странице `/blog` заменён на дружелюбный пустой экран. [[bugs/nextjs-prerender-fetch-failed]] [[frontend/data-fetching-pattern]]
+
 ## 2026-06-24
 - Проведен SEO-аудит и комплексная оптимизация страницы `/contact` для прохождения модерации Google AdSense.
     - **Trust Signals**: Синхронизированы домен почты (`info@fitway.best`), исправлены плейсхолдеры адреса и телефона, добавлен SLA по времени ответа.

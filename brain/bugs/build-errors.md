@@ -76,3 +76,4 @@ import { useState } from "react";
 **СВЯЗИ:**
 - [[frontend/contact-form]] — конкретная реализация контактной формы по этому паттерну.
 - [[deploy/nextjs-build-failure]] — другие ошибки сборки Next.js на VPS.
+- [[bugs/nextjs-prerender-fetch-failed]] — падение SSG пререндера из-за fetch и 404 на чанки стилей/скриптов.

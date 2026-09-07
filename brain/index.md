@@ -9,6 +9,7 @@
 
 ## 🎨 Frontend
 - [[frontend/mobile-menu]] — Премиальное мобильное меню с использованием Framer Motion и Tailwind CSS.
+- [[frontend/responsive-layout]] — Mobile-first адаптивные сетки для карточек блога, разделов и футера.
 - [[frontend/table-of_contents]] — Premium Table of Contents with Scroll Spy for blog articles.
 - [[frontend/contact-form]] — Design, архитектура Server/Client split и реализация контактной системы.
 - [[frontend/breadcrumbs]] — Global Breadcrumbs component and layout integration.
@@ -19,6 +20,7 @@
 - [[deploy/nextjs-build-failure]] — Handling missing .next manifests and 502 errors.
 
 ## 🐞 Bugs & Workarounds
+- [[bugs/nextjs-prerender-fetch-failed]] — Ошибка сборки SSG prerender (fetch failed) и 404 на CSS/JS чанки на проде.
 - [[bugs/framer-motion-type-errors]] — Фикс ошибки TypeScript с массивом ease во Framer Motion.
 - [[bugs/strapi-type-errors]] — Fixing TS2345 during new collection creation.
 - [[bugs/frontend-media-nulls]] — Fixing TypeError when Strapi images are missing.
