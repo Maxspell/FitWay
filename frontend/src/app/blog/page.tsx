@@ -148,7 +148,7 @@ export default async function Blog() {
         </Link>
 
         {/* Recent Posts Grid */}
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {blogPosts.slice(1).map(post => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="card block hover:ring-2 hover:ring-[#FF8C00] transition-all">
               <div className="relative h-48 mb-4">
@@ -189,7 +189,7 @@ export default async function Blog() {
         {/* Categories */}
         <div className="mt-12">
           <h2 className="text-2xl font-bold mb-6">Categories</h2>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {categoriesData.map(category => (
               <Link key={category.slug} href={`/blog/category/${category.slug}`} className="card hover:bg-[#2d4258] transition-colors block text-center">
                 <h3 className="text-lg font-semibold">{category.name}</h3>

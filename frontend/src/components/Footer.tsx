@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#243447] py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Dumbbell className="h-8 w-8 text-[#FF8C00]" />
@@ -48,20 +48,20 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Follow Us</h3>
             <div className="flex gap-4">
-              <a href="#" className="text-gray-300 hover:text-white">
+              <a href="#" className="text-gray-300 hover:text-white" aria-label="Facebook">
                 <Facebook className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-white">
+              <a href="#" className="text-gray-300 hover:text-white" aria-label="Instagram">
                 <Instagram className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-white">
+              <a href="#" className="text-gray-300 hover:text-white" aria-label="Twitter">
                 <Twitter className="h-6 w-6" />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="col-span-4 border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-xs leading-relaxed max-w-4xl mx-auto">
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-xs leading-relaxed max-w-4xl mx-auto">
           <p className="mb-4">
             <strong>Medical Disclaimer:</strong> The content provided by FitWay, including text, graphics, images, and other material, is for informational and educational purposes only. It is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read on this website.
           </p>

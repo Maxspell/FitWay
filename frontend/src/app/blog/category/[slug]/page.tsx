@@ -68,7 +68,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {posts.map(post => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="card block hover:ring-2 hover:ring-[#FF8C00] transition-all">
                 <div className="relative h-48 mb-4">

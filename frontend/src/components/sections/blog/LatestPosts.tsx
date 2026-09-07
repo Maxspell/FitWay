@@ -12,7 +12,7 @@ export default function LatestPosts({ posts }: LatestPostsProps) {
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center items-start gap-4 mb-8">
           <h2 className="section-title mb-0">Latest from Our Blog</h2>
           <Link 
             href="/blog" 
@@ -23,12 +23,12 @@ export default function LatestPosts({ posts }: LatestPostsProps) {
           </Link>
         </div>
         
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post, index) => (
             <Link 
               href={`/blog/${post.slug}`} 
               key={post.slug}
-              className="group"
+              className="group block w-full"
             >
               <article 
                 className="card h-full flex flex-col hover:-translate-y-2 transition-all duration-300"
@@ -36,7 +36,7 @@ export default function LatestPosts({ posts }: LatestPostsProps) {
                   animationDelay: `${index * 100}ms`,
                 }}
               >
-                <div className="relative h-48 mb-4 overflow-hidden rounded-lg">
+                <div className="relative h-48 sm:h-52 mb-4 overflow-hidden rounded-lg w-full">
                   <Image 
                     src={getStrapiMedia(post.image?.formats?.small?.url)}
                     alt={post.title}
