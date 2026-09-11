@@ -69,7 +69,7 @@ export default function CalculatorPreview() {
                   onClick={() => setActiveTab("bmi")}
                   className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all ${
                     activeTab === "bmi" 
-                      ? "bg-[#FF8C00] text-white shadow-lg" 
+                      ? "bg-[#C25700] text-white shadow-lg" 
                       : "text-gray-400 hover:text-white"
                   }`}
                 >
@@ -80,7 +80,7 @@ export default function CalculatorPreview() {
                   onClick={() => setActiveTab("calories")}
                   className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all ${
                     activeTab === "calories" 
-                      ? "bg-[#FF8C00] text-white shadow-lg" 
+                      ? "bg-[#C25700] text-white shadow-lg" 
                       : "text-gray-400 hover:text-white"
                   }`}
                 >

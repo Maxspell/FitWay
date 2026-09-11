@@ -39,13 +39,13 @@ export default function CalorieCalculator() {
           <div className="flex bg-white/5 rounded-xl p-1 border border-white/10">
             <button
               onClick={() => setGender("male")}
-              className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${gender === "male" ? "bg-[#FF8C00] text-white" : "text-gray-400 hover:text-white"}`}
+              className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${gender === "male" ? "bg-[#C25700] text-white" : "text-gray-400 hover:text-white"}`}
             >
               Male
             </button>
             <button
               onClick={() => setGender("female")}
-              className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${gender === "female" ? "bg-[#FF8C00] text-white" : "text-gray-400 hover:text-white"}`}
+              className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${gender === "female" ? "bg-[#C25700] text-white" : "text-gray-400 hover:text-white"}`}
             >
               Female
             </button>
@@ -107,7 +107,7 @@ export default function CalorieCalculator() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <div className="text-center md:text-left">
               <p className="text-gray-400 text-sm mb-1">Maintenance Calories</p>
-              <h4 className="text-4xl font-bold text-[#FF8C00]">{calories} <span className="text-lg font-normal opacity-60">kcal/day</span></h4>
+              <div className="text-4xl font-bold text-[#FF8C00]">{calories} <span className="text-lg font-normal opacity-60">kcal/day</span></div>
             </div>
             
             <div className="flex gap-4">

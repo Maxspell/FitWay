@@ -57,7 +57,7 @@ export default function BmiCalculator() {
           <div className="flex justify-between items-end mb-4">
             <div>
               <p className="text-gray-400 text-sm mb-1">Your BMI</p>
-              <h4 className={`text-4xl font-bold ${status?.color}`}>{bmi}</h4>
+              <div className={`text-4xl font-bold ${status?.color}`}>{bmi}</div>
             </div>
             <div className="text-right">
               <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${status?.bg} ${status?.color} border border-current/20`}>

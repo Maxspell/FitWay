@@ -1,5 +1,8 @@
 # Knowledge Base Activity Log
 ## 2026-09-11
+- Устранение ошибок доступности Lighthouse / axe-core (Color Contrast & Heading Order).
+    - **Color Contrast (WCAG 1.4.3 AA)**: Исправлена проблема недостаточной контрастности белого текста на оранжевом фоне `#FF8C00` (было 2.33:1). Фон кнопок и активных переключателей переведен на `#C25700` (контраст 4.51:1) и hover `#A34600` (6.12:1) в компонентах `HeroContent.tsx`, `CalculatorPreview.tsx` и `CalorieCalculator.tsx`. [[frontend/accessibility-wcag-fixes]]
+    - **Heading Order (WCAG 1.3.1)**: Восстановлена строгая иерархия заголовков. В `TestimonialCard.tsx` тег `<h4>` (Sarah Jenkins и др.) заменен на `<h3>` под секционным `<h2>`, исключая пропуск уровней. В калькуляторах `BmiCalculator.tsx` и `CalorieCalculator.tsx` несемантические теги `<h4>` числовых значений заменены на `<div>`. [[frontend/accessibility-wcag-fixes]] [[frontend/seo]]
 - Оптимизация доставки изображений первого экрана (Improve image delivery) и локализация внешних ассетов.
     - **Image Localization & WebP**: Устранена зависимость от внешних доменов `images.unsplash.com` и `i.pravatar.cc`. Изображения сохранены локально в `frontend/public/images/hero-fitness.webp` и `public/images/avatars/user-[1-4].webp`.
     - **LCP & FCP Improvements**: Для главного hero-изображения в `HeroVisuals.tsx` задан точный атрибут `sizes="(max-width: 1024px) 300px, 380px"`. В `HeroContent.tsx` обычные теги `<img>` заменены на Next.js `<Image>` с точными габаритами `40x40`. Экономия трафика составила 50+ KiB без сторонних DNS-запросов. [[frontend/image-delivery-optimization]] [[frontend/performance-third-party-scripts]]

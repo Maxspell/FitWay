@@ -62,7 +62,7 @@ export default function HeroContent() {
       <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-4">
         <Link 
           href="/workouts" 
-          className="group relative px-8 py-4 bg-[#FF8C00] text-white rounded-2xl font-bold transition-all hover:bg-[#E67E00] hover:shadow-[0_0_20px_rgba(255,140,0,0.4)] flex items-center gap-2"
+          className="group relative px-8 py-4 bg-[#C25700] text-white rounded-2xl font-bold transition-all hover:bg-[#A34600] hover:shadow-[0_0_20px_rgba(194,87,0,0.4)] flex items-center gap-2"
         >
           Start Training
           <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />

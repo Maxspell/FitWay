@@ -49,7 +49,7 @@ export default function TestimonialCard({
             />
           </div>
           <div>
-            <h4 className="text-xl font-bold text-white group-hover:text-[#FF8C00] transition-colors">{name}</h4>
+            <h3 className="text-xl font-bold text-white group-hover:text-[#FF8C00] transition-colors">{name}</h3>
             <p className="text-gray-400 text-sm">{role}</p>
           </div>
         </div>
