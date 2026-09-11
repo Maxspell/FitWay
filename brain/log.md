@@ -1,4 +1,9 @@
 # Knowledge Base Activity Log
+## 2026-09-11
+- Оптимизация производительности Lighthouse (Core Web Vitals) и временное отключение AdSense.
+    - **Lighthouse Warnings**: Анализ отчетов "Reduce unused JavaScript" (272 KiB) и "Minimize main-thread work" (2.5 s). Установлено, что свыше 80% нагрузки на основной поток (1354 ms Script Evaluation + 363 ms Script Parsing) вызваны внешними скриптами AdSense (`adsbygoogle.js`, `show_ads_impl_fy2021.js`) и FundingChoices.
+    - **AdSense Toggle**: Временно деактивирован тег `<Script>` AdSense в `layout.tsx` на период тестирования производительности перед финальной отправкой сайта на верификацию. [[frontend/performance-third-party-scripts]] [[frontend/seo]]
+
 ## 2026-09-07
 - Реализована адаптивная мобильная вёрстка для главной страницы, страниц блога и футера.
     - **Mobile Grid Alignment**: Устранён эффект сплющивания контента из-за жестких классов `grid-cols-3` и `grid-cols-4`. Внедрена mobile-first сетка: на мобильных устройствах элементы выстраиваются в один столбец и растягиваются на 100% ширины девайса. [[frontend/responsive-layout]]

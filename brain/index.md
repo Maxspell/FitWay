@@ -8,6 +8,7 @@
 - [[backend/strapi-v5-collections]] — How to create collections and handle API Token permissions.
 
 ## 🎨 Frontend
+- [[frontend/performance-third-party-scripts]] — Оптимизация Lighthouse, анализ нагрузки на main-thread и временное отключение AdSense.
 - [[frontend/mobile-menu]] — Премиальное мобильное меню с использованием Framer Motion и Tailwind CSS.
 - [[frontend/responsive-layout]] — Mobile-first адаптивные сетки для карточек блога, разделов и футера.
 - [[frontend/table-of_contents]] — Premium Table of Contents with Scroll Spy for blog articles.

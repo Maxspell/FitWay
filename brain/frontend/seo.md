@@ -40,3 +40,6 @@ This document outlines the core SEO practices and specific implementations used 
 - **Directory Structured Data**: Implemented `ItemList` JSON-LD on hub pages. This programmatically lists available items with their positions and URLs, enabling Google to recognize the page as a high-value directory and potentially trigger list-based rich snippets.
   - **Workouts Hub**: Implemented on `/workouts` to index the workout catalog.
   - **Blog Hub**: Implemented on `/blog` to index the list of articles, including titles and excerpts, improving visibility of the content library.
+
+## 8. Performance & Third-Party Audits
+- Оптимизация нагрузки сторонних скриптов (Google AdSense, GA, FundingChoices) и отчетов Lighthouse (Reduce unused JS, Minimize main-thread work): см. [[frontend/performance-third-party-scripts]].
