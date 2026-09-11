@@ -1,5 +1,8 @@
 # Knowledge Base Activity Log
 ## 2026-09-11
+- Оптимизация доставки изображений первого экрана (Improve image delivery) и локализация внешних ассетов.
+    - **Image Localization & WebP**: Устранена зависимость от внешних доменов `images.unsplash.com` и `i.pravatar.cc`. Изображения сохранены локально в `frontend/public/images/hero-fitness.webp` и `public/images/avatars/user-[1-4].webp`.
+    - **LCP & FCP Improvements**: Для главного hero-изображения в `HeroVisuals.tsx` задан точный атрибут `sizes="(max-width: 1024px) 300px, 380px"`. В `HeroContent.tsx` обычные теги `<img>` заменены на Next.js `<Image>` с точными габаритами `40x40`. Экономия трафика составила 50+ KiB без сторонних DNS-запросов. [[frontend/image-delivery-optimization]] [[frontend/performance-third-party-scripts]]
 - Оптимизация производительности Lighthouse (Core Web Vitals) и временное отключение AdSense.
     - **Lighthouse Warnings**: Анализ отчетов "Reduce unused JavaScript" (272 KiB) и "Minimize main-thread work" (2.5 s). Установлено, что свыше 80% нагрузки на основной поток (1354 ms Script Evaluation + 363 ms Script Parsing) вызваны внешними скриптами AdSense (`adsbygoogle.js`, `show_ads_impl_fy2021.js`) и FundingChoices.
     - **AdSense Toggle**: Временно деактивирован тег `<Script>` AdSense в `layout.tsx` на период тестирования производительности перед финальной отправкой сайта на верификацию. [[frontend/performance-third-party-scripts]] [[frontend/seo]]

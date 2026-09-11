@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Play, Star, Users } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HeroContent() {
   const containerVariants: Variants = {
@@ -83,10 +84,12 @@ export default function HeroContent() {
           <div className="flex -space-x-3 mb-2">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="w-10 h-10 rounded-full border-2 border-[#1B2B3B] bg-gray-800 overflow-hidden relative">
-                <img 
-                  src={`https://i.pravatar.cc/150?u=user${i}`} 
-                  alt="User" 
-                  className="object-cover"
+                <Image 
+                  src={`/images/avatars/user-${i}.webp`} 
+                  alt={`User ${i}`}
+                  width={40}
+                  height={40}
+                  className="object-cover w-full h-full"
                 />
               </div>
             ))}

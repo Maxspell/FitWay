@@ -48,6 +48,7 @@
 ---
 
 ## Ссылки на связанные документы
+- [[frontend/image-delivery-optimization]] — Оптимизация доставки изображений первого экрана, локализация WebP и размеры аватаров.
 - [[frontend/seo]] — Комплексный SEO-аудит и подготовка страниц под требования Google AdSense (E-E-A-T, Thin Content mitigation).
 - [[bugs/nextjs-prerender-fetch-failed]] — Ошибки сборки и обработка SSG данных.
 - [[index]] — Главный индекс базы знаний FitWay.

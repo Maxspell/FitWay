@@ -17,9 +17,10 @@ export default function HeroVisuals() {
         <div className="absolute inset-0 bg-[#FF8C00]/20 blur-[100px] rounded-full -z-10 animate-pulse"></div>
         <div className="relative w-full h-full rounded-[32px] overflow-hidden border border-white/10 shadow-2xl">
           <Image 
-            src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop"
+            src="/images/hero-fitness.webp"
             alt="Fitness Training"
             fill
+            sizes="(max-width: 1024px) 300px, 380px"
             className="object-cover"
             priority
           />

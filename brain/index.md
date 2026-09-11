@@ -8,6 +8,7 @@
 - [[backend/strapi-v5-collections]] — How to create collections and handle API Token permissions.
 
 ## 🎨 Frontend
+- [[frontend/image-delivery-optimization]] — Оптимизация доставки изображений: локализация в WebP (public/), калибровка sizes и ускорение LCP/FCP.
 - [[frontend/performance-third-party-scripts]] — Оптимизация Lighthouse, анализ нагрузки на main-thread и временное отключение AdSense.
 - [[frontend/mobile-menu]] — Премиальное мобильное меню с использованием Framer Motion и Tailwind CSS.
 - [[frontend/responsive-layout]] — Mobile-first адаптивные сетки для карточек блога, разделов и футера.
