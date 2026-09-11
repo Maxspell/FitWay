@@ -19,6 +19,16 @@
 - `CalculatorPreview.tsx`: активные вкладки «BMI Index» и «Daily Calories» используют `bg-[#C25700] text-white`.
 - `CalorieCalculator.tsx`: активные переключатели пола («Male» / «Female») переведены на `bg-[#C25700] text-white`.
 
+### Тёмная тема: контрастность плейсхолдеров и вспомогательного текста
+- **Проблема в мобильной версии / PageSpeed Insights**: 
+  - Элементы `<p>Enter your details to see your result</p>` и `<p>Fill in all fields to calculate your daily needs</p>` находились в контейнере с классом `text-gray-500` на тёмном фоне карточки (`bg-[#1B2B3B]/50` с блюром и градиентом).
+  - Серый цвет `text-gray-500` (#6B7280) на тёмном фоне `#1B2B3B` давал недостаточный коэффициент контрастности (ниже порога 4.5:1), вызывая ошибку axe-core / Google PageSpeed Insights:
+    > *Background and foreground colors do not have a sufficient contrast ratio. Low-contrast text is difficult or impossible for many users to read.*
+- **Решение**:
+  - Цвет текста в пустых состояниях калькуляторов в `BmiCalculator.tsx` и `CalorieCalculator.tsx` заменён с `text-gray-500` на **`text-gray-300`** (#D1D5DB).
+  - Коэффициент контрастности `text-gray-300` на тёмном фоне `#1B2B3B` составляет **> 7.5:1** (превышает даже строгий стандарт WCAG AAA 7.0:1).
+  - Непрозрачность иконок-индикаторов (`Scale`, `Apple`) увеличена с `opacity-20` до `opacity-40` для комфортного визуального восприятия.
+
 ---
 
 ## 2. Иерархия уровней заголовков (Heading Order - WCAG 1.3.1)

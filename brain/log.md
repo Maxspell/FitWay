@@ -1,5 +1,7 @@
 # Knowledge Base Activity Log
 ## 2026-09-11
+- Исправление ошибки контрастности в мобильной версии Google PageSpeed Insights (axe-core Color Contrast).
+    - **Calculator Placeholder Contrast (WCAG 1.4.3 AA)**: В мобильном аудите PageSpeed для карточки калькуляторов (`bg-[#1B2B3B]/50`) зафиксирована ошибка недостаточного контраста у текста пустого состояния (*"Enter your details to see your result"* / *"Fill in all fields to calculate your daily needs"*). Класс цвета текста заменён с `text-gray-500` на `text-gray-300` (контраст > 7.5:1), а прозрачность иконок `Scale` и `Apple` повышена с `opacity-20` до `opacity-40` в `BmiCalculator.tsx` и `CalorieCalculator.tsx`. [[frontend/accessibility-wcag-fixes]]
 - Устранение ошибки Chrome Lighthouse Agentic Browsing в файле `llms.txt`.
     - **Agent Accessibility & Link Parsing**: Аудит сообщал об ошибке *"File does not appear to contain any links"*, так как ссылки были указаны простым текстом. Файл `frontend/public/llms.txt` переведён на стандарт [llmstxt.org](https://llmstxt.org/): добавлен H1, blockquote-описание, кликабельные markdown-ссылки (`[Title](URL): Description`) на разделы `/workouts`, `/blog`, `/authors`, `/tools`, `/about`, `/contact`, а также ссылка на `sitemap.xml` в блоке Optional. [[frontend/agentic-web-llms-txt]] [[frontend/seo]]
 - Устранение ошибок доступности Lighthouse / axe-core (Color Contrast & Heading Order).

@@ -128,8 +128,8 @@ export default function CalorieCalculator() {
           </p>
         </div>
       ) : (
-        <div className="p-12 border-2 border-dashed border-white/10 rounded-2xl flex flex-col items-center justify-center text-gray-500">
-          <Apple className="h-12 w-12 mb-4 opacity-20" />
+        <div className="p-12 border-2 border-dashed border-white/10 rounded-2xl flex flex-col items-center justify-center text-gray-300">
+          <Apple className="h-12 w-12 mb-4 opacity-40" />
           <p>Fill in all fields to calculate your daily needs</p>
         </div>
       )}

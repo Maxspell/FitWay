@@ -89,8 +89,8 @@ export default function BmiCalculator() {
           </p>
         </div>
       ) : (
-        <div className="p-12 border-2 border-dashed border-white/10 rounded-2xl flex flex-col items-center justify-center text-gray-500">
-          <Scale className="h-12 w-12 mb-4 opacity-20" />
+        <div className="p-12 border-2 border-dashed border-white/10 rounded-2xl flex flex-col items-center justify-center text-gray-300">
+          <Scale className="h-12 w-12 mb-4 opacity-40" />
           <p>Enter your details to see your result</p>
         </div>
       )}
