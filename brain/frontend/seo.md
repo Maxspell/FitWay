@@ -2,8 +2,9 @@
 
 This document outlines the core SEO practices and specific implementations used in the FitWay platform.
 
-## 1. AI Search Readiness (GEO)
-- **`llms.txt`**: We maintain a `public/llms.txt` file at the root level. This file provides clear instructions and context for LLMs and AI crawlers, detailing the site's purpose, key sections (workouts, blog, tools), and preferred citation styles. This is critical for visibility in generative search engines.
+## 1. AI Search Readiness (GEO & Agentic Web)
+- **`llms.txt`**: Поддерживается файл `public/llms.txt` по спецификации [llmstxt.org](https://llmstxt.org/) для AI-краулеров и аудита Google Lighthouse Agentic Browsing. Содержит H1 заголовок, краткое описание и markdown-ссылки на ключевые разделы сайта (тренировки, блог, калькуляторы, авторы, контакты) и sitemap.xml. Детали: [[frontend/agentic-web-llms-txt]].
+
 
 ## 2. E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)
 - **Author Profiles**: The `/about` page must explicitly display team credentials. We render specific certifications (e.g., "NASM-CPT", "RD") and provide outgoing links to professional profiles. This builds trust with both users and search evaluators.

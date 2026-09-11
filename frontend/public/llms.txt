@@ -1,0 +1,23 @@
+# FitWay
+
+> FitWay is a modern health and fitness platform providing science-backed workout programs, fitness calculators (BMI, Daily Calorie / TDEE), and expert nutrition and training articles.
+
+## Core Pages
+
+- [Workouts Directory](https://fitway.best/workouts): Comprehensive workout library with programs for weight loss, strength, muscle building, and toning.
+- [Fitness & Nutrition Blog](https://fitway.best/blog): Science-backed articles, guides, and tips on exercise, nutrition, recovery, and healthy lifestyle.
+- [Authors & Fitness Experts](https://fitway.best/authors): Certified trainers, nutritionists, and health coaches behind FitWay content.
+
+## Tools & Calculators
+
+- [Fitness Calculators](https://fitway.best/tools): Free health tools including Body Mass Index (BMI) and Daily Calorie (TDEE) calculator.
+
+## Company & Contact
+
+- [About FitWay](https://fitway.best/about): Company mission, editorial standards, and fitness philosophy.
+- [Contact Us](https://fitway.best/contact): Get in touch with the FitWay editorial and support team.
+
+## Optional
+
+- [Sitemap](https://fitway.best/sitemap.xml): Full XML sitemap indexing all workouts, blog posts, authors, and static pages.
+

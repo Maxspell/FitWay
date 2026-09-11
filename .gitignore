@@ -56,18 +56,18 @@ skills-lock.json
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
 
-FULL-AUDIT-REPORT.md
-ACTION-PLAN.md
-about.html
-blog.html
-tools.html
-workouts.html
-homepage.html
-contact.html
-sitemap.xml
-robots.txt
-llms.txt
-ads.txt
+/FULL-AUDIT-REPORT.md
+/ACTION-PLAN.md
+/*.html
+/sitemap.xml
+/robots.txt
+
+# Static files: track llms.txt for SEO/Agentic Web, ignore ads.txt for privacy
+!frontend/public/llms.txt
+frontend/public/ads.txt
+/ads.txt
+
+
 
 # Project specific context (optional - uncomment if you don't want to track it)
 # PROJECT_CONTEXT.md

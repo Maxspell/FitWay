@@ -8,6 +8,7 @@
 - [[backend/strapi-v5-collections]] — How to create collections and handle API Token permissions.
 
 ## 🎨 Frontend
+- [[frontend/agentic-web-llms-txt]] — Подготовка сайта для AI-агентов (Agentic Browsing, Google Lighthouse) и спецификация `llms.txt`.
 - [[frontend/accessibility-wcag-fixes]] — Доступность (a11y/WCAG AA): устранение ошибок контрастности (цвета кнопок #C25700) и последовательности заголовков (h1-h2-h3).
 - [[frontend/image-delivery-optimization]] — Оптимизация доставки изображений: локализация в WebP (public/), калибровка sizes и ускорение LCP/FCP.
 - [[frontend/performance-third-party-scripts]] — Оптимизация Lighthouse, анализ нагрузки на main-thread и временное отключение AdSense.
