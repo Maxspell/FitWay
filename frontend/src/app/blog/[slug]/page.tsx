@@ -1,7 +1,7 @@
 import type { BlogPost } from "@/interfaces/blog";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Clock, User, Tag, Calendar } from "lucide-react";
+import { Clock, User, Tag, Calendar, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
@@ -9,6 +9,7 @@ import RelatedArticles from "@/components/BlogPost/RelatedArticles";
 import { getPostImage } from "@/utils/image";
 import TableOfContents from "@/components/BlogPost/TableOfContents";
 import AuthorBox from "@/components/common/AuthorBox";
+import ReviewedByBox from "@/components/common/ReviewedByBox";
 import { slugify } from "@/utils/slugify";
 import React from "react";
 
@@ -115,6 +116,9 @@ export default async function BlogPost({ params }: Props) {
     notFound();
   }
 
+  // First reviewer if available
+  const primaryReviewer = post.reviewedBy && post.reviewedBy.length > 0 ? post.reviewedBy[0] : null;
+
   return (
     <article className="py-12">
       <div className="container mx-auto px-4">
@@ -131,11 +135,26 @@ export default async function BlogPost({ params }: Props) {
           <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
             <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-[#FF8C00] text-xs sm:text-sm mb-3 sm:mb-4">
               {post.author && (
-                <span className="flex items-center gap-1.5">
+                <Link 
+                  href={`/authors/${post.author.slug}`}
+                  className="flex items-center gap-1.5 hover:text-white transition-colors"
+                >
                   <User className="h-4 w-4 shrink-0" />
-                  {post.author.name}
-                </span>
+                  <span>By {post.author.name}</span>
+                </Link>
               )}
+
+              {primaryReviewer && (
+                <Link
+                  href={`/authors/${primaryReviewer.slug}`}
+                  className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#00C853]/20 text-[#00E676] border border-[#00C853]/40 text-xs font-medium hover:bg-[#00C853]/30 transition-colors"
+                  title={`Reviewed by ${primaryReviewer.name}`}
+                >
+                  <CheckCircle2 className="h-3.5 w-3.5 shrink-0" />
+                  <span>Reviewed by {primaryReviewer.name}</span>
+                </Link>
+              )}
+
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-4 w-4 shrink-0" />
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {
@@ -179,6 +198,15 @@ export default async function BlogPost({ params }: Props) {
               </ReactMarkdown>
             </div>
             
+            {/* Reviewer Verification Box (E-E-A-T) */}
+            {primaryReviewer && (
+              <ReviewedByBox 
+                reviewer={primaryReviewer} 
+                reviewDate={post.publishedAt}
+                isMedical={post.category?.slug === 'nutrition' || post.category?.slug === 'supplements'}
+              />
+            )}
+
             {/* Full Author Box below content */}
             {post.author && <AuthorBox author={post.author} />}
           </div>

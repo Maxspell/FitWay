@@ -28,8 +28,9 @@ const Footer = () => {
               <li><Link href="/about" className="nav-link">About Us</Link></li>
               <li><Link href="/contact" className="nav-link">Contact</Link></li>
             </ul>
-            <h3 className="text-xl font-bold mt-8 mb-4">Legal</h3>
+            <h3 className="text-xl font-bold mt-8 mb-4">Legal & Trust</h3>
             <ul className="space-y-2">
+              <li><Link href="/editorial-policy" className="nav-link">Editorial Policy</Link></li>
               <li><Link href="/privacy-policy" className="nav-link">Privacy Policy</Link></li>
               <li><Link href="/terms-of-service" className="nav-link">Terms of Service</Link></li>
             </ul>
