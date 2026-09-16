@@ -14,6 +14,7 @@
 - [[frontend/performance-third-party-scripts]] — Оптимизация Lighthouse, анализ нагрузки на main-thread и временное отключение AdSense.
 - [[frontend/mobile-menu]] — Премиальное мобильное меню с использованием Framer Motion и Tailwind CSS.
 - [[frontend/responsive-layout]] — Mobile-first адаптивные сетки для карточек блога, разделов и футера.
+- [[frontend/blog-ui]] — Компоненты карточек блога, кликабельный AuthorBox, мобильная верстка постов и организация контента.
 - [[frontend/table-of_contents]] — Premium Table of Contents with Scroll Spy for blog articles.
 - [[frontend/contact-form]] — Design, архитектура Server/Client split и реализация контактной системы.
 - [[frontend/breadcrumbs]] — Global Breadcrumbs component and layout integration.

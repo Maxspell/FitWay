@@ -21,7 +21,13 @@
 - Удалён некорректный класс `col-span-4` у разделителя дисклеймера.
 
 ### 3. Страницы блога и «О нас»
-- `src/app/blog/page.tsx`: Сетка недавних статей `grid-cols-1 md:grid-cols-2 gap-8`, категории `grid-cols-2 sm:grid-cols-4 gap-4`.
+- `src/app/blog/page.tsx`:
+  - **Featured Post (Первый пост)**: Переведён с жесткого `flex gap-8` и `w-1/2` на адаптивный `flex flex-col md:flex-row gap-6 md:gap-8` с `w-full md:w-1/2`. Высота обложки адаптирована (`h-56 sm:h-72 md:h-[400px]`), метатеги переведены в `flex-wrap` с `shrink-0` у иконок, заголовок масштабируется (`text-xl sm:text-2xl md:text-3xl`).
+  - **Структура страницы**: Вводная секция с описанием ("Unlock Your Potential with FitWay Insights") перемещена в самый низ страницы под блок категорий с адаптивными паддингами `p-6 sm:p-8 mt-12`, чтобы пользователи на смартфонах сразу видели свежий контент блога.
+  - Сетка недавних статей `grid-cols-1 md:grid-cols-2 gap-8`, категории `grid-cols-2 sm:grid-cols-4 gap-4`.
+- `src/app/blog/[slug]/page.tsx`:
+  - **Hero-блок статьи**: Устранено сплющивание и фиксированная высота `h-[500px]`. Внедрена адаптивная высота `h-72 sm:h-96 md:h-[500px]`, паддинги `p-4 sm:p-6 md:p-8`, перенос метатегов через `flex-wrap gap-2 sm:gap-4` и адаптивный шрифт заголовка `text-2xl sm:text-3xl md:text-4xl leading-tight`.
+  - **Сетка контента и сайдбара**: Заменен жесткий `grid-cols-12` на `flex flex-col lg:grid lg:grid-cols-12 gap-8` (статья занимает `w-full lg:col-span-8`, сайдбар `w-full lg:col-span-4`). Класс `sticky top-24` переведён на `lg:sticky lg:top-24` для десктопа.
 - `src/app/blog/category/[slug]/page.tsx`: Сетка постов категории `grid-cols-1 md:grid-cols-2 gap-8`.
 - `src/components/BlogPost/RelatedArticles.tsx`: Сетка похожих статей `grid-cols-1 md:grid-cols-2 gap-8`.
 - `src/app/about/page.tsx`: Сетка ключевых ценностей `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8`.

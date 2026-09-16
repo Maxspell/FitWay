@@ -9,7 +9,6 @@ import RelatedArticles from "@/components/BlogPost/RelatedArticles";
 import { getPostImage } from "@/utils/image";
 import TableOfContents from "@/components/BlogPost/TableOfContents";
 import AuthorBox from "@/components/common/AuthorBox";
-import AuthorSidebarCard from "@/components/common/AuthorSidebarCard";
 import { slugify } from "@/utils/slugify";
 import React from "react";
 
@@ -120,7 +119,7 @@ export default async function BlogPost({ params }: Props) {
     <article className="py-12">
       <div className="container mx-auto px-4">
         {/* Hero Section */}
-        <div className="relative h-[500px] mb-8 rounded-xl overflow-hidden">
+        <div className="relative h-72 sm:h-96 md:h-[500px] mb-8 rounded-xl overflow-hidden">
           <Image
             src={getPostImage(post, "large")}
             alt={post.title}
@@ -128,39 +127,39 @@ export default async function BlogPost({ params }: Props) {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B3B] to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-8">
-            <div className="flex items-center gap-4 text-[#FF8C00] mb-4">
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B3B] via-[#1B2B3B]/60 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-[#FF8C00] text-xs sm:text-sm mb-3 sm:mb-4">
               {post.author && (
-                <span className="flex items-center gap-2">
-                  <User className="h-5 w-5" />
+                <span className="flex items-center gap-1.5">
+                  <User className="h-4 w-4 shrink-0" />
                   {post.author.name}
                 </span>
               )}
-              <span className="flex items-center gap-2">
-                <Calendar className="h-5 w-5" />
+              <span className="flex items-center gap-1.5">
+                <Calendar className="h-4 w-4 shrink-0" />
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
                 })}
               </span>
-              <span className="flex items-center gap-2">
-                <Clock className="h-5 w-5" />
+              <span className="flex items-center gap-1.5">
+                <Clock className="h-4 w-4 shrink-0" />
                 {post.readTime}
               </span>
-              <span className="flex items-center gap-2">
-                <Tag className="h-5 w-5" />
+              <span className="flex items-center gap-1.5">
+                <Tag className="h-4 w-4 shrink-0" />
                 {post.category?.name}
               </span>
             </div>
-            <h1 className="text-4xl font-bold text-white">{post.title}</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">{post.title}</h1>
           </div>
         </div>
 
         {/* Content */}
-        <div className="grid grid-cols-12 gap-8">
-          <div className="col-span-8">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8">
+          <div className="w-full lg:col-span-8">
             <div className="card prose prose-invert prose-orange max-w-none">
               <ReactMarkdown
                 components={{
@@ -185,11 +184,8 @@ export default async function BlogPost({ params }: Props) {
           </div>
 
           {/* Sidebar */}
-          <div className="col-span-4 space-y-6 sticky top-24 h-fit">
+          <div className="w-full lg:col-span-4 space-y-6 lg:sticky lg:top-24 h-fit">
             <TableOfContents />
-
-            {/* Author Sidebar Card */}
-            {post.author && <AuthorSidebarCard author={post.author} />}
 
             {/* Related Categories */}
             <div className="card">

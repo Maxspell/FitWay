@@ -15,12 +15,12 @@ The Authors System is a crucial part of the E-E-A-T (Experience, Expertise, Auth
 - **Listing Page (`/authors`)**: Displays a grid of all active authors.
 - **Profile Page (`/authors/[slug]`)**: Detailed profile showcasing credentials, a comprehensive bio, and a dynamic list of articles written, workouts created, and content reviewed.
 - **Components**:
-  - `AuthorBox`: Used at the bottom of blog posts for full-width a-la "About the Author" summaries.
-  - `AuthorSidebarCard`: Compact, unified component for sidebars in blog and workout detail pages, ensuring a consistent expert presence.
+  - `AuthorBox`: Used at the bottom of blog posts for full-width a-la "About the Author" summaries. Fully wrapped in a Next.js `Link` component to make the entire card clickable (`/authors/[slug]`) with rich hover effects and glowing avatars.
+  - `AuthorSidebarCard`: Compact, unified component for sidebars in workout detail pages and other secondary sidebars. Deduplicated on the blog detail page (`/blog/[slug]`) to avoid redundant author blocks.
   - `WorkoutExpertReviewBox`: A badge on workout pages indicating that the program has been reviewed by a certified professional.
 
 ### SEO & Schema Integration
 - We dynamically inject the author's full URL in the `BlogPosting` and `ExercisePlan` JSON-LD schemas.
 - The author profile page features a `Person` schema aggregating all social links, expertise areas (`knowsAbout`), and professional awards/certifications (`award`).
 
-Related: [[frontend/seo]], [[backend/strapi-v5-collections]]
+Related: [[frontend/seo]], [[frontend/responsive-layout]], [[frontend/blog-ui]], [[backend/strapi-v5-collections]]

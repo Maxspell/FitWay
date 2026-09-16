@@ -96,34 +96,10 @@ export default async function Blog() {
       <div className="container mx-auto px-4">
         <h1 className="section-title text-center">Latest Health & Fitness Articles</h1>
 
-        <section className="bg-gray-800 rounded-lg p-8 mb-12 shadow-xl">
-          <h2 className="text-3xl font-bold text-white mb-4">Unlock Your Potential with FitWay Insights</h2>
-          <p className="text-gray-300 leading-relaxed mb-6">
-            Welcome to the FitWay Blog, your ultimate resource for evidence-based fitness, nutrition, and wellness information.
-            Our mission is to empower you with the knowledge and tools to achieve your health goals, whether you're a beginner
-            embarking on your fitness journey or an experienced athlete looking to optimize performance. Dive into expertly
-            crafted articles covering a wide range of topics, from effective workout routines and cutting-edge training methodologies
-            to balanced nutrition plans, mental well-being strategies, and injury prevention tips.
-          </p>
-          <p className="text-gray-300 leading-relaxed mb-6">
-            Each piece of content is developed and reviewed by our team of certified fitness professionals, registered dietitians,
-            and health experts, ensuring accuracy, relevance, and actionable advice. We believe in a holistic approach to health,
-            integrating the latest scientific research with practical applications to help you build sustainable habits and
-            transform your life. Explore our categories to find articles tailored to your interests, and join a community
-            dedicated to living a stronger, healthier, and more vibrant life.
-          </p>
-          <p className="text-gray-300 leading-relaxed">
-            From in-depth guides on strength training and cardio to comprehensive breakdowns of macronutrients and meal prep ideas,
-            the FitWay Blog is designed to be your go-to source for reliable information. Stay updated with our latest posts and
-            discover new ways to elevate your fitness journey. Our content is regularly updated to reflect the evolving landscape
-            of health and fitness, providing you with fresh perspectives and proven strategies.
-          </p>
-        </section>
-
         {/* Featured Post */}
         <Link href={`/blog/${blogPosts[0].slug}`} className="card mb-12 block hover:ring-2 hover:ring-[#FF8C00] transition-all">
-          <div className="flex gap-8">
-            <div className="w-1/2 relative h-[400px]">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+            <div className="w-full md:w-1/2 relative h-56 sm:h-72 md:h-[400px]">
               <Image
                 src={getPostImage(blogPosts[0], "large")}
                 alt={blogPosts[0].title}
@@ -132,31 +108,31 @@ export default async function Blog() {
                 priority
               />
             </div>
-            <div className="w-1/2 flex flex-col justify-center">
-              <div className="flex items-center gap-4 text-[#FF8C00] mb-4">
-                <span className="flex items-center gap-2">
-                  <User className="h-4 w-4" />
+            <div className="w-full md:w-1/2 flex flex-col justify-center">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[#FF8C00] text-sm mb-3 sm:mb-4">
+                <span className="flex items-center gap-1.5">
+                  <User className="h-4 w-4 shrink-0" />
                   {blogPosts[0].author?.name}
                 </span>
-                <span className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4" />
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="h-4 w-4 shrink-0" />
                   {new Date(blogPosts[0].createdAt).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
                   })}
                 </span>
-                <span className="flex items-center gap-2">
-                  <Clock className="h-4 w-4" />
+                <span className="flex items-center gap-1.5">
+                  <Clock className="h-4 w-4 shrink-0" />
                   {blogPosts[0].readTime}
                 </span>
-                <span className="flex items-center gap-2">
-                  <Tag className="h-4 w-4" />
+                <span className="flex items-center gap-1.5">
+                  <Tag className="h-4 w-4 shrink-0" />
                   {blogPosts[0].category?.name}
                 </span>
               </div>
-              <h2 className="text-3xl font-bold mb-4">{blogPosts[0].title}</h2>
-              <p className="text-gray-300 mb-6">{blogPosts[0].excerpt}</p>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4">{blogPosts[0].title}</h2>
+              <p className="text-gray-300 text-sm sm:text-base mb-5 sm:mb-6">{blogPosts[0].excerpt}</p>
               <span className="btn-primary inline-block w-fit">
                 Read More
               </span>
@@ -214,6 +190,31 @@ export default async function Blog() {
             ))}
           </div>
         </div>
+
+        {/* About FitWay Insights Section */}
+        <section className="bg-gray-800 rounded-lg p-6 sm:p-8 mt-12 shadow-xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Unlock Your Potential with FitWay Insights</h2>
+          <p className="text-gray-300 leading-relaxed mb-6">
+            Welcome to the FitWay Blog, your ultimate resource for evidence-based fitness, nutrition, and wellness information.
+            Our mission is to empower you with the knowledge and tools to achieve your health goals, whether you're a beginner
+            embarking on your fitness journey or an experienced athlete looking to optimize performance. Dive into expertly
+            crafted articles covering a wide range of topics, from effective workout routines and cutting-edge training methodologies
+            to balanced nutrition plans, mental well-being strategies, and injury prevention tips.
+          </p>
+          <p className="text-gray-300 leading-relaxed mb-6">
+            Each piece of content is developed and reviewed by our team of certified fitness professionals, registered dietitians,
+            and health experts, ensuring accuracy, relevance, and actionable advice. We believe in a holistic approach to health,
+            integrating the latest scientific research with practical applications to help you build sustainable habits and
+            transform your life. Explore our categories to find articles tailored to your interests, and join a community
+            dedicated to living a stronger, healthier, and more vibrant life.
+          </p>
+          <p className="text-gray-300 leading-relaxed">
+            From in-depth guides on strength training and cardio to comprehensive breakdowns of macronutrients and meal prep ideas,
+            the FitWay Blog is designed to be your go-to source for reliable information. Stay updated with our latest posts and
+            discover new ways to elevate your fitness journey. Our content is regularly updated to reflect the evolving landscape
+            of health and fitness, providing you with fresh perspectives and proven strategies.
+          </p>
+        </section>
       </div>
     </div>
   );
