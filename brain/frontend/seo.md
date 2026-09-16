@@ -45,3 +45,7 @@ This document outlines the core SEO practices and specific implementations used 
 
 ## 8. Performance & Third-Party Audits
 - Оптимизация нагрузки сторонних скриптов (Google AdSense, GA, FundingChoices) и отчетов Lighthouse (Reduce unused JS, Minimize main-thread work): см. [[frontend/performance-third-party-scripts]].
+
+## 9. Canonical Tags & Indexation Integrity
+- **Metadata Cascade Gotcha**: В Next.js App Router свойство `alternates.canonical` наследуется из корневого `layout.tsx` во все дочерние страницы, если страница явно не возвращает собственное поле `alternates: { canonical: ... }`.
+- **Category Indexing Fix**: Страницы категорий блога (`/blog/category/[slug]`) не индексировались Google («Вариант страницы с тегом canonical»), так как не имели локального `canonical` и указывали на главную страницу. Решено явным самореферентным `canonical` и включением категорий в `sitemap.ts`. Подробный разбор кейса: [[bugs/canonical-tag-inheritance]].

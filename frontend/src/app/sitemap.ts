@@ -139,5 +139,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Error generating dynamic sitemap for authors:', error);
   }
 
-  return [...staticPages, ...blogEntries, ...workoutEntries, ...authorEntries];
+  // 5. Dynamic Categories from Strapi
+  let categoryEntries: MetadataRoute.Sitemap = [];
+  try {
+    const response = await fetch(`${strapiUrl}/api/categories?fields[0]=slug&fields[1]=updatedAt`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${apiToken}`,
+        'Content-Type': 'application/json',
+      },
+      next: { revalidate: 3600 },
+    });
+    
+    if (response.ok) {
+      const result = await response.json();
+      if (result.data && Array.isArray(result.data)) {
+        categoryEntries = result.data.map((category: any) => ({
+          url: `${BASE_URL}/blog/category/${category.slug}`,
+          lastModified: category.updatedAt ? new Date(category.updatedAt) : new Date(),
+          changeFrequency: 'weekly',
+          priority: 0.7,
+        }));
+      }
+    }
+  } catch (error) {
+    console.error('Error generating dynamic sitemap for categories:', error);
+  }
+
+  return [...staticPages, ...blogEntries, ...workoutEntries, ...authorEntries, ...categoryEntries];
 }

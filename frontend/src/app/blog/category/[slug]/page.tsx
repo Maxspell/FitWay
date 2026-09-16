@@ -54,6 +54,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${category.name} Articles | FitWay`,
     description: `Explore the latest articles in ${category.name} to elevate your fitness and health journey.`,
+    alternates: {
+      canonical: `/blog/category/${params.slug}`,
+    },
+    openGraph: {
+      title: `${category.name} Articles | FitWay`,
+      description: `Explore the latest articles in ${category.name} to elevate your fitness and health journey.`,
+      url: `/blog/category/${params.slug}`,
+      type: "website",
+    },
   };
 }
 
