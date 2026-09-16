@@ -8,6 +8,7 @@ This document outlines the core SEO practices and specific implementations used 
 
 ## 2. E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)
 - **Author Profiles**: The `/about` page must explicitly display team credentials. We render specific certifications (e.g., "NASM-CPT", "RD") and provide outgoing links to professional profiles. This builds trust with both users and search evaluators.
+- **Editorial Policy & Peer Review**: To satisfy Google Quality Evaluator standards for YMYL and resolve "Low Value Content" rejections in Google AdSense, all articles undergo peer-review. The site features a dedicated [[frontend/editorial-policy]] explaining the 4-step scientific vetting process, accompanied by on-page `ReviewedByBox` components and `reviewedBy` Schema.org markup.
 - **Trust Funnel Implementation**: We implement a "Trust Funnel" on the home page to combat "Thin Content" flags and satisfy YMYL requirements:
   - **Medical Disclaimer**: A professional disclaimer is placed in the footer to signal safety and compliance.
   - **Scientific Proof**: A dedicated "Why FitWay" section explains the physiological basis of the platform (Progressive Overload, Bio-Individual Analysis, Metabolic Optimization).

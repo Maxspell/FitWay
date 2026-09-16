@@ -23,4 +23,4 @@ The Authors System is a crucial part of the E-E-A-T (Experience, Expertise, Auth
 - We dynamically inject the author's full URL in the `BlogPosting` and `ExercisePlan` JSON-LD schemas.
 - The author profile page features a `Person` schema aggregating all social links, expertise areas (`knowsAbout`), and professional awards/certifications (`award`).
 
-Related: [[frontend/seo]], [[frontend/responsive-layout]], [[frontend/blog-ui]], [[backend/strapi-v5-collections]]
+Related: [[frontend/seo]], [[frontend/editorial-policy]], [[frontend/responsive-layout]], [[frontend/blog-ui]], [[backend/strapi-v5-collections]]
