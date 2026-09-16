@@ -125,7 +125,7 @@ const STEPS = [
 
 export default function StepsSection() {
   return (
-    <section className="py-32 relative overflow-hidden bg-[#1B2B3B]">
+    <section className="py-12 md:py-24 lg:py-32 relative overflow-hidden bg-[#1B2B3B]">
       {/* Decorative Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#FF8C00]/5 rounded-full blur-[120px] animate-pulse" />
@@ -134,11 +134,12 @@ export default function StepsSection() {
 
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="max-w-3xl mb-20">
+        <div className="max-w-3xl mb-10 md:mb-16 lg:mb-20 text-center md:text-left mx-auto md:mx-0">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#FF8C00] text-sm font-medium mb-6"
           >
             <Sparkles className="h-4 w-4" />
@@ -147,7 +148,8 @@ export default function StepsSection() {
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
           >
             How it <span className="text-[#FF8C00]">Works</span>
@@ -155,7 +157,8 @@ export default function StepsSection() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="text-xl text-gray-400"
           >
             From your first goal to lasting habits, we guide you every step of the way with professional tools and community support.

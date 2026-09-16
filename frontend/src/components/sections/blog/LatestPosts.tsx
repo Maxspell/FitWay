@@ -10,13 +10,13 @@ interface LatestPostsProps {
 
 export default function LatestPosts({ posts }: LatestPostsProps) {
   return (
-    <section className="py-16">
+    <section className="py-10 md:py-16">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center items-start gap-4 mb-8">
+        <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-4 mb-8 text-center sm:text-left">
           <h2 className="section-title mb-0">Latest from Our Blog</h2>
           <Link 
             href="/blog" 
-            className="group flex items-center gap-2 text-[#FF8C00] hover:text-[#E67E00] transition-colors"
+            className="group inline-flex items-center gap-2 text-[#FF8C00] hover:text-[#E67E00] transition-colors"
           >
             View All Posts 
             <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />

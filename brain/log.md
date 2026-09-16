@@ -1,4 +1,13 @@
 # Knowledge Base Activity Log
+## 2026-09-16
+- Устранение мерцания и дергания карточек при появлении во Framer Motion (`WhyFitWay.tsx` и `ExpertsSection.tsx`).
+    - **Flickering & Animation Jitter**: Установлена корневая причина мерцания карточек после завершения анимации — конфликт `style="transform: ..."` во Framer Motion и свойства `transition-all` из Tailwind на одном и том же элементе `<motion.div>`.
+    - **Architecture & Fix**: Выполнен рефакторинг: внешний `<motion.div>` отвечает строго за анимацию появления (`y: 30 -> y: 0`, `opacity: 0 -> 1`), а внутренний контейнер `<div>` обрабатывает hover-эффекты только по безопасным CSS-свойствам (`transition-colors duration-300`). Добавлен флаг `viewport={{ once: true }}`, предотвращающий циклический перезапуск анимации при микроскролле, а фоновые блуры вынесены в слой `-z-10 pointer-events-none`. [[bugs/framer-motion-animation-flicker]] [[frontend/responsive-layout]]
+- Диагностика поломки локального сервера `npm run dev` после запуска `npm run build`.
+    - **Concurrent Build & Dev Server Conflict**: Документирована причина падения локального сервера разработки при запуске команды сборки: очистка каталога `.next/` и конфликт блокировки файлов (file locking) в ОС Windows. Рекомендовано использовать `npx tsc --noEmit` для проверки типов без перезаписи артефактов `.next/`. [[bugs/nextjs-dev-build-conflict]]
+- Унификация вертикальных отступов и шапок секций для мобильных экранов.
+    - **Mobile Section Spacing & Headers**: В секциях главной страницы внедрены адаптивные вертикальные отступы `py-12 md:py-24 lg:py-32`, уменьшающие визуальные разрывы на смартфонах. Заголовки секций приведены к единому адаптивному стилю с центрированием на мобильных экранах (`text-center md:text-left mx-auto md:mx-0`) по образцу блока FAQ. [[frontend/responsive-layout]]
+
 ## 2026-09-11
 - Исправление ошибки контрастности в мобильной версии Google PageSpeed Insights (axe-core Color Contrast).
     - **Calculator Placeholder Contrast (WCAG 1.4.3 AA)**: В мобильном аудите PageSpeed для карточки калькуляторов (`bg-[#1B2B3B]/50`) зафиксирована ошибка недостаточного контраста у текста пустого состояния (*"Enter your details to see your result"* / *"Fill in all fields to calculate your daily needs"*). Класс цвета текста заменён с `text-gray-500` на `text-gray-300` (контраст > 7.5:1), а прозрачность иконок `Scale` и `Apple` повышена с `opacity-20` до `opacity-40` в `BmiCalculator.tsx` и `CalorieCalculator.tsx`. [[frontend/accessibility-wcag-fixes]]

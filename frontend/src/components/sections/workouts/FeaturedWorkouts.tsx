@@ -147,14 +147,14 @@ export default function FeaturedWorkouts({ workouts }: FeaturedWorkoutsProps) {
   }
 
   return (
-    <section className="py-32 relative overflow-hidden bg-[#1B2B3B]">
+    <section className="py-12 md:py-24 lg:py-32 relative overflow-hidden bg-[#1B2B3B]">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF8C00]/5 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#FF8C00]/5 rounded-full blur-[120px] -z-10" />
 
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-8 mb-10 md:mb-16 text-center md:text-left">
           <div className="max-w-2xl">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -182,10 +182,11 @@ export default function FeaturedWorkouts({ workouts }: FeaturedWorkoutsProps) {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
+            className="w-full sm:w-auto flex justify-center"
           >
             <Link 
               href="/workouts" 
-              className="group flex items-center gap-3 bg-white/5 hover:bg-[#FF8C00]/10 border border-white/10 hover:border-[#FF8C00]/30 px-8 py-4 rounded-2xl text-white font-bold transition-all"
+              className="group inline-flex items-center justify-center gap-3 bg-white/5 hover:bg-[#FF8C00]/10 border border-white/10 hover:border-[#FF8C00]/30 px-8 py-4 rounded-2xl text-white font-bold transition-all w-full sm:w-auto"
             >
               View All Workouts
               <div className="bg-[#FF8C00] rounded-lg p-1 group-hover:rotate-45 transition-transform">

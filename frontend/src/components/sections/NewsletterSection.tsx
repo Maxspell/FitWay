@@ -38,7 +38,7 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section className="relative py-24 overflow-hidden bg-[#1B2B3B]">
+    <section className="relative py-12 md:py-20 lg:py-24 overflow-hidden bg-[#1B2B3B]">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#FF8C00]/10 rounded-full blur-[120px] animate-pulse"></div>
@@ -61,7 +61,7 @@ export default function NewsletterSection() {
             </div>
 
             <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
-              <div>
+              <div className="text-center md:text-left">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}

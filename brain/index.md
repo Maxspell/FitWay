@@ -24,6 +24,8 @@
 - [[deploy/nextjs-build-failure]] — Handling missing .next manifests and 502 errors.
 
 ## 🐞 Bugs & Workarounds
+- [[bugs/framer-motion-animation-flicker]] — Мерцание и рывки карточек при появлении (конфликт Framer Motion и Tailwind `transition-all`, фоновые блуры, `viewport.once`).
+- [[bugs/nextjs-dev-build-conflict]] — Поломка `npm run dev` при параллельном запуске `npm run build` (конфликт блокировки `.next/` на Windows).
 - [[bugs/nextjs-prerender-fetch-failed]] — Ошибка сборки SSG prerender (fetch failed) и 404 на CSS/JS чанки на проде.
 - [[bugs/framer-motion-type-errors]] — Фикс ошибки TypeScript с массивом ease во Framer Motion.
 - [[bugs/strapi-type-errors]] — Fixing TS2345 during new collection creation.
@@ -36,3 +38,4 @@
 
 ## Recent Production Notes
 - [[deploy/strapi-media-production]] - Production Strapi media URLs, `api.fitway.best`, SSL, PM2 env updates, and Next Image remote patterns.
+

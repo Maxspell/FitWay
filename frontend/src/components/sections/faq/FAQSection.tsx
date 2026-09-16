@@ -40,7 +40,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden" id="faq">
+    <section className="py-12 md:py-20 lg:py-24 relative overflow-hidden" id="faq">
       {/* Background Decor */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF8C00]/5 blur-[120px] rounded-full" />
@@ -49,7 +49,7 @@ export default function FAQSection({ faqs }: FAQSectionProps) {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <motion.span 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

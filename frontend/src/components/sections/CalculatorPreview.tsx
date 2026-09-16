@@ -10,7 +10,7 @@ export default function CalculatorPreview() {
   const [activeTab, setActiveTab] = useState<"bmi" | "calories">("bmi");
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-12 md:py-20 lg:py-24 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FF8C00]/10 rounded-full blur-[120px] -z-10"></div>
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-[120px] -z-10"></div>
@@ -18,7 +18,7 @@ export default function CalculatorPreview() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           {/* Content Column */}
-          <div className="lg:w-1/2 space-y-8">
+          <div className="lg:w-1/2 space-y-8 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#FF8C00] text-sm font-medium">
               <Zap className="h-4 w-4" />
               Interactive Tools
@@ -29,19 +29,19 @@ export default function CalculatorPreview() {
                 Measure Your Progress <br />
                 <span className="text-[#FF8C00]">Scientifically</span>
               </h2>
-              <p className="text-xl text-gray-400 max-w-xl">
+              <p className="text-xl text-gray-400 max-w-xl mx-auto lg:mx-0">
                 Knowing your numbers is the first step to a healthier you. Use our precision tools to track your metrics and get personalized recommendations.
               </p>
             </div>
 
-            <ul className="space-y-4">
+            <ul className="space-y-4 inline-block text-left">
               {[
                 { icon: Target, text: "Accurate health metrics in seconds" },
                 { icon: Target, text: "Personalized nutritional guidelines" },
                 { icon: Target, text: "Science-based calculation models" }
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-gray-300">
-                  <div className="h-6 w-6 rounded-full bg-[#FF8C00]/20 flex items-center justify-center text-[#FF8C00]">
+                  <div className="h-6 w-6 rounded-full bg-[#FF8C00]/20 flex items-center justify-center text-[#FF8C00] shrink-0">
                     <item.icon className="h-4 w-4" />
                   </div>
                   {item.text}

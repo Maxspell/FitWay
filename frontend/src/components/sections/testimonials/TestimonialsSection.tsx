@@ -94,7 +94,7 @@ const STATS = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-32 relative overflow-hidden bg-[#1B2B3B]">
+    <section className="py-12 md:py-24 lg:py-32 relative overflow-hidden bg-[#1B2B3B]">
       {/* Background Atmosphere */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] bg-[#FF8C00]/5 rounded-full blur-[150px] animate-pulse" />
@@ -103,12 +103,12 @@ export default function TestimonialsSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="max-w-4xl mx-auto text-center mb-20">
+        <div className="max-w-4xl mx-auto text-center mb-10 md:mb-16 lg:mb-20">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#FF8C00] text-sm tracking-widest mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#FF8C00] text-sm tracking-widest mb-4 md:mb-8"
           >
             <Sparkles size={16} />
             Success Stories
@@ -118,7 +118,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight"
+            className="text-5xl md:text-7xl font-bold text-white mb-4 md:mb-8 leading-tight"
           >
             Trusted by the <span className="text-[#FF8C00]">FitWay</span> Community
           </motion.h2>
@@ -134,7 +134,7 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12 md:mb-20 lg:mb-24">
           {STATS.map((stat, index) => (
             <motion.div
               key={stat.label}

@@ -36,18 +36,18 @@ const PILLARS = [
 
 export default function WhyFitWay() {
   return (
-    <section className="py-32 relative overflow-hidden bg-[#1B2B3B]">
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-10">
-         <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#FF8C00] rounded-full blur-[150px]" />
-         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-600 rounded-full blur-[150px]" />
-      </div>
+    <section className="py-12 md:py-24 lg:py-32 relative overflow-hidden bg-[#1B2B3B]">
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF8C00]/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl mb-20">
+        <div className="max-w-3xl mb-10 md:mb-16 lg:mb-20 text-center md:text-left mx-auto md:mx-0">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#FF8C00] text-sm font-medium mb-6"
           >
             <Zap className="h-4 w-4" />
@@ -57,6 +57,7 @@ export default function WhyFitWay() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
           >
             The Science of <span className="text-[#FF8C00]">Precision Fitness</span>
@@ -65,6 +66,7 @@ export default function WhyFitWay() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
             className="text-xl text-gray-400"
           >
             Where AI Intelligence Meets Human Physiology. We don't believe in one-size-fits-all routines. Our platform is built on the intersection of algorithmic precision and established exercise science.
@@ -74,19 +76,22 @@ export default function WhyFitWay() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {PILLARS.map((pillar, index) => (
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
+              key={pillar.title}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-white/20 transition-all group"
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group relative"
             >
-              <div className={`w-14 h-14 rounded-2xl ${pillar.bg} ${pillar.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                <pillar.icon className="h-7 w-7" />
+              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-white/20 transition-colors duration-300 h-full">
+                <div className={`w-14 h-14 rounded-2xl ${pillar.bg} ${pillar.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                  <pillar.icon className="h-7 w-7" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">{pillar.title}</h3>
+                <p className="text-gray-400 leading-relaxed">
+                  {pillar.description}
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4">{pillar.title}</h3>
-              <p className="text-gray-400 leading-relaxed">
-                {pillar.description}
-              </p>
             </motion.div>
           ))}
         </div>

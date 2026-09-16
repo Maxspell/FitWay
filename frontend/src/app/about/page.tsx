@@ -71,14 +71,14 @@ export default async function About() {
   };
 
   return (
-    <div className="py-12">
+    <div className="py-8 md:py-12">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <div className="container mx-auto px-4">
         {/* Hero Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <h1 className="section-title mb-4">About FitWay</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             We're dedicated to helping you achieve your fitness goals through expert guidance,
@@ -87,7 +87,7 @@ export default async function About() {
         </div>
 
         {/* Values Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 md:mb-16">
           {values.map((value, index) => (
             <div key={index} className="card text-center">
               <div className="flex justify-center mb-4">
@@ -100,7 +100,7 @@ export default async function About() {
         </div>
 
         {/* Team Section */}
-        <div className="mb-16">
+        <div className="mb-8 md:mb-16">
           <ExpertsSection authors={authors} />
         </div>
 
