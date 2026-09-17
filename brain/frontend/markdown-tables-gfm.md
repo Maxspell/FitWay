@@ -48,6 +48,7 @@ Installed and enabled `remark-gfm` as a remark plugin inside `ReactMarkdown`.
 - Executed `npm run build` in `frontend` - compilation succeeded with status code 0 (TypeScript & Next.js chunk validation passed).
 
 ## Related:
+- [[frontend/external-links-eeat]] — Custom link handling in `ReactMarkdown`, tab security, and E-E-A-T citing rules.
 - [[frontend/blog-ui]] — Blog page layout, typography, and detail view structure.
 - [[frontend/table-of_contents]] — Table of contents parsing heading IDs from `ReactMarkdown`.
 - [[frontend/seo]] — Content depth, E-E-A-T signals, and readability.

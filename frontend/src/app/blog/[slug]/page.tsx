@@ -213,6 +213,26 @@ export default async function BlogPost({ params }: Props) {
                     const text = React.Children.toArray(props.children).reduce(flatten, "");
                     const id = slugify(text);
                     return <h3 id={id} {...props} />;
+                  },
+                  a: ({ node, href, children, ...props }) => {
+                    const isExternal = href?.startsWith("http://") || href?.startsWith("https://");
+                    if (isExternal) {
+                      return (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          {...props}
+                        >
+                          {children}
+                        </a>
+                      );
+                    }
+                    return (
+                      <Link href={href || "#"} {...props}>
+                        {children}
+                      </Link>
+                    );
                   }
                 }}
               >
