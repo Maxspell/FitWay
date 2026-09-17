@@ -47,7 +47,7 @@ export default function ExerciseList({ exercises }: Props) {
     : 0;
 
   return (
-    <div className="space-y-6 relative">
+    <div id="exercise-list" className="space-y-6 relative scroll-mt-24">
       {!exercises ? (
         <div className="text-center py-12 bg-[#243447] rounded-2xl border border-white/5">
           <p className="text-gray-400">No exercises found for this workout.</p>
@@ -63,14 +63,13 @@ export default function ExerciseList({ exercises }: Props) {
                 exit={{ opacity: 0, y: 50 }}
                 className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-[#FF8C00] text-white px-8 py-4 rounded-3xl shadow-2xl flex items-center gap-4 border-4 border-white/20 backdrop-blur-xl"
               >
-                <Timer className="w-6 h-6 animate-pulse" />
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-black uppercase tracking-tighter opacity-80">Rest Period</span>
-                  <span className="text-2xl font-black tabular-nums">{restTimer.seconds}s</span>
+                <div className="flex items-center gap-3 font-bold text-lg">
+                  <Timer className="w-6 h-6 animate-pulse" />
+                  <span>Rest: {restTimer.seconds}s</span>
                 </div>
                 <button
                   onClick={() => setRestTimer({ active: false, seconds: 0 })}
-                  className="ml-4 p-2 bg-white/20 rounded-full hover:bg-white/40 transition-colors"
+                  className="bg-white/20 hover:bg-white/30 p-1.5 rounded-full transition-colors text-xs font-bold"
                 >
                   Skip
                 </button>
@@ -100,15 +99,16 @@ export default function ExerciseList({ exercises }: Props) {
 
           <div className="space-y-4">
             {exercises.map((exercise, index) => (
-              <ExerciseCard
-                key={exercise.id}
-                exercise={exercise}
-                index={index}
-                isActive={activeIndex === index}
-                isCompleted={completedExercises.includes(exercise.id)}
-                onToggleComplete={() => toggleComplete(exercise.id)}
-                onSelect={() => setActiveIndex(index)}
-              />
+              <div key={exercise.id} id={index === 0 ? "first-exercise" : undefined} className="scroll-mt-28">
+                <ExerciseCard
+                  exercise={exercise}
+                  index={index}
+                  isActive={activeIndex === index}
+                  isCompleted={completedExercises.includes(exercise.id)}
+                  onToggleComplete={() => toggleComplete(exercise.id)}
+                  onSelect={() => setActiveIndex(index)}
+                />
+              </div>
             ))}
           </div>
         </>

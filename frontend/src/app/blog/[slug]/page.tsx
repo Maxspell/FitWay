@@ -224,6 +224,7 @@ export default async function BlogPost({ params }: Props) {
             <ShareButtons 
               title={post.title} 
               description={post.excerpt}
+              heading="Found this article helpful? Share it!"
               url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/blog/${post.slug}`}
             />
 

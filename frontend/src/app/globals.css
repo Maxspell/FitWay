@@ -10,6 +10,10 @@
   --glass-border: rgba(255, 255, 255, 0.1);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-[#1B2B3B] text-white antialiased;
 }

@@ -13,6 +13,8 @@ import AuthorBox from "@/components/common/AuthorBox";
 import AuthorSidebarCard from "@/components/common/AuthorSidebarCard";
 import ReactMarkdown from "react-markdown";
 import { Workout } from "@/interfaces/workout";
+import ShareButtons from "@/components/BlogPost/ShareButtons";
+import { getStrapiMedia } from "@/lib/utils";
 
 interface Props {
   params: {
@@ -25,6 +27,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!workout) return { title: "Workout Not Found | FitWay" };
 
+  let imageUrl = workout.image?.url ? getStrapiMedia(workout.image.url) : "";
+  if (imageUrl && !imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://fitway.best";
+    imageUrl = `${siteUrl}${imageUrl.startsWith("/") ? "" : "/"}${imageUrl}`;
+  }
+
+  const imageObj = imageUrl
+    ? [
+        {
+          url: imageUrl,
+          secureUrl: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: workout.title,
+        },
+      ]
+    : [];
+
   return {
     title: `${workout.title} | Premium Fitness Workout`,
     description: workout.description,
@@ -34,13 +54,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: workout.title,
       description: workout.description,
-      images: [workout.image?.url || ""],
+      url: `/workouts/${params.slug}`,
+      type: "article",
+      images: imageObj,
     },
     twitter: {
       card: "summary_large_image",
       title: workout.title,
       description: workout.description,
-      images: [workout.image?.url || ""],
+      images: imageUrl ? [imageUrl] : [],
     },
   };
 }
@@ -80,6 +102,17 @@ export default async function WorkoutDetailsPage({ params }: Props) {
               </div>
             )}
             <ExpertTips category={workout.category} />
+            
+            {/* Social Share Section */}
+            <ShareButtons 
+              id="share-section"
+              title={workout.title}
+              description={workout.description}
+              subtitle="Share the workout"
+              heading="Found this workout useful? Share it!"
+              url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/workouts/${workout.slug}`}
+            />
+
             <ReviewSystem workoutTitle={workout.title} workoutDocumentId={workout.documentId} />
             {workout.reviewedBy && workout.reviewedBy.length > 0 && (
               <WorkoutExpertReviewBox reviewer={workout.reviewedBy[0]} />

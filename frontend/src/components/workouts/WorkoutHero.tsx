@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { Play, Share2, Heart, Clock, Flame, Trophy } from "lucide-react";
+import { Play, Share2, Clock, Flame, Trophy } from "lucide-react";
 import { Workout } from "@/interfaces/workout";
 import { motion } from "framer-motion";
 import { getStrapiMedia } from "@/lib/utils";
@@ -65,18 +65,20 @@ export default function WorkoutHero({ workout }: Props) {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <button className="flex items-center gap-2 px-8 py-4 bg-[#FF8C00] hover:bg-[#E67E00] text-white font-bold rounded-2xl transition-all shadow-lg hover:shadow-[#FF8C00]/20 transform hover:-translate-y-1">
+            <a
+              href="#first-exercise"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#FF8C00] hover:bg-[#E67E00] text-white font-bold rounded-2xl transition-all shadow-lg hover:shadow-[#FF8C00]/20 transform hover:-translate-y-1 cursor-pointer"
+            >
               <Play className="w-5 h-5 fill-current" />
               START WORKOUT
-            </button>
-            <button className="flex items-center gap-2 px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold rounded-2xl transition-all border border-white/10">
-              <Heart className="w-5 h-5" />
-              SAVE
-            </button>
-            <button className="flex items-center gap-2 px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold rounded-2xl transition-all border border-white/10">
+            </a>
+            <a
+              href="#share-section"
+              className="inline-flex items-center gap-2 px-6 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold rounded-2xl transition-all border border-white/10 hover:border-white/30 cursor-pointer"
+            >
               <Share2 className="w-5 h-5" />
               SHARE
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>

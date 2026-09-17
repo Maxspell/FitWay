@@ -7,9 +7,21 @@ interface ShareButtonsProps {
   title: string;
   url?: string;
   description?: string;
+  subtitle?: string;
+  heading?: string;
+  id?: string;
+  className?: string;
 }
 
-export default function ShareButtons({ title, url, description }: ShareButtonsProps) {
+export default function ShareButtons({
+  title,
+  url,
+  description,
+  subtitle = "Spread the knowledge",
+  heading = "Found this helpful? Share it!",
+  id,
+  className = "",
+}: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
 
   // Fallback to window.location.href in browser if url prop is not provided or relative
@@ -86,7 +98,10 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
   };
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1B2B3B]/90 via-[#243447]/80 to-[#1B2B3B]/90 border border-white/10 p-5 sm:p-6 my-8 backdrop-blur-md shadow-lg shadow-black/20">
+    <div
+      id={id}
+      className={`relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1B2B3B]/90 via-[#243447]/80 to-[#1B2B3B]/90 border border-white/10 p-5 sm:p-6 my-8 backdrop-blur-md shadow-lg shadow-black/20 scroll-mt-28 ${className}`}
+    >
       {/* Decorative ambient background blur */}
       <div className="absolute top-0 right-1/4 w-48 h-24 bg-[#FF8C00]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-48 h-24 bg-[#1DA1F2]/10 rounded-full blur-3xl pointer-events-none" />
@@ -94,10 +109,10 @@ export default function ShareButtons({ title, url, description }: ShareButtonsPr
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
         <div>
           <span className="text-xs font-semibold uppercase tracking-wider text-[#FF8C00]">
-            Spread the knowledge
+            {subtitle}
           </span>
           <h4 className="text-lg font-bold text-white tracking-tight">
-            Found this article helpful? Share it!
+            {heading}
           </h4>
         </div>
 

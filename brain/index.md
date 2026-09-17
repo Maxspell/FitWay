@@ -18,6 +18,7 @@
 - [[frontend/mobile-menu]] — Премиальное мобильное меню с использованием Framer Motion и Tailwind CSS.
 - [[frontend/responsive-layout]] — Mobile-first адаптивные сетки для карточек блога, разделов и футера.
 - [[frontend/blog-ui]] — Компоненты карточек блога, кликабельный AuthorBox, мобильная верстка постов и организация контента.
+- [[frontend/social-share-and-anchors]] — Социальный шеринг (X/Twitter, Facebook, Web Share API, буфер обмена), фикс абсолютных протокольных URL для Twitterbot и интерактивные якоря в тренировках.
 - [[frontend/markdown-tables-gfm]] — Поддержка Markdown-таблиц (GFM), зачеркивания и списков через `remark-gfm` в `ReactMarkdown`.
 - [[frontend/table-of_contents]] — Premium Table of Contents with Scroll Spy for blog articles.
 - [[frontend/contact-form]] — Design, архитектура Server/Client split и реализация контактной системы.
