@@ -1,5 +1,8 @@
 # FitWay Knowledge Base Index
 
+## 🎯 Roadmaps & Strategy
+- [[roadmap/adsense-approval-plan]] — Пошаговый план прохождения модерации Google AdSense («Бесполезный контент / Low value content») с интерактивным чеклистом.
+
 ## 🏗️ Architecture
 - [[architecture/overview]]
 - [[frontend/data-fetching-pattern]] — Service + UI Component extraction pattern for Next.js App Router.

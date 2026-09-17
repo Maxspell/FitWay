@@ -12,6 +12,7 @@ import TableOfContents from "@/components/BlogPost/TableOfContents";
 import AuthorBox from "@/components/common/AuthorBox";
 import ReviewedByBox from "@/components/common/ReviewedByBox";
 import { slugify } from "@/utils/slugify";
+import ShareButtons from "@/components/BlogPost/ShareButtons";
 import React from "react";
 
 // Helper to extract text from ReactMarkdown children
@@ -200,6 +201,13 @@ export default async function BlogPost({ params }: Props) {
               </ReactMarkdown>
             </div>
             
+            {/* Social Share Section */}
+            <ShareButtons 
+              title={post.title} 
+              description={post.excerpt}
+              url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/blog/${post.slug}`}
+            />
+
             {/* Reviewer Verification Box (E-E-A-T) */}
             {primaryReviewer && (
               <ReviewedByBox 
