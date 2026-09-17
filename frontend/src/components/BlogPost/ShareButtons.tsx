@@ -23,6 +23,13 @@ export default function ShareButtons({
   className = "",
 }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
+  const [canShare, setCanShare] = useState(false);
+
+  React.useEffect(() => {
+    if (typeof navigator !== "undefined" && "share" in navigator) {
+      setCanShare(true);
+    }
+  }, []);
 
   // Fallback to window.location.href in browser if url prop is not provided or relative
   const getShareUrl = () => {
@@ -175,7 +182,7 @@ export default function ShareButtons({
           </button>
 
           {/* Mobile Web Share API button if supported */}
-          {typeof navigator !== "undefined" && "share" in navigator && (
+          {canShare && (
             <button
               type="button"
               onClick={handleNativeShare}
