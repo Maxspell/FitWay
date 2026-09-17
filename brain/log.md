@@ -1,4 +1,8 @@
 # Knowledge Base Activity Log
+## 2026-09-17
+- Добавлена поддержка таблиц GitHub Flavored Markdown (GFM) в рендерере детальной статьи блога (`/blog/[slug]`).
+    - **Markdown Tables & GFM Plugins**: Установлен пакет `remark-gfm` и подключен в `ReactMarkdown` через проп `remarkPlugins={[remarkGfm]}` в `src/app/blog/[slug]/page.tsx`. Это позволило автоматически парсить Markdown-таблицы, зачёркнутый текст, чекбоксы и прямые ссылки из Strapi CMS с нативной стилизацией через `@tailwindcss/typography` (`prose prose-invert prose-orange`). [[frontend/markdown-tables-gfm]] [[frontend/blog-ui]]
+
 ## 2026-09-16
 - Устранение ошибки индексации страниц категорий блога в Google Search Console («Вариант страницы с тегом canonical»).
     - **Canonical Tag Inheritance Bug**: Установлена причина исключения страниц категорий блога (`/blog/category/[slug]`) из поискового индекса Google. Из-за отсутствия явного `canonical` в `generateMetadata` страницы категорий автоматически наследовали дефолтный тег `canonical: "https://fitway.best"` из корневого `layout.tsx`, сигнализируя роботу, что они являются дублем главной страницы. [[bugs/canonical-tag-inheritance]] [[frontend/seo]]

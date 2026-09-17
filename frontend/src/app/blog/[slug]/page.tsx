@@ -5,6 +5,7 @@ import { Clock, User, Tag, Calendar, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import RelatedArticles from "@/components/BlogPost/RelatedArticles";
 import { getPostImage } from "@/utils/image";
 import TableOfContents from "@/components/BlogPost/TableOfContents";
@@ -181,6 +182,7 @@ export default async function BlogPost({ params }: Props) {
           <div className="w-full lg:col-span-8">
             <div className="card prose prose-invert prose-orange max-w-none">
               <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
                 components={{
                   h2: ({ node, ...props }) => {
                     const text = React.Children.toArray(props.children).reduce(flatten, "");

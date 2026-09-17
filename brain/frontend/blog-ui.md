@@ -21,6 +21,7 @@ The blog listing page was updated to improve UX and information density.
   - Updated iconography: `Calendar` for date, `Clock` for reading time.
 
 **Related:**
+- [[frontend/markdown-tables-gfm]] - Markdown content rendering with GFM table support.
 - [[frontend/responsive-layout]] - Mobile-first grid layouts and responsive cards.
 - [[frontend/authors-system]] - Author cards and profile architecture.
 - [[frontend/seo]] - Schema.org and content structure.
