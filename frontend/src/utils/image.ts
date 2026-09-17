@@ -9,7 +9,8 @@ export const getStrapiMedia = (url: string | null) => {
   }
 
   // Otherwise, prepend the Strapi URL
-  return `${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}${url}`;
+  const strapiUrl = process.env.NEXT_PUBLIC_STRAPI_URL || "https://api.fitway.best";
+  return `${strapiUrl}${url.startsWith("/") ? "" : "/"}${url}`;
 };
 
 export const getPostImage = (post: any, format: "large" | "medium" | "small" | "thumbnail" = "large") => {

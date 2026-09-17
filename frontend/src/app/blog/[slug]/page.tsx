@@ -87,7 +87,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) return { title: "Blog Post Not Found | FitWay" };
 
-  const imageUrl = getPostImage(post, "large");
+  let imageUrl = getPostImage(post, "large");
+  // Ensure the image URL is strictly absolute
+  if (imageUrl && !imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://fitway.best";
+    imageUrl = `${siteUrl}${imageUrl.startsWith("/") ? "" : "/"}${imageUrl}`;
+  }
+
+  const imageObj = imageUrl
+    ? [
+        {
+          url: imageUrl,
+          secureUrl: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ]
+    : [];
 
   return {
     title: `${post.title} | Blog`,
@@ -98,7 +115,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: imageUrl ? [imageUrl] : [],
+      url: `/blog/${params.slug}`,
+      type: "article",
+      images: imageObj,
     },
     twitter: {
       card: "summary_large_image",
