@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
+import ScrollToTop from "@/components/common/ScrollToTop";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -70,6 +71,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <ScrollToTop />
 
         <script
           type="application/ld+json"

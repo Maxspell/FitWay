@@ -26,6 +26,7 @@
 - [[frontend/contact-form]] — Design, архитектура Server/Client split и реализация контактной системы.
 - [[frontend/breadcrumbs]] — Global Breadcrumbs component and layout integration.
 - [[frontend/seo]] — Стратегия борьбы с Thin Content, внедрение E-E-A-T сигналов и Schema.org разметки.
+- [[frontend/scroll-to-top]] — Интерактивная кнопка Scroll-to-Top с круговым SVG-индикатором прогресса прокрутки (оранжевый акцент #FF8C00) и плавной анимацией.
 - [[frontend/editorial-policy]] — Редакционная политика, стандарты E-E-A-T, архитектура рецензирования (Peer Review) и верификация контента.
 - [[frontend/authors-system]] — E-E-A-T architecture for premium author profiles and content linking.
 

@@ -22,3 +22,7 @@ To prevent the breadcrumbs block from pushing down full-width hero backgrounds o
 ```
 
 This ensures the breadcrumbs gracefully overlay hero backgrounds while remaining fully interactive (`pointer-events-auto`), without altering the page's standard document flow.
+
+## Related Links
+- [[frontend/scroll-to-top]] — Глобальная навигация и элементы в RootLayout.
+- [[frontend/responsive-layout]] — Адаптивная вёрстка страниц.
