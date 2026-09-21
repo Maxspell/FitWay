@@ -64,7 +64,7 @@ async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
 
 async function getRelatedBlogPosts(slug: string): Promise<BlogPost[]> {
   try {
-    const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&filters[slug][$ne]=${slug}&pagination[limit]=2`, {
+    const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&populate[3]=category&filters[slug][$ne]=${slug}&sort=createdAt:desc&pagination[limit]=2`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${API_TOKEN}`,
@@ -178,7 +178,7 @@ export default async function BlogPost({ params }: Props) {
 
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-4 w-4 shrink-0" />
-                {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                {new Date(post.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",

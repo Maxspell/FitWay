@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 async function getBlogPosts(): Promise<BlogPost[]> {
   try {
     const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-    const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=category&sort=createdAt:desc`, {
+    const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=category&populate[2]=author&sort=createdAt:desc`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,

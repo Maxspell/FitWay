@@ -45,17 +45,23 @@ export default function LatestPosts({ posts }: LatestPostsProps) {
                   />
                 </div>
                 <div className="flex flex-wrap items-center gap-4 text-[#FF8C00] text-sm mb-2">
-                  <span className="flex items-center gap-1">
-                    <User className="h-4 w-4" />
-                    {post.author?.name}
-                  </span>
+                  {post.author?.name && (
+                    <span className="flex items-center gap-1">
+                      <User className="h-4 w-4" />
+                      {post.author.name}
+                    </span>
+                  )}
                   <span className="flex items-center gap-1">
                     <Clock className="h-4 w-4" />
                     {post.readTime}
                   </span>
                   <span className="flex items-center gap-1">
                     <Calendar className="h-4 w-4" />
-                    {new Date(post.publishedAt || post.createdAt || Date.now()).toLocaleDateString()}
+                    {new Date(post.createdAt || post.publishedAt || Date.now()).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-[#FF8C00] transition-colors">

@@ -5,7 +5,7 @@ const STRAPI_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
-    const response = await fetch(`${STRAPI_URL}/api/posts?populate=image&sort=publishedAt:desc`, {
+    const response = await fetch(`${STRAPI_URL}/api/posts?populate[0]=image&populate[1]=author&sort=createdAt:desc`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${STRAPI_TOKEN}`,

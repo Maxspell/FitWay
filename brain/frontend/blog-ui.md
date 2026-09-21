@@ -17,11 +17,13 @@ The blog listing page was updated to improve UX and information density.
   - Removed duplicate `AuthorSidebarCard` from the sidebar of `/blog/[slug]` to prevent showing two author cards in a single viewport.
 - **Data Display**:
   - Integrated `readTime` for better user expectation management.
-  - Switched to `publishedAt` for dates, formatted via `toLocaleDateString` for a more human-readable format.
-  - Updated iconography: `Calendar` for date, `Clock` for reading time.
+  - Switched to `createdAt` for dates across all views (Hero, general list, related articles, and homepage) formatted via `toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })`. See [[frontend/blog-date-sorting-metadata]].
+  - Updated iconography: `Calendar` for date, `Clock` for reading time, `Tag` for category.
 
 **Related:**
+- [[frontend/blog-date-sorting-metadata]] - Synchronization of `createdAt`, `sort=createdAt:desc`, author, and category populates.
 - [[frontend/markdown-tables-gfm]] - Markdown content rendering with GFM table support.
 - [[frontend/responsive-layout]] - Mobile-first grid layouts and responsive cards.
 - [[frontend/authors-system]] - Author cards and profile architecture.
+- [[frontend/data-fetching-pattern]] - Service + UI Component data fetching pattern.
 - [[frontend/seo]] - Schema.org and content structure.
