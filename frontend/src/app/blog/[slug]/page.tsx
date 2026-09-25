@@ -13,6 +13,7 @@ import AuthorBox from "@/components/common/AuthorBox";
 import ReviewedByBox from "@/components/common/ReviewedByBox";
 import { slugify } from "@/utils/slugify";
 import ShareButtons from "@/components/BlogPost/ShareButtons";
+import TweetEmbed from "@/components/BlogPost/TweetEmbed";
 import React from "react";
 
 // Helper to extract text from ReactMarkdown children
@@ -215,6 +216,16 @@ export default async function BlogPost({ params }: Props) {
                     return <h3 id={id} {...props} />;
                   },
                   a: ({ node, href, children, ...props }) => {
+                    if (href) {
+                      // Support twitter.com and x.com status links
+                      const twitterMatch = href.match(
+                        /(?:twitter\.com|x\.com)\/(?:#!\/)?(\w+)\/status(?:es)?\/(\d+)/i
+                      );
+                      if (twitterMatch && twitterMatch[2]) {
+                        return <TweetEmbed id={twitterMatch[2]} />;
+                      }
+                    }
+
                     const isExternal = href?.startsWith("http://") || href?.startsWith("https://");
                     if (isExternal) {
                       return (
