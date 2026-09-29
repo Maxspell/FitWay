@@ -93,7 +93,13 @@ export default async function Home() {
         "@id": `${siteUrl}/#organization`,
         "name": "FitWay",
         "url": siteUrl,
-        "logo": `${siteUrl}/images/logo.png`,
+        "logo": `${siteUrl}/favicon.svg`,
+        "description": "AI-powered fitness platform providing science-backed workout programs and personalized nutrition plans.",
+        "sameAs": [
+          "https://www.facebook.com/fitway.best/",
+          "https://www.instagram.com/fitway.best/",
+          "https://x.com/fitway_best"
+        ],
         ...(reviews.length > 0 && {
           "aggregateRating": {
             "@type": "AggregateRating",

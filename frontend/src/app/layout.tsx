@@ -79,14 +79,15 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
+              "@id": "https://fitway.best/#organization",
               "name": "FitWay",
               "url": "https://fitway.best",
               "logo": "https://fitway.best/favicon.svg",
               "description": "AI-powered fitness platform providing science-backed workout programs and personalized nutrition plans.",
               "sameAs": [
-                "https://facebook.com/fitway",
-                "https://instagram.com/fitway",
-                "https://twitter.com/fitway"
+                "https://www.facebook.com/fitway.best/",
+                "https://www.instagram.com/fitway.best/",
+                "https://x.com/fitway_best"
               ]
             }),
           }}

@@ -18,7 +18,7 @@ This document outlines the core SEO practices and specific implementations used 
 - **Content Depth**: Workout pages include dynamic "Expert Tips" and "Common Mistakes" sections. This increases the uniqueness and authority of the content compared to generic workout descriptions.
 
 ## 3. Structured Data (Schema.org)
-- **Organization & WebSite**: Implemented globally in `layout.tsx` to define the brand identity and official URL for Google's Knowledge Graph.
+- **Organization & WebSite**: Глобально определены в `layout.tsx` и на главной странице (`page.tsx`) с каноническим идентификатором `@id: "https://fitway.best/#organization"`. Содержит верифицированные ссылки `sameAs` на социальные сети (Facebook, Instagram, X/Twitter), описание и `aggregateRating` с отзывами на главной. Использование единого `@id` позволяет поисковым системам склеивать свойства сущности без дублирования.
 - **Workouts as Courses**: On workout detail pages (`workouts/[slug]/page.tsx`), we use a multi-type JSON-LD schema: `["ExercisePlan", "Course"]`. 
   - Using `Course` allows us to target rich snippets in Google SERPs for fitness programs. 
 - **FAQ Page Schema**: Implemented dynamically on the home page and in the `/tools` section. This ensures Google recognizes the questions and answers for FAQ Rich Snippets, significantly increasing SERP real estate and CTR.
