@@ -4,9 +4,10 @@ import TestimonialsSection from "@/components/sections/testimonials/Testimonials
 import NewsletterSection from "@/components/sections/NewsletterSection";
 import FeaturedWorkouts from "@/components/sections/workouts/FeaturedWorkouts";
 import LatestPosts from "@/components/sections/blog/LatestPosts";
-import { getWorkouts } from "@/services/workout.service";
+import { getWorkouts, getLatestReviews } from "@/services/workout.service";
 import { getBlogPosts } from "@/services/post.service";
 import { getAuthors } from "@/services/author.service";
+import { Review } from "@/interfaces/review";
 
 import StepsSection from "@/components/sections/steps/StepsSection";
 import FAQSection from "@/components/sections/faq/FAQSection";
@@ -70,60 +71,105 @@ const fallbackFAQs = [
 
 
 export default async function Home() {
-  const [blogPosts, faqs, workouts, authors] = await Promise.all([
+  const [blogPosts, faqs, workouts, authors, reviews] = await Promise.all([
     getBlogPosts(),
     getFAQs(),
     getWorkouts(),
-    getAuthors()
+    getAuthors(),
+    getLatestReviews(10)
   ]);
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://fitway.best";
+
+  const reviewsAvgRating = reviews.length
+    ? (reviews.reduce((acc: number, curr: Review) => acc + curr.rating, 0) / reviews.length).toFixed(1)
+    : "4.9";
 
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
+        "name": "FitWay",
+        "url": siteUrl,
+        "logo": `${siteUrl}/images/logo.png`,
+        ...(reviews.length > 0 && {
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": reviewsAvgRating,
+            "reviewCount": reviews.length,
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "review": reviews.map((rev: Review) => ({
+            "@type": "Review",
+            "author": {
+              "@type": "Person",
+              "name": rev.name,
+            },
+            "datePublished": rev.createdAt,
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": rev.rating,
+              "bestRating": "5",
+              "worstRating": "1",
+            },
+            "reviewBody": rev.content,
+            ...(rev.workout && {
+              "itemReviewed": {
+                "@type": "ExercisePlan",
+                "name": rev.workout.title,
+                "url": `${siteUrl}/workouts/${rev.workout.slug}`,
+              },
+            }),
+          })),
+        }),
+      },
+      {
         "@type": "SoftwareApplication",
         "name": "BMI Calculator",
         "applicationCategory": "HealthApplication",
         "operatingSystem": "Web",
-        "url": "https://fitway.best/#bmi",
+        "url": `${siteUrl}/#bmi`,
         "description": "Free online BMI calculator based on height and weight.",
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "USD"
+          "priceCurrency": "USD",
         },
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.8",
-          "ratingCount": "1254"
+          "ratingCount": "1254",
         },
-        "featureList": ["Body Mass Index calculation", "Instant results", "Metric units"]
+        "featureList": ["Body Mass Index calculation", "Instant results", "Metric units"],
       },
       {
         "@type": "SoftwareApplication",
         "name": "Daily Calorie Calculator",
         "applicationCategory": "HealthApplication",
         "operatingSystem": "Web",
-        "url": "https://fitway.best/#calories",
+        "url": `${siteUrl}/#calories`,
         "description": "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain.",
         "offers": {
           "@type": "Offer",
           "price": "0",
-          "priceCurrency": "USD"
+          "priceCurrency": "USD",
         },
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.9",
-          "ratingCount": "892"
+          "ratingCount": "892",
         },
         "featureList": [
           "TDEE calculation",
           "Weight loss targets",
           "Muscle gain targets",
-          "Activity level adjustment"
-        ]
-      }
-    ]
+          "Activity level adjustment",
+        ],
+      },
+    ],
   };
 
   return (
@@ -151,7 +197,7 @@ export default async function Home() {
       <FeaturedWorkouts workouts={workouts} />
 
       {/* Testimonials Section */}
-      <TestimonialsSection />
+      <TestimonialsSection reviews={reviews} />
 
       {/* Latest Blog Posts */}
       <LatestPosts posts={blogPosts} />

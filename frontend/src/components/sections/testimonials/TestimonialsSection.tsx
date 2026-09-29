@@ -12,54 +12,11 @@ import "swiper/css/effect-coverflow";
 
 import TestimonialCard from "./TestimonialCard";
 import StatCounter from "./StatCounter";
+import { Review } from "@/interfaces/review";
 
-const TESTIMONIALS = [
-  {
-    name: "Sarah Jenkins",
-    role: "Marketing Director",
-    text: "FitWay completely changed my perspective on fitness. The personalized plans are so easy to follow, and I've lost 12kg in just 4 months without feeling burnt out.",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
-    achievement: "Weight Loss Hero",
-    rating: 5,
-    stats: { label: "Progress", value: "-12kg" }
-  },
-  {
-    name: "Michael Ross",
-    role: "Software Engineer",
-    text: "The tracking tools are incredible. I've finally been able to stay consistent with my workouts for over 6 months. My energy levels have never been higher.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e",
-    achievement: "Muscle Gain",
-    rating: 5,
-    stats: { label: "Streak", value: "180 Days" }
-  },
-  {
-    name: "Elena Voronova",
-    role: "Yoga Instructor",
-    text: "Even as a professional, I find FitWay's nutrition advice and meal plans extremely valuable. It's the perfect companion for anyone serious about their health.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
-    achievement: "Wellness Master",
-    rating: 5,
-    stats: { label: "Energy", value: "+40%" }
-  },
-  {
-    name: "David Lawson",
-    role: "Business Owner",
-    text: "The efficiency of these workouts is what sold me. I can get a high-intensity session done in 30 minutes and see real results in my strength and stamina.",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
-    achievement: "Strength Peak",
-    rating: 4,
-    stats: { label: "Strength", value: "+25%" }
-  },
-  {
-    name: "Jessica Chen",
-    role: "Student",
-    text: "FitWay makes fitness accessible. I started as a complete beginner, and now I feel confident in the gym. The community support is just icing on the cake.",
-    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9",
-    achievement: "Consistency Queen",
-    rating: 5,
-    stats: { label: "Workouts", value: "120+" }
-  }
-];
+interface TestimonialsSectionProps {
+  reviews?: Review[];
+}
 
 const STATS = [
   {
@@ -92,7 +49,19 @@ const STATS = [
   }
 ];
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ reviews = [] }: TestimonialsSectionProps) {
+  if (!reviews || reviews.length === 0) {
+    return null;
+  }
+
+  // Swiper requires enough slides for continuous loop without visual glitches
+  const displayReviews =
+    reviews.length < 6
+      ? [...reviews, ...reviews, ...reviews]
+      : reviews.length < 8
+      ? [...reviews, ...reviews]
+      : reviews;
+
   return (
     <section className="py-12 md:py-24 lg:py-32 relative overflow-hidden bg-[#1B2B3B]">
       {/* Background Atmosphere */}
@@ -108,6 +77,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[#FF8C00] text-sm tracking-widest mb-4 md:mb-8"
           >
             <Sparkles size={16} />
@@ -118,6 +88,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
             className="text-5xl md:text-7xl font-bold text-white mb-4 md:mb-8 leading-tight"
           >
             Trusted by the <span className="text-[#FF8C00]">FitWay</span> Community
@@ -127,6 +98,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
             className="text-xl text-gray-400 max-w-2xl mx-auto"
           >
             Join thousands of users who have transformed their lives with our personalized approach to fitness and wellness.
@@ -141,6 +113,7 @@ export default function TestimonialsSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
             >
               <StatCounter 
                 value={stat.value} 
@@ -157,15 +130,17 @@ export default function TestimonialsSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="testimonials-slider relative"
+          viewport={{ once: true }}
+          className="testimonials-slider relative pt-4"
         >
           <Swiper
             modules={[Autoplay, Pagination, EffectCoverflow]}
             effect="coverflow"
             grabCursor={true}
             centeredSlides={true}
-            slidesPerView={1}
-            spaceBetween={30}
+            loop={true}
+            slidesPerView={1.2}
+            spaceBetween={24}
             coverflowEffect={{
               rotate: 0,
               stretch: 0,
@@ -176,6 +151,7 @@ export default function TestimonialsSection() {
             autoplay={{
               delay: 4000,
               disableOnInteraction: false,
+              pauseOnMouseEnter: true,
             }}
             pagination={{
               clickable: true,
@@ -183,18 +159,29 @@ export default function TestimonialsSection() {
               bulletActiveClass: "swiper-pagination-bullet-active !bg-[#FF8C00] !w-8 !rounded-full transition-all duration-300",
             }}
             breakpoints={{
-              768: {
+              640: {
                 slidesPerView: 2,
+                spaceBetween: 30,
               },
               1024: {
                 slidesPerView: 3,
-              }
+                spaceBetween: 30,
+              },
             }}
-            className="!pb-20 !px-4"
+            className="!pb-16 !pt-4 !px-2"
           >
-            {TESTIMONIALS.map((testimonial) => (
-              <SwiperSlide key={testimonial.name} className="h-auto">
-                <TestimonialCard {...testimonial} />
+            {displayReviews.map((review, idx) => (
+              <SwiperSlide key={`${review.documentId || review.id}-${idx}`} className="h-auto">
+                <TestimonialCard
+                  id={review.id}
+                  documentId={review.documentId}
+                  name={review.name}
+                  text={review.content}
+                  workoutTitle={review.workout?.title}
+                  workoutSlug={review.workout?.slug}
+                  rating={review.rating}
+                  createdAt={review.createdAt}
+                />
               </SwiperSlide>
             ))}
           </Swiper>

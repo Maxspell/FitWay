@@ -29,6 +29,7 @@
 - [[frontend/scroll-to-top]] — Интерактивная кнопка Scroll-to-Top с круговым SVG-индикатором прогресса прокрутки (оранжевый акцент #FF8C00) и плавной анимацией.
 - [[frontend/editorial-policy]] — Редакционная политика, стандарты E-E-A-T, архитектура рецензирования (Peer Review) и верификация контента.
 - [[frontend/authors-system]] — E-E-A-T architecture for premium author profiles and content linking.
+- [[frontend/testimonials-reviews-system]] — Интеграция реальных отзывов тренировок на главной странице, кастомный бесконечный Swiper Coverflow слайдер и Schema.org Review разметка.
 
 ## 🚀 Deployment
 - [[deploy/nextjs-build-failure]] — Handling missing .next manifests and 502 errors.

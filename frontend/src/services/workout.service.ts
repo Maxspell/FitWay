@@ -1,4 +1,5 @@
 import { Workout } from "@/interfaces/workout";
+import { Review } from "@/interfaces/review";
 
 const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 const STRAPI_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
@@ -46,6 +47,29 @@ export async function getReviewsByWorkoutId(workoutId: string) {
   } catch (error) {
     console.error("Error fetching reviews:", error);
     return [];
+  }
+}
+
+export async function getLatestReviews(limit: number = 10) {
+  try {
+    const response = await fetch(
+      `${STRAPI_URL}/api/reviews?populate[workout]=*&sort=createdAt:desc&pagination[limit]=${limit}`,
+      {
+        headers: {
+          Authorization: `Bearer ${STRAPI_TOKEN}`,
+        },
+        next: { revalidate: 3600 },
+      }
+    );
+
+    const result = await response.json();
+    if (result.data && result.data.length > 0) {
+      return result.data;
+    }
+    return getMockLatestReviews();
+  } catch (error) {
+    console.error("Error fetching latest reviews:", error);
+    return getMockLatestReviews();
   }
 }
 
@@ -138,4 +162,84 @@ function getMockWorkout(slug: string): Workout | null {
   };
 
   return mocks[slug] || mocks["full-body-hiit"]; // Return default mock if slug doesn't match for demo
+}
+
+function getMockLatestReviews(): Review[] {
+  return [
+    {
+      id: 1,
+      documentId: "rev-mock-1",
+      name: "Sarah Jenkins",
+      rating: 5,
+      content: "FitWay completely changed my perspective on fitness. The personalized plans are so easy to follow, and I've lost 12kg in just 4 months without feeling burnt out.",
+      helpful: 14,
+      createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+      workout: {
+        id: 1,
+        documentId: "mock-1",
+        title: "Full Body HIIT",
+        slug: "full-body-hiit"
+      }
+    },
+    {
+      id: 2,
+      documentId: "rev-mock-2",
+      name: "Michael Ross",
+      rating: 5,
+      content: "The tracking tools and clear instructions are incredible. I've finally been able to stay consistent with my workouts for over 6 months.",
+      helpful: 9,
+      createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+      workout: {
+        id: 1,
+        documentId: "mock-1",
+        title: "Full Body HIIT",
+        slug: "full-body-hiit"
+      }
+    },
+    {
+      id: 3,
+      documentId: "rev-mock-3",
+      name: "Elena Voronova",
+      rating: 5,
+      content: "Even as a professional, I find FitWay's nutrition advice and workout breakdowns extremely valuable. It's the perfect companion for anyone serious about health.",
+      helpful: 21,
+      createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+      workout: {
+        id: 1,
+        documentId: "mock-1",
+        title: "Full Body HIIT",
+        slug: "full-body-hiit"
+      }
+    },
+    {
+      id: 4,
+      documentId: "rev-mock-4",
+      name: "David Lawson",
+      rating: 4,
+      content: "The efficiency of these workouts is what sold me. I can get a high-intensity session done in 30 minutes and see real results in my strength.",
+      helpful: 6,
+      createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString(),
+      workout: {
+        id: 1,
+        documentId: "mock-1",
+        title: "Full Body HIIT",
+        slug: "full-body-hiit"
+      }
+    },
+    {
+      id: 5,
+      documentId: "rev-mock-5",
+      name: "Jessica Chen",
+      rating: 5,
+      content: "FitWay makes fitness accessible. I started as a complete beginner, and now I feel confident in the gym. The community support is wonderful.",
+      helpful: 18,
+      createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
+      workout: {
+        id: 1,
+        documentId: "mock-1",
+        title: "Full Body HIIT",
+        slug: "full-body-hiit"
+      }
+    }
+  ];
 }

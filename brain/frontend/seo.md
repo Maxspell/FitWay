@@ -32,7 +32,8 @@ This document outlines the core SEO practices and specific implementations used 
   - Aim for 2-3 deep internal links per 1000 words.
 
 ## 5. User-Generated Content (UGC)
-- **Review System**: We include a review system on workout pages. Even if the backend integration is pending, rendering the frontend UI with keyword-rich reviews helps search engines index long-tail keywords associated with social proof (e.g., "results", "consistency", "easy to follow").
+- **Review System & Social Proof**: На страницах тренировок развернута интерактивная система отзывов (`ReviewSystem.tsx`), а на главной странице — карусель последних отзывов пользователей (`TestimonialsSection.tsx`), напрямую ссылающихся на отзывы тренировок.
+- **Review & AggregateRating Schema**: В микроразметку главной страницы и воркаутов включены `@type: "Review"` и `aggregateRating`, обеспечивающие отображение звезд рейтинга и сниппетов отзывов в Google SERP. Подробная архитектура и решение проблем со слайдером: [[frontend/testimonials-reviews-system]].
 
 ## 7. Hub Page Optimization (/workouts)
 - **Thin Content Mitigation**: To satisfy Google AdSense quality standards, the workout library hub (`/workouts`) was transformed from a simple directory into an educational resource. A comprehensive introductory section (200-300 words) was added, explaining:
