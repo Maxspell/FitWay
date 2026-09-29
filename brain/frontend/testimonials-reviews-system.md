@@ -19,7 +19,10 @@ graph TD
 ### Модели и интерфейсы
 - Файл интерфейса: [[interfaces/review]] (`frontend/src/interfaces/review.ts`).
 - Связанная модель: отзыв связан с тренировкой (`review.workout`), что позволяет выводить название программы и генерировать точную обратную ссылку.
-- Сервисный метод: `getLatestReviews(limit: number = 10)` в [[frontend/data-fetching-pattern]] (`workout.service.ts`). Запрашивает последние отзывы с `sort=createdAt:desc&populate[workout]=*` и предоставляет безопасный fallback для dev-режима.
+- Сервисный метод: `getLatestReviews(limit: number = 10)` в [[frontend/data-fetching-pattern]] (`workout.service.ts`). Запрашивает последние отзывы с `sort=createdAt:desc&pagination[limit]=${limit}`.
+  > [!IMPORTANT]
+  > **Strapi v5 Gotcha**: Использование подстановочного символа `populate[workout]=*` в запросе к отзывам вызывало в Strapi 5 ошибку `400 ValidationError ("Invalid key image at workout.image")`, из-за чего сервис переключался на fallback mock-данные. Для корректной выборки необходимо запрашивать конкретные скалярные поля:
+  > `populate[workout][fields][0]=title&populate[workout][fields][1]=slug&populate[workout][fields][2]=documentId`.
 
 ---
 

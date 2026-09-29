@@ -52,13 +52,18 @@ export async function getReviewsByWorkoutId(workoutId: string) {
 
 export async function getLatestReviews(limit: number = 10) {
   try {
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+    if (STRAPI_TOKEN) {
+      headers.Authorization = `Bearer ${STRAPI_TOKEN}`;
+    }
+
     const response = await fetch(
-      `${STRAPI_URL}/api/reviews?populate[workout]=*&sort=createdAt:desc&pagination[limit]=${limit}`,
+      `${STRAPI_URL}/api/reviews?populate[workout][fields][0]=title&populate[workout][fields][1]=slug&populate[workout][fields][2]=documentId&sort=createdAt:desc&pagination[limit]=${limit}`,
       {
-        headers: {
-          Authorization: `Bearer ${STRAPI_TOKEN}`,
-        },
-        next: { revalidate: 3600 },
+        headers,
+        next: { revalidate: 600 },
       }
     );
 
