@@ -15,8 +15,24 @@ The current method for importing workouts and articles is manual and involves se
 - **Manual Intervention**: Requires SSH access and manual command execution on the VPS.
 - **Fragility**: The process relies on environment variables and specific start-up triggers.
 
-## Future Optimization
-The goal is to automate this process to reduce friction. Potential directions:
-- API-driven imports.
-- Automatic triggers upon deployment.
-- A dedicated admin UI for content ingestion.
+## API-Driven Direct Import (New & Recommended)
+Instead of committing JSON files and executing commands on the server via SSH, import posts directly from your local terminal using the REST API:
+
+```bash
+# Push Posts:
+node backend/scripts/push-post.js path/to/post.json --prod
+node backend/scripts/push-post.js path/to/post.json --prod --publish
+
+# Push Workouts:
+node backend/scripts/push-workout.js path/to/workout.json --prod
+node backend/scripts/push-workout.js path/to/workout.json --prod --publish
+```
+
+### Requirements:
+- The API token configured in `frontend/.env.local` (`STRAPI_PROD_API_TOKEN` / `STRAPI_API_TOKEN`) must have `create` permissions for `Post` and `Workout` in Strapi Admin:
+  1. Open Strapi Admin (`Settings` -> `API Tokens`).
+  2. Select your API token.
+  3. Under `Post` and `Workout`, check `create` (and `publish` if using `--publish`).
+  4. Save.
+- No git commit or SSH is required.
+

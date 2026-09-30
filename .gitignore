@@ -71,3 +71,16 @@ frontend/public/ads.txt
 
 # Project specific context (optional - uncomment if you don't want to track it)
 # PROJECT_CONTEXT.md
+
+# Content import scripts & data
+backend/scripts/push-post.js
+backend/scripts/import-posts.js
+backend/scripts/posts.json
+backend/scripts/post.json
+*post*.json
+backend/scripts/push-workout.js
+backend/scripts/import-workouts.js
+backend/scripts/workouts.json
+backend/scripts/workout.json
+*workout*.json
+
