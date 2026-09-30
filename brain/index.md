@@ -17,6 +17,7 @@
 - [[frontend/performance-third-party-scripts]] — Оптимизация Lighthouse, анализ нагрузки на main-thread и временное отключение AdSense.
 - [[frontend/mobile-menu]] — Премиальное мобильное меню с использованием Framer Motion и Tailwind CSS.
 - [[frontend/responsive-layout]] — Mobile-first адаптивные сетки для карточек блога, разделов и футера.
+- [[frontend/pagination-system]] — Архитектура пагинации каталогов (блог и тренировки) по 9 карточек, Strapi v5 API, SEO-чистые URL (`/blog/page/2`), редиректы и компонент в дизайн-системе FitWay.
 - [[frontend/related-articles]] — Подбор похожих публикаций по категории статьи, fallback и адаптивная 3-колоночная сетка.
 - [[frontend/blog-ui]] — Компоненты карточек блога, кликабельный AuthorBox, мобильная верстка постов и организация контента.
 - [[frontend/blog-date-sorting-metadata]] — Синхронизация дат создания (`createdAt`), сортировка по дате добавления и вывод автора/категории.

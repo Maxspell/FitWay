@@ -78,6 +78,61 @@ export async function getLatestReviews(limit: number = 10) {
   }
 }
 
+export interface PaginatedWorkoutsResponse {
+  workouts: Workout[];
+  pagination: {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
+  };
+}
+
+export async function getPaginatedWorkouts(
+  page: number = 1,
+  pageSize: number = 9,
+  category?: string
+): Promise<PaginatedWorkoutsResponse> {
+  try {
+    const categoryFilter = category && category !== "all"
+      ? `&filters[category][$eq]=${encodeURIComponent(category)}`
+      : "";
+
+    const query = `?populate=*&sort[0]=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}${categoryFilter}`;
+
+    const response = await fetch(`${STRAPI_URL}/api/workouts${query}`, {
+      headers: {
+        Authorization: `Bearer ${STRAPI_TOKEN}`,
+      },
+      next: { revalidate: 3600 },
+    });
+
+    if (!response.ok) {
+      return {
+        workouts: [],
+        pagination: { page, pageSize, pageCount: 0, total: 0 },
+      };
+    }
+
+    const result = await response.json();
+    return {
+      workouts: result.data || [],
+      pagination: result.meta?.pagination || {
+        page,
+        pageSize,
+        pageCount: Math.ceil((result.data?.length || 0) / pageSize),
+        total: result.data?.length || 0,
+      },
+    };
+  } catch (error) {
+    console.error(`Error fetching paginated workouts for page ${page}:`, error);
+    return {
+      workouts: [],
+      pagination: { page, pageSize, pageCount: 0, total: 0 },
+    };
+  }
+}
+
 export async function getWorkouts(category?: string): Promise<Workout[]> {
   try {
     const base = category && category !== "all"
