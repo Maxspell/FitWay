@@ -28,13 +28,13 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     : "";
 
   return {
-    title: `Workout Library - Page ${pageNum}${categoryTitle} | FitWay`,
+    title: `Workout Library - Page ${pageNum}${categoryTitle}`,
     description: `Browse page ${pageNum} of expert-led workout routines, training programs, and exercise guides on FitWay.`,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `Workout Library - Page ${pageNum}${categoryTitle} | FitWay`,
+      title: `Workout Library - Page ${pageNum}${categoryTitle}`,
       description: `Browse page ${pageNum} of expert-led workout routines, training programs, and exercise guides on FitWay.`,
       url: canonicalUrl,
     },

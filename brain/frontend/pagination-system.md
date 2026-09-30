@@ -41,12 +41,23 @@
 3. **Главная воркаутов**: `src/app/workouts/page.tsx`
 4. **Пагинированные воркауты**: `src/app/workouts/page/[page]/page.tsx`
 
-В динамических маршрутах:
-- Вызов `notFound()` при невалидном номере страницы (`isNaN` или `pageNum > pageCount`).
-- `generateMetadata` динамически формирует заголовок и самореферентный каноникал.
+## 5. SEO-Оптимизация пагинированных страниц (Best Practices)
+1. **Каноникализация (Self-Referential Canonical)**:
+   - Страницы пагинации (`/workouts/page/2`, `/blog/page/2`) имеют собственный самореферентный каноникал.
+   - **Антипаттерн**: Установка canonical со второй страницы на первую (`/workouts`) строго не рекомендуется Google, так как контент страниц отличается. Это привело бы к выпадению глубоких карточек из индекса.
+2. **Предотвращение дублирования Title шаблоном RootLayout**:
+   - В корневом `layout.tsx` задан `title.template: "%s | FitWay"`.
+   - В `generateMetadata` страниц пагинации передается чистый заголовок `title: "Workout Library - Page 2"` без ручного суффикса ` | FitWay`. Это исключает появление дублей в сниппетах вида `Workout Library - Page 2 | FitWay | FitWay`.
+3. **Иерархия заголовков (H1 -> H2 -> H3)**:
+   - В листинге `WorkoutView` добавлен полноценный заголовок **`<h2>Science-Backed Training Programs for Every Goal</h2>`** перед описательной секцией.
+   - Это устраняет ошибку SEO-аудиторов ("0 H2 headings on page"), замыкая корректное дерево документа: `H1` (Workout Library) -> `H2` (Educational Section) -> `H3` (Workout Titles) -> `H4` (Category tags).
+4. **Хлебные крошки (Breadcrumbs)**:
+   - Автоматическое объединение паттерна `/page/:number` в `Page :number` исключает технические 404/битые промежуточные ссылки.
 
 **Связанные документы:**
+- [[frontend/breadcrumbs]] — Глобальные хлебные крошки и логика схлопывания пагинации.
 - [[frontend/data-fetching-pattern]] — Сервисный паттерн выборки данных в Next.js.
 - [[frontend/blog-ui]] — Компоненты оформления карточек блога.
+- [[frontend/workouts-ui]] — Дизайн карточек и организация каталога тренировок.
 - [[frontend/seo]] — Стратегия SEO и канонические ссылки.
 - [[bugs/canonical-tag-inheritance]] — Предотвращение наследования дефолтного canonical.

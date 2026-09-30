@@ -5,6 +5,7 @@ Created a global Breadcrumbs component for the FitWay project to improve navigat
 ## Details
 - **Component Path**: `frontend/src/components/common/Breadcrumbs.tsx`
 - **Behavior**: Client component. Automatically built from the Next.js `usePathname`. Contains SEO JSON-LD structured data (`BreadcrumbList`). Automatically hidden on the home page (`/`).
+- **Pagination Collapsing**: Технический роутинг `/page/:number` (например, `/workouts/page/2` или `/blog/page/3`) автоматически схлопывается в единый элемент `Page :number`. Это предотвращает генерацию промежуточной ссылки на несуществующий/технический URL `/workouts/page` и исключает показ промежуточных тестовых данных или 404 страниц.
 - **Styling**: Uses Tailwind CSS matching the FitWay UI (dark mode, orange accent).
 
 ## Layout Integration
@@ -24,5 +25,7 @@ To prevent the breadcrumbs block from pushing down full-width hero backgrounds o
 This ensures the breadcrumbs gracefully overlay hero backgrounds while remaining fully interactive (`pointer-events-auto`), without altering the page's standard document flow.
 
 ## Related Links
+- [[frontend/pagination-system]] — Архитектура пагинации, маршрутизация и каноникализация.
+- [[frontend/seo]] — SEO стратегия, микроразметка Schema.org и каноникалы.
 - [[frontend/scroll-to-top]] — Глобальная навигация и элементы в RootLayout.
 - [[frontend/responsive-layout]] — Адаптивная вёрстка страниц.

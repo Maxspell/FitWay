@@ -21,13 +21,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonicalUrl = pageNum === 1 ? "/blog" : `/blog/page/${pageNum}`;
 
   return {
-    title: `Fitness & Nutrition Blog - Page ${pageNum} | FitWay`,
+    title: `Fitness & Nutrition Blog - Page ${pageNum}`,
     description: `Browse page ${pageNum} of fitness articles, workout routines, and expert nutrition advice from FitWay.`,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `Fitness & Nutrition Blog - Page ${pageNum} | FitWay`,
+      title: `Fitness & Nutrition Blog - Page ${pageNum}`,
       description: `Browse page ${pageNum} of fitness articles, workout routines, and expert nutrition advice from FitWay.`,
       url: canonicalUrl,
     },
