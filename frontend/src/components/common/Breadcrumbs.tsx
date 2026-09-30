@@ -37,16 +37,30 @@ export default function Breadcrumbs({
     const items: BreadcrumbItem[] = [];
     
     let currentPath = '';
-    
+
     // Add Home as first item
     items.push({ label: 'Home', href: '/' });
 
-    pathSegments.forEach((segment) => {
+    for (let i = 0; i < pathSegments.length; i++) {
+      const segment = pathSegments[i];
+
+      // Handle pagination segment like /page/2 -> collapse into "Page 2"
+      if (segment.toLowerCase() === 'page' && i + 1 < pathSegments.length && /^\d+$/.test(pathSegments[i + 1])) {
+        const pageNumber = pathSegments[i + 1];
+        currentPath += `/${segment}/${pageNumber}`;
+        items.push({
+          label: `Page ${pageNumber}`,
+          href: currentPath,
+        });
+        i++; // skip next segment since it was consumed
+        continue;
+      }
+
       currentPath += `/${segment}`;
-      
+
       // Try to get custom label, otherwise format the segment
       const rawLabel = customLabels[segment] || segment;
-      
+
       // Capitalize and replace dashes with spaces (e.g., full-body-workout -> Full Body Workout)
       const formattedLabel = rawLabel
         .replace(/-/g, ' ')
@@ -56,7 +70,7 @@ export default function Breadcrumbs({
         label: formattedLabel,
         href: currentPath,
       });
-    });
+    }
 
     return items;
   }, [pathname, customLabels]);
