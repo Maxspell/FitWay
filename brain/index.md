@@ -17,6 +17,7 @@
 - [[frontend/performance-third-party-scripts]] — Оптимизация Lighthouse, анализ нагрузки на main-thread и временное отключение AdSense.
 - [[frontend/mobile-menu]] — Премиальное мобильное меню с использованием Framer Motion и Tailwind CSS.
 - [[frontend/responsive-layout]] — Mobile-first адаптивные сетки для карточек блога, разделов и футера.
+- [[frontend/related-articles]] — Подбор похожих публикаций по категории статьи, fallback и адаптивная 3-колоночная сетка.
 - [[frontend/blog-ui]] — Компоненты карточек блога, кликабельный AuthorBox, мобильная верстка постов и организация контента.
 - [[frontend/blog-date-sorting-metadata]] — Синхронизация дат создания (`createdAt`), сортировка по дате добавления и вывод автора/категории.
 - [[frontend/social-share-and-anchors]] — Социальный шеринг (X/Twitter, Facebook, Web Share API, буфер обмена), фикс абсолютных протокольных URL для Twitterbot и интерактивные якоря в тренировках.

@@ -18,9 +18,12 @@ The blog listing page was updated to improve UX and information density.
 - **Data Display**:
   - Integrated `readTime` for better user expectation management.
   - Switched to `createdAt` for dates across all views (Hero, general list, related articles, and homepage) formatted via `toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })`. See [[frontend/blog-date-sorting-metadata]].
-  - Updated iconography: `Calendar` for date, `Clock` for reading time, `Tag` for category.
+- **Related Articles**:
+  - Filtered by category (`filters[category][slug][$eq]=...`) matching the current post, with fallback to latest articles to ensure 3 recommendations.
+  - Layout upgraded from 2 columns to a 3-column responsive grid (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`). See [[frontend/related-articles]].
 
 **Related:**
+- [[frontend/related-articles]] - Category-based matching, fallback strategy, and 3-column layout.
 - [[frontend/blog-date-sorting-metadata]] - Synchronization of `createdAt`, `sort=createdAt:desc`, author, and category populates.
 - [[frontend/markdown-tables-gfm]] - Markdown content rendering with GFM table support.
 - [[frontend/responsive-layout]] - Mobile-first grid layouts and responsive cards.

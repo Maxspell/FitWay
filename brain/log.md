@@ -1,4 +1,10 @@
 # Knowledge Base Activity Log
+## 2026-09-30
+- Фильтрация блока «Related articles» по категории статьи, вывод 3 рекомендаций и адаптивная 3-колоночная сетка.
+    - **Category-Based Related Articles**: В `src/app/blog/[slug]/page.tsx` функция `getRelatedBlogPosts` обновлена: добавлен параметр `categorySlug` и фильтр Strapi API `filters[category][slug][$eq]=${categorySlug}` с сохранением исключения текущего поста (`filters[slug][$ne]=${slug}`). [[frontend/related-articles]] [[frontend/data-fetching-pattern]]
+    - **Defensive 3-Post Fallback**: Лимит увеличен с 2 до 3 (`pagination[limit]=3`). Добавлен fallback-запрос: если в текущей категории меньше 3 статей, недостающие позиции добираются из свежих статей блога без дубликатов с помощью `Set`. [[frontend/related-articles]] [[frontend/blog-date-sorting-metadata]]
+    - **3-Column Responsive Grid**: В `RelatedArticles.tsx` сетка обновлена с `md:grid-cols-2` на `grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8` для сбалансированного десктопного отображения трёх карточек. Добавлена проверка на пустоту (`if (!relatedPosts?.length) return null`). [[frontend/related-articles]] [[frontend/responsive-layout]] [[frontend/blog-ui]]
+
 ## 2026-09-29
 - Интеграция реальных отзывов тренировок на главной странице, кастомный бесконечный Swiper Coverflow слайдер и Schema.org Review разметка.
     - **Dynamic Reviews from Strapi**: Заменены статические мок-данные в `TestimonialsSection.tsx`. В `workout.service.ts` реализован метод `getLatestReviews(10)` с загрузкой 10 последних отзывов (`sort=createdAt:desc&populate[workout]=*`) и безопасным fallback. На главной странице `app/page.tsx` отзывы загружаются на сервере параллельно через `Promise.all` и передаются пропсом в карусель. [[frontend/testimonials-reviews-system]] [[frontend/data-fetching-pattern]]

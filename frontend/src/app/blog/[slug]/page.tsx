@@ -63,20 +63,53 @@ async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   }
 }
 
-async function getRelatedBlogPosts(slug: string): Promise<BlogPost[]> {
+async function getRelatedBlogPosts(slug: string, categorySlug?: string): Promise<BlogPost[]> {
   try {
-    const response = await fetch(`${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&populate[3]=category&filters[slug][$ne]=${slug}&sort=createdAt:desc&pagination[limit]=2`, {
+    let url = `${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&populate[3]=category&filters[slug][$ne]=${slug}&sort=createdAt:desc&pagination[limit]=3`;
+
+    if (categorySlug) {
+      url += `&filters[category][slug][$eq]=${categorySlug}`;
+    }
+
+    const response = await fetch(url, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${API_TOKEN}`,
         "Content-Type": "application/json"
+      },
+      next: {
+        revalidate: 600,
       }
     });
 
     if (!response.ok) return [];
     const result = await response.json();
+    let posts = result.data || [];
 
-    return result.data || [];
+    // Fallback if not enough category-specific posts exist
+    if (posts.length < 3 && categorySlug) {
+      const fallbackUrl = `${API_URL}/api/posts?populate[0]=image&populate[1]=author.photo&populate[2]=reviewedBy.photo&populate[3]=category&filters[slug][$ne]=${slug}&sort=createdAt:desc&pagination[limit]=3`;
+      const fallbackRes = await fetch(fallbackUrl, {
+        headers: {
+          "Authorization": `Bearer ${API_TOKEN}`,
+          "Content-Type": "application/json"
+        },
+        next: { revalidate: 600 }
+      });
+      if (fallbackRes.ok) {
+        const fallbackResult = await fallbackRes.json();
+        const fallbackPosts = fallbackResult.data || [];
+        const existingSlugs = new Set(posts.map((p: BlogPost) => p.slug));
+        for (const fbPost of fallbackPosts) {
+          if (!existingSlugs.has(fbPost.slug) && posts.length < 3) {
+            posts.push(fbPost);
+            existingSlugs.add(fbPost.slug);
+          }
+        }
+      }
+    }
+
+    return posts;
   } catch (error) {
     console.error("Error fetching related blog posts:", error);
     return [];
@@ -132,11 +165,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // Component
 export default async function BlogPost({ params }: Props) {
   const post = await getBlogPostBySlug(params.slug);
-  const relatedPosts: BlogPost[] = await getRelatedBlogPosts(params.slug);
 
   if (!post) {
     notFound();
   }
+
+  const relatedPosts: BlogPost[] = await getRelatedBlogPosts(params.slug, post.category?.slug);
 
   // First reviewer if available
   const primaryReviewer = post.reviewedBy && post.reviewedBy.length > 0 ? post.reviewedBy[0] : null;

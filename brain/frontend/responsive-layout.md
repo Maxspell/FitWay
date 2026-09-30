@@ -29,7 +29,7 @@
   - **Hero-блок статьи**: Устранено сплющивание и фиксированная высота `h-[500px]`. Внедрена адаптивная высота `h-72 sm:h-96 md:h-[500px]`, паддинги `p-4 sm:p-6 md:p-8`, перенос метатегов через `flex-wrap gap-2 sm:gap-4` и адаптивный шрифт заголовка `text-2xl sm:text-3xl md:text-4xl leading-tight`.
   - **Сетка контента и сайдбара**: Заменен жесткий `grid-cols-12` на `flex flex-col lg:grid lg:grid-cols-12 gap-8` (статья занимает `w-full lg:col-span-8`, сайдбар `w-full lg:col-span-4`). Класс `sticky top-24` переведён на `lg:sticky lg:top-24` для десктопа.
 - `src/app/blog/category/[slug]/page.tsx`: Сетка постов категории `grid-cols-1 md:grid-cols-2 gap-8`.
-- `src/components/BlogPost/RelatedArticles.tsx`: Сетка похожих статей `grid-cols-1 md:grid-cols-2 gap-8`.
+- `src/components/BlogPost/RelatedArticles.tsx`: Сетка похожих статей переведена на 3 колонки `grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`. См. [[frontend/related-articles]].
 - `src/app/about/page.tsx`: Сетка ключевых ценностей `grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8`.
 
 ### 4. Вертикальные отступы секций и выравнивание заголовков на мобильных
@@ -53,6 +53,7 @@
 ## Связи
 
 - [[frontend/blog-ui]] — эволюция компонентов блога и карточек.
+- [[frontend/related-articles]] — логика подбора похожих публикаций по категории и 3-колоночная сетка.
 - [[frontend/mobile-menu]] — мобильная навигация сайта.
 - [[bugs/framer-motion-animation-flicker]] — изоляция анимации карточек от CSS hover-переходов.
 - [[bugs/nextjs-prerender-fetch-failed]] — исправление сборки страниц блога после адаптации вёрстки.
