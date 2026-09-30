@@ -39,7 +39,8 @@ This document outlines the core SEO practices and specific implementations used 
 - **Thin Content Mitigation**: To satisfy Google AdSense quality standards, the workout library hub (`/workouts`) was transformed from a simple directory into an educational resource. A comprehensive introductory section (200-300 words) was added, explaining:
   - **Methodology**: Focus on functional movement and progressive overload.
   - **Accessibility**: Guidance for all fitness levels (Beginner to Advanced).
-  - **Path Selection**: Clear definitions for "Weight Loss", "Muscle Gain", and "Toning" tracks to help users navigate the library.
+  - **Path Selection**: Clear definitions for "Weight Loss", "Muscle Gain", "Toning", "Flexibility", and "Strength" tracks to help users navigate the library.
+- **UI Architecture & UX Placement**: Описательный образовательный блок перенесен под пагинацию в футерную часть каталога, обеспечивая посетителям немедленный доступ к карточкам тренировок (`WorkoutCard`). Подробно: [[frontend/workouts-ui]].
 - **Benefit-Driven Metadata**: Updated the page description from a feature list to a benefit-focused statement ("Transform your body...", "science-backed routines"), improving CTR and perceived value.
 - **Directory Structured Data**: Implemented `ItemList` JSON-LD on hub pages. This programmatically lists available items with their positions and URLs, enabling Google to recognize the page as a high-value directory and potentially trigger list-based rich snippets.
   - **Workouts Hub**: Implemented on `/workouts` to index the workout catalog.
