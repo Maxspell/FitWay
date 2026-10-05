@@ -50,7 +50,7 @@ jobs:
                 npm install
               fi
 
-              npm run build
+              NODE_OPTIONS="--max-old-space-size=2048" npm run build
 
               pm2 restart fitway-backend
             fi

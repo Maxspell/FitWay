@@ -44,11 +44,13 @@ GitHub Actions (appleboy/ssh-action)
                 npm install
               fi
 
-              npm run build
+              NODE_OPTIONS="--max-old-space-size=2048" npm run build
 
               pm2 restart fitway-backend
             fi
 ```
+
+> **Предотвращение OOM:** Флаг `NODE_OPTIONS="--max-old-space-size=2048"` предотвращает падение процесса компиляции Webpack/Vite (`JavaScript heap out of memory`) на VPS, гарантируя создание артефакта админки `dist/build/index.html`. Детали: [[bugs/build-errors]].
 
 ## Ручные операции при изменении схемы Strapi
 1. **API Token Permissions:** После добавления новых полей/коллекций в схему убедиться, что у токена `NEXT_PUBLIC_STRAPI_API_TOKEN` в админке Strapi (`Settings -> API Tokens`) включены права на чтение (`find`, `findOne`).
