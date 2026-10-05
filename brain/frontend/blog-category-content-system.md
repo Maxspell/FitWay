@@ -108,6 +108,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 - **Нижний SEO-блок (`text`)**: при наличии текста выводится в стилизованной карточке с Markdown (`ReactMarkdown` + `remark-gfm` + `prose prose-invert prose-orange`).
 
 ## Связанные страницы
+- [[frontend/blog-category-hub]] — Дизайн-система каталога категорий (`/blog/category`), Schema.org и исправление верстки карточек на полную ширину.
 - [[backend/strapi-v5-collections]] — Управление схемами и правами API Tokens в Strapi v5.
 - [[bugs/canonical-tag-inheritance]] — Самореферентные canonical-теги для категорий блога.
 - [[frontend/seo]] — Комплексная SEO-стратегия и борьба с Thin Content.
