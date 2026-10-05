@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { BlogPost, Category } from "@/interfaces/blog";
 import { getPostImage } from "@/utils/image";
 import { Metadata } from "next";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 async function getCategoryBySlug(slug: string): Promise<Category | null> {
   try {
@@ -51,15 +53,24 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (!category) {
     return { title: "Category Not Found" };
   }
+
+  const title = category.metaTitle?.trim()
+    ? category.metaTitle.trim()
+    : `${category.name} Articles`;
+
+  const description = category.metaDescription?.trim()
+    ? category.metaDescription.trim()
+    : `Explore the latest articles in ${category.name} to elevate your fitness and health journey.`;
+
   return {
-    title: `${category.name} Articles | FitWay`,
-    description: `Explore the latest articles in ${category.name} to elevate your fitness and health journey.`,
+    title,
+    description,
     alternates: {
       canonical: `/blog/category/${params.slug}`,
     },
     openGraph: {
-      title: `${category.name} Articles | FitWay`,
-      description: `Explore the latest articles in ${category.name} to elevate your fitness and health journey.`,
+      title,
+      description,
       url: `/blog/category/${params.slug}`,
       type: "website",
     },
@@ -75,11 +86,19 @@ export default async function CategoryPage({ params }: { params: { slug: string 
   }
 
   const posts = await getPostsByCategory(slug);
+  const displayTitle = category.title?.trim() ? category.title.trim() : `${category.name} Articles`;
 
   return (
     <div className="py-12">
-      <div className="container mx-auto px-4">
-        <h1 className="section-title text-center mb-12">{category.name} Articles</h1>
+      <div className="container mx-auto px-4 max-w-7xl">
+        <header className="max-w-3xl mx-auto text-center mb-12">
+          <h1 className="section-title text-center mb-4">{displayTitle}</h1>
+          {category.intro?.trim() && (
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              {category.intro}
+            </p>
+          )}
+        </header>
 
         {posts.length === 0 ? (
           <div className="text-center py-20">
@@ -89,7 +108,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map(post => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="card block hover:ring-2 hover:ring-[#FF8C00] transition-all">
                 <div className="relative h-48 mb-4">
@@ -126,6 +145,16 @@ export default async function CategoryPage({ params }: { params: { slug: string 
               </Link>
             ))}
           </div>
+        )}
+
+        {category.text?.trim() && (
+          <section className="mt-16 pt-12 border-t border-white/10">
+            <div className="card prose prose-invert prose-orange max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {category.text}
+              </ReactMarkdown>
+            </div>
+          </section>
         )}
       </div>
     </div>

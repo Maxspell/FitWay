@@ -1,4 +1,12 @@
 # Knowledge Base Activity Log
+## 2026-10-05
+- Расширение контент-типа Category в Strapi v5, вывод кастомного SEO/H1 контента и исправление дублирования заголовка в Next.js.
+    - **Category Schema Expansion (Strapi v5)**: В `backend/src/api/category/content-types/category/schema.json` добавлены поля `title` (`string`), `intro` (`text`), `text` (`richtext`), `metaTitle` (`string`) и `metaDescription` (`text`). [[backend/strapi-v5-collections]] [[frontend/blog-category-content-system]]
+    - **Frontend Typing & Category Landing UI**: В `interfaces/blog.ts` обновлен интерфейс `Category`. В `src/app/blog/category/[slug]/page.tsx` добавлен вывод кастомного `title` (H1), вводного блока `intro` и нижнего SEO-раздела `text` со стилизованным Markdown (`prose prose-invert prose-orange`). При пустых полях сохраняются дефолтные значения. [[frontend/blog-category-content-system]] [[frontend/blog-ui]]
+    - **Title Template Deduplication Fix**: Устранено дублирование суффикса `| FitWay | FitWay`. Так как корневой `layout.tsx` задает `template: "%s | FitWay"`, ручной суффикс `| FitWay` удален из `generateMetadata`. Настроены фоллбэки: `metaTitle -> ${category.name} Articles`, `metaDescription -> Explore the latest articles in...`. [[frontend/blog-category-content-system]] [[bugs/canonical-tag-inheritance]] [[frontend/seo]]
+- Автоматизация сборки бэкенда (`npm run build`) в CI/CD пайплайне VPS.
+    - **Strapi Build Step Before PM2 Restart**: В `.github/workflows/deploy.yml` для шага `BACKEND` перед `pm2 restart fitway-backend` добавлена обязательная компиляция `npm run build` (`strapi build`), исключающая падения сервиса и рассинхронизацию скомпилированного бандла при изменении схем данных и кода бэкенда. [[deploy/cicd-vps-pipeline]] [[deploy/nextjs-build-failure]]
+
 ## 2026-09-30
 - Унификация карточек тренировок (`WorkoutCard`), добавление всех категорий в фильтр и перенос SEO-описания после пагинации.
     - **Shared WorkoutCard Component**: Разработан компонент `src/components/workouts/WorkoutCard.tsx`, синхронизирующий дизайн карточек тренировок в библиотеке (`/workouts`) с секцией `FeaturedWorkouts` на главной странице: неоновый glow-эффект (`group-hover:via-[#FF8C00]/10`), скругления `rounded-[2rem]`, бейджи сложности/категории, анимированная кнопка Play, плашки метаданных (`Duration`, `Calories`) и футер с целевыми группами мышц (`Target`). Компонент переиспользован в `WorkoutView.tsx` и `FeaturedWorkouts.tsx`. [[frontend/workouts-ui]] [[frontend/responsive-layout]]

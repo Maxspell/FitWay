@@ -33,8 +33,10 @@
 - [[frontend/editorial-policy]] — Редакционная политика, стандарты E-E-A-T, архитектура рецензирования (Peer Review) и верификация контента.
 - [[frontend/authors-system]] — E-E-A-T architecture for premium author profiles and content linking.
 - [[frontend/testimonials-reviews-system]] — Интеграция реальных отзывов тренировок на главной странице, кастомный бесконечный Swiper Coverflow слайдер и Schema.org Review разметка.
+- [[frontend/blog-category-content-system]] — SEO-система категорий блога: кастомные H1, intro, rich-text статьи, metaTitle/metaDescription и фикс дублирования заголовка в Next.js.
 
 ## 🚀 Deployment
+- [[deploy/cicd-vps-pipeline]] — Автоматизированный CI/CD пайплайн на Ubuntu VPS (GitHub Actions, SSH, selective build Strapi/Next.js, PM2).
 - [[deploy/nextjs-build-failure]] — Handling missing .next manifests and 502 errors.
 
 ## 🐞 Bugs & Workarounds

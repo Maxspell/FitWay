@@ -21,6 +21,21 @@
       "required": true,
       "unique": true
     },
+    "title": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "text"
+    },
+    "text": {
+      "type": "richtext"
+    },
+    "metaTitle": {
+      "type": "string"
+    },
+    "metaDescription": {
+      "type": "text"
+    },
     "posts": {
       "type": "relation",
       "relation": "oneToMany",

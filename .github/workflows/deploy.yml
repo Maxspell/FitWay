@@ -50,5 +50,7 @@ jobs:
                 npm install
               fi
 
+              npm run build
+
               pm2 restart fitway-backend
             fi

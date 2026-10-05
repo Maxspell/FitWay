@@ -4,6 +4,11 @@ export interface Category {
   id: number;
   name: string;
   slug: string;
+  title?: string;
+  intro?: string;
+  text?: string;
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export interface BlogPost {
