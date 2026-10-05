@@ -222,7 +222,7 @@ export default function ContactClient() {
                   </div>
                   <div className="text-white">
                     <p className="font-medium">Email</p>
-                    <p className="text-gray-300">info@fitway.best</p>
+                    <p className="text-gray-300">support@fitway.best</p>
                   </div>
                 </div>
 

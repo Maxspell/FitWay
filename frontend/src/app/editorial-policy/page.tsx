@@ -222,7 +222,7 @@ export default function EditorialPolicyPage() {
             </h3>
             <div className="space-y-4 text-gray-300 leading-relaxed text-sm">
               <p>
-                <strong className="text-white">Corrections Policy:</strong> If a fact, calculation formula, or cited study requires correction, we make updates promptly and maintain transparent versioning. If you notice an inaccuracy or broken reference, please contact us directly at <a href="mailto:info@fitway.best" className="text-[#FF8C00] underline">info@fitway.best</a>.
+                <strong className="text-white">Corrections Policy:</strong> If a fact, calculation formula, or cited study requires correction, we make updates promptly and maintain transparent versioning. If you notice an inaccuracy or broken reference, please contact us directly at <a href="mailto:support@fitway.best" className="text-[#FF8C00] underline">support@fitway.best</a>.
               </p>
               <div className="p-4 rounded-xl bg-[#FF8C00]/10 border border-[#FF8C00]/20 text-gray-300">
                 <p className="font-semibold text-white mb-1 flex items-center gap-1.5">

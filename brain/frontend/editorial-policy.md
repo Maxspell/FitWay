@@ -18,7 +18,7 @@
   3. *Technical & Editorial Peer Review*: Проверка дозировок, формул дефицита/профицита и техники движений вторым профильным специалистом.
   4. *Publication & Regular Maintenance*: Публикация с указанием автора, рецензента, даты релиза и последнего пересмотра.
 - **Meet the Reviewers**: Презентация ведущих специалистов (Richard Botich, Sarah Johnson, Mike Chen) с их академическими и тренерскими регалиями (CSCS, NASM-CPT, RD, ISSN) и ссылкой на каталог [[frontend/authors-system]].
-- **Corrections Policy & Medical Notice**: Четкий регламент внесения исправлений, контактный email (`info@fitway.best`) и расширенный медицинский дисклеймер со ссылкой на `Terms of Service`.
+- **Corrections Policy & Medical Notice**: Четкий регламент внесения исправлений, контактный email (`support@fitway.best`) и расширенный медицинский дисклеймер со ссылкой на `Terms of Service`.
 - **Schema.org Structured Data**: Внедрена разметка `WebPage` с указанием издателя `Organization` (FitWay).
 
 ---

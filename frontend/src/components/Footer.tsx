@@ -42,7 +42,7 @@ const Footer = () => {
               <li>456 Wellness Ave</li>
               <li>New York, NY 10001</li>
               <li>Phone: +1 (603) 842-3420</li>
-              <li>Email: info@fitway.best</li>
+              <li>Email: support@fitway.best</li>
             </ul>
           </div>
 
