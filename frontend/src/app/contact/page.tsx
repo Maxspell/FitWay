@@ -77,8 +77,7 @@ export default async function ContactPage() {
       "url": "https://fitway.best",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+1-603-842-3420",
-        "contactType": "customer service",
+        "contactType": "customer support",
         "email": "support@fitway.best",
         "url": "https://fitway.best/contact"
       }

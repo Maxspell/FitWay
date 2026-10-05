@@ -33,6 +33,7 @@
 - [[frontend/editorial-policy]] — Редакционная политика, стандарты E-E-A-T, архитектура рецензирования (Peer Review) и верификация контента.
 - [[frontend/authors-system]] — E-E-A-T architecture for premium author profiles and content linking.
 - [[frontend/testimonials-reviews-system]] — Интеграция реальных отзывов тренировок на главной странице, кастомный бесконечный Swiper Coverflow слайдер и Schema.org Review разметка.
+- [[frontend/trust-signals-contacts]] — Архитектура сигналов доверия (Trust Signals/E-E-A-T): устранение фейковых адресов и телефонов, настройка доменной почты `support@fitway.best` (Catch-all redirect), SLA поддержки и чистая Schema.org разметка для прохождения Google AdSense.
 - [[frontend/blog-category-content-system]] — SEO-система категорий блога: кастомные H1, intro, rich-text статьи, metaTitle/metaDescription и фикс дублирования заголовка в Next.js.
 
 ## 🚀 Deployment

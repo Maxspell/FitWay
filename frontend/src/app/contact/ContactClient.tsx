@@ -4,8 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
-  Phone,
-  MapPin,
+  Globe,
   Clock,
   Send,
   CheckCircle2,
@@ -208,31 +207,13 @@ export default function ContactClient() {
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
                   <div className="bg-[#1B2B3B] p-3 rounded-lg">
-                    <Phone className="h-6 w-6 text-[#FF8C00]" />
-                  </div>
-                  <div className="text-white">
-                    <p className="font-medium">Phone</p>
-                    <p className="text-gray-300">+1 (603) 842-3420</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="bg-[#1B2B3B] p-3 rounded-lg">
                     <Mail className="h-6 w-6 text-[#FF8C00]" />
                   </div>
                   <div className="text-white">
-                    <p className="font-medium">Email</p>
-                    <p className="text-gray-300">support@fitway.best</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="bg-[#1B2B3B] p-3 rounded-lg">
-                    <MapPin className="h-6 w-6 text-[#FF8C00]" />
-                  </div>
-                  <div className="text-white">
-                    <p className="font-medium">Address</p>
-                    <p className="text-gray-300">456 Wellness Ave<br />New York, NY 10001</p>
+                    <p className="font-medium">Direct Email</p>
+                    <a href="mailto:support@fitway.best" className="text-gray-300 hover:text-white underline decoration-gray-600 transition-colors">
+                      support@fitway.best
+                    </a>
                   </div>
                 </div>
 
@@ -241,8 +222,18 @@ export default function ContactClient() {
                     <Clock className="h-6 w-6 text-[#FF8C00]" />
                   </div>
                   <div className="text-white">
-                    <p className="font-medium">Working Hours</p>
-                    <p className="text-gray-300">Mon - Fri: 6:00 AM - 10:00 PM<br />Sat - Sun: 8:00 AM - 8:00 PM</p>
+                    <p className="font-medium">Support Hours</p>
+                    <p className="text-gray-300">Monday – Friday: 9:00 AM – 6:00 PM (EST)<br />Response within 24 business hours</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <div className="bg-[#1B2B3B] p-3 rounded-lg">
+                    <Globe className="h-6 w-6 text-[#FF8C00]" />
+                  </div>
+                  <div className="text-white">
+                    <p className="font-medium">Platform Operations</p>
+                    <p className="text-gray-300">Online Fitness & Health Publication<br />Global Editorial Coverage</p>
                   </div>
                 </div>
               </div>

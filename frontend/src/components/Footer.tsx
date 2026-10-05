@@ -39,10 +39,10 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Contact</h3>
             <ul className="space-y-2 text-gray-300">
-              <li>456 Wellness Ave</li>
-              <li>New York, NY 10001</li>
-              <li>Phone: +1 (603) 842-3420</li>
-              <li>Email: support@fitway.best</li>
+              <li>Digital Fitness & Health Platform</li>
+              <li>Email: <a href="mailto:support@fitway.best" className="hover:text-white underline decoration-gray-500 hover:decoration-white transition-colors">support@fitway.best</a></li>
+              <li>Support: Mon – Fri (Response within 24h)</li>
+              <li><Link href="/contact" className="nav-link text-sm text-[#FF8C00] hover:underline">Send a Message →</Link></li>
             </ul>
           </div>
 
