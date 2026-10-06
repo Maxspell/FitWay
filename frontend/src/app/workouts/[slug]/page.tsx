@@ -25,7 +25,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const workout = await getWorkoutBySlug(params.slug);
 
-  if (!workout) return { title: "Workout Not Found | FitWay" };
+  if (!workout) return { title: "Workout Not Found" };
 
   let imageUrl = workout.image?.url ? getStrapiMedia(workout.image.url) : "";
   if (imageUrl && !imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {

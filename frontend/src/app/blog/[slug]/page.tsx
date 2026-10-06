@@ -119,7 +119,7 @@ async function getRelatedBlogPosts(slug: string, categorySlug?: string): Promise
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getBlogPostBySlug(params.slug);
 
-  if (!post) return { title: "Blog Post Not Found | FitWay" };
+  if (!post) return { title: "Blog Post Not Found" };
 
   let imageUrl = getPostImage(post, "large");
   // Ensure the image URL is strictly absolute

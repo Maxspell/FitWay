@@ -13,13 +13,13 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Editorial Policy & Quality Standards | FitWay",
+  title: "Editorial Policy & Quality Standards",
   description: "Learn how FitWay creates, fact-checks, and medically reviews fitness and nutrition content. Our commitment to E-E-A-T, scientific accuracy, and integrity.",
   alternates: {
     canonical: "/editorial-policy",
   },
   openGraph: {
-    title: "Editorial Policy & Standards | FitWay",
+    title: "Editorial Policy & Standards",
     description: "Our standards for evidence-based fitness advice, expert medical review, and transparent nutritional guidance.",
     url: "https://fitway.best/editorial-policy",
   },

@@ -25,7 +25,7 @@
 - [x] **Внедрение системы экспертного рецензирования (Peer Review) в UI**  
   *Результат*: Создан компонент `ReviewedByBox.tsx` с разделением на `Medically Reviewed` (питание/добавки) и `Scientifically Reviewed` (тренировки). В `blog/[slug]/page.tsx` добавлены бейдж рецензента в hero-блоке, карточка проверки перед автором и Schema.org `reviewedBy`.
 - [x] **Проверка обязательных юридических и технических страниц**  
-  *Результат*: Проверены `Privacy Policy` (содержит пункт про cookies и AdSense), `Terms of Service` с медицинским дисклеймером, форма `Contact Us`, валидный `ads.txt` (`pub-8295879566072893`), `robots.txt` и `sitemap.xml`.
+  *Результат*: Проверены и обновлены до стандартов Google AdSense `Privacy Policy` (добавлено раскрытие cookies, DoubleClick, third-party ad networks, ссылки на opt-out AboutAds/NAI/YourOnlineChoices, права GDPR/CCPA, canonical и контакты support@fitway.best), `Terms of Service` с медицинским дисклеймером, форма `Contact Us`, валидный `ads.txt` (`pub-8295879566072893`), `robots.txt` и `sitemap.xml`. Подробности в [[frontend/adsense-privacy-policy-compliance]].
 - [x] **Очистка сигналов доверия (Trust Signals) и легитимизация контактов**  
   *Результат*: Устранены фиктивные адрес (`456 Wellness Ave`) и телефон (`+1 603`). Добавлен рабочий Catch-all Mail Redirect, внедрена кликабельная доменная почта `support@fitway.best` (в футере и на странице контактов), регламент ответа до 24 часов и очищенная разметка Schema.org `ContactPoint`. Подробности в [[frontend/trust-signals-contacts]].
 

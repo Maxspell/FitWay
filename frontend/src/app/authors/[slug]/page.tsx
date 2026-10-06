@@ -17,7 +17,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const author = await getAuthorBySlug(params.slug);
 
-  if (!author) return { title: "Author Not Found | FitWay" };
+  if (!author) return { title: "Author Not Found" };
 
   return {
     title: `${author.name} - ${author.credentials || author.jobTitle || 'Fitness Expert'}`,

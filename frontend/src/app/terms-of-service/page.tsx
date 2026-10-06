@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | FitWay",
+  title: "Terms of Service",
   description: "Read the Terms of Service for using the FitWay platform, including our medical disclaimer and user guidelines.",
 };
 

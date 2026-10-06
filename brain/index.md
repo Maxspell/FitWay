@@ -37,6 +37,7 @@
 - [[frontend/blog-category-content-system]] — SEO-система категорий блога: кастомные H1, intro, rich-text статьи, metaTitle/metaDescription и фикс дублирования заголовка в Next.js.
 - [[frontend/blog-category-hub]] — Премиальный хаб категорий блога (`/blog/category`), устранение 404, Schema.org CollectionPage и верстка карточек на полную ширину.
 - [[frontend/html-sitemap]] — Премиальная страница HTML-карты сайта (`/sitemap`): архитектура SSR/ISR, группировка статей по рубрикам, быстрые якоря, метрики и Schema.org разметка.
+- [[frontend/adsense-privacy-policy-compliance]] — Аудит Privacy Policy для Google AdSense, регламент GDPR CMP-баннеров и устранение задваивания бренда в `<title>` (`| FitWay | FitWay`).
 
 ## 🚀 Deployment
 - [[deploy/cicd-vps-pipeline]] — Автоматизированный CI/CD пайплайн на Ubuntu VPS (GitHub Actions, SSH, selective build Strapi/Next.js, PM2).
