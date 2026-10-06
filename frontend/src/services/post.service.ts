@@ -114,3 +114,41 @@ export async function getCategories(): Promise<Category[]> {
     return [];
   }
 }
+
+export interface PostSummary {
+  title: string;
+  slug: string;
+  updatedAt?: string;
+  publishedAt?: string;
+  createdAt?: string;
+  category?: Category | null;
+}
+
+/**
+ * Fetch all published blog posts with minimal fields for sitemaps and indexes.
+ */
+export async function getAllPostsSummary(): Promise<PostSummary[]> {
+  try {
+    const response = await fetch(
+      `${STRAPI_URL}/api/posts?fields[0]=title&fields[1]=slug&fields[2]=updatedAt&fields[3]=publishedAt&populate[category][fields][0]=name&populate[category][fields][1]=slug&sort=publishedAt:desc&pagination[pageSize]=250`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${STRAPI_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        next: {
+          revalidate: 600, // 10 minutes
+        },
+      }
+    );
+
+    if (!response.ok) return [];
+    const result = await response.json();
+    return result.data || [];
+  } catch (error) {
+    console.error("Error fetching posts summary:", error);
+    return [];
+  }
+}
+

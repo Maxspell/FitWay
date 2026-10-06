@@ -27,6 +27,7 @@ const Footer = () => {
               <li><Link href="/tools" className="nav-link">Tools</Link></li>
               <li><Link href="/about" className="nav-link">About Us</Link></li>
               <li><Link href="/contact" className="nav-link">Contact</Link></li>
+              <li><Link href="/sitemap" className="nav-link">Sitemap</Link></li>
             </ul>
             <h3 className="text-xl font-bold mt-8 mb-4">Legal & Trust</h3>
             <ul className="space-y-2">
