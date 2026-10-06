@@ -70,6 +70,7 @@
 ---
 
 ## 🔗 Связанные страницы базы знаний
+- [[bugs/twitter-embed-video-403-hydration]] — Встраивание постов и видео Twitter/X: устранение 403 CDN ошибки и сбоев гидратации.
 - [[frontend/blog-ui]] — Общая архитектура страниц и компонентов блога.
 - [[frontend/seo]] — Метаданные, OpenGraph и поисковая оптимизация.
 - [[deploy/strapi-media-production]] — Доставка медиа-файлов и домен `api.fitway.best`.

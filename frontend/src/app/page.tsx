@@ -122,13 +122,6 @@ export default async function Home() {
               "worstRating": "1",
             },
             "reviewBody": rev.content,
-            ...(rev.workout && {
-              "itemReviewed": {
-                "@type": "ExercisePlan",
-                "name": rev.workout.title,
-                "url": `${siteUrl}/workouts/${rev.workout.slug}`,
-              },
-            }),
           })),
         }),
       },

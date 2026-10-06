@@ -43,7 +43,9 @@
 - [[deploy/cicd-vps-pipeline]] — Автоматизированный CI/CD пайплайн на Ubuntu VPS (GitHub Actions, SSH, selective build Strapi/Next.js, PM2).
 - [[deploy/nextjs-build-failure]] — Handling missing .next manifests and 502 errors.
 
-## 🐞 Bugs & Workarounds
+- [[bugs/schema-review-itemreviewed-parent-node]] — Предупреждение Google Search Console («Вбудований об’єкт <parent_node> не може містити поле itemReviewed»): конфликт иерархии Schema.org Review внутри Organization.
+- [[bugs/twitter-embed-video-403-hydration]] — Twitter/X видео 403 Forbidden (Cloudflare anti-hotlinking) и устранение ошибок гидратации React (#418, #423) при встраивании твитов.
+- [[bugs/hydration-errors]] — Ошибки гидратации React в Next.js: правила вложенности тегов, клиентские хуки и таймзоны.
 - [[bugs/canonical-tag-inheritance]] — Google Search Console («Вариант страницы с тегом canonical»): наследование дефолтного canonical из layout.tsx в динамические категории блога.
 - [[bugs/robots-next-directory-blocking]] — Блокировка системной директории `/_next/` в robots.txt: ошибка запрета CSS/JS/шрифтов для рендеринга Googlebot и ложные статусы GSC.
 - [[bugs/framer-motion-animation-flicker]] — Мерцание и рывки карточек при появлении (конфликт Framer Motion и Tailwind `transition-all`, фоновые блуры, `viewport.once`).

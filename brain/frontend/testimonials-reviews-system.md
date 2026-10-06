@@ -88,7 +88,9 @@ graph TD
 ### Схема отзывов на главной странице
 В `app/page.tsx` отзывы включены в структурированные данные `@graph` для Google Rich Snippets:
 - Корневая сущность `Organization` дополнена блоком `aggregateRating` (динамический средний балл и количество отзывов) и массивом `@type: "Review"`.
-- Каждый отзыв содержит `author` (`Person`), `reviewRating` (`Rating`), `datePublished`, `reviewBody` и привязку `itemReviewed` к сущности тренировки (`@type: "ExercisePlan"`).
+- Каждый отзыв содержит `author` (`Person`), `reviewRating` (`Rating`), `datePublished` и `reviewBody`.
+  > [!WARNING]
+  > **Важно (Google Search Console)**: Внутри массива `review`, вложенного в `Organization`, **запрещено** указывать поле `itemReviewed`. Googlebot трактует родительский объект как предмет отзыва; явное указание `itemReviewed` создает предупреждение «Вбудований об’єкт <parent_node> не може містити поле itemReviewed» (конфликт направлений). Подробный разбор зафиксирован в [[bugs/schema-review-itemreviewed-parent-node]].
 
 ### Исключение дублирования FAQPage
 - **Архитектурный принцип**: Компонент [[frontend/seo]] `FAQSection.tsx` является самодостаточным и генерирует собственный валидный JSON-LD тег `@type: "FAQPage"` для тех вопросов, которые в него переданы.
