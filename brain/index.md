@@ -45,6 +45,7 @@
 
 ## 🐞 Bugs & Workarounds
 - [[bugs/canonical-tag-inheritance]] — Google Search Console («Вариант страницы с тегом canonical»): наследование дефолтного canonical из layout.tsx в динамические категории блога.
+- [[bugs/robots-next-directory-blocking]] — Блокировка системной директории `/_next/` в robots.txt: ошибка запрета CSS/JS/шрифтов для рендеринга Googlebot и ложные статусы GSC.
 - [[bugs/framer-motion-animation-flicker]] — Мерцание и рывки карточек при появлении (конфликт Framer Motion и Tailwind `transition-all`, фоновые блуры, `viewport.once`).
 - [[bugs/nextjs-dev-build-conflict]] — Поломка `npm run dev` при параллельном запуске `npm run build` (конфликт блокировки `.next/` на Windows).
 - [[bugs/nextjs-prerender-fetch-failed]] — Ошибка сборки SSG prerender (fetch failed) и 404 на CSS/JS чанки на проде.
