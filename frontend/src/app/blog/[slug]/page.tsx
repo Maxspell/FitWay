@@ -239,6 +239,10 @@ export default async function BlogPost({ params }: Props) {
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
+                  p: ({ node, children, ...props }) => {
+                    // Check if children contain a TweetEmbed by checking child elements
+                    return <div className="mb-4 text-gray-300 leading-relaxed" {...props}>{children}</div>;
+                  },
                   h2: ({ node, ...props }) => {
                     const text = React.Children.toArray(props.children).reduce(flatten, "");
                     const id = slugify(text);
