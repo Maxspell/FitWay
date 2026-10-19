@@ -14,42 +14,19 @@ import TestimonialCard from "./TestimonialCard";
 import StatCounter from "./StatCounter";
 import { Review } from "@/interfaces/review";
 
-interface TestimonialsSectionProps {
-  reviews?: Review[];
+export interface TestimonialsStats {
+  workoutsCount?: number;
+  avgRating?: number;
+  coachesCount?: number;
+  reviewsCount?: number;
 }
 
-const STATS = [
-  {
-    value: 15,
-    suffix: "k+",
-    label: "Active Users",
-    description: "Real people achieving their fitness goals daily.",
-    icon: Users
-  },
-  {
-    value: 500,
-    suffix: "k+",
-    label: "Workouts",
-    description: "Completed sessions across all difficulty levels.",
-    icon: Dumbbell
-  },
-  {
-    value: 4.9,
-    suffix: "/5",
-    label: "Avg Rating",
-    description: "Based on thousands of verified user reviews.",
-    icon: Star
-  },
-  {
-    value: 95,
-    suffix: "%",
-    label: "Success Rate",
-    description: "Users who achieved their target within 6 months.",
-    icon: Award
-  }
-];
+interface TestimonialsSectionProps {
+  reviews?: Review[];
+  stats?: TestimonialsStats;
+}
 
-export default function TestimonialsSection({ reviews = [] }: TestimonialsSectionProps) {
+export default function TestimonialsSection({ reviews = [], stats }: TestimonialsSectionProps) {
   if (!reviews || reviews.length === 0) {
     return null;
   }
@@ -61,6 +38,47 @@ export default function TestimonialsSection({ reviews = [] }: TestimonialsSectio
       : reviews.length < 8
       ? [...reviews, ...reviews]
       : reviews;
+
+  const computedAvgRating =
+    stats?.avgRating ??
+    (reviews.length
+      ? Number((reviews.reduce((acc, curr) => acc + curr.rating, 0) / reviews.length).toFixed(1))
+      : 4.9);
+
+  const statItems = [
+    {
+      value: stats?.workoutsCount ?? 10,
+      suffix: "+",
+      label: "Workouts",
+      description: "Science-backed training programs across all fitness levels.",
+      icon: Dumbbell,
+      decimals: 0,
+    },
+    {
+      value: computedAvgRating,
+      suffix: "/5",
+      label: "Avg Rating",
+      description: "Based on verified community feedback and reviews.",
+      icon: Star,
+      decimals: 1,
+    },
+    {
+      value: stats?.coachesCount ?? 6,
+      suffix: "+",
+      label: "Expert Coaches",
+      description: "Certified trainers and sports nutritionists designing plans.",
+      icon: Users,
+      decimals: 0,
+    },
+    {
+      value: stats?.reviewsCount ?? reviews.length,
+      suffix: "+",
+      label: "Verified Reviews",
+      description: "Honest feedback from active FitWay community members.",
+      icon: Award,
+      decimals: 0,
+    },
+  ];
 
   return (
     <section className="py-12 md:py-24 lg:py-32 relative overflow-hidden bg-[#1B2B3B]">
@@ -107,7 +125,7 @@ export default function TestimonialsSection({ reviews = [] }: TestimonialsSectio
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12 md:mb-20 lg:mb-24">
-          {STATS.map((stat, index) => (
+          {statItems.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
@@ -120,6 +138,7 @@ export default function TestimonialsSection({ reviews = [] }: TestimonialsSectio
                 suffix={stat.suffix} 
                 label={stat.label} 
                 description={stat.description} 
+                decimals={stat.decimals}
               />
             </motion.div>
           ))}

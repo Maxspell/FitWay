@@ -98,8 +98,63 @@ graph TD
 
 ---
 
+## 5. Динамическая статистика сообщества (Social Proof Stats) & Vercel React Best Practices
+
+Ранее в секции `TestimonialsSection` отображался захардкоженный массив фиктивных метрик (`15k+ Active Users`, `500k+ Workouts`, `4/5 Avg Rating`, `95% Success Rate`). Это вводило пользователей в заблуждение и снижало доверие к платформе (E-E-A-T).
+
+### Переход на реальные метрики сайта (Вариант А)
+Блок переведён на 100% реальные данные, извлекаемые напрямую из базы данных Strapi:
+
+1. **Workouts** (`workouts.length` + `+`):
+   - Реальное количество опубликованных программ тренировок (например, `10+ Workouts`).
+   - Описание: *"Science-backed training programs across all fitness levels."*
+2. **Avg Rating** (`reviewsAvgRating` + `/5`, 1 знак после запятой):
+   - Динамический расчет средней оценки по формуле `(sum(ratings) / count).toFixed(1)`.
+   - Значение строго совпадает с разметкой `aggregateRating` в Schema.org `page.tsx`.
+   - Описание: *"Based on verified community feedback and reviews."*
+3. **Expert Coaches** (`authors.length` + `+`):
+   - Реальное количество сертифицированных тренеров и нутрициологов из коллекции `authors` (NASM, CSCS, CISSN).
+   - Подкрепляет соседнюю секцию экспертов `ExpertsSection` ([[frontend/authors-system]]).
+   - Описание: *"Certified trainers and sports nutritionists designing plans."*
+4. **Verified Reviews** (`reviews.length` + `+`):
+   - Реальное число проверенных отзывов реальных пользователей из Strapi.
+   - Описание: *"Honest feedback from active FitWay community members."*
+
+### Архитектура данных по Vercel React Best Practices
+1. **Server-Side Aggregation (`server-serialization`)**:
+   В серверном компоненте `app/page.tsx` данные уже загружаются параллельно через `Promise.all` (`getWorkouts`, `getAuthors`, `getLatestReviews`).
+   Чтобы избежать избыточной сериализации тяжелых объектов моделей в клиентский компонент, на клиент передаются исключительно примитивные скалярные числа:
+   ```tsx
+   <TestimonialsSection 
+     reviews={reviews} 
+     stats={{
+       workoutsCount: workouts.length,
+       avgRating: parseFloat(reviewsAvgRating),
+       coachesCount: authors.length,
+       reviewsCount: reviews.length,
+     }}
+   />
+   ```
+2. **Типизация интерфейса `TestimonialsStats`**:
+   ```tsx
+   export interface TestimonialsStats {
+     workoutsCount?: number;
+     avgRating?: number;
+     coachesCount?: number;
+     reviewsCount?: number;
+   }
+   ```
+3. **Фикс среза дробной части и пружинного овершута**:
+   В компоненте `StatCounter.tsx` добавлен параметр `decimals?: number`, клампинг `Math.min(Math.max(latest, 0), value)` и форматирование через `toFixed(decimals)` вместо `Math.floor`. Подробно задокументировано в [[bugs/stat-counter-decimal-truncation]].
+
+---
+
 ## Связанные разделы базы знаний
 - [[frontend/seo]] — Общая SEO-стратегия, микроразметка Schema.org и E-E-A-T.
+- [[frontend/authors-system]] — E-E-A-T архитектура профилей экспертов и авторов FitWay.
 - [[frontend/data-fetching-pattern]] — Сервисный слой для взаимодействия с Strapi CMS.
+- [[bugs/stat-counter-decimal-truncation]] — Фикс срезки дробного рейтинга и овершута в StatCounter.
+- [[bugs/schema-review-itemreviewed-parent-node]] — Решение конфликта иерархии Schema.org Review внутри Organization.
 - [[bugs/framer-motion-animation-flicker]] — Особенности взаимодействия стилей трансформаций и CSS-анимаций.
 - [[frontend/social-share-and-anchors]] — Якорная навигация и взаимодействие элементов интерфейса.
+

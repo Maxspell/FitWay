@@ -32,7 +32,7 @@
 - [[frontend/scroll-to-top]] — Интерактивная кнопка Scroll-to-Top с круговым SVG-индикатором прогресса прокрутки (оранжевый акцент #FF8C00) и плавной анимацией.
 - [[frontend/editorial-policy]] — Редакционная политика, стандарты E-E-A-T, архитектура рецензирования (Peer Review) и верификация контента.
 - [[frontend/authors-system]] — E-E-A-T architecture for premium author profiles and content linking.
-- [[frontend/testimonials-reviews-system]] — Интеграция реальных отзывов тренировок на главной странице, кастомный бесконечный Swiper Coverflow слайдер и Schema.org Review разметка.
+- [[frontend/testimonials-reviews-system]] — Интеграция реальных отзывов тренировок, динамическая статистика платформы (Workouts, Rating, Coaches, Reviews) по Vercel React Best Practices, кастомный бесконечный Swiper Coverflow слайдер и Schema.org Review разметка.
 - [[frontend/trust-signals-contacts]] — Архитектура сигналов доверия (Trust Signals/E-E-A-T): устранение фейковых адресов и телефонов, настройка доменной почты `support@fitway.best` (Catch-all redirect), SLA поддержки и чистая Schema.org разметка для прохождения Google AdSense.
 - [[frontend/blog-category-content-system]] — SEO-система категорий блога: кастомные H1, intro, rich-text статьи, metaTitle/metaDescription и фикс дублирования заголовка в Next.js.
 - [[frontend/blog-category-hub]] — Премиальный хаб категорий блога (`/blog/category`), устранение 404, Schema.org CollectionPage и верстка карточек на полную ширину.
@@ -43,6 +43,8 @@
 - [[deploy/cicd-vps-pipeline]] — Автоматизированный CI/CD пайплайн на Ubuntu VPS (GitHub Actions, SSH, selective build Strapi/Next.js, PM2).
 - [[deploy/nextjs-build-failure]] — Handling missing .next manifests and 502 errors.
 
+## 🐛 Bugs & Gotchas
+- [[bugs/stat-counter-decimal-truncation]] — Срез дробной части рейтинга (`Math.floor`) и предотвращение spring-овершута в счетчике `StatCounter` при анимациях Framer Motion.
 - [[bugs/schema-review-itemreviewed-parent-node]] — Предупреждение Google Search Console («Вбудований об’єкт <parent_node> не може містити поле itemReviewed»): конфликт иерархии Schema.org Review внутри Organization.
 - [[bugs/twitter-embed-video-403-hydration]] — Twitter/X видео 403 Forbidden (Cloudflare anti-hotlinking) и устранение ошибок гидратации React (#418, #423) при встраивании твитов.
 - [[bugs/hydration-errors]] — Ошибки гидратации React в Next.js: правила вложенности тегов, клиентские хуки и таймзоны.

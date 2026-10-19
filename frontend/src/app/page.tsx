@@ -196,7 +196,15 @@ export default async function Home() {
       <FeaturedWorkouts workouts={workouts} />
 
       {/* Testimonials Section */}
-      <TestimonialsSection reviews={reviews} />
+      <TestimonialsSection 
+        reviews={reviews} 
+        stats={{
+          workoutsCount: workouts.length,
+          avgRating: parseFloat(reviewsAvgRating),
+          coachesCount: authors.length,
+          reviewsCount: reviews.length,
+        }}
+      />
 
       {/* Latest Blog Posts */}
       <LatestPosts posts={blogPosts} />

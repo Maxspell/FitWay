@@ -8,9 +8,16 @@ interface StatCounterProps {
   label: string;
   suffix?: string;
   description: string;
+  decimals?: number;
 }
 
-export default function StatCounter({ value, label, suffix = "", description }: StatCounterProps) {
+export default function StatCounter({
+  value,
+  label,
+  suffix = "",
+  description,
+  decimals = 0,
+}: StatCounterProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   
@@ -20,9 +27,10 @@ export default function StatCounter({ value, label, suffix = "", description }: 
     restDelta: 0.001
   });
   
-  const displayValue = useTransform(springValue, (latest) => 
-    Math.floor(latest).toLocaleString()
-  );
+  const displayValue = useTransform(springValue, (latest) => {
+    const clamped = Math.min(Math.max(latest, 0), value);
+    return decimals > 0 ? clamped.toFixed(decimals) : Math.floor(clamped).toLocaleString();
+  });
 
   useEffect(() => {
     if (isInView) {
