@@ -10,7 +10,12 @@
 
 ## Tools & Calculators
 
-- [Fitness Calculators](https://fitway.best/tools): Free health tools including Body Mass Index (BMI) and Daily Calorie (TDEE) calculator.
+- [Fitness Calculators Hub](https://fitway.best/tools): Full suite of free fitness tools and calculation engines.
+- [BMI Calculator](https://fitway.best/tools/bmi-calculator): Body Mass Index screening tool and WHO classification tables.
+- [Daily Calorie & TDEE Calculator](https://fitway.best/tools/calorie-calculator): Mifflin-St Jeor Total Daily Energy Expenditure and deficit calculator.
+- [Macro Splitter Calculator](https://fitway.best/tools/macro-calculator): Protein, fat, and carbohydrate daily split by grams and meal distribution.
+- [One-Rep Max (1RM) Calculator](https://fitway.best/tools/one-rep-max-calculator): 1-repetition maximum estimation with Epley and Brzycki formulas.
+- [Ideal Body Weight Calculator](https://fitway.best/tools/ideal-weight-calculator): Clinical healthy weight determination using Devine, Robinson, and Miller equations.
 
 ## Company & Contact
 

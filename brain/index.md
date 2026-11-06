@@ -38,6 +38,8 @@
 - [[frontend/blog-category-hub]] — Премиальный хаб категорий блога (`/blog/category`), устранение 404, Schema.org CollectionPage и верстка карточек на полную ширину.
 - [[frontend/html-sitemap]] — Премиальная страница HTML-карты сайта (`/sitemap`): архитектура SSR/ISR, группировка статей по рубрикам, быстрые якоря, метрики и Schema.org разметка.
 - [[frontend/adsense-privacy-policy-compliance]] — Аудит Privacy Policy для Google AdSense, регламент GDPR CMP-баннеров и устранение задваивания бренда в `<title>` (`| FitWay | FitWay`).
+- [[frontend/fitness-calculators-pseo]] — Архитектура Programmatic SEO (pSEO): Hub & Spoke модель (`/tools` + 5 посадочных страниц), интерактивные калькуляторы (Macro, 1RM, Ideal Weight, BMI, Calories), микроразметка Schema.org и синхронизация карт сайта.
+- [[frontend/navigation-mega-menu]] — Двухуровневая система навигации: премиальный десктопный мега-дропдаун (`left-0`, `w-[460px]`, центрированный glow), анимированный аккордеон мобильного меню, логотип в шапке дровера и официальные ссылки соцсетей.
 
 ## 🚀 Deployment
 - [[deploy/cicd-vps-pipeline]] — Автоматизированный CI/CD пайплайн на Ubuntu VPS (GitHub Actions, SSH, selective build Strapi/Next.js, PM2).

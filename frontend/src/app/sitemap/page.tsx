@@ -120,6 +120,39 @@ const legalPages: StaticPageLink[] = [
   },
 ];
 
+const calculatorPages: StaticPageLink[] = [
+  {
+    title: "Body Mass Index (BMI) Calculator",
+    href: "/tools/bmi-calculator",
+    description: "Instant adult BMI assessment, WHO bracket classification, and athletic body composition notes.",
+    badge: "Health",
+  },
+  {
+    title: "Daily Calorie & TDEE Calculator",
+    href: "/tools/calorie-calculator",
+    description: "Calculate maintenance calories, fat loss deficit, and muscle gain surplus with Mifflin-St Jeor.",
+    badge: "Metabolism",
+  },
+  {
+    title: "Macro Splitter Calculator (P/F/C)",
+    href: "/tools/macro-calculator",
+    description: "Target daily protein, fat, and carbohydrate ratios in grams, calories, and per-meal portions.",
+    badge: "Nutrition",
+  },
+  {
+    title: "One-Rep Max (1RM) Calculator",
+    href: "/tools/one-rep-max-calculator",
+    description: "Estimate 1RM from submaximal sets and generate working weight zones with Epley & Brzycki.",
+    badge: "Strength",
+  },
+  {
+    title: "Ideal Body Weight (IBW) Calculator",
+    href: "/tools/ideal-weight-calculator",
+    description: "Calculate clinical healthy weight with Devine, Robinson, Miller, and WHO healthy BMI ranges.",
+    badge: "Baseline",
+  },
+];
+
 export default async function SitemapPage() {
   const [categories, posts, workouts, authors] = await Promise.all([
     getCategories(),
@@ -173,6 +206,7 @@ export default async function SitemapPage() {
   const totalIndexedLinks =
     mainPages.length +
     legalPages.length +
+    calculatorPages.length +
     categories.length +
     posts.length +
     workouts.length +
@@ -266,6 +300,10 @@ export default async function SitemapPage() {
               Core Pages
             </a>
             <span className="text-gray-600 hidden sm:inline">•</span>
+            <a href="#fitness-calculators" className="px-3 py-1.5 rounded-xl hover:bg-white/10 text-gray-200 hover:text-white transition-colors">
+              Calculators ({calculatorPages.length})
+            </a>
+            <span className="text-gray-600 hidden sm:inline">•</span>
             <a href="#blog-categories" className="px-3 py-1.5 rounded-xl hover:bg-white/10 text-gray-200 hover:text-white transition-colors">
               Categories ({categories.length})
             </a>
@@ -323,6 +361,51 @@ export default async function SitemapPage() {
                 <p className="text-sm text-gray-300 leading-relaxed mb-3">
                   {page.description}
                 </p>
+                <div className="text-xs text-gray-500 font-mono">
+                  {`https://fitway.best${page.href}`}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Section: Dedicated Fitness Calculators */}
+        <section id="fitness-calculators" className="mb-16 scroll-mt-24">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+              <Calculator className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">Interactive Fitness Calculators</h2>
+              <p className="text-sm text-gray-400">Dedicated science-backed calculation tools and clinical guides</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {calculatorPages.map((page) => (
+              <div
+                key={page.href}
+                className="card bg-[#243447]/50 hover:bg-[#243447] border border-white/5 hover:border-blue-500/30 p-6 rounded-2xl transition-all duration-300 group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <Link
+                      href={page.href}
+                      className="text-base font-bold text-white group-hover:text-blue-300 transition-colors inline-flex items-center gap-2"
+                    >
+                      {page.title}
+                      <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                    </Link>
+                    {page.badge && (
+                      <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 uppercase tracking-wider">
+                        {page.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-gray-300 leading-relaxed mb-3">
+                    {page.description}
+                  </p>
+                </div>
                 <div className="text-xs text-gray-500 font-mono">
                   {`https://fitway.best${page.href}`}
                 </div>

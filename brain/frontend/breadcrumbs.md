@@ -24,7 +24,17 @@ To prevent the breadcrumbs block from pushing down full-width hero backgrounds o
 
 This ensures the breadcrumbs gracefully overlay hero backgrounds while remaining fully interactive (`pointer-events-auto`), without altering the page's standard document flow.
 
+## ⚠️ Gotcha: Avoiding Duplicate Breadcrumbs
+
+> [!CAUTION] Do NOT Include `<Breadcrumbs />` in Page Components
+> Because the component is already declared globally at the root in `layout.tsx`, calling `<Breadcrumbs />` locally inside subpages (e.g. `src/app/tools/bmi-calculator/page.tsx` or `src/app/blog/[slug]/page.tsx`) causes duplicate breadcrumb bars to be rendered simultaneously in the DOM.
+> 
+> **Standard Implementation Rule**:
+> - Never import or render `<Breadcrumbs />` inside subpage components.
+> - Reserve vertical clearance for the overlay breadcrumbs by giving page hero sections or top containers `pt-12` or `pt-16`.
+
 ## Related Links
+- [[frontend/fitness-calculators-pseo]] — Архитектура посадочных страниц калькуляторов и устранение локальных дубликатов крошек.
 - [[frontend/pagination-system]] — Архитектура пагинации, маршрутизация и каноникализация.
 - [[frontend/seo]] — SEO стратегия, микроразметка Schema.org и каноникалы.
 - [[frontend/scroll-to-top]] — Глобальная навигация и элементы в RootLayout.
