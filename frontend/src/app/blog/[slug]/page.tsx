@@ -14,6 +14,7 @@ import ReviewedByBox from "@/components/common/ReviewedByBox";
 import { slugify } from "@/utils/slugify";
 import ShareButtons from "@/components/BlogPost/ShareButtons";
 import TweetEmbed from "@/components/BlogPost/TweetEmbed";
+import FitnessToolsSidebarWidget from "@/components/calculators/FitnessToolsSidebarWidget";
 import React from "react";
 
 // Helper to extract text from ReactMarkdown children
@@ -328,6 +329,9 @@ export default async function BlogPost({ params }: Props) {
                 )}
               </div>
             </div>
+
+            {/* Smart Fitness Tools Suite Widget */}
+            <FitnessToolsSidebarWidget category={post.category?.name || post.category?.slug} />
           </div>
         </div>
 

@@ -1,5 +1,15 @@
 # Knowledge Base Activity Log
 
+## 2026-11-07
+- Разработка премиального интерактивного сайдбар-виджета `FitnessToolsSidebarWidget` для страниц блога и тренировок.
+    - **Smart Context-Aware Sidebar Widget (`FitnessToolsSidebarWidget.tsx`)**: Разработан компактный интерактивный сайдбар-виджет в дизайн-системе FitWay (`#243447`, `#1B2B3B`, акцент `#FF8C00`, тонкие неоновые бордеры и glow-эффекты).
+    - **Smart Category Matcher**: Анализирует категорию статьи или воркаута и автоматически активирует наиболее релевантный калькулятор (силовые движения → `1RM & Training Zones`, питание/диета → `Macro Splitter`, похудение/калории → `Daily Calorie & TDEE`, оздоровление/состав тела → `Ideal Body Weight`).
+    - **Interactive Mini-Tabs**: Встроена панель из 5 иконок-табов (Dumbbell, Apple, PieChart, Heart, Scale) с мгновенным переключением превью формулы, научного стандарта (Epley/Brzycki, Mifflin-St Jeor, ISSN, Devine/Robinson, WHO) и кнопки прямого перехода `Calculate Now`.
+    - **Интеграция в страницы блога и воркаутов**:
+        - В `frontend/src/app/blog/[slug]/page.tsx` виджет интегрирован в правый `sticky top-24` сайдбар под блоком категорий.
+        - В `frontend/src/app/workouts/[slug]/page.tsx` виджет встроен в сайдбар тренировки, заменив статический баннер-заглушку «Upgrade to Pro» с некликабельной кнопкой на реальный функциональный инструмент.
+    - **SEO Hub & Spoke Booster**: Усиливает передачу веса со всех страниц статей и воркаутов на 5 новых посадочных страниц калькуляторов (`/tools/*`) и центральный хаб `/tools`. [[frontend/fitness-calculators-pseo]]
+
 ## 2026-11-06
 - Развертывание Programmatic SEO (pSEO) архитектуры Hub & Spoke для фитнес-калькуляторов FitWay и создание 5 отдельных посадочных страниц.
     - **Hub & Spoke Architecture (`/tools` Hub + 5 Dedicated Spokes)**: Реализована стратегия безопасного масштабирования поискового трафика. Основной хаб `/tools` ([page.tsx](file:///d:/Users/doomi/ReactProjects/FitWay/frontend/src/app/tools/page.tsx)) усилен каталогом инструментов, 4-шаговой методикой работы и микроразметкой `ItemList`. Для защиты уже проиндексированных позиций сохранены якорные ссылки `#bmi` и `#calories`, а также исходная схема `SoftwareApplication`. [[frontend/fitness-calculators-pseo]] [[frontend/seo]]

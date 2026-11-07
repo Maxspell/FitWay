@@ -15,6 +15,7 @@ import ReactMarkdown from "react-markdown";
 import { Workout } from "@/interfaces/workout";
 import ShareButtons from "@/components/BlogPost/ShareButtons";
 import { getStrapiMedia } from "@/lib/utils";
+import FitnessToolsSidebarWidget from "@/components/calculators/FitnessToolsSidebarWidget";
 
 interface Props {
   params: {
@@ -129,19 +130,8 @@ export default async function WorkoutDetailsPage({ params }: Props) {
 
               <RelatedWorkouts workouts={relatedWorkouts} />
 
-              {/* Promotion or AdSense placeholder */}
-              <div className="mt-8 p-6 rounded-2xl bg-gradient-to-br from-[#FF8C00] to-[#E67E00] text-white shadow-xl overflow-hidden relative group">
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
-                  <svg width="100" height="100" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" />
-                  </svg>
-                </div>
-                <h4 className="text-xl font-bold mb-2">Upgrade to Pro</h4>
-                <p className="text-white/90 mb-4 text-sm">Get unlimited access to all workout programs and expert nutrition plans.</p>
-                <button className="w-full py-3 bg-white text-[#FF8C00] rounded-xl font-bold hover:bg-gray-100 transition-colors">
-                  Get Access Now
-                </button>
-              </div>
+              {/* Fitness Tools Suite Widget */}
+              <FitnessToolsSidebarWidget category={workout.category} />
             </div>
           </div>
         </div>
