@@ -2,6 +2,8 @@
 
 ## 🎯 Roadmaps & Strategy
 - [[roadmap/adsense-approval-plan]] — Пошаговый план прохождения модерации Google AdSense («Бесполезный контент / Low value content») с интерактивным чеклистом.
+- [[.agents/agents/seo-adsense-architect]] — Манифест AI-агента (Principal SEO Strategist & Technical Web Architect) для модерации Google AdSense, pSEO и максимизации RPM.
+- [[data/gsc-latest.json]] — Свежий кэш поисковой аналитики Google Search Console (клики, показы, CTR, низковисящие плоды), генерируемый `scripts/gsc_client.py`.
 
 ## 🏗️ Architecture
 - [[architecture/overview]]
@@ -40,6 +42,9 @@
 - [[frontend/adsense-privacy-policy-compliance]] — Аудит Privacy Policy для Google AdSense, регламент GDPR CMP-баннеров и устранение задваивания бренда в `<title>` (`| FitWay | FitWay`).
 - [[frontend/fitness-calculators-pseo]] — Архитектура Programmatic SEO (pSEO): Hub & Spoke модель (`/tools` + 5 посадочных страниц), интерактивные калькуляторы (Macro, 1RM, Ideal Weight, BMI, Calories), микроразметка Schema.org и синхронизация карт сайта.
 - [[frontend/navigation-mega-menu]] — Двухуровневая система навигации: премиальный десктопный мега-дропдаун (`left-0`, `w-[460px]`, центрированный glow), анимированный аккордеон мобильного меню, логотип в шапке дровера и официальные ссылки соцсетей.
+- [[frontend/gsc-api-integration]] — Интеграция с Google Search Console API через сервисный аккаунт Google Cloud, CLI-клиент `scripts/gsc_client.py`, кэширование аналитики в `brain/data/gsc-latest.json` и URL Inspection API.
+- [[frontend/gsc-crawled-not-indexed-resolution]] — Разбор и ликвидация статуса GSC «Проскановано – наразі не проіндексовано» (15 URL), устранение каннибализации запросов (Dumbbell Overload) и кольцевая перелинковка.
+- [[frontend/ai-agents-skills-architecture]] — Архитектура AI-агентов (`seo-adsense-architect`) и контентных навыков FitWay, E-E-A-T рецензенты (`reviewedBy`), анти-AI фильтры (запрет em dash) и Hub & Spoke перелинковка.
 
 ## 🚀 Deployment
 - [[deploy/cicd-vps-pipeline]] — Автоматизированный CI/CD пайплайн на Ubuntu VPS (GitHub Actions, SSH, selective build Strapi/Next.js, PM2).

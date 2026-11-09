@@ -1,5 +1,20 @@
 # Knowledge Base Activity Log
 
+## 2026-11-09
+- Комплексная модернизация контентных навыков FitWay в `.agents/skills/` под стандарты Google AdSense (E-E-A-T), pSEO и GSC.
+    - **`fitway-blog-post-generator`**: Внедрена обязательная связь `reviewedBy` (cross-peer review через сертифицированных специалистов NASM-CPT/RD/CSCS), создан единый реестр перелинковки `internal-links.md` с интеграцией 5 калькуляторов (`/tools/*`), добавлен шаг проверки живых запросов GSC (`brain/data/gsc-latest.json`), исправлен счетчик опубликованных статей до 28.
+    - **`fitway-workout-generator`**: Добавлены обязательные отношения авторов (`author`) и рецензентов (`reviewedBy`), создан реестр существующих тренировок `existing-workouts.md` (11 программ) для защиты от каннибализации, добавлено требование перелинковки на 1RM и Calorie калькуляторы в теле воркаута (`text`).
+    - **`fitway-category-seo`**: Создана недостающая структура `references/` (`category-map.md`, `style-rules.md`, `output-schema.md`), внедрены анти-AI правила (запрет em dash, блэклист клише), добавлены обязательные ссылки на калькуляторы в хаб-описания категорий.
+- Внедрение прямого подключения к Google Search Console API через сервисный аккаунт (`scripts/gsc_client.py`).
+    - **Security & Gitignore**: Добавлены правила `credentials/`, `credentials/*` и `brain/data/*.json` в `.gitignore` (с фиксацией `brain/data/.gitkeep`) для защиты закрытых ключей сервисного аккаунта и исключения мусорных diff'ов динамической статистики из истории Git.
+    - **Search Console Python Client (`scripts/gsc_client.py`)**: Разработан CLI-клиент на базе официальной библиотеки `google-api-python-client`. Скрипт автоматически обнаруживает сервисный ключ, подключается к `sc-domain:fitway.best`, вычисляет метрики эффективности (клики, показы, CTR, средняя позиция за 28 и 7 дней), проверяет статус гейткипера AdSense (таргет 15–30 кликов/день), парсит низковисящие плоды (позиции 10–30) и сохраняет структурированный отчет в `brain/data/gsc-latest.json`.
+    - **Live Testing Verified**: Первый запуск подтвердил успешное соединение: 895 показов, 11 кликов за 28 дней, средняя позиция 27.5, выделены топ-запросы ("fitway" с 74 показами на позиции 17.9) и лучшие посадочные страницы.
+    - **Agent Integration**: Агент `seo-adsense-architect` обучен вызывать скрипт командой `python scripts/gsc_client.py` и анализировать данные `brain/data/gsc-latest.json`.
+- Создание специализированного AI-агента `seo-adsense-architect` в директории `.agents/agents/`.
+    - **Dedicated Agent Definition (`.agents/agents/seo-adsense-architect.md`)**: Спроектирован и развернут AI-агент в роли Principal SEO Strategist & Technical Web Architect для `fitway.best`.
+    - **AdSense & SEO Playbook Integration**: Агент напрямую связан с базой знаний `brain/` (`roadmap/adsense-approval-plan.md`, `frontend/seo.md`, `frontend/fitness-calculators-pseo.md`, `bugs/*`, `AGENTS.md`).
+    - **Traffic Gatekeeper & Revenue Engine**: В манифест агента заложены правила предотвращения повторных отказов AdSense («Бесполезный контент / Under Construction»), удержание порога трафика (15–30+ кликов в день перед подачей заявки), высокодоходные рекламные слоты без ущерба для Core Web Vitals (CLS < 0.1) и протоколы сбора низковисящих плодов из Google Search Console.
+
 ## 2026-11-07
 - Разработка премиального интерактивного сайдбар-виджета `FitnessToolsSidebarWidget` для страниц блога и тренировок.
     - **Smart Context-Aware Sidebar Widget (`FitnessToolsSidebarWidget.tsx`)**: Разработан компактный интерактивный сайдбар-виджет в дизайн-системе FitWay (`#243447`, `#1B2B3B`, акцент `#FF8C00`, тонкие неоновые бордеры и glow-эффекты).

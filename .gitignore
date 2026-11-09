@@ -25,6 +25,14 @@ build/
 .strapi/
 .tmp/
 
+# Secrets and API credentials
+credentials/
+credentials/*
+
+# Analytics cache and dynamic GSC data
+brain/data/*.json
+!brain/data/.gitkeep
+
 # Environment files
 .env
 .env.local
