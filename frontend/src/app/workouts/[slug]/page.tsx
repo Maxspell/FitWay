@@ -102,7 +102,7 @@ export default async function WorkoutDetailsPage({ params }: Props) {
                 <ReactMarkdown>{workout.text}</ReactMarkdown>
               </div>
             )}
-            <ExpertTips category={workout.category} />
+            <ExpertTips category={workout.category} expertTips={workout.expertTips} />
             
             {/* Social Share Section */}
             <ShareButtons 

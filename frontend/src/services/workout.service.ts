@@ -7,7 +7,7 @@ const STRAPI_TOKEN = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 export async function getWorkoutBySlug(slug: string): Promise<Workout | null> {
   try {
     const response = await fetch(
-      `${STRAPI_URL}/api/workouts?filters[slug][$eq]=${slug}&populate[author][populate]=*&populate[reviewedBy][populate]=*&populate[exercises][populate]=*&populate[image][populate]=*`,
+      `${STRAPI_URL}/api/workouts?filters[slug][$eq]=${slug}&populate[author][populate]=*&populate[reviewedBy][populate]=*&populate[exercises][populate]=*&populate[image][populate]=*&populate[nutritionAdvice]=*&populate[expertTips]=*`,
       {
         headers: {
           Authorization: `Bearer ${STRAPI_TOKEN}`,
@@ -195,6 +195,10 @@ function getMockWorkout(slug: string): Workout | null {
         preWorkout: "Complex carbs 2 hours before",
         postWorkout: "Protein shake + banana",
         hydration: "2-3 liters daily"
+      },
+      expertTips: {
+        tips: "- Maintain steady pacing during the first 2 intervals rather than maxing out immediately.\n- Keep breathing continuous; exhale on the most explosive phase of each movement.\n- Active recovery between rounds: walk lightly instead of sitting down.",
+        commonMistakes: "- Sacrificing jumping mechanics when fatigue sets in.\n- Letting the hips sag into hyperextension during plank transitions.\n- Inadequate dynamic warm-up before entering high-heart-rate circuits."
       },
       exercises: [
         {

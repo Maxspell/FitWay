@@ -81,6 +81,11 @@
       "repeatable": false,
       "component": "fitness.nutrition-tips"
     },
+    "expertTips": {
+      "type": "component",
+      "repeatable": false,
+      "component": "fitness.expert-tips"
+    },
     "exercises": {
       "type": "component",
       "repeatable": true,

@@ -2,9 +2,13 @@ import { AlertCircle, Lightbulb } from "lucide-react";
 
 interface ExpertTipsProps {
   category: string;
+  expertTips?: {
+    tips?: string | string[];
+    commonMistakes?: string | string[];
+  };
 }
 
-const tipsData: Record<string, { tips: string[]; mistakes: string[] }> = {
+const categoryDefaults: Record<string, { tips: string[]; mistakes: string[] }> = {
   "weight-loss": {
     tips: [
       "Keep your heart rate elevated by minimizing rest between sets.",
@@ -67,8 +71,29 @@ const tipsData: Record<string, { tips: string[]; mistakes: string[] }> = {
   }
 };
 
-export default function ExpertTips({ category }: ExpertTipsProps) {
-  const data = tipsData[category] || tipsData["strength"]; // Fallback to strength
+function parseTipsList(input?: string | string[]): string[] {
+  if (!input) return [];
+  if (Array.isArray(input)) {
+    return input.map((item) => (typeof item === "string" ? item.trim() : String(item))).filter(Boolean);
+  }
+  if (typeof input === "string") {
+    return input
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .map((line) => line.replace(/^([*•\-–—]|\d+[\.\)])\s*/, "").trim())
+      .filter((line) => line.length > 0);
+  }
+  return [];
+}
+
+export default function ExpertTips({ category, expertTips }: ExpertTipsProps) {
+  const fallback = categoryDefaults[category] || categoryDefaults["strength"];
+
+  const parsedTips = parseTipsList(expertTips?.tips);
+  const parsedMistakes = parseTipsList(expertTips?.commonMistakes);
+
+  const tips = parsedTips.length > 0 ? parsedTips : fallback.tips;
+  const mistakes = parsedMistakes.length > 0 ? parsedMistakes : fallback.mistakes;
 
   return (
     <div className="space-y-6 mt-12">
@@ -80,7 +105,7 @@ export default function ExpertTips({ category }: ExpertTipsProps) {
           <h3 className="text-xl font-bold text-white">Expert Tips</h3>
         </div>
         <ul className="space-y-3 text-gray-300">
-          {data.tips.map((tip, index) => (
+          {tips.map((tip, index) => (
             <li key={index} className="flex gap-3">
               <span className="text-[#FF8C00] font-bold">•</span>
               <span>{tip}</span>
@@ -97,7 +122,7 @@ export default function ExpertTips({ category }: ExpertTipsProps) {
           <h3 className="text-xl font-bold text-white">Common Mistakes</h3>
         </div>
         <ul className="space-y-3 text-gray-300">
-          {data.mistakes.map((mistake, index) => (
+          {mistakes.map((mistake, index) => (
             <li key={index} className="flex gap-3">
               <span className="text-red-500 font-bold">×</span>
               <span>{mistake}</span>

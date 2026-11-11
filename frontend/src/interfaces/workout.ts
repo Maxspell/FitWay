@@ -41,6 +41,10 @@ export interface Workout {
     postWorkout?: string;
     hydration?: string;
   };
+  expertTips?: {
+    tips?: string | string[];
+    commonMistakes?: string | string[];
+  };
   exercises: Exercise[];
   text?: string;
   author?: Author;

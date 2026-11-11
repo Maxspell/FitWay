@@ -80,6 +80,11 @@ frontend/public/ads.txt
 # Project specific context (optional - uncomment if you don't want to track it)
 # PROJECT_CONTEXT.md
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
 # Content import scripts & data
 backend/scripts/push-post.js
 backend/scripts/import-posts.js

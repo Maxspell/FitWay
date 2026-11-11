@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_fitness_expert_tips",
+  "info": {
+    "displayName": "Expert Tips",
+    "icon": "lightbulb",
+    "description": "Expert coaching tips and common mistakes for the workout"
+  },
+  "options": {},
+  "attributes": {
+    "tips": {
+      "type": "text",
+      "required": false
+    },
+    "commonMistakes": {
+      "type": "text",
+      "required": false
+    }
+  }
+}
+
