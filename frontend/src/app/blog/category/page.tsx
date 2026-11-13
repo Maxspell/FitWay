@@ -211,7 +211,7 @@ export default async function CategoriesPage() {
                         <IconComponent className={`w-7 h-7 ${design.accentColor} transition-transform duration-500`} />
                       </div>
                       <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${design.badgeBg} uppercase tracking-wider`}>
-                        Category
+                        {category.name}
                       </span>
                     </div>
 

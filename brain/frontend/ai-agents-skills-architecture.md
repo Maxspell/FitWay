@@ -58,10 +58,13 @@ flowchart TD
   - **Верификация PubMed**: Минимум 3 прямые ссылки с валидацией реальных PMID через веб-поиск.
 
 ### 2. `fitway-workout-generator`
-- **Назначение**: Создание программ тренировок для коллекции Strapi `workout` и компонентов `fitness.exercise`, `fitness.nutrition-tips`.
+- **Назначение**: Создание программ тренировок для коллекции Strapi `workout` и компонентов `fitness.exercise`, `fitness.nutrition-tips`, `fitness.expert-tips`.
 - **Ключевые регламенты**:
+  - **Автоматический пуш в Strapi (Production Draft)**: Сохранение в `backend/scripts/workouts.json` и выполнение `node backend/scripts/push-workout.js backend/scripts/workouts.json --prod` со статусом `?status=draft` (`publishedAt: null`).
+  - **Visual Content Suggestions**: Обязательная генерация точного промпта для Hero-изображения тренировки (1200×630, 16:9, editorial fitness photography).
   - **Устранение анонимности**: Обязательные relations `"author": { "id": 1 }` (Richard Botich) и `"reviewedBy": [{ "id": 5 }]` (Mike Chen).
-  - **Реестр существующих воркаутов (`references/existing-workouts.md`)**: Защита от дублирования 11 опубликованных программ.
+  - **Реестр существующих воркаутов (`references/existing-workouts.md`)**: Защита от дублирования опубликованных программ (12 тренировок).
+  - **Блок Expert Tips & Common Mistakes**: Обязательная генерация компонента `expertTips` с уникальными 3 советами и 3 ошибками по макро-стратегии сессии. См. [[frontend/workout-expert-tips]].
   - **Перелинковка в поле `text` (300–800 слов)**: Обязательные ссылки на калькулятор 1RM (`/tools/one-rep-max-calculator`) для силовых или калькулятор калорий (`/tools/calorie-calculator`) для кардио.
 
 ### 3. `fitway-category-seo`

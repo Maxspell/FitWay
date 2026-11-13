@@ -18,6 +18,14 @@ The blog listing page was updated to improve UX and information density.
 - **Data Display**:
   - Integrated `readTime` for better user expectation management.
   - Switched to `createdAt` for dates across all views (Hero, general list, related articles, and homepage) formatted via `toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })`. See [[frontend/blog-date-sorting-metadata]].
+- **Sidebar Hierarchy & Category Navigation (`/blog/[slug]`)**:
+  - Replaced the legacy single-pill `Category` card with a dedicated `BlogCategoriesWidget` ("Explore Topics").
+  - Displays all 6 blog hub categories (*Nutrition*, *Muscle Building*, *Weight Loss*, *Training*, *Lifestyle*, *Motivation*) with semantic Lucide icons.
+  - Active state dynamically highlights the current article's category in `#FF8C00` while preserving clean link exploration to other categories.
+  - Sidebar layout order optimized for SEO and Core Web Vitals viewport budgeting:
+    1. `TableOfContents` (Article reading navigation)
+    2. `BlogCategoriesWidget` (Topical silo internal linking within initial fold)
+    3. `FitnessToolsSidebarWidget` (Interactive conversion suite)
 - **Related Articles**:
   - Filtered by category (`filters[category][slug][$eq]=...`) matching the current post, with fallback to latest articles to ensure 3 recommendations.
   - Layout upgraded from 2 columns to a 3-column responsive grid (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`). See [[frontend/related-articles]].

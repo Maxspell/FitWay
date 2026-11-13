@@ -76,6 +76,7 @@ const filters = [
 ---
 
 ## Связанные разделы базы знаний
+- [[frontend/workout-expert-tips]] — архитектура блока тренерских подсказок (Expert Tips & Common Mistakes) на детальной странице воркаута.
 - [[frontend/responsive-layout]] — стандарты адаптивных сеток и mobile-first стилей.
 - [[frontend/pagination-system]] — логика пагинации каталогов по 9 карточек и канонические URL.
 - [[frontend/seo]] — стратегия оптимизации хаб-страницы `/workouts` и борьба с Thin Content.

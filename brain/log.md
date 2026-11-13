@@ -1,5 +1,42 @@
 # Knowledge Base Activity Log
 
+## 2026-11-13
+- Генерация и публикация в Strapi (draft) новой SEO-оптимизированной статьи блога `#30`: `Push Pull Legs (PPL) Routine: The Complete Hypertrophy Split Guide`.
+    - **Категория & Аудитория**: Muscle Building (ID: 12), ориентирована на intermediate и advanced атлетов, ищущих сбалансированный сплит для набора сухой мышечной массы без перетренированности.
+    - **E-E-A-T & Кросс-рецензирование**: Автор Mike Chen (ID: 5, CSCS, CISSN), Рецензент Richard Botich (ID: 1, NASM-CPT, CES).
+    - **Контент & Научная база**: Объем 1796 слов (без единого длинного тире `—`), 2 практичные сравнительные таблицы (3-day vs 6-day split и Master PPL Blueprint), 3 верифицированных исследования PubMed (Ramos-Campo et al., 2024, PMID: 38595233; Schoenfeld et al., 2016, PMID: 27102172; Schoenfeld et al., 2017, PMID: 27433992).
+    - **Hub & Spoke перелинковка**: Интегрированы ссылки на интерактивные инструменты `[One-Rep Max (1RM) Calculator](/tools/one-rep-max-calculator)`, `[FitWay Daily Calorie & TDEE Calculator](/tools/calorie-calculator)`, `[FitWay Macro Splitter Calculator](/tools/macro-calculator)`, тренировки `[Gym Beginner Foundation](/workouts/beginner-strength-training-gym-foundation)`, `[Full Body Strength Routine](/workouts/full-body-strength-workout-compound-barbell-dumbbell)` и хаб блога `[Muscle Building blog hub](/blog/category/muscle-building)`.
+    - **FAQ**: Завершающий блок строго из 3 вопросов People Also Ask (по 75-77 слов каждый), ничего не следует после FAQ.
+    - **Strapi 5 Integration**: Сохранено в `backend/scripts/posts.json`, успешно отправлено в production Strapi CMS (`https://api.fitway.best`) в статусе DRAFT (`Draft ID: 140`), реестр `references/existing-posts.md` обновлен до 30 статей.
+
+## 2026-11-11
+- Исправление бага авто-публикации в `push-workout.js` и синхронизация workflow воркаутов с постами блога.
+    - **Диагностика бага `published` статуса**: В `push-workout.js` отсутствовал параметр `?status=draft` в эндпоинте `/api/workouts` и не передавалось явное `publishedAt: null`. В Strapi 5 (Document Service API) создание записи через REST API без явного указания `status=draft` приводит к немедленной публикации записи. Скрипт исправлен по аналогии с `push-post.js`: теперь всегда передается `publishedAt: isPublish ? new Date().toISOString() : null` и эндпоинт формируется как `${baseUrl}/api/workouts${isPublish ? '' : '?status=draft'}`.
+    - **Промпт для Hero-обложки тренировки**: Сгенерирован детализированный промпт для генераторов изображений (Midjourney/Flux/DALL-E 3) в формате 1200×630 (16:9) для тренировки `Intermediate Dumbbell Muscle Builder: Upper Body Hypertrophy`.
+    - **Стандартизация автоматического пайплайна в агенте и навыке**: В `.agents/skills/fitway-workout-generator/SKILL.md` и `.agents/agents/seo-adsense-architect.md` внедрен автоматический пайплайн (Шаги 4 и 5): после валидации агент автоматически сохраняет тренировку в `backend/scripts/workouts.json`, отправляет в Strapi в статусе DRAFT (`--prod`), обновляет реестр `existing-workouts.md` и выдает готовый промпт для Hero-изображения.
+- Генерация и публикация в Strapi (draft) новой SEO-оптимизированной тренировки `#12`: `Intermediate Dumbbell Muscle Builder: Upper Body Hypertrophy`.
+    - **SEO-архитектура и уникальность**: Агент `seo-adsense-architect` заполнил нишу `muscle-gain` (уровень Intermediate, Dumbbells + Adjustable Bench), в которой ранее присутствовал лишь один начальный bodyweight-воркаут.
+    - **E-E-A-T & Peer Review**: Назначен автор Richard Botich (`author: { id: 1 }`, NASM-CPT) и независимый рецензент Mike Chen (`reviewedBy: [{ id: 5 }]`, CSCS).
+    - **Контент & Перелинковка**: Текст (374 слова) исключает длинные тире (`—`), детально раскрывает протокол двойной прогрессии и эксцентрического контроля (3-0-1-0 tempo), содержит контекстные ссылки на инструменты `[FitWay One-Rep Max Calculator](/tools/one-rep-max-calculator)` и `[FitWay Macro Calculator](/tools/macro-calculator)`.
+    - **Комплекс упражнений**: Включает 7 сбалансированных движений с подробной пошаговой техникой, частыми ошибками и подсказками по биомеханике. Внедрен новый компонент `expertTips` (макро-стратегия и частые ошибки тренировки).
+    - **Strapi 5 Integration**: Тренировка сохранена в `backend/scripts/workouts.json`, реестр `existing-workouts.md` обновлен до 12 тренировок, успешно выполнен push в Strapi CMS (Production) в статусе **DRAFT** (`ID: 54`).
+- Архитектура и реализация динамического блока тренерских подсказок (`Expert Tips & Common Mistakes`) для детальных страниц тренировок (`/workouts/[slug]`).
+    - **Анализ ценности и отказ от чисто категориального хардкода**: Проанализирован исходный блок в `ExpertTips.tsx` (содержал статические тексты для 5 enum-категорий). Установлено, что одинаковый текст на 30+ страницах воркаутов создает дублированный boilerplate-контент, ухудшающий оценку Google AdSense («Бесполезный контент / Low Value Content»). Принято гибридное решение: хранение уникальных подсказок на уровне тренировки в Strapi 5 с автоматическим fallback на категориальные подсказки в Next.js 14 при отсутствии данных. [[frontend/workout-expert-tips]] [[frontend/workouts-ui]] [[frontend/seo]]
+    - **Бэкенд Strapi 5 (Компонент `fitness.expert-tips`)**: Создан компонент `backend/src/components/fitness/expert-tips.json` с полями `tips` (`type: "text"`) и `commonMistakes` (`type: "text"`). В схему коллекции `backend/src/api/workout/content-types/workout/schema.json` подключен нерекурсивный компонент `expertTips`. [[backend/strapi-content-types]] [[backend/strapi-v5-collections]]
+    - **Фронтенд Next.js 14 (App Router & Service Layer)**:
+        - В `frontend/src/interfaces/workout.ts` добавлен типизированный интерфейс `expertTips`.
+        - В `frontend/src/services/workout.service.ts` метод `getWorkoutBySlug` дополнен явной выборкой `&populate[nutritionAdvice]=*&populate[expertTips]=*`.
+        - В `frontend/src/app/workouts/[slug]/page.tsx` обеспечена передача `expertTips={workout.expertTips}` в компонент.
+        - В `frontend/src/components/workouts/ExpertTips.tsx` разработан парсер `parseTipsList`, поддерживающий многострочный текст из админки Strapi (с очисткой маркеров `- `, `• `, `* `, `1. `) и массивы JSON с сохранением полной обратной совместимости через `categoryDefaults`. [[frontend/workout-expert-tips]] [[frontend/data-fetching-pattern]]
+    - **Модернизация контентного навыка `fitway-workout-generator`**:
+        - В `.agents/skills/fitway-workout-generator/SKILL.md` добавлены правила генерации макро-стратегии всей сессии и чеклист валидации поля `expertTips`.
+        - В `references/json-schema.md` и `references/ui-structure.md` зафиксирована спецификация схемы Strapi и маппинг компонентов UI. [[frontend/ai-agents-skills-architecture]]
+    - **Скрипты синхронизации (`push-workout.js` & `import-workouts.js`) и валидация данных**:
+        - В `backend/scripts/push-workout.js` и `backend/scripts/import-workouts.js` добавлен санитайзер внутренних ID Strapi для `expertTips`.
+        - Файл `backend/scripts/workouts.json` проверен и приведен в 100% соответствие со схемой: внедрен блок `expertTips` под программу *Intermediate Legs HIIT*, проставлены E-E-A-T авторы (`author: { id: 1 }`, `reviewedBy: [{ id: 5 }]`) и контекстная ссылка на калькулятор калорий (`/tools/calorie-calculator`). [[frontend/workout-expert-tips]]
+- Исключение кэша компиляции Python из репозитория Git (`__pycache__`).
+    - В корневой `.gitignore` добавлены правила `__pycache__/`, `*.py[cod]` и `*$py.class`, предотвращающие непреднамеренную фиксацию временных артефактов Python в репозитории.
+
 ## 2026-11-09
 - Комплексная модернизация контентных навыков FitWay в `.agents/skills/` под стандарты Google AdSense (E-E-A-T), pSEO и GSC.
     - **`fitway-blog-post-generator`**: Внедрена обязательная связь `reviewedBy` (cross-peer review через сертифицированных специалистов NASM-CPT/RD/CSCS), создан единый реестр перелинковки `internal-links.md` с интеграцией 5 калькуляторов (`/tools/*`), добавлен шаг проверки живых запросов GSC (`brain/data/gsc-latest.json`), исправлен счетчик опубликованных статей до 28.

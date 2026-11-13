@@ -15,6 +15,8 @@ import { slugify } from "@/utils/slugify";
 import ShareButtons from "@/components/BlogPost/ShareButtons";
 import TweetEmbed from "@/components/BlogPost/TweetEmbed";
 import FitnessToolsSidebarWidget from "@/components/calculators/FitnessToolsSidebarWidget";
+import BlogCategoriesWidget from "@/components/BlogPost/BlogCategoriesWidget";
+import { getCategories } from "@/services/post.service";
 import React from "react";
 
 // Helper to extract text from ReactMarkdown children
@@ -165,7 +167,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // Component
 export default async function BlogPost({ params }: Props) {
-  const post = await getBlogPostBySlug(params.slug);
+  const [post, categories] = await Promise.all([
+    getBlogPostBySlug(params.slug),
+    getCategories(),
+  ]);
 
   if (!post) {
     notFound();
@@ -315,20 +320,11 @@ export default async function BlogPost({ params }: Props) {
           <div className="w-full lg:col-span-4 space-y-6 lg:sticky lg:top-24 h-fit">
             <TableOfContents />
 
-            {/* Related Categories */}
-            <div className="card">
-              <h3 className="text-xl font-bold mb-4">Category</h3>
-              <div className="flex flex-wrap gap-2">
-                {post.category && (
-                  <Link
-                    href={`/blog/category/${post.category.slug}`}
-                    className="px-3 py-1 bg-[#1B2B3B] text-[#FF8C00] rounded-full text-sm hover:bg-[#2d4258] transition-colors"
-                  >
-                    {post.category.name}
-                  </Link>
-                )}
-              </div>
-            </div>
+            {/* Explore Topics (Categories Silo Navigation) */}
+            <BlogCategoriesWidget
+              categories={categories}
+              currentCategorySlug={post.category?.slug}
+            />
 
             {/* Smart Fitness Tools Suite Widget */}
             <FitnessToolsSidebarWidget category={post.category?.name || post.category?.slug} />

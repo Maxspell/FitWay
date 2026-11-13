@@ -69,6 +69,12 @@ export const metadata: Metadata = {
 };
 ```
 
+### Card Semantic Architecture & Entity Badging:
+В каждой карточке категории верхний правый бейдж теперь отображает каноническое название сущности (`category.name`: *Nutrition, Muscle Building, Training, Weight Loss, Lifestyle, Motivation*) вместо статического служебного слова `Category`. Это:
+1. Устраняет мусорный текст (boilerplate noise) для поисковых ботов.
+2. Обеспечивает точное анкорное вхождение сущности первого уровня (Primary Entity).
+3. Позволяет пользователю мгновенно сканировать каталог тем глазами, сохраняя при этом расширенный SEO-заголовок `category.title` в теге H2.
+
 ### Schema.org Микроразметка:
 В страницу встроен JSON-LD со схемами `CollectionPage` и `ItemList`, перечисляющий все категории со ссылками `https://fitway.best/blog/category/${cat.slug}`, что улучшает краулинг сайта роботами Google и LLM-агентами.
 

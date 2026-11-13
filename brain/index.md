@@ -11,8 +11,10 @@
 
 ## 🛠️ Backend (Strapi v5)
 - [[backend/strapi-v5-collections]] — How to create collections and handle API Token permissions.
+- [[backend/strapi-content-types]] — Core content types, collections, and fitness components in Strapi v5.
 
 ## 🎨 Frontend
+- [[frontend/workout-expert-tips]] — Архитектура блока тренерских подсказок (Expert Tips & Common Mistakes): компонент Strapi 5, Service populate, парсер с fallback на категории и синхронизация с AI Skill.
 - [[frontend/agentic-web-llms-txt]] — Подготовка сайта для AI-агентов (Agentic Browsing, Google Lighthouse) и спецификация `llms.txt`.
 - [[frontend/accessibility-wcag-fixes]] — Доступность (a11y/WCAG AA): контрастность кнопок (#C25700) и плейсхолдеров в тёмной теме (#D1D5DB / text-gray-300), иерархия заголовков (h1-h2-h3).
 - [[frontend/image-delivery-optimization]] — Оптимизация доставки изображений: локализация в WebP (public/), калибровка sizes и ускорение LCP/FCP.
