@@ -176,36 +176,9 @@ export default async function AuthorProfilePage({ params }: Props) {
           "name": "FitWay",
           "url": "https://fitway.best"
         },
-        "breadcrumb": {
-          "@id": `https://fitway.best/authors/${author.slug}/#breadcrumb`
-        },
         "mainEntity": {
           "@id": `https://fitway.best/authors/${author.slug}/#person`
         }
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": `https://fitway.best/authors/${author.slug}/#breadcrumb`,
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://fitway.best"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Editorial Board",
-            "item": "https://fitway.best/authors"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
-            "name": author.name,
-            "item": `https://fitway.best/authors/${author.slug}`
-          }
-        ]
       },
       {
         "@type": "Person",
@@ -237,22 +210,13 @@ export default async function AuthorProfilePage({ params }: Props) {
   };
 
   return (
-    <article className="min-h-screen bg-[#0F1720] text-white py-12 md:py-16">
+    <article className="min-h-screen bg-[#0F1720] text-white pt-14 sm:pt-16 md:pt-20 pb-12 md:pb-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
       <div className="container mx-auto px-4 max-w-6xl">
-        {/* Navigation Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6 flex items-center space-x-2 text-xs md:text-sm text-gray-400">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span>/</span>
-          <Link href="/authors" className="hover:text-white transition-colors">Editorial Board</Link>
-          <span>/</span>
-          <span className="text-[#FF8C00] font-semibold">{author.name}</span>
-        </nav>
-
         {/* Hero Profile Section */}
         <div className="rounded-3xl bg-gradient-to-br from-[#1B2B3B] to-[#121C26] border border-white/10 p-8 md:p-12 mb-12 relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#FF8C00] opacity-5 rounded-full blur-[100px] pointer-events-none" />
