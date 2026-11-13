@@ -1,3 +1,26 @@
+export interface AuthorItemSummary {
+  id: number;
+  documentId?: string;
+  title: string;
+  slug: string;
+  excerpt?: string;
+  description?: string;
+  readTime?: string;
+  difficulty?: string;
+  duration?: number;
+  image?: {
+    url: string;
+    alternativeText?: string;
+  };
+  category?: {
+    id: number;
+    name: string;
+    slug: string;
+  };
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface Author {
   id: number;
   documentId: string;
@@ -17,4 +40,8 @@ export interface Author {
   linkedin?: string;
   twitter?: string;
   instagram?: string;
+  articles?: AuthorItemSummary[];
+  articlesReviewed?: AuthorItemSummary[];
+  workoutsCreated?: AuthorItemSummary[];
+  workoutsReviewed?: AuthorItemSummary[];
 }
