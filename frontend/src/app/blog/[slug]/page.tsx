@@ -182,8 +182,8 @@ export default async function BlogPost({ params }: Props) {
   const primaryReviewer = post.reviewedBy && post.reviewedBy.length > 0 ? post.reviewedBy[0] : null;
 
   return (
-    <article className="py-12">
-      <div className="container mx-auto px-4">
+    <article className="py-8 sm:py-12">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Hero Section */}
         <div className="relative h-72 sm:h-96 md:h-[500px] mb-8 rounded-xl overflow-hidden">
           <Image
@@ -240,24 +240,112 @@ export default async function BlogPost({ params }: Props) {
 
         {/* Content */}
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8">
-          <div className="w-full lg:col-span-8">
-            <div className="card prose prose-invert prose-orange max-w-none">
+          <div className="w-full lg:col-span-8 min-w-0">
+            <div className="card p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl sm:rounded-3xl prose prose-invert prose-orange max-w-none break-words">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
                   p: ({ node, children, ...props }) => {
                     // Check if children contain a TweetEmbed by checking child elements
-                    return <div className="mb-4 text-gray-300 leading-relaxed" {...props}>{children}</div>;
+                    return (
+                      <div
+                        className="mb-4 text-gray-300 text-[15px] sm:text-base leading-relaxed sm:leading-loose"
+                        {...props}
+                      >
+                        {children}
+                      </div>
+                    );
                   },
                   h2: ({ node, ...props }) => {
                     const text = React.Children.toArray(props.children).reduce(flatten, "");
                     const id = slugify(text);
-                    return <h2 id={id} {...props} />;
+                    return (
+                      <h2
+                        id={id}
+                        className="text-xl sm:text-2xl md:text-3xl font-bold text-white mt-8 mb-4 tracking-tight scroll-mt-24"
+                        {...props}
+                      />
+                    );
                   },
                   h3: ({ node, ...props }) => {
                     const text = React.Children.toArray(props.children).reduce(flatten, "");
                     const id = slugify(text);
-                    return <h3 id={id} {...props} />;
+                    return (
+                      <h3
+                        id={id}
+                        className="text-lg sm:text-xl md:text-2xl font-semibold text-white mt-6 mb-3 tracking-tight scroll-mt-24"
+                        {...props}
+                      />
+                    );
+                  },
+                  ul: ({ node, children, ...props }) => (
+                    <ul className="my-4 space-y-2 list-disc list-outside pl-5 sm:pl-6 text-gray-300 text-[15px] sm:text-base leading-relaxed" {...props}>
+                      {children}
+                    </ul>
+                  ),
+                  ol: ({ node, children, ...props }) => (
+                    <ol className="my-4 space-y-2 list-decimal list-outside pl-5 sm:pl-6 text-gray-300 text-[15px] sm:text-base leading-relaxed" {...props}>
+                      {children}
+                    </ol>
+                  ),
+                  li: ({ node, children, ...props }) => (
+                    <li className="pl-1 text-gray-300 leading-relaxed" {...props}>
+                      {children}
+                    </li>
+                  ),
+                  table: ({ node, children, ...props }) => (
+                    <div className="my-6 w-full overflow-hidden rounded-xl border border-white/10 bg-[#1A2634]/60 shadow-md">
+                      <div className="overflow-x-auto">
+                        <table className="w-full min-w-[520px] border-collapse text-left text-xs sm:text-sm" {...props}>
+                          {children}
+                        </table>
+                      </div>
+                    </div>
+                  ),
+                  thead: ({ node, children, ...props }) => (
+                    <thead className="bg-[#121C26]/90 text-[#FF8C00] text-xs uppercase tracking-wider font-semibold border-b border-white/10" {...props}>
+                      {children}
+                    </thead>
+                  ),
+                  th: ({ node, children, ...props }) => (
+                    <th className="px-3.5 sm:px-4 py-3 font-semibold text-white/90 border-b border-white/10 whitespace-nowrap" {...props}>
+                      {children}
+                    </th>
+                  ),
+                  td: ({ node, children, ...props }) => (
+                    <td className="px-3.5 sm:px-4 py-3 border-b border-white/5 text-gray-300 text-xs sm:text-sm leading-normal" {...props}>
+                      {children}
+                    </td>
+                  ),
+                  tr: ({ node, children, ...props }) => (
+                    <tr className="border-b border-white/5 transition-colors hover:bg-white/[0.03] last:border-b-0" {...props}>
+                      {children}
+                    </tr>
+                  ),
+                  blockquote: ({ node, children, ...props }) => (
+                    <blockquote className="my-5 border-l-4 border-[#FF8C00] bg-white/[0.03] rounded-r-xl px-4 py-3 text-gray-300 italic text-sm sm:text-base" {...props}>
+                      {children}
+                    </blockquote>
+                  ),
+                  pre: ({ node, children, ...props }) => (
+                    <div className="my-5 w-full overflow-hidden rounded-xl border border-white/10 bg-[#121C26]">
+                      <div className="overflow-x-auto p-4">
+                        <pre className="text-xs sm:text-sm font-mono text-gray-200" {...props}>
+                          {children}
+                        </pre>
+                      </div>
+                    </div>
+                  ),
+                  code: ({ node, className, children, ...props }) => {
+                    const isInline = !className && typeof children === "string";
+                    if (isInline) {
+                      return (
+                        <code className="px-1.5 py-0.5 rounded bg-white/10 text-[#FF8C00] font-mono text-xs sm:text-sm" {...props}>
+                          {children}
+                        </code>
+                      );
+                    }
+                    return <code className={className} {...props}>{children}</code>;
                   },
                   a: ({ node, href, children, ...props }) => {
                     if (href) {

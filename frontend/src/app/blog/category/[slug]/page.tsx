@@ -155,8 +155,41 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 
         {category.text?.trim() && (
           <section className="mt-16 pt-12 border-t border-white/10">
-            <div className="card prose prose-invert prose-orange max-w-none">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <div className="card p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl sm:rounded-3xl prose prose-invert prose-orange max-w-none break-words">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  table: ({ node, children, ...props }) => (
+                    <div className="my-6 w-full overflow-hidden rounded-xl border border-white/10 bg-[#1A2634]/60 shadow-md">
+                      <div className="overflow-x-auto">
+                        <table className="w-full min-w-[520px] border-collapse text-left text-xs sm:text-sm" {...props}>
+                          {children}
+                        </table>
+                      </div>
+                    </div>
+                  ),
+                  thead: ({ node, children, ...props }) => (
+                    <thead className="bg-[#121C26]/90 text-[#FF8C00] text-xs uppercase tracking-wider font-semibold border-b border-white/10" {...props}>
+                      {children}
+                    </thead>
+                  ),
+                  th: ({ node, children, ...props }) => (
+                    <th className="px-3.5 sm:px-4 py-3 font-semibold text-white/90 border-b border-white/10 whitespace-nowrap" {...props}>
+                      {children}
+                    </th>
+                  ),
+                  td: ({ node, children, ...props }) => (
+                    <td className="px-3.5 sm:px-4 py-3 border-b border-white/5 text-gray-300 text-xs sm:text-sm leading-normal" {...props}>
+                      {children}
+                    </td>
+                  ),
+                  tr: ({ node, children, ...props }) => (
+                    <tr className="border-b border-white/5 transition-colors hover:bg-white/[0.03] last:border-b-0" {...props}>
+                      {children}
+                    </tr>
+                  ),
+                }}
+              >
                 {category.text}
               </ReactMarkdown>
             </div>

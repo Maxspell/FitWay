@@ -18,7 +18,7 @@ export default function ReviewedByBox({ reviewer, reviewDate, isMedical = false 
     : 'Recently';
 
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#12232F] via-[#101E2B] to-[#0A131C] border border-[#00C853]/25 p-6 sm:p-7 mt-8 transition-all duration-300 hover:border-[#00C853]/50 hover:shadow-[0_0_25px_rgba(0,200,83,0.12)]">
+    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#12232F] via-[#101E2B] to-[#0A131C] border border-[#00C853]/25 p-4 sm:p-6 md:p-7 mt-8 transition-all duration-300 hover:border-[#00C853]/50 hover:shadow-[0_0_25px_rgba(0,200,83,0.12)]">
       {/* Subtle top accent line */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00C853]/70 to-transparent" />
       

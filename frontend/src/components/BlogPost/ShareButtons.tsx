@@ -107,7 +107,7 @@ export default function ShareButtons({
   return (
     <div
       id={id}
-      className={`relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1B2B3B]/90 via-[#243447]/80 to-[#1B2B3B]/90 border border-white/10 p-5 sm:p-6 my-8 backdrop-blur-md shadow-lg shadow-black/20 scroll-mt-28 ${className}`}
+      className={`relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#1B2B3B]/90 via-[#243447]/80 to-[#1B2B3B]/90 border border-white/10 p-4 sm:p-6 my-8 backdrop-blur-md shadow-lg shadow-black/20 scroll-mt-28 ${className}`}
     >
       {/* Decorative ambient background blur */}
       <div className="absolute top-0 right-1/4 w-48 h-24 bg-[#FF8C00]/10 rounded-full blur-3xl pointer-events-none" />

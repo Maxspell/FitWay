@@ -15,7 +15,7 @@ export default function AuthorBox({ author }: AuthorBoxProps) {
   return (
     <Link 
       href={`/authors/${author.slug}`}
-      className="block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#1B2B3B] to-[#121C26] border border-white/10 p-6 sm:p-8 mt-12 group transition-all duration-300 hover:border-[#FF8C00]/40 hover:shadow-[0_0_30px_rgba(255,140,0,0.15)] cursor-pointer"
+      className="block relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#1B2B3B] to-[#121C26] border border-white/10 p-4 sm:p-6 md:p-8 mt-10 sm:mt-12 group transition-all duration-300 hover:border-[#FF8C00]/40 hover:shadow-[0_0_30px_rgba(255,140,0,0.15)] cursor-pointer"
     >
       {/* Decorative gradient overlay */}
       <div className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-[#FF8C00] opacity-5 rounded-full blur-[80px] pointer-events-none transition-opacity duration-500 group-hover:opacity-10" />
