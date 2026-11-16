@@ -1,5 +1,28 @@
 # Knowledge Base Activity Log
 
+## 2026-11-14
+- Синхронизация и унификация регалий Майка Чена (`CSCS, CrossFit L2`) во всех точках платформы:
+    - В `Navbar.tsx` подпись обновлена на `Strength & Conditioning (CSCS, CrossFit L2)`.
+    - В `MobileMenu.tsx` пункт обновлен на `Mike Chen (CSCS, CrossFit L2)`.
+    - В тексте `fullBio` (Markdown) регалии зафиксированы как `CSCS, CrossFit L2` с внешними ссылками на NSCA (`nsca.com`) и CrossFit (`crossfit.com`).
+- Синхронизация регалий Ричарда Ботича в меню сайта (`Navbar.tsx` и `MobileMenu.tsx`) с админкой Strapi:
+    - Обновлено описание автора в выпадающем меню с абстрактного `CES` на официальные сертификаты из админки: `Biomechanics & Conditioning (NASM-CPT, ACE)` и `Richard Botich (NASM-CPT, ACE)`.
+- Интеграция раздела авторов и экспертов (`/authors`) в главное навигационное меню сайта (десктопный `Navbar.tsx` и `MobileMenu.tsx`):
+    - **Выпадающее меню 2-го уровня (Authors Dropdown)**: По аналогии с разделом `Tools`, для пункта `Authors` реализовано премиальное выпадающее меню с двухуровневой перелинковкой.
+    - **Прямые ссылки на профили экспертов**: В меню выведены ссылки на всех 3 специалистов с их регалиями, иконками и тематическими бейджами:
+      - *Mike Chen* (CSCS, CISSN) &rarr; `/authors/mike-chen` (Badge: *Strength*)
+      - *Sarah Johnson* (MS, RD, ISSN) &rarr; `/authors/sarah-johnson` (Badge: *Nutrition*)
+      - *Richard Botich* (NASM-CPT, CES) &rarr; `/authors/richard-botich` (Badge: *Biomechanics*)
+      - Сквозная плашка-заголовок &rarr; переход на главный хаб редколлегии `/authors` (*All Experts Hub*).
+    - **Адаптивность и мобильное меню (`MobileMenu.tsx`)**: Пункт `Authors` добавлен в список основных разделов с поддержкой аккордеонного раскрытия списка авторов (`hasSubmenu: true`, `submenuKey: "authors"`).
+    - **SEO & PageRank**: Наличие сквозных ссылок на авторов в основном хедере передаёт максимальный внутренний вес на профили экспертов со 100% страниц домена и закрывает требования E-E-A-T для модерации Google AdSense.
+- SEO, E-E-A-T и PageRank аудит биографии Сары Джонсон (`/authors/sarah-johnson`) и формулирование стандарта `fullBio`:
+    - **Диагностика PageRank Cul-de-Sac**: Профиль ведущего диетолога аккумулирует входящий ссылочный вес со всех написанных и отрецензированных статей, но тело биографии содержало 0 контекстных гиперссылок, нарушая модель Reasonable Surfer (Google Patent US8117209B2).
+    - **YMYL E-E-A-T валидация**: Регалии Registered Dietitian (RD) и ISSN привязаны к внешним трастовым реестрам Academy of Nutrition and Dietetics (`eatright.org`), International Society of Sports Nutrition (`sportsnutritionsociety.org`) и PubMed для сущностного маппинга (Entity Reconciliation).
+    - **Внутренняя кластерная перелинковка**: Разработан расширенный текст `fullBio` (Markdown) с органичной интеграцией ссылок на `/editorial-policy`, хабы блога `/blog/category/nutrition` и `/blog/category/weight-loss`, инструменты `/tools/calorie-calculator`, `/tools/macro-calculator`, `/tools/bmi-calculator` и каталог `/workouts`.
+    - **Соблюдение редполитики**: Структура заголовков H3 (`###`) строго под `<h2>About Sarah Johnson</h2>`, 0 длинных тире `—`, чистая разметка Tailwind typography (`prose prose-invert prose-orange`).
+    - **Документация**: Актуализирована спецификация в `brain/frontend/authors-system.md`. [[frontend/authors-system]]
+
 ## 2026-11-13
 - Устранение дублирования хлебных крошек на детальных страницах авторов (`/authors/[slug]`):
     - **Причина бага**: В корневом макете `frontend/src/app/layout.tsx` уже подключен глобальный компонент `Breadcrumbs` (в контейнере `absolute top-0 w-full z-10`), который автоматически формирует цепочку на основе URL (`Home > Authors > [Author Name]`). Локальный тег `<nav aria-label="Breadcrumb">`, добавленный непосредственно в разметку `authors/[slug]/page.tsx`, создавал вторую визуальную строку хлебных крошек прямо под глобальной.

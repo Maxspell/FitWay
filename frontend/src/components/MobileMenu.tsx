@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { 
   Home, 
   FileText, 
@@ -20,14 +20,25 @@ import {
   Heart,
   Instagram,
   Facebook,
-  Twitter
+  Twitter,
+  ShieldCheck,
+  Award
 } from "lucide-react";
 
-const menuItems = [
+interface MenuItem {
+  href: string;
+  label: string;
+  icon: any;
+  hasSubmenu?: boolean;
+  submenuKey?: "tools" | "authors";
+}
+
+const menuItems: MenuItem[] = [
   { href: "/", label: "Home", icon: Home },
   { href: "/blog", label: "Blog", icon: FileText },
   { href: "/workouts", label: "Workouts", icon: Dumbbell },
-  { href: "/tools", label: "Tools", icon: Calculator, hasSubmenu: true },
+  { href: "/tools", label: "Tools", icon: Calculator, hasSubmenu: true, submenuKey: "tools" },
+  { href: "/authors", label: "Authors", icon: ShieldCheck, hasSubmenu: true, submenuKey: "authors" },
   { href: "/about", label: "About Us", icon: Info },
   { href: "/contact", label: "Contact", icon: Mail },
 ];
@@ -41,6 +52,13 @@ const toolSubItems = [
   { href: "/tools/ideal-weight-calculator", label: "Ideal Body Weight", icon: Heart, badge: "Baseline" },
 ];
 
+const authorSubItems = [
+  { href: "/authors", label: "All Editorial Board Hub", icon: ShieldCheck, badge: "Hub" },
+  { href: "/authors/mike-chen", label: "Mike Chen (CSCS, CrossFit L2)", icon: Dumbbell, badge: "Strength" },
+  { href: "/authors/sarah-johnson", label: "Sarah Johnson (MS, RD, CSSD)", icon: Apple, badge: "Nutrition" },
+  { href: "/authors/richard-botich", label: "Richard Botich (NASM-CPT, ACE)", icon: Award, badge: "Biomechanics" },
+];
+
 const socialLinks = [
   { href: "https://www.facebook.com/fitway.best/", label: "Facebook", icon: Facebook },
   { href: "https://www.instagram.com/fitway.best/", label: "Instagram", icon: Instagram },
@@ -51,13 +69,17 @@ export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const [isToolsExpanded, setIsToolsExpanded] = useState(pathname.startsWith("/tools"));
+  const [isAuthorsExpanded, setIsAuthorsExpanded] = useState(pathname.startsWith("/authors"));
   const menuRef = useRef<HTMLElement>(null);
 
-  // Close menu on route change & keep tools open if on a tools route
+  // Close menu on route change & keep submenu open if on matching route
   useEffect(() => {
     setIsOpen(false);
     if (pathname.startsWith("/tools")) {
       setIsToolsExpanded(true);
+    }
+    if (pathname.startsWith("/authors")) {
+      setIsAuthorsExpanded(true);
     }
   }, [pathname]);
 
@@ -87,65 +109,62 @@ export default function MobileMenu() {
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
   // Animation variants
-  const backdropVariants = {
+  const backdropVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.3 } },
     exit: { opacity: 0, transition: { duration: 0.3 } }
   };
 
-  const menuVariants = {
-    hidden: { x: "100%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } },
+  const menuVariants: Variants = {
+    hidden: { x: "100%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } },
     visible: { 
       x: 0, 
       transition: { 
         duration: 0.4, 
-        ease: [0.76, 0, 0.24, 1] as [number, number, number, number],
-        when: "beforeChildren",
+        ease: [0.76, 0, 0.24, 1],
         staggerChildren: 0.05,
+        delayChildren: 0.1
       } 
     },
-    exit: { x: "100%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } }
+    exit: { 
+      x: "100%", 
+      transition: { 
+        duration: 0.3, 
+        ease: [0.76, 0, 0.24, 1],
+        staggerChildren: 0.02,
+        staggerDirection: -1
+      } 
+    }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" as const } },
-    exit: { opacity: 0, x: 20, transition: { duration: 0.2 } }
+    visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" } },
+    exit: { opacity: 0, x: 10, transition: { duration: 0.15 } }
   };
 
   return (
     <div className="md:hidden">
-      {/* Toggle Button */}
+      {/* Trigger Button with Animated Hamburger/Close Icon */}
       <button
         onClick={toggleMenu}
+        className="p-2 text-white hover:text-[#FF8C00] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] rounded-xl flex items-center justify-center relative z-50"
+        aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-        className="relative z-[60] p-2 text-white hover:text-[#FF8C00] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] rounded-md"
       >
-        <AnimatePresence mode="wait" initial={false}>
-          {isOpen ? (
-            <motion.div
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <X className="w-6 h-6" />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="menu"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Menu className="w-6 h-6" />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div className="w-6 h-6 flex items-center justify-center relative">
+          <Menu 
+            className={`w-6 h-6 absolute transition-all duration-300 transform ${
+              isOpen ? "opacity-0 rotate-90 scale-50" : "opacity-100 rotate-0 scale-100"
+            }`} 
+          />
+          <X 
+            className={`w-6 h-6 absolute transition-all duration-300 transform ${
+              isOpen ? "opacity-100 rotate-0 scale-100 text-[#FF8C00]" : "opacity-0 -rotate-90 scale-50"
+            }`} 
+          />
+        </div>
       </button>
 
       <AnimatePresence>
@@ -192,8 +211,18 @@ export default function MobileMenu() {
                     ? pathname === "/" 
                     : pathname.startsWith(item.href);
 
-                  // Specialized Submenu Item for Tools
+                  // Specialized Submenu Item for Tools & Authors
                   if (item.hasSubmenu) {
+                    const isExpanded = item.submenuKey === "authors" ? isAuthorsExpanded : isToolsExpanded;
+                    const toggleExpanded = () => {
+                      if (item.submenuKey === "authors") {
+                        setIsAuthorsExpanded((prev) => !prev);
+                      } else {
+                        setIsToolsExpanded((prev) => !prev);
+                      }
+                    };
+                    const subItems = item.submenuKey === "authors" ? authorSubItems : toolSubItems;
+
                     return (
                       <motion.div key={item.href} variants={itemVariants} className="space-y-1">
                         <div
@@ -221,15 +250,15 @@ export default function MobileMenu() {
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              setIsToolsExpanded((prev) => !prev);
+                              toggleExpanded();
                             }}
-                            aria-expanded={isToolsExpanded}
-                            aria-label="Toggle Tools Submenu"
+                            aria-expanded={isExpanded}
+                            aria-label={`Toggle ${item.label} Submenu`}
                             className="p-3 text-gray-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] rounded-xl hover:bg-white/5 transition-colors"
                           >
                             <ChevronDown
                               className={`w-4 h-4 transition-transform duration-300 ${
-                                isToolsExpanded ? "rotate-180 text-[#FF8C00]" : ""
+                                isExpanded ? "rotate-180 text-[#FF8C00]" : ""
                               }`}
                             />
                           </button>
@@ -237,7 +266,7 @@ export default function MobileMenu() {
 
                         {/* Accordion Submenu */}
                         <AnimatePresence initial={false}>
-                          {isToolsExpanded && (
+                          {isExpanded && (
                             <motion.div
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
@@ -245,7 +274,7 @@ export default function MobileMenu() {
                               transition={{ duration: 0.25, ease: "easeInOut" }}
                               className="overflow-hidden pl-3 ml-4 border-l border-white/10 space-y-1 pt-1 pb-1"
                             >
-                              {toolSubItems.map((sub) => {
+                              {subItems.map((sub) => {
                                 const isSubActive = pathname === sub.href;
                                 const SubIcon = sub.icon;
                                 return (
@@ -318,31 +347,32 @@ export default function MobileMenu() {
                     onClick={() => setIsOpen(false)}
                     className="flex items-center justify-center gap-2 w-full bg-[#FF8C00] hover:bg-[#e67e00] text-[#1B2B3B] font-extrabold text-sm py-2.5 px-4 rounded-xl transition-colors relative z-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00]"
                   >
-                    Explore Workouts
+                    <span>Browse Workouts</span>
                   </Link>
                 </motion.div>
               </div>
 
-              {/* Social Links */}
-              <motion.div variants={itemVariants} className="px-6 pb-6 pt-3 border-t border-white/5">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-gray-500 mb-3 text-center">
-                  Follow FitWay
+              {/* Drawer Footer with Social Links */}
+              <div className="p-4 border-t border-white/5 bg-[#141e2b] flex items-center justify-between">
+                <span className="text-xs text-gray-400">© FitWay {new Date().getFullYear()}</span>
+                <div className="flex items-center gap-3">
+                  {socialLinks.map((social) => {
+                    const Icon = social.icon;
+                    return (
+                      <a
+                        key={social.href}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-[#FF8C00] p-1.5 rounded-lg hover:bg-white/5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00]"
+                        aria-label={social.label}
+                      >
+                        <Icon className="w-4 h-4" />
+                      </a>
+                    );
+                  })}
                 </div>
-                <div className="flex justify-center gap-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/15 flex items-center justify-center text-gray-300 hover:text-[#FF8C00] transition-all hover:scale-105"
-                    >
-                      <social.icon className="w-5 h-5" />
-                    </a>
-                  ))}
-                </div>
-              </motion.div>
+              </div>
             </motion.nav>
           </>
         )}

@@ -28,4 +28,11 @@ The Authors System is a crucial part of the E-E-A-T (Experience, Expertise, Auth
   - `BreadcrumbList` (Home -> Editorial Board -> Author Name).
   - `Person` (`worksFor: FitWay Organization`, `publishingPrinciples: /editorial-policy`, structured `hasCredential` using `EducationalOccupationalCredential`, `sameAs`, `knowsAbout`).
 
+### Author Biography (`fullBio`) Contextual Linking Standards (PageRank & E-E-A-T)
+Author biographies are prime real estate for entity grounding and link equity redistribution under the **Reasonable Surfer model**:
+1. **External E-E-A-T Anchors**: Every health and sports expert must anchor their certifications to recognized governing bodies (e.g. Academy of Nutrition and Dietetics `eatright.org`, ISSN `sportsnutritionsociety.org`, ACSM `acsm.org`, NSCA `nsca.com`) and cite scientific databases (`PubMed`).
+2. **Internal PageRank Circulation**: The author profile accumulates PageRank from all written and reviewed articles. `fullBio` must channel this equity into relevant category hubs (`/blog/category/*`), programmatic tools (`/tools/*`), and workout collections (`/workouts`).
+3. **Editorial Policy Linkage**: An in-body link to `/editorial-policy` establishes transparent compliance with FitWay's 4-tier medical and scientific review standards.
+4. **Style Enforcement**: Markdown formatting with `###` headings (nested under page `<h2>`), zero em dashes (`—`), and high-contrast readable formatting in Tailwind typography (`prose prose-invert prose-orange`).
+
 Related: [[frontend/seo]], [[frontend/editorial-policy]], [[frontend/responsive-layout]], [[frontend/blog-ui]], [[backend/strapi-v5-collections]]
