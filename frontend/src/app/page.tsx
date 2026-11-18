@@ -96,7 +96,7 @@ export default async function Home() {
         "logo": `${siteUrl}/favicon.svg`,
         "description": "AI-powered fitness platform providing science-backed workout programs and personalized nutrition plans.",
         "sameAs": [
-          "https://www.facebook.com/fitway.best/",
+          "https://www.pinterest.com/fitway_best/",
           "https://www.instagram.com/fitway.best/",
           "https://x.com/fitway_best"
         ],

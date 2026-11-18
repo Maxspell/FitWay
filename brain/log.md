@@ -1,5 +1,14 @@
 # Knowledge Base Activity Log
 
+## 2026-11-19
+- **Модернизация футера и интеграция Pinterest (`Footer.tsx`, `MobileMenu.tsx`, Schema.org)**:
+  - **Выравнивание блоков футера в один ряд (`Footer.tsx`)**: Блок «Legal & Trust» отделен от «Quick Links» и выведен в отдельную колонку. Сетка переведена на 5 колонок на десктопе (`lg:grid-cols-5`): FitWay Brand, Quick Links, Legal & Trust, Contact, Follow Us теперь располагаются идеально в одну строку без провисаний по вертикали.
+  - **Оранжевый ховер социальных иконок**: Для иконок соцсетей добавлен фирменный оранжевый акцент (`hover:text-[#FF8C00] transition-colors duration-200`).
+  - **Интеграция официального Pinterest (`fitway_best`)**: Создан компонент SVG-иконки `PinterestIcon.tsx`. Ссылка на Pinterest (`https://www.pinterest.com/fitway_best/`) добавлена в футер (десктоп и мобильный) и в мобильное выдвижное меню `MobileMenu.tsx`.
+  - **Удаление заблокированного Facebook**: Неактуальная ссылка на Facebook удалена из `Footer.tsx` и `MobileMenu.tsx`.
+  - **Синхронизация Schema.org `sameAs`**: В `frontend/src/app/layout.tsx` и `frontend/src/app/page.tsx` массив `Organization.sameAs` синхронизирован (Facebook заменен на `https://www.pinterest.com/fitway_best/`).
+  - Пройдена проверка типов TypeScript (`npx tsc --noEmit`).
+
 ## 2026-11-18
 - **Интеграция верификации Pinterest Business (Claim Website & Rich Pins)**:
   - В `frontend/src/app/layout.tsx` в блок метаданных `metadata.other` внедрен метатег верификации домена для Pinterest:

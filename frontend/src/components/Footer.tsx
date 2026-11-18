@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Dumbbell, Facebook, Instagram, Twitter } from "lucide-react";
+import { Dumbbell, Instagram, Twitter } from "lucide-react";
+import PinterestIcon from "@/components/common/PinterestIcon";
 
 const Footer = () => {
   return (
     <footer className="bg-[#243447] py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Dumbbell className="h-8 w-8 text-[#FF8C00]" />
@@ -29,7 +30,10 @@ const Footer = () => {
               <li><Link href="/contact" className="nav-link">Contact</Link></li>
               <li><Link href="/sitemap" className="nav-link">Sitemap</Link></li>
             </ul>
-            <h3 className="text-xl font-bold mt-8 mb-4">Legal & Trust</h3>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-bold mb-4">Legal & Trust</h3>
             <ul className="space-y-2">
               <li><Link href="/editorial-policy" className="nav-link">Editorial Policy</Link></li>
               <li><Link href="/privacy-policy" className="nav-link">Privacy Policy</Link></li>
@@ -50,13 +54,31 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Follow Us</h3>
             <div className="flex gap-4">
-              <a href="https://www.facebook.com/fitway.best/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white" aria-label="Facebook">
-                <Facebook className="h-6 w-6" />
+              <a
+                href="https://www.pinterest.com/fitway_best/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-[#FF8C00] transition-colors duration-200"
+                aria-label="Pinterest"
+              >
+                <PinterestIcon className="h-6 w-6" />
               </a>
-              <a href="https://www.instagram.com/fitway.best/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white" aria-label="Instagram">
+              <a
+                href="https://www.instagram.com/fitway.best/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-[#FF8C00] transition-colors duration-200"
+                aria-label="Instagram"
+              >
                 <Instagram className="h-6 w-6" />
               </a>
-              <a href="https://x.com/fitway_best" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white" aria-label="Twitter">
+              <a
+                href="https://x.com/fitway_best"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-[#FF8C00] transition-colors duration-200"
+                aria-label="Twitter / X"
+              >
                 <Twitter className="h-6 w-6" />
               </a>
             </div>

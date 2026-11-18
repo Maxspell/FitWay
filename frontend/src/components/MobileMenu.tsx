@@ -19,11 +19,11 @@ import {
   PieChart,
   Heart,
   Instagram,
-  Facebook,
   Twitter,
   ShieldCheck,
   Award
 } from "lucide-react";
+import PinterestIcon from "@/components/common/PinterestIcon";
 
 interface MenuItem {
   href: string;
@@ -60,7 +60,7 @@ const authorSubItems = [
 ];
 
 const socialLinks = [
-  { href: "https://www.facebook.com/fitway.best/", label: "Facebook", icon: Facebook },
+  { href: "https://www.pinterest.com/fitway_best/", label: "Pinterest", icon: PinterestIcon },
   { href: "https://www.instagram.com/fitway.best/", label: "Instagram", icon: Instagram },
   { href: "https://x.com/fitway_best", label: "X (Twitter)", icon: Twitter },
 ];
