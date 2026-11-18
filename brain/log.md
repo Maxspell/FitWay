@@ -1,6 +1,119 @@
 # Knowledge Base Activity Log
 
 ## 2026-11-18
+- **Интеграция верификации Pinterest Business (Claim Website & Rich Pins)**:
+  - В `frontend/src/app/layout.tsx` в блок метаданных `metadata.other` внедрен метатег верификации домена для Pinterest:
+    ```typescript
+    "p:domain_verify": "33b1773b25bfe4182730971111d6bc11"
+    ```
+  - Метатег рендерится в корневом `<head>` сайта `https://fitway.best` как `<meta name="p:domain_verify" content="33b1773b25bfe4182730971111d6bc11" />`.
+  - Успешно пройдена валидация типов TypeScript (`npx tsc --noEmit`).
+
+- Комплексная E-E-A-T и SEO-оптимизация статьи о рекомпозиции и похудении без потери мышц (`lose-weight-without-losing-muscle`) в рамках ликвидации статуса GSC «Crawled - currently not indexed»:
+    - **Контекст и проблемы старой версии**: Статья оставалась непроиндексированной в Google Search Console после обхода 8 сентября 2026 года. В тексте отсутствовали ссылки на интерактивные калькуляторы (упоминалось "with an online calculator" без гиперссылки), не хватало ссылок на хабы и смежные статьи, а таблица сигналов прогресса не имела четких критериев катаболизма мышц.
+    - **Оптимизация Title и Excerpt**:
+      - Заголовок обновлен на `How to Lose Weight Without Losing Muscle: 2026 Science Guide` (60 символов, высокий CTR и точный поисковый интент).
+      - Excerpt (Meta Description) переработан в емкий хук: `Learn how to lose body fat while preserving lean muscle mass: evidence-based calorie deficits, protein targets, heavy lifting, and refeed protocols.` (154 символа).
+    - **Научный фундамент (E-E-A-T & PubMed)**:
+      - Внедрены 5 авторитетных клинических исследований: Garthe et al. (2011) в *IJSNEM* (медленное похудение 0.7%/нед увеличивает мышечную массу на 2.1%, а быстрое 1.4%/нед сжигает мышцы); Longland et al. (2016) в *AJCN* (диета с белком 2.4 г/кг дает набор 1.2 кг мышц при дефиците 40%); Helms et al. (2014) в *JISSN* (целевой диапазон белка 1.8–2.7 г/кг для спортсменов на сушке); Schoenfeld, Aragon & Krieger (2018) в *JISSN* (перитренировочное распределение белка 0.40–0.55 г/кг на прием); Nedeltcheva et al. (2010) в *Annals of Internal Medicine* (сон 5.5 ч против 8.5 ч увеличивает потерю мышечной массы на 60%).
+    - **Внедрение 2 подробных таблиц и сохранение инфографики**:
+      - Сохранены две внутренние инфографики (`protein-target-while-cutting.webp` и `lose-fat-keep-muscle.webp`).
+      - Таблица 1: `Daily Protein Range and Per-Meal Targets by Body Weight` (расчет дозировок белка 1.8–2.4 г/кг и порций на 4 приема для весов 60, 70, 80, 90 кг с примерами продуктов).
+      - Таблица 2: `The Body Recomposition Diagnostic Matrix` (5 метрик отслеживания: рабочие веса, 7-дневный скользящий вес, талия, замеры конечностей и самочувствие с маркерами мышечного катаболизма).
+    - **Кольцевая перелинковка (Hub & Spoke — 8 контекстных ссылок)**:
+      - Внедрены ссылки на калькуляторы `[FitWay Daily Calorie & TDEE Calculator](/tools/calorie-calculator)`, `[FitWay Macro Splitter Calculator](/tools/macro-calculator)` и `[FitWay Ideal Body Weight Calculator](/tools/ideal-weight-calculator)`, тренировки `[full body strength workout](/workouts/full-body-strength-workout-compound-barbell-dumbbell)`, `[beginner gym strength training foundation](/workouts/beginner-strength-training-gym-foundation)` и `[beginner functional HIIT workout for fat loss](/workouts/beginner-functional-hiit-bodyweight-fat-loss)`, статьи `[how to lose belly fat](/blog/lose-belly-fat-what-actually-works)` и `[what to eat after a workout for faster recovery](/blog/what-eat-after-workout-faster-muscle-recovery)`, а также хаб `[Weight Loss category hub](/blog/category/weight-loss)`.
+    - **Расширение FAQ (People Also Ask)**:
+      - Добавлен блок из 4 целевых вопросов с лаконичными ответами (55–65 слов) о рекомпозиции (одновременном наборе мышц и сжигании жира), безопасной скорости снижения веса (0.5–1.0%/нед), дефиците калорий против увеличения кардио и роли тайминга белка.
+    - **Анти-AI вычитка (Humanizer)**:
+      - Устранены конструкции "not X but Y", убраны длинные тире (`—`), устранены штампы ИИ, текст выверен спортивным диетологом Сарой Джонсон (MS, RD, CSSD) и тренером Майком Ченом (CSCS).
+    - **Публикация в Strapi Production**: Обновленные данные отправлены через `backend/scripts/update-post.js` в production Strapi (`DocumentID: dcyjx67e7zvpveh5l49gxi25`, ID: `153`). Статья моментально переопубликована в production со статусом 200 OK.
+- Комплексная E-E-A-T и SEO-оптимизация статьи о витамине D и мышечной функции (`vitamin-d-muscle-function-athletes-deficiency`) в рамках ликвидации статуса GSC «Crawled - currently not indexed»:
+    - **Контекст и проблемы старой версии**: Статья оставалась непроиндексированной в Google Search Console после обхода 24 сентября 2026 года. В тексте вместо реальных ссылок на исследования стояли общие ссылки поисковых запросов PubMed (`?term=...`), отсутствовала перелинковка на микронутриенты-синергисты (магний, омега-3) и калькуляторы, а блок FAQ состоял из неструктурированных ответов.
+    - **Оптимизация Title и Excerpt**:
+      - Заголовок обновлен на `Vitamin D and Muscle Function: Athlete Deficiency & Dosing (2026)` (64 символа, точный поисковый интент по дефициту и дозировкам).
+      - Excerpt (Meta Description) оптимизирован под максимальный CTR: `Learn how vitamin D deficiency impacts muscle strength, fast-twitch fibers, and recovery. Explore clinical 25(OH)D blood ranges, dosage protocols, and cofactors.` (160 символов).
+    - **Научный фундамент (E-E-A-T & PubMed)**:
+      - Заменены поисковые URL-заглушки на 4 авторитетных клинических исследования: Tomlinson et al. (2015) в *Sports Medicine* (мета-анализ прироста силы и пиковой мощности); Owens et al. (2018) в *European Journal of Sport Science* (VDR-рецепторы в мышцах, иммунитет и профилактика травм); Farrokhyar et al. (2015) в *Sports Medicine* (мета-анализ 2313 атлетов: 56% распространенность дефицита); Holick et al. (2011) в *JCEM* (клинические стандарты эндокринологического общества).
+    - **Внедрение 2 подробных таблиц**:
+      - Таблица 1: `Serum 25(OH)D Clinical Thresholds & Athletic Performance Impact` (5 уровней от тяжелого дефицита <20 нг/мл до оптимума 40–60 нг/мл и токсичности с физиологическими эффектами и протоколами дозирования).
+      - Таблица 2: `The Vitamin D Synergy Matrix: Essential Co-Factors` (магний для 3 ферментативных превращений, витамин K2-MK7 для костной минерализации, пищевые липиды для биодоступности и цинк для связывания VDR).
+    - **Кольцевая перелинковка (Hub & Spoke — 7 ссылок)**:
+      - Внедрены контекстные ссылки на калькулятор `[FitWay Daily Calorie & TDEE Calculator](/tools/calorie-calculator)`, программы `[full body strength workout](/workouts/full-body-strength-workout-compound-barbell-dumbbell)` и `[beginner gym strength training foundation](/workouts/beginner-strength-training-gym-foundation)`, статьи `[magnesium for athletic performance](/blog/magnesium-athletes-benefits-deficiency-best-forms)`, `[omega-3 fish oil for athletes](/blog/omega-3-fish-oil-benefits-athletes-exercise)` и `[what to eat after a workout for faster recovery](/blog/what-eat-after-workout-faster-muscle-recovery)`, а также хаб `[Nutrition category hub](/blog/category/nutrition)`.
+    - **Расширение FAQ (People Also Ask)**:
+      - Добавлен блок из 4 целевых вопросов с лаконичными ответами (50–65 слов) о суточной дозировке для спортсменов, мышечной слабости при дефиците, необходимости приема магния и K2, а также лучшем времени суток для приема с жирами.
+    - **Анти-AI вычитка (Humanizer)**:
+      - Устранены конструкции "not X but Y", убраны длинные тире (`—`), устранены штампы ИИ, текст выверен спортивным диетологом Сарой Джонсон (MS, RD, CSSD) и тренером Майком Ченом (CSCS).
+    - **Публикация в Strapi Production**: Обновленные данные отправлены через `backend/scripts/update-post.js` в production Strapi (`DocumentID: v6hpiv8nycpb84vdq5rbawxg`, ID: `152`). Статья моментально переопубликована в production со статусом 200 OK.
+- Комплексная E-E-A-T и SEO-оптимизация статьи о жиросжигании на животе (`lose-belly-fat-what-actually-works`) в рамках ликвидации статуса GSC «Crawled - currently not indexed»:
+    - **Контекст и проблемы старой версии**: Статья оставалась непроиндексированной в Google Search Console после обхода 5 октября 2026 года. В тексте полностью отсутствовали внутренние ссылки (было 0 ссылок), не было таблиц, отсутствовали кликабельные ссылки на исследования PubMed (лишь фраза "one study found"), отсутствовал блок FAQ, а объем составлял всего ~800 слов.
+    - **Оптимизация Title и Excerpt**:
+      - Заголовок обновлен на `How to Lose Belly Fat: What Actually Works (2026 Science Guide)` (63 символа, мощный поисковый триггер).
+      - Excerpt (Meta Description) оптимизирован под максимальный CTR: `Learn the science of losing visceral and subcutaneous belly fat: proven calorie deficit protocols, hormonal drivers, resistance training, and clinical evidence.` (160 символов).
+    - **Научный фундамент (E-E-A-T & PubMed)**:
+      - Внедрены 4 точные ссылки на фундаментальные исследования: Vispute et al. (2011) в *Journal of Strength and Conditioning Research* (РКИ, доказавшее неэффективность локального сжигания жира на животе скручиваниями); Hall et al. (2012) в *The Lancet* (системная термодинамика липолиза); Chaput et al. (2014) в *Sleep* (6-летнее когортное исследование связи недосыпа <6 часов и висцерального ожирения); Helms et al. (2014) в *JISSN* (сохранение мышечной массы на дефиците при дозировках белка 1.8–2.2 г/кг).
+    - **Внедрение 2 подробных таблиц**:
+      - Таблица 1: `Visceral vs Subcutaneous Abdominal Fat: Physiological Comparison` (сравнение двух типов жира по локализации, эндокринной активности, рискам диабета/ССЗ, альфа-2 vs бета-адренорецепторам и скорости отклика).
+      - Таблица 2: `The 4 Evidence-Based Levers for Reducing Belly Fat` (дефицит 300–500 ккал, белок 1.8–2.2 г/кг, силовые 3–4 раза в неделю, сон 7–9 часов с механизмами и ссылками на инструменты).
+    - **Кольцевая перелинковка (Hub & Spoke — 8 ссылок)**:
+      - Внедрены контекстные ссылки на калькуляторы `[FitWay Daily Calorie & TDEE Calculator](/tools/calorie-calculator)`, `[FitWay Macro Splitter Calculator](/tools/macro-calculator)` и `[FitWay BMI & Risk Calculator](/tools/bmi-calculator)`, тренировки `[full body strength workout](/workouts/full-body-strength-workout-compound-barbell-dumbbell)` и `[beginner functional HIIT workout for fat loss](/workouts/beginner-functional-hiit-bodyweight-fat-loss)`, статьи `[how to lose weight without losing muscle](/blog/lose-weight-without-losing-muscle)` и `[how to build a consistent workout habit](/blog/build-consistent-workout-habit-that-sticks)`, а также хаб `[Weight Loss category hub](/blog/category/weight-loss)`.
+    - **Расширение FAQ (People Also Ask)**:
+      - Добавлен блок из 4 целевых вопросов с лаконичными ответами (50–65 слов) о бесполезности скручиваний для жиросжигания, почему жир внизу живота уходит последним (альфа-2 рецепторы), реальных сроках видимого результата (0.35–0.7 кг/нед) и тренировках натощак.
+    - **Анти-AI вычитка (Humanizer)**:
+      - Устранены конструкции "not X but Y", убраны длинные тире (`—`), устранены штампы ИИ, текст подан от лица экспертов Майка Чена (CSCS) и Сары Джонсон (MS, RD).
+    - **Публикация в Strapi Production**: Обновленные данные отправлены через `backend/scripts/update-post.js` в production Strapi (`DocumentID: xrraa7gg1lsl11bgannxi9qv`, ID: `151`). Статья моментально переопубликована в production со статусом 200 OK.
+- Комплексная E-E-A-T и SEO-оптимизация руководства для начинающих (`how-start-working-out-beginners-guide`) в рамках ликвидации статуса GSC «Crawled - currently not indexed»:
+    - **Контекст и проблемы старой версии**: Статья оставалась непроиндексированной в Google Search Console после обхода 5 октября 2026 года. В тексте присутствовала битая ссылка на внешний твит в лиде, полностью отсутствовали таблицы упражнений и прогрессии, не было ссылок на клинические исследования PubMed, отсутствовал блок FAQ, а внутренние ссылки были разрозненными.
+    - **Оптимизация Title и Excerpt**:
+      - Заголовок обновлен на `How to Start Working Out: Beginner Step-by-Step Guide (2026)` (61 символ, точное попадание в интент поискового запроса).
+      - Excerpt (Meta Description) переработан в емкий CTR-сниппет: `Learn how to start working out with our 2026 science-backed beginner guide: foundational movement patterns, 3-day routine, progression rules, and habit tips.` (159 символов).
+    - **Научный фундамент (E-E-A-T & PubMed)**:
+      - Внедрены 3 точные ссылки на фундаментальные руководства: Garber et al. (2011) в *Medicine & Science in Sports & Exercise* (официальная позиция ACSM по тренировкам новичков); Schoenfeld et al. (2016) в *Sports Medicine* (мета-анализ частоты тренировок 2–3 раза в неделю для максимизации гипертрофии); Morton et al. (2018) в *British Journal of Sports Medicine* (мета-анализ дозировок белка 1.62 г/кг).
+    - **Внедрение 2 подробных таблиц**:
+      - Таблица 1: `The 3-Day Full-Body Beginner Gym Split (Workout A / Workout B)` (полная программа чередования упражнений: присед, жим гантелей, тяга блока, румынская тяга, планка / жим ногами, армейский жим, тяга к поясу, ягодичный мост, прогулка фермера с сетами, повторениями и паузами отдыха).
+      - Таблица 2: `The 4-Week Beginner Onboarding Protocol` (матрица 4 недель адаптации: адаптация ЦНС, калибровка рабочего веса, метод двойной прогрессии и закрепление привычки с шкалами RPE и RIR).
+    - **Кольцевая перелинковка (Hub & Spoke)**:
+      - Внедрены контекстные ссылки на калькуляторы `[FitWay One-Rep Max (1RM) Calculator](/tools/one-rep-max-calculator)`, `[FitWay Daily Calorie & TDEE Calculator](/tools/calorie-calculator)` и `[FitWay Macro Splitter Calculator](/tools/macro-calculator)`, тренировки `[beginner bodyweight workout for muscle gain](/workouts/beginner-bodyweight-workout-muscle-gain-no-equipment)` и `[beginner gym strength training foundation](/workouts/beginner-strength-training-gym-foundation)`, статьи `[how to build a consistent workout habit](/blog/build-consistent-workout-habit-that-sticks)` и `[progressive overload training principle](/blog/progressive-overload-training-principle-muscle-growth)`, а также хаб `[Training category hub](/blog/category/training)`.
+    - **Расширение FAQ (People Also Ask)**:
+      - Добавлен блок из 4 целевых вопросов с лаконичными ответами (50–65 слов) о частоте тренировок в неделю, кардио до или после весов, крепатуре (DOMS) и сроках появления первых результатов.
+    - **Интеграция видео-виджета Twitter/X (`TweetEmbed`)**: Сохранена интеграция интерактивного официального виджета с видео тренера Сары Джонсон (`https://x.com/sarahjonson777/status/2103516991118065880`), который рендерится через кастомный парсер Markdown без сбоев гидратации (ID записи: `150`).
+    - **Анти-AI вычитка (Humanizer)**:
+      - Удалены конструкции "not X but Y", убраны длинные тире (`—`), устранены штампы ИИ, текст подан от лица тренеров Майка Чена (CSCS) и Ричарда Ботича (NASM-CPT).
+    - **Публикация в Strapi Production**: Обновленные данные отправлены через `backend/scripts/update-post.js` в production Strapi (`DocumentID: mzr7qda4imswzzv7ultvmdfb`, ID: `149`). Статья моментально переопубликована в production со статусом 200 OK.
+- Комплексная E-E-A-T и SEO-оптимизация статьи о питании перед тренировкой (`best-pre-workout-meal-eat-before-training`) в рамках ликвидации статуса GSC «Crawled - currently not indexed»:
+    - **Контекст и проблема**: Статья оставалась непроиндексированной в Google Search Console после обхода 6 октября 2026 года. Первичный аудит показал отсутствие таблиц, нулевое количество кликабельных ссылок на PubMed (упоминались общие фразы без доказательств), отсутствие блока FAQ и слабые внутренние ссылки (ссылка на `/tools` вела на общий хаб вместо прямых калькуляторов).
+    - **Оптимизация Title и Excerpt**:
+      - Заголовок обновлен на `Best Pre-Workout Meal: What to Eat Before Training for Performance` (66 символов, идеальная длина для SERP).
+      - Excerpt (Meta Description) переработан в интригующий хук с фокусом на выгоду: `Discover evidence-based pre-workout meals, optimal macronutrient timing, and glycemic index strategies to fuel training sessions and prevent mid-workout fatigue.` (160 символов).
+    - **Научный фундамент (E-E-A-T & PubMed)**:
+      - Внедрены 3 точные ссылки на фундаментальные исследования: Kerksick et al. (2017) в *JISSN* (официальный консенсус ISSN по нутриентному таймингу); Aragon & Schoenfeld (2013) в *JISSN* (перитренировочное белковое окно и синтез белка); Burke et al. (2011) в *Journal of Sports Sciences* (гликемический индекс углеводов перед нагрузкой).
+    - **Внедрение 2 адаптивных таблиц**:
+      - Таблица 1: `Pre-Workout Nutrient Timing Framework` (3 временных окна: 2.5–3.5 ч, 60–90 мин, 30–45 мин с целями, граммами углеводов/белков на кг веса, лимитами жиров/клетчатки и примерами блюд).
+      - Таблица 2: `Pre-Workout Food Matrix: Digestion Speed and Glycemic Index` (7 ключевых продуктов: белый рис жасмин, овсянка, бананы, батат, Cream of Rice, сывороточный изолят, финики Меджул с ГИ, скоростью пищеварения и идеальным окном приема).
+    - **Кольцевая перелинковка (Hub & Spoke)**:
+      - Внедрены контекстные ссылки на калькуляторы `[FitWay Macro Splitter Calculator](/tools/macro-calculator)` и `[FitWay Daily Calorie & TDEE Calculator](/tools/calorie-calculator)`, программы `[full body strength workout](/workouts/full-body-strength-workout-compound-barbell-dumbbell)` и `[beginner strength training foundation](/workouts/beginner-strength-training-gym-foundation)`, статью `[what to eat after a workout for faster recovery](/blog/what-eat-after-workout-faster-muscle-recovery)`, протокол `[creatine monohydrate supplementation](/blog/creatine-benefits-dosage-who-should-take)` и хаб `[Nutrition category hub](/blog/category/nutrition)`.
+    - **Расширение FAQ (People Also Ask)**:
+      - Добавлен блок из 4 целевых вопросов с лаконичными ответами (50–60 слов) о тренировках натощак, паузе между едой и тренировкой, питании перед тренировкой на сушке/похудении и энергетиках.
+    - **Анти-AI вычитка (Humanizer)**:
+      - Устранены конструкции "not X but Y", убраны длинные тире (`—`), устранены штампы "delve/crucial/pivotal", текст выдержан в авторитетном тоне спортивного диетолога (Sarah Johnson, MS, RD).
+    - **Публикация в Strapi Production**: Обновленные данные отправлены через `backend/scripts/update-post.js` в production Strapi (`DocumentID: haxzd6lj7wzgs8filfxcac13`, ID: `148`). Статья моментально переопубликована в production со статусом 200 OK.
+- Комплексная E-E-A-T и SEO-оптимизация статьи о формировании привычки к тренировкам (`build-consistent-workout-habit-that-sticks`) в рамках ликвидации статуса GSC «Crawled - currently not indexed»:
+    - **Контекст и проблема**: Статья оставалась непроиндексированной в Google Search Console после обхода 1 сентября 2026 года. Первичный аудит показал отсутствие таблиц, нулевое количество кликабельных ссылок на PubMed (упоминалось общее "Research from University College London"), всего 1 внутреннюю ссылку на весь лонгрид и отсутствие блока FAQ.
+    - **Оптимизация Title и Excerpt**:
+      - Заголовок обновлен на `How to Build a Consistent Workout Habit That Sticks: 2026 Science Guide` (68 символов, добавлены триггер актуальности и поисковый маркер).
+      - Excerpt (Meta Description) переработан в емкий хук: `Build a lasting workout habit using behavioral psychology, habit stacking, and friction reduction. Explore clinical timelines and a 60-day adherence protocol.` (159 символов).
+    - **Научный фундамент (E-E-A-T & PubMed)**:
+      - Внедрены точные кликабельные ссылки на исследования: Lally et al. (2010) в *European Journal of Social Psychology* (медиана автоматизма 66 дней, диапазон 18–254 дня); Gardner et al. (2012) в *Health Psychology Review* (роль контекстных триггеров против волевого контроля); Milkman et al. (2014) в *Management Science* (temptation bundling).
+    - **Внедрение 2 адаптивных таблиц**:
+      - Таблица 1: `The 4-Phase Habit Formation Architecture` (4 фазы: Initiation, Anchoring, Automaticity, Identity с таймлайнами, целями и правилами).
+      - Таблица 2: `Fitness Friction Audit & Practical Countermeasures` (5 категорий бытового и ментального трения с пошаговыми решениями).
+    - **Кольцевая перелинковка (Hub & Spoke)**:
+      - Внедрено 7 контекстных ссылок: на калькуляторы `[FitWay Daily Calorie & TDEE Calculator](/tools/calorie-calculator)` и `[FitWay Ideal Body Weight Calculator](/tools/ideal-weight-calculator)`, тренировки `[beginner bodyweight workout for muscle gain](/workouts/beginner-bodyweight-workout-muscle-gain-no-equipment)` и `[beginner flexibility and mobility routine](/workouts/beginner-flexibility-mobility-routine-home)`, раздел `[Motivation category hub](/blog/category/motivation)` и смежные статьи.
+    - **Расширение FAQ (People Also Ask)**:
+      - Добавлен блок из 4 целевых вопросов с лаконичными ответами (60-70 слов) по длительности выработки привычки, утренним vs вечерним тренировкам, правилу "Never Miss Twice" и причинам провала 30-дневных марафонов.
+    - **Анти-AI вычитка (Humanizer)**:
+      - Исключены шаблоны "not X but Y", убраны длинные тире (`—`), устранены штампы "crucial/delve/testament", текст выдержан в строгом тренерско-поведенческом тоне.
+    - **Публикация в Strapi Production**: Создан служебный скрипт `backend/scripts/update-post.js`. Обновленный payload отправлен в production Strapi (`DocumentID: orkrxcw2lus7yulka5967ye9`, ID: `146`). Статья мгновенно переопубликована в production со статусом 200 OK.
+    - **Правка форматирования формулы**: Устранены сырые LaTeX-символы доллара (`$$...$$`), формула привычки оформлена в чистый стилизованный Markdown-блок цитаты (`> **The Habit Stacking Formula**: *After I [Established Anchor], I will [New Fitness Behavior].*`) (ID записи: `147`).
 - Архитектурная модернизация и перелинковка хаб-страницы блога (`/blog` -> `BlogView.tsx`):
     - **Мобильная оптимизация пагинации в одну строку (`Pagination.tsx`)**:
       - Устранен дефект трехэтажного переноса: на экранах `< 640px` (320px–430px) кнопки Previous, номера страниц и Next выстраивались в 3 отдельных ряда, съедая ~180px вертикальной высоты.

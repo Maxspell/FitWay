@@ -48,6 +48,7 @@ export const metadata: Metadata = {
   },
   other: {
     "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "",
+    "p:domain_verify": "33b1773b25bfe4182730971111d6bc11",
   },
 };
 
