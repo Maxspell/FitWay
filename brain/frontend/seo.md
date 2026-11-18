@@ -35,11 +35,15 @@ This document outlines the core SEO practices and specific implementations used 
 - **Review System & Social Proof**: На страницах тренировок развернута интерактивная система отзывов (`ReviewSystem.tsx`), а на главной странице — карусель последних отзывов пользователей (`TestimonialsSection.tsx`), напрямую ссылающихся на отзывы тренировок.
 - **Review & AggregateRating Schema**: В микроразметку главной страницы и воркаутов включены `@type: "Review"` и `aggregateRating`, обеспечивающие отображение звезд рейтинга и сниппетов отзывов в Google SERP. Подробная архитектура и решение проблем со слайдером: [[frontend/testimonials-reviews-system]].
 
-## 7. Hub Page Optimization (/workouts)
+## 7. Hub Page Optimization (/workouts & /blog)
 - **Thin Content Mitigation**: To satisfy Google AdSense quality standards, the workout library hub (`/workouts`) was transformed from a simple directory into an educational resource. A comprehensive introductory section (200-300 words) was added, explaining:
   - **Methodology**: Focus on functional movement and progressive overload.
   - **Accessibility**: Guidance for all fitness levels (Beginner to Advanced).
   - **Path Selection**: Clear definitions for "Weight Loss", "Muscle Gain", "Toning", "Flexibility", and "Strength" tracks to help users navigate the library.
+- **Blog Hub (/blog) Architecture & Link Equity Redistribution**:
+  - **Internal Link Matrix**: The descriptive bottom section of `/blog` is linked directly to category silos (`/blog/category/*`), interactive calculators (`/tools/calorie-calculator`, `/tools/macro-calculator`), the workout library (`/workouts`), and trust anchors (`/authors`, `/editorial-policy`). This eliminates PageRank black holes on one of the domain's most authoritative landing pages.
+  - **Category Navigation (3x2 Grid)**: Replaced plain empty links with an interactive 3x2 grid featuring Lucide icons, LSI subtitle micro-copy, and hover state indicators (`ChevronRight`).
+  - **Pagination Boilerplate Isolation**: The heavy descriptive text block is strictly scoped to `currentPage === 1` (`isFirstPage`) to prevent duplicate boilerplate content on archive pages (`/blog/page/2+`).
 - **UI Architecture & UX Placement**: Описательный образовательный блок перенесен под пагинацию в футерную часть каталога, обеспечивая посетителям немедленный доступ к карточкам тренировок (`WorkoutCard`). Подробно: [[frontend/workouts-ui]].
 - **Benefit-Driven Metadata**: Updated the page description from a feature list to a benefit-focused statement ("Transform your body...", "science-backed routines"), improving CTR and perceived value.
 - **Directory Structured Data**: Implemented `ItemList` JSON-LD on hub pages. This programmatically lists available items with their positions and URLs, enabling Google to recognize the page as a high-value directory and potentially trigger list-based rich snippets.

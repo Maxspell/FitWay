@@ -1,6 +1,27 @@
 # Knowledge Base Activity Log
 
 ## 2026-11-18
+- Архитектурная модернизация и перелинковка хаб-страницы блога (`/blog` -> `BlogView.tsx`):
+    - **Контекст и проблемы старой реализации**:
+      - В нижней части `/blog` располагался монолитный блок текста *"Unlock Your Potential with FitWay Insights"* без единой внутренней ссылки. Это создавало тупик для PageRank на одном из самых посещаемых и авторитетных хабов сайта.
+      - Текст содержал клише искусственного интеллекта (*"unlock your potential"*, *"dive into"*), создавая риск по критерию AdSense "Low Value Content".
+      - Секция категорий *"Explore by Category"* отображалась в неровной сетке `grid-cols-2 sm:grid-cols-4` (4 + 2 карточки для 6 категорий) в виде пустых кнопок без иконок, контекста и LSI-ключей.
+      - Весь тяжелый SEO-блок дублировался на всех страницах пагинации (`/blog/page/2`, `/blog/page/3` и т.д.), создавая паразитный дублирующийся boilerplate-контент.
+    - **Внедренные изменения**:
+      - **Защита пагинации (`isFirstPage`)**: Отображение тяжелого описательного SEO-блока строго ограничено первой страницей (`currentPage === 1`), предотвращая дублирование на страницах пагинации архива блога.
+      - **Редизайн блока категорий ("Explore by Topic")**:
+        - Сетка выровнена в пропорцию 3 × 2 (`grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`).
+        - Интегрированы семантические иконки Lucide (`Apple`, `Dumbbell`, `Flame`, `Zap`, `Heart`, `Sparkles`) в фирменном стиле `#FF8C00`.
+        - Добавлен микрокопирайтинг (LSI Subtitles) для каждой из 6 категорий с ключевыми темами (hypertrophy science, calorie deficits, macronutrient splits, progressive overload, recovery, consistency).
+        - Добавлены интерактивные ховер-эффекты с индикатором перехода (`ChevronRight`).
+      - **Новый SEO-блок с сквозной перелинковкой (Internal Linking Matrix)**:
+        - Заголовок H2: *"Evidence-Based Fitness, Nutrition, and Performance Architecture"*.
+        - Внедрено 8 стратегических внутренних ссылок:
+          - E-E-A-T авторы и редполитика: `/authors` (*credentialed strength coaches and clinical dietitians*) и `/editorial-policy` (*strict editorial policy*).
+          - Категории блога: `/blog/category/nutrition`, `/blog/category/muscle-building`, `/blog/category/training`, `/blog/category/weight-loss`, `/blog/category/lifestyle`.
+          - Интерактивные калькуляторы: `/tools/calorie-calculator` и `/tools/macro-calculator`.
+          - Каталог тренировок: `/workouts` (*structured workout routines*).
+      - **Валидация**: Пройдена компиляция TypeScript (`npx tsc --noEmit`), проверено отсутствие ошибок сборки и гидратации.
 - Интеграция стандарта NASM в калькулятор разового максимума (`/tools/one-rep-max-calculator`) под запрос `nasm one rep max calculator` (Striking Distance: позиция 20.0 $\rightarrow$ ТОП-3):
     - **Контекст и поисковый интент**: По данным аудита GSC, запрос `nasm one rep max calculator` и смежные ключи (`1rm calculator`, `1rm estimator`, `1 rep max calculator`) вошли в индекс, показав позицию 20.0. Пользователи и тренеры ищут протокол оценки 1RM по стандарту Национальной академии спортивной медицины США (NASM).
     - **Новый раздел протокола NASM**:

@@ -1,9 +1,41 @@
-import { Clock, User, Tag, Calendar } from "lucide-react";
+import React from "react";
+import {
+  Clock,
+  User,
+  Tag,
+  Calendar,
+  Dumbbell,
+  Apple,
+  Flame,
+  Zap,
+  Heart,
+  Sparkles,
+  ChevronRight,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { BlogPost, Category } from "@/interfaces/blog";
 import { getPostImage } from "@/utils/image";
 import Pagination from "@/components/common/Pagination";
+
+// Mapping category slugs to semantic Lucide icons
+const CATEGORY_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+  nutrition: Apple,
+  "muscle-building": Dumbbell,
+  "weight-loss": Flame,
+  training: Zap,
+  lifestyle: Heart,
+  motivation: Sparkles,
+};
+
+const CATEGORY_SUBTITLES: Record<string, string> = {
+  nutrition: "Macronutrient splits, meal timing & evidence-based fueling",
+  "muscle-building": "Hypertrophy science, mechanical tension & recovery",
+  "weight-loss": "Calorie deficits, metabolic health & sustainable cuts",
+  training: "Progressive overload, exercise selection & technique cues",
+  lifestyle: "Sleep architecture, recovery & sustainable health habits",
+  motivation: "Consistency frameworks, mindset & behavioral psychology",
+};
 
 interface BlogViewProps {
   posts: BlogPost[];
@@ -192,50 +224,162 @@ export default function BlogView({
           basePath={basePath}
         />
 
-        {/* Categories Section */}
+        {/* Categories Section - Structured 3x2 Grid */}
         {categories.length > 0 && (
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold mb-6">Explore by Category</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {categories.map(category => (
-                <Link
-                  key={category.slug}
-                  href={`/blog/category/${category.slug}`}
-                  className="card hover:bg-[#2d4258] transition-colors block text-center py-6"
-                >
-                  <h3 className="text-lg font-semibold">{category.name}</h3>
-                </Link>
-              ))}
+          <section className="mt-16">
+            <div className="mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Explore by Topic
+              </h2>
+              <p className="text-gray-400 text-sm mt-1">
+                Browse focused guides categorized by training discipline and nutritional science
+              </p>
             </div>
-          </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {categories.map((category) => {
+                const slugKey = category.slug.toLowerCase();
+                const Icon = CATEGORY_ICONS[slugKey] || Tag;
+                const subtitle =
+                  CATEGORY_SUBTITLES[slugKey] ||
+                  "Evidence-based fitness guides & actionable research";
+
+                return (
+                  <Link
+                    key={category.slug}
+                    href={`/blog/category/${category.slug}`}
+                    className="group relative p-6 rounded-2xl bg-[#1B2B3B] border border-white/5 hover:border-[#FF8C00]/40 hover:bg-[#243447] transition-all duration-300 shadow-lg hover:shadow-orange-500/5 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="w-10 h-10 rounded-xl bg-[#FF8C00]/10 border border-[#FF8C00]/20 text-[#FF8C00] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-lg font-bold text-white group-hover:text-[#FF8C00] transition-colors mb-1.5 flex items-center justify-between">
+                        <span>{category.name}</span>
+                        <ChevronRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#FF8C00]" />
+                      </h3>
+                      <p className="text-gray-400 text-xs leading-relaxed">
+                        {subtitle}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
         )}
 
-        {/* About FitWay Insights Section */}
-        <section className="bg-gray-800 rounded-3xl p-6 sm:p-10 mt-16 shadow-xl border border-white/5">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-            Unlock Your Potential with FitWay Insights
-          </h2>
-          <p className="text-gray-300 leading-relaxed mb-6">
-            Welcome to the FitWay Blog, your ultimate resource for evidence-based fitness, nutrition, and wellness information.
-            Our mission is to empower you with the knowledge and tools to achieve your health goals, whether you're a beginner
-            embarking on your fitness journey or an experienced athlete looking to optimize performance. Dive into expertly
-            crafted articles covering a wide range of topics, from effective workout routines and cutting-edge training methodologies
-            to balanced nutrition plans, mental well-being strategies, and injury prevention tips.
-          </p>
-          <p className="text-gray-300 leading-relaxed mb-6">
-            Each piece of content is developed and reviewed by our team of certified fitness professionals, registered dietitians,
-            and health experts, ensuring accuracy, relevance, and actionable advice. We believe in a holistic approach to health,
-            integrating the latest scientific research with practical applications to help you build sustainable habits and
-            transform your life. Explore our categories to find articles tailored to your interests, and join a community
-            dedicated to living a stronger, healthier, and more vibrant life.
-          </p>
-          <p className="text-gray-300 leading-relaxed">
-            From in-depth guides on strength training and cardio to comprehensive breakdowns of macronutrients and meal prep ideas,
-            the FitWay Blog is designed to be your go-to source for reliable information. Stay updated with our latest posts and
-            discover new ways to elevate your fitness journey. Our content is regularly updated to reflect the evolving landscape
-            of health and fitness, providing you with fresh perspectives and proven strategies.
-          </p>
-        </section>
+        {/* Evidence-Based Architecture Section (Only on Page 1 to prevent boilerplate duplication on paginated archives) */}
+        {isFirstPage && (
+          <section className="bg-[#1B2B3B] rounded-3xl p-6 sm:p-10 mt-16 shadow-xl border border-white/5 space-y-6">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Evidence-Based Fitness, Nutrition, and Performance Architecture
+            </h2>
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+              FitWay publishes actionable, research-backed education to replace fitness folklore with exercise physiology and nutritional biochemistry. Every guide, breakdown, and protocol is written and reviewed by{" "}
+              <Link
+                href="/authors"
+                className="text-[#FF8C00] underline hover:text-[#ffaa40] font-medium"
+              >
+                credentialed strength coaches and clinical dietitians
+              </Link>{" "}
+              adhering to a{" "}
+              <Link
+                href="/editorial-policy"
+                className="text-[#FF8C00] underline hover:text-[#ffaa40] font-medium"
+              >
+                strict editorial policy
+              </Link>. We cross-reference clinical trials, meta-analyses from peer-reviewed journals (such as PubMed and ISSN), and real-world athletic applications to ensure every recommendation is safe, practical, and measurable.
+            </p>
+
+            <h3 className="text-xl font-bold text-white pt-2">How We Structure Our Fitness Intelligence</h3>
+            <ul className="space-y-3 text-gray-300 list-disc list-outside pl-5 text-sm sm:text-base">
+              <li>
+                <strong className="text-white">Nutritional Science &amp; Fueling:</strong> Deep dives into energy balance, micronutrient density, and{" "}
+                <Link
+                  href="/blog/category/nutrition"
+                  className="text-[#FF8C00] underline hover:text-[#ffaa40]"
+                >
+                  evidence-based sports nutrition
+                </Link>. Learn how to determine optimal protein distributions, master nutrient timing, and avoid over-hyped supplements.
+              </li>
+              <li>
+                <strong className="text-white">Hypertrophy &amp; Strength Principles:</strong> Comprehensive breakdowns of mechanical tension, volume landmarks, and progressive overload in our{" "}
+                <Link
+                  href="/blog/category/muscle-building"
+                  className="text-[#FF8C00] underline hover:text-[#ffaa40]"
+                >
+                  muscle building guides
+                </Link>{" "}
+                and{" "}
+                <Link
+                  href="/blog/category/training"
+                  className="text-[#FF8C00] underline hover:text-[#ffaa40]"
+                >
+                  strength training protocols
+                </Link>.
+              </li>
+              <li>
+                <strong className="text-white">Body Recomposition &amp; Fat Loss:</strong> Science-backed approaches to{" "}
+                <Link
+                  href="/blog/category/weight-loss"
+                  className="text-[#FF8C00] underline hover:text-[#ffaa40]"
+                >
+                  sustainable fat loss
+                </Link>, metabolic adaptation, appetite regulation, and lean tissue preservation during a deficit.
+              </li>
+              <li>
+                <strong className="text-white">Longevity &amp; Recovery:</strong> Practical guidance on mobility, sleep architecture, stress modulation, and sustainable{" "}
+                <Link
+                  href="/blog/category/lifestyle"
+                  className="text-[#FF8C00] underline hover:text-[#ffaa40]"
+                >
+                  lifestyle habits
+                </Link>{" "}
+                designed for long-term health.
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold text-white pt-2">Connecting Knowledge with Practical Execution</h3>
+            <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+              Reading about exercise science only yields results when translated into physical training. We bridge the gap between theory and execution through our ecosystem of interactive tools:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1.5">
+                <h4 className="font-bold text-white text-sm">Calculate Your Baseline Numbers</h4>
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  Use our science-validated{" "}
+                  <Link
+                    href="/tools/calorie-calculator"
+                    className="text-[#FF8C00] underline hover:text-[#ffaa40]"
+                  >
+                    daily calorie calculator
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    href="/tools/macro-calculator"
+                    className="text-[#FF8C00] underline hover:text-[#ffaa40]"
+                  >
+                    macro splitter
+                  </Link>{" "}
+                  to establish precise targets based on the Mifflin-St Jeor formula.
+                </p>
+              </div>
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1.5">
+                <h4 className="font-bold text-white text-sm">Follow Periodized Programming</h4>
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  Pair your nutrition with our free library of{" "}
+                  <Link
+                    href="/workouts"
+                    className="text-[#FF8C00] underline hover:text-[#ffaa40]"
+                  >
+                    structured workout routines
+                  </Link>, filtered by split, experience level, and equipment.
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
