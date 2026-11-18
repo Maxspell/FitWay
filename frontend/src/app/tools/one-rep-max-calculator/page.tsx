@@ -1,27 +1,27 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Dumbbell, Zap, Trophy, BookOpen, ExternalLink, ShieldCheck } from "lucide-react";
+import { Dumbbell, Zap, Trophy, BookOpen, ExternalLink, ShieldCheck, Award, CheckCircle2 } from "lucide-react";
 import OneRepMaxCalculator from "@/components/calculators/OneRepMaxCalculator";
 import RelatedCalculators from "@/components/calculators/RelatedCalculators";
 import FAQSection from "@/components/sections/faq/FAQSection";
 
 export const metadata: Metadata = {
-  title: "One-Rep Max Calculator (1RM) — Epley & Brzycki Formulas",
+  title: "One-Rep Max Calculator (1RM) & NASM Strength Protocol",
   description:
-    "Calculate your 1-repetition maximum (1RM) for bench press, squat, and deadlift. Generate working weight percentage charts and optimal training zones.",
+    "Calculate your 1-repetition maximum (1RM) safely using Epley, Brzycki, and NASM submaximal formulas. View working percentage tables and warmup protocols.",
   alternates: {
-    canonical: "/tools/one-rep-max-calculator",
+    canonical: "https://fitway.best/tools/one-rep-max-calculator",
   },
   openGraph: {
-    title: "One-Rep Max Calculator (1RM) — Epley & Brzycki Formulas | FitWay",
+    title: "One-Rep Max Calculator (1RM) & NASM Strength Protocol | FitWay",
     description:
-      "Estimate your true 1RM safely from submaximal reps. Complete percentage tables for strength and hypertrophy programming.",
-    url: "/tools/one-rep-max-calculator",
+      "Estimate your true 1RM safely from submaximal reps. Complete percentage tables for strength, hypertrophy, and NASM training zones.",
+    url: "https://fitway.best/tools/one-rep-max-calculator",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "One-Rep Max (1RM) Calculator | FitWay",
+    title: "One-Rep Max (1RM) Calculator & NASM Protocol | FitWay",
     description: "Calculate your 1RM and working weight zones for bench press, squat, and deadlift.",
   },
 };
@@ -36,32 +36,52 @@ const oneRmFaqs = [
   },
   {
     id: 2,
+    question: "How does the NASM 1RM estimation protocol work?",
+    answer:
+      "The National Academy of Sports Medicine (NASM) recommends estimating a lifter's 1RM using a controlled 3RM to 5RM submaximal test rather than risking an all-out 100% single. In the NASM OPT model, completing 5 repetitions corresponds to approximately 87% of your 1RM, while 3 repetitions corresponds to 93%. Dividing the weight lifted by the respective percentage yields an accurate estimated 1RM with minimal risk of connective tissue injury.",
+    category: "NASM",
+  },
+  {
+    id: 3,
     question: "Why should I calculate 1RM instead of actually testing a true 1RM?",
     answer:
       "Testing a true, max-effort single repetition places extreme mechanical strain on connective tissues, joints, and the central nervous system (CNS), creating a significant injury risk. Calculating your 1RM from a controlled 3-to-6 repetition set provides 97%+ statistical accuracy without the heightened danger of catastrophic technical failure.",
     category: "Safety",
   },
   {
-    id: 3,
-    question: "Which formula is most accurate: Epley or Brzycki?",
+    id: 4,
+    question: "Which formula is most accurate: Epley, Brzycki, or NASM?",
     answer:
-      "Both formulas have strong scientific validation in peer-reviewed exercise physiology literature. The Epley formula (1985) tends to perform marginally better for sets of 2 to 5 repetitions, whereas the Brzycki equation (1993) is slightly more conservative and accurate between 6 and 10 repetitions. Our calculator blends both to eliminate single-formula bias.",
+      "Both Epley (1985) and Brzycki (1993) have strong scientific validation in peer-reviewed exercise physiology literature. The Epley formula performs marginally better for sets of 2 to 5 repetitions, whereas the Brzycki equation is slightly more conservative between 6 and 10 repetitions. The NASM submaximal matrix aligns closely with Epley in the 3–5 rep range and provides practical safety benchmarks for personal trainers.",
     category: "Formulas",
   },
   {
-    id: 4,
+    id: 5,
     question: "How do I choose working weights for hypertrophy using my 1RM?",
     answer:
       "For optimal muscular hypertrophy (muscle building), research recommends training between 70% and 82% of your 1RM for sets of 6 to 12 repetitions within 1–3 reps of technical failure (RIR 1–3). For pure strength development, spend more time in the 85% to 92% zone (3–5 reps).",
     category: "Programming",
   },
   {
-    id: 5,
+    id: 6,
     question: "How often should I re-estimate my 1RM?",
     answer:
       "For beginners and early intermediates following progressive overload, re-calculate every 4 to 6 weeks. For advanced lifters running 8-to-12-week periodized blocks, reassess at the conclusion of each realization or peaking block.",
     category: "Progress",
   },
+];
+
+const nasmConversionTable = [
+  { reps: 1, percentage: "100%", factor: "1.000", adaptation: "Peak Neuromuscular Output / 1RM" },
+  { reps: 2, percentage: "95%", factor: "1.053", adaptation: "Maximal Strength & Neural Drive" },
+  { reps: 3, percentage: "93%", factor: "1.075", adaptation: "Heavy Strength (NASM Preferred Test)" },
+  { reps: 4, percentage: "90%", factor: "1.111", adaptation: "Max Strength / Myofibrillar Hypertrophy" },
+  { reps: 5, percentage: "87%", factor: "1.149", adaptation: "Strength & Dense Hypertrophy (NASM Test)" },
+  { reps: 6, percentage: "85%", factor: "1.176", adaptation: "Functional Hypertrophy Sweet Spot" },
+  { reps: 7, percentage: "83%", factor: "1.205", adaptation: "Muscular Hypertrophy & Work Capacity" },
+  { reps: 8, percentage: "80%", factor: "1.250", adaptation: "Hypertrophy Volume Foundation" },
+  { reps: 9, percentage: "77%", factor: "1.299", adaptation: "Strength-Endurance & Capillarization" },
+  { reps: 10, percentage: "75%", factor: "1.333", adaptation: "Muscular Endurance & Metabolic Stress" },
 ];
 
 export default function OneRepMaxCalculatorPage() {
@@ -75,7 +95,7 @@ export default function OneRepMaxCalculatorPage() {
         "operatingSystem": "Web",
         "url": "https://fitway.best/tools/one-rep-max-calculator",
         "description":
-          "Calculate estimated 1-repetition maximums (1RM) and full training percentage matrices using validated Epley and Brzycki equations.",
+          "Calculate estimated 1-repetition maximums (1RM) and full training percentage matrices using validated Epley, Brzycki, and NASM submaximal equations.",
         "offers": {
           "@type": "Offer",
           "price": "0",
@@ -88,6 +108,7 @@ export default function OneRepMaxCalculatorPage() {
         },
         "featureList": [
           "Epley, Brzycki, and Lombardi mathematical models",
+          "NASM submaximal 1RM estimation protocol & conversion table",
           "Full 60%–100% percentage breakdown table",
           "Specific training zone classifications",
           "Kilograms and pounds dual unit support",
@@ -114,7 +135,7 @@ export default function OneRepMaxCalculatorPage() {
               One-Rep Max <span className="gradient-text">(1RM) Calculator</span>
             </h1>
             <p className="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              Safely calculate your one-rep max from any completed set of 1–12 repetitions. Generate precise working weight targets for strength, hypertrophy, and power.
+              Safely calculate your one-rep max from any completed set of 1–12 repetitions. Generate precise working weight targets using Epley, Brzycki, and the NASM submaximal protocol.
             </p>
           </div>
 
@@ -141,7 +162,64 @@ export default function OneRepMaxCalculatorPage() {
               </div>
             </section>
 
-            {/* 2. Scientific Formulas */}
+            {/* 2. NASM Submaximal 1RM Protocol Section */}
+            <section className="space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2.5">
+                <Award className="w-6 h-6 text-[#FF8C00]" /> The NASM 1RM Estimation Protocol
+              </h2>
+              <p>
+                The <strong>National Academy of Sports Medicine (NASM)</strong> establishes strict safety guidelines for assessing client strength. In professional personal training practice, certified trainers like FitWay Head Trainer{" "}
+                <Link href="/authors/richard-botich" className="text-[#FF8C00] underline hover:text-[#ff9d26]">
+                  Richard Botich (NASM-CPT, CES)
+                </Link>{" "}
+                rely on submaximal testing protocols (typically 3 to 5 repetitions) to calculate maximal strength without exposing the athlete to the joint strain of a true 1RM single.
+              </p>
+              <div className="p-5 rounded-2xl bg-[#243447] border border-white/10 space-y-3">
+                <h3 className="font-bold text-white text-base">Standard 4-Step NASM Assessment Protocol:</h3>
+                <ol className="list-decimal list-inside space-y-2 text-sm text-gray-300">
+                  <li><strong>Warm-up Set 1:</strong> 8 to 10 repetitions with a light load (roughly 50% of estimated 1RM). Rest 1 minute.</li>
+                  <li><strong>Warm-up Set 2:</strong> 3 to 5 repetitions with a moderate load (70% to 75% of estimated 1RM). Rest 2 minutes.</li>
+                  <li><strong>Assessment Set:</strong> Perform 3 to 5 repetitions with a heavy working weight until technical failure (the point where form begins to break down). Rest 2 to 4 minutes.</li>
+                  <li><strong>Calculation:</strong> Divide the weight lifted by the corresponding NASM percentage factor from the table below.</li>
+                </ol>
+              </div>
+
+              {/* NASM Conversion Table */}
+              <div className="overflow-x-auto rounded-2xl border border-white/10 mt-4">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-white/5 text-gray-300 uppercase text-xs font-semibold border-b border-white/10">
+                    <tr>
+                      <th className="py-3 px-4">Reps Completed</th>
+                      <th className="py-3 px-4 text-[#FF8C00]">% of 1RM</th>
+                      <th className="py-3 px-4 text-blue-400">Multiplier Factor</th>
+                      <th className="py-3 px-4 text-emerald-400">Target Training Adaptation</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/5 font-medium">
+                    {nasmConversionTable.map((row) => (
+                      <tr key={row.reps} className={`hover:bg-white/5 ${row.reps === 3 || row.reps === 5 ? "bg-[#FF8C00]/5" : ""}`}>
+                        <td className="py-3 px-4 text-white font-bold whitespace-nowrap">
+                          {row.reps} {row.reps === 1 ? "rep" : "reps"}
+                          {(row.reps === 3 || row.reps === 5) && (
+                            <span className="ml-2 text-[10px] px-2 py-0.5 rounded bg-[#FF8C00]/20 text-[#FF8C00] font-semibold">
+                              NASM Recommended
+                            </span>
+                          )}
+                        </td>
+                        <td className="py-3 px-4 text-[#FF8C00] font-semibold">{row.percentage}</td>
+                        <td className="py-3 px-4 text-gray-300 font-mono text-xs">{row.factor}</td>
+                        <td className="py-3 px-4 text-gray-300 text-xs">{row.adaptation}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-gray-400 pt-1">
+                *Example: If you complete 5 clean repetitions with 100 kg, divide 100 by 0.87 (or multiply 100 × 1.149), giving an estimated 1RM of 114.9 kg.
+              </p>
+            </section>
+
+            {/* 3. Scientific Formulas */}
             <section className="space-y-4">
               <h2 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2.5">
                 <BookOpen className="w-6 h-6 text-[#FF8C00]" /> The Mathematical Formulas Explained
@@ -178,7 +256,7 @@ export default function OneRepMaxCalculatorPage() {
               </div>
             </section>
 
-            {/* 3. Training Zones Table */}
+            {/* 4. Training Zones Table */}
             <section className="space-y-4">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
                 How to Program Your Sets by 1RM Percentage
@@ -227,7 +305,7 @@ export default function OneRepMaxCalculatorPage() {
               </div>
             </section>
 
-            {/* 4. Actionable Next Steps */}
+            {/* 5. Actionable Next Steps */}
             <section className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#243447] to-[#1B2B3B] border border-white/10 space-y-4">
               <h2 className="text-2xl font-bold text-white">Take Your 1RM Numbers to the Gym</h2>
               <p className="text-gray-300">
@@ -262,4 +340,3 @@ export default function OneRepMaxCalculatorPage() {
     </>
   );
 }
-

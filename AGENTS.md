@@ -85,6 +85,7 @@ User -> Next.js Frontend -> Strapi REST API -> Database.
 
 - Structured Data: Use ExercisePlan and Course for workouts, FAQPage for FAQs, and SoftwareApplication for calculators.
 - E-E-A-T: Prioritize Author profiles, scientific citations (PubMed/NCBI), and a clear Editorial Policy.
+- Anti-AI & Humanizer: All generated content (blog articles, workouts, category hubs) must strictly follow Humanizer rules (.agents/skills/humanizer) to eliminate AI markers (e.g. no "not X but Y", no "delve/crucial", no em dashes, no staged run-ups) and pass Google AdSense "Low Value Content" checks.
 - AI Readiness: Maintain public/llms.txt for AI crawlers and agentic browsing.
 - Indexation: Ensure dynamic routes (like blog categories) have self-referential canonical tags and are included in sitemap.ts.
 
