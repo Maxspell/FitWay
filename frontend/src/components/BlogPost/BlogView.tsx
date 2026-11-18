@@ -68,11 +68,7 @@ export default function BlogView({
     );
   }
 
-  // On page 1, featured post is the very first post, and remaining 8 posts go into the grid
-  // On page 2+, all 9 posts are shown in the grid so the user can easily scan the paginated catalogue
   const isFirstPage = currentPage === 1;
-  const featuredPost = isFirstPage ? posts[0] : null;
-  const gridPosts = isFirstPage ? posts.slice(1) : posts;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -107,113 +103,116 @@ export default function BlogView({
           )}
         </div>
 
-        {/* Featured Post (Only on Page 1) */}
-        {featuredPost && (
-          <Link
-            href={`/blog/${featuredPost.slug}`}
-            className="card mb-12 block hover:ring-2 hover:ring-[#FF8C00] transition-all group"
-          >
-            <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-              <div className="w-full md:w-1/2 relative h-56 sm:h-72 md:h-[400px] overflow-hidden rounded-2xl">
-                <Image
-                  src={getPostImage(featuredPost, "large")}
-                  alt={featuredPost.title}
-                  fill
-                  className="rounded-2xl object-cover transition-transform duration-500 group-hover:scale-105"
-                  priority
-                />
-              </div>
-              <div className="w-full md:w-1/2 flex flex-col justify-center">
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[#FF8C00] text-sm mb-3 sm:mb-4">
-                  {featuredPost.author?.name && (
-                    <span className="flex items-center gap-1.5">
-                      <User className="h-4 w-4 shrink-0" />
-                      {featuredPost.author.name}
-                    </span>
-                  )}
-                  <span className="flex items-center gap-1.5">
-                    <Calendar className="h-4 w-4 shrink-0" />
-                    {new Date(featuredPost.createdAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                  {featuredPost.readTime && (
-                    <span className="flex items-center gap-1.5">
-                      <Clock className="h-4 w-4 shrink-0" />
-                      {featuredPost.readTime}
-                    </span>
-                  )}
-                  {featuredPost.category?.name && (
-                    <span className="flex items-center gap-1.5">
-                      <Tag className="h-4 w-4 shrink-0" />
-                      {featuredPost.category.name}
-                    </span>
-                  )}
-                </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 group-hover:text-[#FF8C00] transition-colors">
-                  {featuredPost.title}
-                </h2>
-                <p className="text-gray-300 text-sm sm:text-base mb-5 sm:mb-6 line-clamp-3">
-                  {featuredPost.excerpt}
-                </p>
-                <span className="btn-primary inline-block w-fit">
-                  Read More
-                </span>
-              </div>
-            </div>
-          </Link>
-        )}
+        {/* 9 Blog Posts Grid (3x3 on Desktop) */}
+        {posts.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post, index) => {
+              const isFirstOnPageOne = isFirstPage && index === 0;
 
-        {/* Posts Grid */}
-        {gridPosts.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {gridPosts.map(post => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="card block hover:ring-2 hover:ring-[#FF8C00] transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="relative h-48 mb-4">
-                    <Image
-                      src={getPostImage(post, "large")}
-                      alt={post.title}
-                      fill
-                      className="rounded-lg object-cover"
-                    />
-                  </div>
-                  <div className="flex items-center gap-4 text-[#FF8C00] text-sm mb-2">
-                    {post.author?.name && (
+              return (
+                <article
+                  key={post.slug}
+                  className={`card relative group transition-all duration-300 flex flex-col justify-between hover:ring-2 hover:ring-[#FF8C00] ${
+                    isFirstOnPageOne ? "border-[#FF8C00]/30 shadow-lg shadow-orange-500/5" : ""
+                  }`}
+                >
+                  <div>
+                    {/* Media Container with Floating Badges */}
+                    <div className="relative h-48 sm:h-52 mb-4 overflow-hidden rounded-xl bg-[#1B2B3B]">
+                      <Image
+                        src={getPostImage(post, "large")}
+                        alt={post.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+
+                      {/* Subtle gradient for badge contrast */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B3B]/60 via-transparent to-black/30 pointer-events-none" />
+
+                      {/* Top Badges (Category & Latest) */}
+                      <div className="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-2">
+                        {post.category && (
+                          <Link
+                            href={`/blog/category/${post.category.slug}`}
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1B2B3B]/85 hover:bg-[#FF8C00] text-[#FF8C00] hover:text-white text-xs font-semibold backdrop-blur-md border border-white/10 hover:border-[#FF8C00] transition-all shadow-md"
+                            title={`Explore all ${post.category.name} articles`}
+                          >
+                            <Tag className="w-3 h-3 shrink-0" />
+                            <span>{post.category.name}</span>
+                          </Link>
+                        )}
+
+                        {isFirstOnPageOne && (
+                          <span className="px-2.5 py-1 rounded-full bg-[#FF8C00] text-white text-[10px] font-black uppercase tracking-wider shadow-md">
+                            Latest
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Metadata Line with Clickable Author (E-E-A-T) */}
+                    <div className="flex flex-wrap items-center gap-3 text-gray-400 text-xs mb-3">
+                      {post.author?.name && (
+                        post.author.slug ? (
+                          <Link
+                            href={`/authors/${post.author.slug}`}
+                            className="relative z-10 flex items-center gap-1 text-[#FF8C00] hover:text-white transition-colors font-medium"
+                            title={`View author profile of ${post.author.name}`}
+                          >
+                            <User className="h-3.5 w-3.5 shrink-0" />
+                            <span className="truncate max-w-[120px]">{post.author.name}</span>
+                          </Link>
+                        ) : (
+                          <span className="flex items-center gap-1 text-[#FF8C00] font-medium">
+                            <User className="h-3.5 w-3.5 shrink-0" />
+                            <span className="truncate max-w-[120px]">{post.author.name}</span>
+                          </span>
+                        )
+                      )}
                       <span className="flex items-center gap-1">
-                        <User className="h-4 w-4" />
-                        {post.author.name}
+                        <Calendar className="h-3.5 w-3.5 shrink-0" />
+                        <span>
+                          {new Date(post.createdAt).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                          })}
+                        </span>
                       </span>
-                    )}
-                    <span className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      {new Date(post.createdAt).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
+                      {post.readTime && (
+                        <span className="flex items-center gap-1">
+                          <Clock className="h-3.5 w-3.5 shrink-0" />
+                          <span>{post.readTime}</span>
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Title with Stretched Link expanding over the entire card */}
+                    <h3 className="text-xl font-bold mb-2.5 text-white group-hover:text-[#FF8C00] transition-colors line-clamp-2 leading-snug">
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="focus:outline-none after:absolute after:inset-0 after:z-0"
+                      >
+                        {post.title}
+                      </Link>
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-gray-300 text-sm mb-4 line-clamp-3 leading-relaxed">
+                      {post.excerpt}
+                    </p>
+                  </div>
+
+                  {/* Footer Action Button */}
+                  <div className="pt-2 mt-auto">
+                    <span className="btn-primary inline-flex items-center gap-1.5 text-sm py-2 px-4 pointer-events-none">
+                      <span>Read Article</span>
+                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </span>
-                    {post.readTime && (
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
-                        {post.readTime}
-                      </span>
-                    )}
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-                  <p className="text-gray-300 mb-4">{post.excerpt}</p>
-                </div>
-                <span className="btn-primary inline-block w-fit">
-                  Read More
-                </span>
-              </Link>
-            ))}
+                </article>
+              );
+            })}
           </div>
         )}
 
