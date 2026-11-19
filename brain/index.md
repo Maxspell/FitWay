@@ -1,5 +1,7 @@
 # FitWay Knowledge Base Index
 
+> **Language Policy**: All files, updates, activity logs (`brain/log.md`), and new entries in this knowledge base must be written strictly in **English**.
+
 ## 🎯 Roadmaps & Strategy
 - [[roadmap/adsense-approval-plan]] — Пошаговый план прохождения модерации Google AdSense («Бесполезный контент / Low value content») с интерактивным чеклистом.
 - [[.agents/agents/seo-adsense-architect]] — Манифест AI-агента (Principal SEO Strategist & Technical Web Architect) для модерации Google AdSense, pSEO и максимизации RPM.

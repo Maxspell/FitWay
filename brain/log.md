@@ -1,6 +1,11 @@
 # Knowledge Base Activity Log
 
 ## 2026-11-19
+- **Knowledge Base Language Policy Enforcement (`AGENTS.md`, `brain/index.md`)**:
+  - Enforced a strict project-level rule requiring all knowledge base entries, documentation, notes, bug logs, and activity records in `brain/` to be authored exclusively in English.
+  - Updated `AGENTS.md` (under `Documentation & Knowledge Base (brain/)` and `Validation Checklist`) to guarantee persistent agent compliance across all turns.
+  - Added a visible policy notice at the top of `brain/index.md`.
+
 - **Модернизация футера и интеграция Pinterest (`Footer.tsx`, `MobileMenu.tsx`, Schema.org)**:
   - **Выравнивание блоков футера в один ряд (`Footer.tsx`)**: Блок «Legal & Trust» отделен от «Quick Links» и выведен в отдельную колонку. Сетка переведена на 5 колонок на десктопе (`lg:grid-cols-5`): FitWay Brand, Quick Links, Legal & Trust, Contact, Follow Us теперь располагаются идеально в одну строку без провисаний по вертикали.
   - **Оранжевый ховер социальных иконок**: Для иконок соцсетей добавлен фирменный оранжевый акцент (`hover:text-[#FF8C00] transition-colors duration-200`).

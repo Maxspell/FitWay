@@ -119,13 +119,15 @@ User -> Next.js Frontend -> Strapi REST API -> Database.
 - .github/workflows/deploy.yml: Deployment pipeline definition.
 
 
-## Documentation
+## Documentation & Knowledge Base (brain/)
 
-Consult the /brain directory for detailed guides:
-- Architecture: brain/architecture/
-- Known Bugs/Fixes: brain/bugs/
-- Deployment: brain/deploy/
-- Frontend SEO: brain/frontend/seo.md
+- **Strict Language Requirement**: ALL documentation, notes, activity logs (`brain/log.md`), architecture records, bug post-mortems, and index entries (`brain/index.md`) in the `brain/` directory MUST be written strictly in **English**. Even when communicating with the user in Russian (or any other language), knowledge base entries and records must always be added in English.
+- Consult the `/brain` directory for detailed guides:
+  - Architecture: `brain/architecture/`
+  - Known Bugs/Fixes: `brain/bugs/`
+  - Deployment: `brain/deploy/`
+  - Frontend SEO: `brain/frontend/seo.md`
+
 ## Common Pitfalls
 - Canonical Inheritance: Forgetting to set a local canonical on /blog/category/[slug], leading to Google indexing them as duplicates of the homepage.
 
@@ -152,5 +154,5 @@ Consult the /brain directory for detailed guides:
 - [ ] Does this change impact Core Web Vitals or LCP?
 - [ ] Are all new images localized or configured in remotePatterns?
 - [ ] Does the page have the correct self-referential canonical tag?
-- [ ] Did I update the brain/ knowledge base if I discovered a new architectural pattern or bug?
+- [ ] Did I update the brain/ knowledge base (in English) if I discovered a new architectural pattern or bug?
 - [ ] If backend changes were made, did I rebuild the Strapi admin?
