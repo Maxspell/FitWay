@@ -8,6 +8,7 @@
 - [[.agents/agents/senior-backend-architect]] — Senior Backend Architect & Strapi 5 Engineer manifest (Strapi v5.9.0 collections, Document Service API, permissions, Route Handlers, PM2 build safety).
 - [[.agents/agents/senior-frontend-engineer]] — Senior Frontend Engineer manifest (Next.js 14 App Router, TypeScript, ISR, Service Layer, Technical SEO/Schema.org, hydration & CWV).
 - [[.agents/agents/senior-ux-ui-designer]] — Senior UX/UI Designer & Design System Architect manifest (dark editorial palette, WCAG AA/AAA contrast, zero-CLS layouts, dwell-time UX).
+- [[.agents/agents/senior-qa-engineer]] — Senior QA Engineer & Test Automation Specialist manifest (E2E/regression testing, Strapi 5 & Route Handler API contracts, calculator math edge cases, SEO/Schema.org/canonical checks, hydration & WCAG AA verification).
 - [[data/gsc-latest.json]] — Свежий кэш поисковой аналитики Google Search Console (клики, показы, CTR, низковисящие плоды), генерируемый `scripts/gsc_client.py`.
 - [[data/ga4-latest.json]] — Свежий кэш пользовательской аналитики Google Analytics 4 (активные пользователи, время на сайте, zombie-страницы, трафик из AI-поисковиков), генерируемый `scripts/ga4_client.py`.
 
