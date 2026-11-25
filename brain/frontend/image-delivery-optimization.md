@@ -56,6 +56,12 @@
 
 ---
 
+## Update (2026-11-25): Replaced Placeholder Avatars with Real Strapi Coach Photos
+- To strengthen E-E-A-T and eliminate non-authentic placeholder portraits for Google AdSense compliance, `HeroContent.tsx` now renders up to 4 real certified coach photos from Strapi (`authors` via `getStrapiMedia` and `<Image sizes="40px" />`) linking to `/authors/[slug]`, with a `relative z-10` `{coachesCount}+` badge linking to `/authors`.
+- Unused `frontend/public/images/avatars/user-[1-4].webp` files were removed. See [[frontend/authors-system]] and [[frontend/trust-signals-contacts]].
+
+---
+
 ## Ссылки на связанные документы
 - [[frontend/performance-third-party-scripts]] — Аудит производительности Lighthouse, нагрузка на main-thread и сторонние скрипты.
 - [[frontend/responsive-layout]] — Mobile-first сетки и адаптивность компонентов.

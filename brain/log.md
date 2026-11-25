@@ -1,6 +1,14 @@
 # Knowledge Base Activity Log
 
 ## 2026-11-25
+- **Homepage Hero Trust Indicators Upgraded to Real Strapi Coaches & Reviews (`frontend/src/app/page.tsx`, `frontend/src/components/hero/Hero.tsx`, `frontend/src/components/hero/HeroContent.tsx`, `frontend/src/components/sections/testimonials/TestimonialsSection.tsx`)**:
+  - Replaced hardcoded stock user avatars (`/images/avatars/user-[1-4].webp`), `10k+` badge, and `10,000+ Happy Users` copy with real certified coach data from Strapi `authors` (minimal `HeroExpert` payload: `name`, `slug`, `photoUrl` via `getStrapiMedia`, up to 4 coaches with letter-initial fallback and `ShieldCheck` fallback when `authors` is empty).
+  - Linked each coach avatar directly to `/authors/[slug]`, fixed `-space-x-3` overlap clipping on the final `{displayCoachesCount}+` pill (`relative z-10`), added `Vetted by {displayCoachesCount}+ Certified Coaches` link to `/authors`, and linked `{reviewsCount}+ Verified Reviews` to `#testimonials` (`id="testimonials"` + `scroll-mt-16` added to `TestimonialsSection`).
+  - Upgraded `text-gray-400` labels in Hero trust indicators to `text-gray-300` for WCAG AAA contrast on `#1B2B3B` and removed unused `frontend/public/images/avatars/user-[1-4].webp`.
+  - Updated [[frontend/image-delivery-optimization]].
+- **Homepage Hero Real Rating Synchronization (`frontend/src/app/page.tsx`, `frontend/src/components/hero/Hero.tsx`, `frontend/src/components/hero/HeroContent.tsx`)**:
+  - Replaced the hardcoded `4.9/5` rating and static 5-star fill in `HeroContent.tsx` with the real `reviewsAvgRating` scalar already computed in `app/page.tsx` (matching `TestimonialsSection` stats and `Organization.aggregateRating` JSON-LD).
+  - Passed `avgRating={parseFloat(reviewsAvgRating)}` from `Home` -> `Hero` -> `HeroContent`, rendered `{formattedRating}/5`, added proportional fractional star fill based on `ratingValue`, and removed the unused `Users` import.
 - **Homepage Hero Responsive Vertical Spacing Fix (`frontend/src/components/hero/Hero.tsx`, `frontend/src/components/hero/HeroContent.tsx`)**:
   - Replaced `min-h-[900px] lg:min-h-screen pt-20 lg:pt-0` on `<section>` in `Hero.tsx` with `lg:min-h-[calc(100vh-4.5rem)] pt-8 pb-16 md:pt-12 md:pb-20 lg:py-12` (accounting for the `72px` / `4.5rem` in-flow `sticky top-0` header in `Header.tsx`).
   - Added `pointer-events-none` to the bottom decorative gradient overlay in `Hero.tsx`.

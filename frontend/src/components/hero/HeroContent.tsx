@@ -1,11 +1,33 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { ArrowRight, Play, Star, Users } from "lucide-react";
+import { ArrowRight, Play, ShieldCheck, Star } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function HeroContent() {
+export interface HeroExpert {
+  name: string;
+  slug: string;
+  photoUrl?: string;
+}
+
+interface HeroContentProps {
+  avgRating?: number;
+  experts?: HeroExpert[];
+  coachesCount?: number;
+  reviewsCount?: number;
+}
+
+export default function HeroContent({
+  avgRating,
+  experts = [],
+  coachesCount = 0,
+  reviewsCount = 0,
+}: HeroContentProps) {
+  const ratingValue =
+    typeof avgRating === "number" && Number.isFinite(avgRating) ? avgRating : 4.9;
+  const formattedRating = ratingValue.toFixed(1);
+  const displayCoachesCount = coachesCount > 0 ? coachesCount : experts.length;
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -79,39 +101,98 @@ export default function HeroContent() {
       </motion.div>
 
       {/* Trust Indicators */}
-      <motion.div variants={itemVariants} className="pt-2 lg:pt-4 flex items-center gap-12">
+      <motion.div variants={itemVariants} className="pt-2 lg:pt-4 flex items-center gap-8 md:gap-12">
         <div className="flex flex-col">
-          <div className="flex -space-x-3 mb-2">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="w-10 h-10 rounded-full border-2 border-[#1B2B3B] bg-gray-800 overflow-hidden relative">
-                <Image 
-                  src={`/images/avatars/user-${i}.webp`} 
-                  alt={`User ${i}`}
-                  width={40}
-                  height={40}
-                  className="object-cover w-full h-full"
-                />
+          <div className="flex items-center gap-3 mb-2.5">
+            {experts.length > 0 ? (
+              <div className="flex -space-x-3">
+                {experts.map((expert) => (
+                  <Link
+                    key={expert.slug}
+                    href={`/authors/${expert.slug}`}
+                    title={expert.name}
+                    aria-label={`View profile of ${expert.name}`}
+                    className="relative z-0 hover:z-20 w-10 h-10 rounded-full border-2 border-[#1B2B3B] hover:border-[#FF8C00] bg-[#243447] overflow-hidden flex items-center justify-center transition-colors shrink-0"
+                  >
+                    {expert.photoUrl ? (
+                      <Image
+                        src={expert.photoUrl}
+                        alt={expert.name}
+                        width={40}
+                        height={40}
+                        sizes="40px"
+                        className="object-cover w-full h-full"
+                      />
+                    ) : (
+                      <span className="text-xs font-bold text-[#FF8C00]">
+                        {expert.name.charAt(0).toUpperCase()}
+                      </span>
+                    )}
+                  </Link>
+                ))}
+                {displayCoachesCount > 0 && (
+                  <Link
+                    href="/authors"
+                    aria-label={`View all ${displayCoachesCount} certified coaches`}
+                    className="relative z-10 w-10 h-10 rounded-full border-2 border-[#1B2B3B] hover:border-[#FF8C00] bg-[#243447] flex items-center justify-center text-[11px] font-bold text-white hover:text-[#FF8C00] transition-colors shrink-0"
+                  >
+                    {displayCoachesCount}+
+                  </Link>
+                )}
               </div>
-            ))}
-            <div className="w-10 h-10 rounded-full border-2 border-[#1B2B3B] bg-[#243447] flex items-center justify-center text-[10px] font-bold text-white">
-              10k+
-            </div>
+            ) : (
+              <Link
+                href="/authors"
+                aria-label="Meet FitWay certified coaches"
+                className="w-10 h-10 rounded-full border-2 border-[#1B2B3B] bg-[#243447] flex items-center justify-center text-[#FF8C00] hover:border-[#FF8C00] transition-colors shrink-0"
+              >
+                <ShieldCheck className="h-5 w-5" />
+              </Link>
+            )}
+            <Link
+              href="/authors"
+              className="text-xs sm:text-sm text-gray-300 hover:text-[#FF8C00] font-medium transition-colors"
+            >
+              {displayCoachesCount > 0
+                ? `Vetted by ${displayCoachesCount}+ Certified Coaches`
+                : "Vetted by Certified Coaches"}
+            </Link>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <Star key={i} className="h-4 w-4 text-[#FF8C00] fill-current" />
-              ))}
+            <div className="flex items-center gap-0.5" aria-label={`Rated ${formattedRating} out of 5`}>
+              {[1, 2, 3, 4, 5].map((i) => {
+                const fillPercent = Math.round(
+                  Math.min(Math.max(ratingValue - (i - 1), 0), 1) * 100
+                );
+                return (
+                  <div key={i} className="relative h-4 w-4">
+                    <Star className="h-4 w-4 text-white/15" />
+                    {fillPercent > 0 && (
+                      <div
+                        className="absolute inset-0 overflow-hidden"
+                        style={{ width: `${fillPercent}%` }}
+                      >
+                        <Star className="h-4 w-4 text-[#FF8C00] fill-current" />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-            <span className="text-sm text-gray-400 font-medium">10,000+ Happy Users</span>
+            <Link
+              href="#testimonials"
+              className="text-sm text-gray-300 hover:text-[#FF8C00] font-medium transition-colors"
+            >
+              {reviewsCount > 0 ? `${reviewsCount}+ Verified Reviews` : "Verified Community Rating"}
+            </Link>
           </div>
         </div>
 
         <div className="h-12 w-px bg-white/10 hidden md:block"></div>
 
         <div className="hidden md:flex flex-col justify-center">
-          <p className="text-2xl font-bold text-white">4.9/5</p>
-          <p className="text-sm text-gray-400">Average Rating</p>
+          <p className="text-2xl font-bold text-white">{formattedRating}/5</p>
+          <p className="text-sm text-gray-300">Average Rating</p>
         </div>
       </motion.div>
     </motion.div>

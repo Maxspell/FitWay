@@ -81,7 +81,7 @@ export default function TestimonialsSection({ reviews = [], stats }: Testimonial
   ];
 
   return (
-    <section className="py-12 md:py-24 lg:py-32 relative overflow-hidden bg-[#1B2B3B]">
+    <section id="testimonials" className="scroll-mt-16 py-12 md:py-24 lg:py-32 relative overflow-hidden bg-[#1B2B3B]">
       {/* Background Atmosphere */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[20%] left-[-10%] w-[600px] h-[600px] bg-[#FF8C00]/5 rounded-full blur-[150px] animate-pulse" />

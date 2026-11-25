@@ -7,6 +7,7 @@ import LatestPosts from "@/components/sections/blog/LatestPosts";
 import { getWorkouts, getLatestReviews } from "@/services/workout.service";
 import { getBlogPosts } from "@/services/post.service";
 import { getAuthors } from "@/services/author.service";
+import { getStrapiMedia } from "@/lib/utils";
 import { Review } from "@/interfaces/review";
 
 import StepsSection from "@/components/sections/steps/StepsSection";
@@ -84,6 +85,15 @@ export default async function Home() {
   const reviewsAvgRating = reviews.length
     ? (reviews.reduce((acc: number, curr: Review) => acc + curr.rating, 0) / reviews.length).toFixed(1)
     : "4.9";
+
+  const heroExperts = authors
+    .filter((author) => author.name && author.slug)
+    .slice(0, 4)
+    .map((author) => ({
+      name: author.name,
+      slug: author.slug,
+      photoUrl: author.photo?.url ? getStrapiMedia(author.photo.url) : undefined,
+    }));
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -178,7 +188,12 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       {/* Hero Section */}
-      <Hero />
+      <Hero
+        avgRating={parseFloat(reviewsAvgRating)}
+        experts={heroExperts}
+        coachesCount={authors.length}
+        reviewsCount={reviews.length}
+      />
 
       {/* Steps Journey Section */}
       <StepsSection />

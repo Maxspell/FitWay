@@ -1,9 +1,21 @@
 "use client";
 
-import HeroContent from "./HeroContent";
+import HeroContent, { HeroExpert } from "./HeroContent";
 import HeroVisuals from "./HeroVisuals";
 
-export default function Hero() {
+interface HeroProps {
+  avgRating?: number;
+  experts?: HeroExpert[];
+  coachesCount?: number;
+  reviewsCount?: number;
+}
+
+export default function Hero({
+  avgRating,
+  experts = [],
+  coachesCount = 0,
+  reviewsCount = 0,
+}: HeroProps) {
   return (
     <section className="relative lg:min-h-[calc(100vh-4.5rem)] flex items-center overflow-hidden bg-[#1B2B3B] pt-8 pb-16 md:pt-12 md:pb-20 lg:py-12">
       {/* Dynamic Background Elements */}
@@ -22,7 +34,12 @@ export default function Hero() {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
           {/* Left Side: Content */}
           <div className="w-full lg:w-[55%]">
-            <HeroContent />
+            <HeroContent
+              avgRating={avgRating}
+              experts={experts}
+              coachesCount={coachesCount}
+              reviewsCount={reviewsCount}
+            />
           </div>
 
           {/* Right Side: Visuals */}
