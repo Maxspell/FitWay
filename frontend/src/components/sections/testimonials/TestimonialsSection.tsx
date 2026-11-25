@@ -50,7 +50,7 @@ export default function TestimonialsSection({ reviews = [], stats }: Testimonial
       value: stats?.workoutsCount ?? 10,
       suffix: "+",
       label: "Workouts",
-      description: "Science-backed training programs across all fitness levels.",
+      description: "Structured workout routines across all fitness levels.",
       icon: Dumbbell,
       decimals: 0,
     },
@@ -66,7 +66,7 @@ export default function TestimonialsSection({ reviews = [], stats }: Testimonial
       value: stats?.coachesCount ?? 6,
       suffix: "+",
       label: "Expert Coaches",
-      description: "Certified trainers and sports nutritionists designing plans.",
+      description: "Certified trainers and dietitians reviewing every guide.",
       icon: Users,
       decimals: 0,
     },
@@ -119,7 +119,7 @@ export default function TestimonialsSection({ reviews = [], stats }: Testimonial
             viewport={{ once: true }}
             className="text-xl text-gray-400 max-w-2xl mx-auto"
           >
-            Join thousands of users who have transformed their lives with our personalized approach to fitness and wellness.
+            Read verified workout reviews and platform ratings from readers using FitWay training programs and calculators.
           </motion.p>
         </div>
 

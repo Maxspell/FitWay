@@ -65,7 +65,7 @@ const fallbackFAQs = [
   {
     id: 4,
     question: "Are the calculators free to use?",
-    answer: "Yes, all our fitness tools including BMI, Daily Calorie, and Meal Plan generators are completely free for all users to help you track your progress.",
+    answer: "Yes, all our fitness tools including the BMI, Daily Calorie, Macro, One-Rep Max, and Ideal Weight calculators are completely free to use.",
     category: "tools"
   }
 ];
@@ -104,7 +104,7 @@ export default async function Home() {
         "name": "FitWay",
         "url": siteUrl,
         "logo": `${siteUrl}/favicon.svg`,
-        "description": "AI-powered fitness platform providing science-backed workout programs and personalized nutrition plans.",
+        "description": "Evidence-based fitness platform offering structured workout programs, expert-reviewed nutrition guides, and free health calculators.",
         "sameAs": [
           "https://www.pinterest.com/fitway_best/",
           "https://www.instagram.com/fitway.best/",

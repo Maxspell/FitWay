@@ -77,7 +77,7 @@ export default function NewsletterSection() {
                 </h2>
                 
                 <p className="text-gray-400 text-lg mb-8">
-                  Get weekly fitness hacks, personalized workout tips, and science-backed nutrition advice delivered straight to your inbox.
+                  Get new workout programs, evidence-based nutrition guides, and practical training tips delivered to your inbox.
                 </p>
 
                 <div className="flex flex-col gap-4">
@@ -85,7 +85,7 @@ export default function NewsletterSection() {
                     "Weekly Fitness Tips",
                     "Exclusive Workouts",
                     "Nutrition Guides",
-                    "Early Access to Features"
+                    "Free Calculator Guides"
                   ].map((item, i) => (
                     <motion.div
                       key={item}
@@ -190,7 +190,7 @@ export default function NewsletterSection() {
                         )}
 
                         <p className="text-center text-xs text-gray-500 mt-6">
-                          We respect your privacy. No spam, only pure value. 
+                          We respect your privacy. No spam.
                           <br />Unsubscribe anytime with one click.
                         </p>
                       </form>

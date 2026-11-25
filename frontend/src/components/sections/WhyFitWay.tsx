@@ -5,29 +5,29 @@ import { Zap, Target, Brain, Activity } from "lucide-react";
 
 const PILLARS = [
   {
-    title: "Bio-Individual Analysis",
-    description: "Every body reacts differently. Our AI considers your age, weight, activity level, and goals to calculate precise caloric needs and training volumes, ensuring you're neither under-training nor over-reaching.",
+    title: "Clinical Health Formulas",
+    description: "Our free calculators use established equations like Mifflin-St Jeor, Epley, and WHO standards to estimate your TDEE, macros, BMI, and one-rep max based on your body metrics and weekly activity.",
     icon: Brain,
     color: "text-blue-400",
     bg: "bg-blue-500/10"
   },
   {
-    title: "Progressive Overload Logic",
-    description: "Stagnation is the enemy of progress. We utilize the core principle of progressive overload, systematically increasing stress on the body through volume, intensity, and frequency to trigger continuous adaptation.",
+    title: "Progressive Overload",
+    description: "Strength and muscle gains require a gradual increase in training demand. Our workout guides show how to add weight, reps, or sets each week while keeping proper exercise form across every split.",
     icon: Target,
     color: "text-[#FF8C00]",
     bg: "bg-[#FF8C00]/10"
   },
   {
-    title: "Metabolic Optimization",
-    description: "Nutrition isn't just about calories; it's about hormonal response. Our plans optimize macronutrient ratios to support muscle protein synthesis and metabolic flexibility, fueling your workouts and recovery.",
+    title: "Macro & Calorie Balance",
+    description: "Lasting body composition changes depend on energy balance and adequate protein. Our nutrition articles and macro tools help you set realistic calorie targets for fat loss, maintenance, or lean muscle gain.",
     icon: Activity,
     color: "text-green-400",
     bg: "bg-green-500/10"
   },
   {
-    title: "Data-Driven Periodization",
-    description: "We avoid the 'plateau' by implementing structured periodization. By alternating between intensity and volume phases, we maximize strength gains while ensuring the central nervous system fully recovers.",
+    title: "Peer-Reviewed Standards",
+    description: "Certified coaches and registered dietitians check our guides against PubMed and ACSM research. Every routine pairs effective training volume with recovery guidelines so you stay consistent without burnout.",
     icon: Zap,
     color: "text-purple-400",
     bg: "bg-purple-500/10"
@@ -60,7 +60,7 @@ export default function WhyFitWay() {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
           >
-            The Science of <span className="text-[#FF8C00]">Precision Fitness</span>
+            Training Built on <span className="text-[#FF8C00]">Exercise Science</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -69,7 +69,7 @@ export default function WhyFitWay() {
             viewport={{ once: true }}
             className="text-xl text-gray-400"
           >
-            Where AI Intelligence Meets Human Physiology. We don't believe in one-size-fits-all routines. Our platform is built on the intersection of algorithmic precision and established exercise science.
+            Every workout program, nutrition guide, and calculator on FitWay relies on peer-reviewed research and clinical formulas. Certified coaches review our materials so you get clear, practical guidance.
           </motion.p>
         </div>
 

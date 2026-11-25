@@ -8,7 +8,7 @@ const STEPS = [
   {
     number: 1,
     title: "Set Your Goal",
-    description: "Define your objectives with precision. From hypertrophic muscle growth and sustainable fat loss to cardiovascular endurance, we help you establish SMART goals backed by physiological benchmarks.",
+    description: "Pick a clear target for fat loss, muscle gain, or general fitness. Use our BMI and Ideal Weight calculators to establish a realistic starting point.",
     icon: Target,
     visual: (
       <div className="relative w-full h-full flex items-center justify-center p-4">
@@ -35,8 +35,8 @@ const STEPS = [
   },
   {
     number: 2,
-    title: "Get Your Plan",
-    description: "Our AI analyzes your biometric data and fitness level to synthesize a roadmap. You'll receive a periodized training schedule and a macronutrient-optimized meal plan tailored to your specific metabolic rate.",
+    title: "Choose Your Plan",
+    description: "Estimate your daily calories and macro targets with our TDEE and Macro calculators, then choose a beginner, intermediate, or advanced workout program from our library.",
     icon: ClipboardList,
     visual: (
       <div className="w-full h-full flex flex-col gap-2 p-6 justify-center">
@@ -55,8 +55,8 @@ const STEPS = [
   },
   {
     number: 3,
-    title: "Train & Track",
-    description: "Execute your workouts with confidence using our professional form guides. Use our integrated tracking tools to monitor volume, intensity, and recovery—the three pillars of physical transformation.",
+    title: "Follow Your Routine",
+    description: "Follow step-by-step exercise instructions, set and rep targets, and coach form cues on every workout page. Check our one-rep max calculator to adjust training weights safely.",
     icon: Activity,
     visual: (
       <div className="relative w-full h-full flex items-center justify-center p-4 gap-4">
@@ -95,7 +95,7 @@ const STEPS = [
   {
     number: 4,
     title: "Build Habits",
-    description: "Shift from short-term gains to a lifelong health architecture. We provide the psychological tools and community support needed to turn discipline into effortless habit.",
+    description: "Stay consistent with practical nutrition guides, recovery advice, and weekly fitness tips in our blog. Read community reviews and focus on steady week-to-week progress.",
     icon: Trophy,
     visual: (
       <div className="relative w-full h-full flex items-center justify-center">
@@ -143,7 +143,7 @@ export default function StepsSection() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#FF8C00] text-sm font-medium mb-6"
           >
             <Sparkles className="h-4 w-4" />
-            Your Transformation Journey
+            Your Training Roadmap
           </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -161,7 +161,7 @@ export default function StepsSection() {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="text-xl text-gray-400"
           >
-            From your first goal to lasting habits, we guide you every step of the way with professional tools and community support.
+            Use our free calculators, coach-reviewed workout guides, and nutrition articles to build a routine you can follow every week.
           </motion.p>
         </div>
 

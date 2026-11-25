@@ -30,15 +30,15 @@ export default function CalculatorPreview() {
                 <span className="text-[#FF8C00]">Scientifically</span>
               </h2>
               <p className="text-xl text-gray-400 max-w-xl mx-auto lg:mx-0">
-                Knowing your numbers is the first step to a healthier you. Use our precision tools to track your metrics and get personalized recommendations.
+                Check your Body Mass Index and daily calorie needs in seconds using established health equations. Get practical starting numbers for fat loss, maintenance, or muscle gain.
               </p>
             </div>
 
             <ul className="space-y-4 inline-block text-left">
               {[
-                { icon: Target, text: "Accurate health metrics in seconds" },
-                { icon: Target, text: "Personalized nutritional guidelines" },
-                { icon: Target, text: "Science-based calculation models" }
+                { icon: Target, text: "Instant BMI and TDEE estimates" },
+                { icon: Target, text: "Calorie targets for your goal" },
+                { icon: Target, text: "Mifflin-St Jeor and WHO formulas" }
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-gray-300">
                   <div className="h-6 w-6 rounded-full bg-[#FF8C00]/20 flex items-center justify-center text-[#FF8C00] shrink-0">

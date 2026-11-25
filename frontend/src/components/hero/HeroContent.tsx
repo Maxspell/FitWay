@@ -54,7 +54,7 @@ export default function HeroContent({
       {/* Badge */}
       <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 w-fit">
         <span className="flex h-2 w-2 rounded-full bg-[#FF8C00] animate-pulse"></span>
-        <span className="text-sm font-medium text-gray-300">The Future of Fitness is Here</span>
+        <span className="text-sm font-medium text-gray-300">Coach-Reviewed Fitness &amp; Nutrition</span>
       </motion.div>
 
       {/* Headline */}
@@ -73,10 +73,10 @@ export default function HeroContent({
             />
           </span>{" "}
           <br />
-          with AI Precision
+          with Proven Science
         </h1>
         <p className="text-xl text-gray-400 max-w-xl leading-relaxed">
-          Stop guessing and start progressing. FitWay integrates advanced AI algorithms with core exercise science to deliver hyper-personalized training and nutrition strategies. Whether you're breaking plateaus or starting your journey, our data-driven approach ensures every rep and every meal contributes to your peak performance.
+          Follow structured workout programs, evidence-based nutrition guides, and free fitness calculators reviewed by certified coaches. From home beginner routines to daily calorie and macro targets, every resource gives you clear numbers and exercise form cues.
         </p>
       </motion.div>
 

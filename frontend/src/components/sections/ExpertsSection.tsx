@@ -23,7 +23,7 @@ export default function ExpertsSection({ authors = [] }: { authors: Author[] }) 
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#FF8C00] text-sm font-medium mb-6"
           >
             <ShieldCheck className="h-4 w-4" />
-            Trust & Authority
+            Certified Coaching Team
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -32,7 +32,7 @@ export default function ExpertsSection({ authors = [] }: { authors: Author[] }) 
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
           >
-            Guided by <span className="text-[#FF8C00]">Industry Leaders</span>
+            Reviewed by <span className="text-[#FF8C00]">Certified Experts</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ export default function ExpertsSection({ authors = [] }: { authors: Author[] }) 
             viewport={{ once: true }}
             className="text-xl text-gray-400"
           >
-            Our methodologies are not just AI-generated; they are vetted by certified professionals to ensure your safety, health, and success.
+            Certified personal trainers, strength coaches, and registered dietitians author and review our workout programs and nutrition guides for safety and accuracy.
           </motion.p>
         </div>
 

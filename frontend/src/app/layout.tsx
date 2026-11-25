@@ -13,10 +13,10 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://fitway.best"),
   title: {
-    default: "AI Fitness Plans & Science-Backed Workouts | FitWay",
+    default: "Science-Backed Workouts & Free Fitness Calculators | FitWay",
     template: "%s | FitWay",
   },
-  description: "Get hyper-personalized workout programs and nutrition plans powered by AI and exercise science. Optimize your health with FitWay's data-driven fitness tools.",
+  description: "Explore structured workout programs, expert-reviewed nutrition articles, and free fitness calculators for calories, macros, BMI, and 1RM at FitWay.",
   keywords: [
     "fitness",
     "workouts",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   publisher: "FitWay",
   openGraph: {
     title: "FitWay - Health & Fitness",
-    description: "Transform your body with AI-powered workout programs and science-backed nutrition plans. Start your free fitness journey at FitWay today.",
+    description: "Structured workout programs, coach-reviewed nutrition guides, and free fitness calculators built on exercise science.",
     url: "https://fitway.best",
     siteName: "FitWay",
     locale: "en_US",
@@ -84,7 +84,7 @@ export default function RootLayout({
               "name": "FitWay",
               "url": "https://fitway.best",
               "logo": "https://fitway.best/favicon.svg",
-              "description": "AI-powered fitness platform providing science-backed workout programs and personalized nutrition plans.",
+              "description": "Evidence-based fitness platform offering structured workout programs, expert-reviewed nutrition guides, and free health calculators.",
               "sameAs": [
                 "https://www.pinterest.com/fitway_best/",
                 "https://www.instagram.com/fitway.best/",

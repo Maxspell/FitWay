@@ -12,7 +12,7 @@ This document outlines the core SEO practices and specific implementations used 
 - **Scientific Citations & Link Standards**: External scientific citations (PubMed, NCBI, ISSN) in article content are parsed into secure `target="_blank"` links with `rel="noopener noreferrer"` without suppressing link equity (default follow). Full guidelines: [[frontend/external-links-eeat]].
 - **Trust Funnel Implementation**: We implement a "Trust Funnel" on the home page to combat "Thin Content" flags and satisfy YMYL requirements:
   - **Medical Disclaimer**: A professional disclaimer is placed in the footer to signal safety and compliance.
-  - **Scientific Proof**: A dedicated "Why FitWay" section explains the physiological basis of the platform (Progressive Overload, Bio-Individual Analysis, Metabolic Optimization).
+  - **Scientific Proof**: A dedicated "Why FitWay" section (`WhyFitWay.tsx`) explains the evidence-based pillars of the platform (Clinical Health Formulas, Progressive Overload, Macro & Calorie Balance, Peer-Reviewed Standards), aligned with real product capabilities and Humanizer guidelines.
   - **Human Authority**: An "Experts" section showcases the credentials of the core team (NASM, RD, CSCS) directly on the main page, not just in the about page.
 - **Dedicated Authors System**: We implemented a complete [[frontend/authors-system]] to provide detailed profiles, certifications, and lists of published/reviewed content for each expert, directly linking these profiles in the `Person` JSON-LD schema on articles and workouts.
 - **Content Depth**: Workout pages include dynamic "Expert Tips" and "Common Mistakes" sections. This increases the uniqueness and authority of the content compared to generic workout descriptions.
