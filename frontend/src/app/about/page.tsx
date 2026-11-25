@@ -1,4 +1,4 @@
-import { Award, Users, Target, Heart } from "lucide-react";
+import { Award, Users, Target, Heart, ArrowRight, Dumbbell, Calculator, Home as HomeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -6,7 +6,7 @@ import { getAuthors } from "@/services/author.service";
 import ExpertsSection from "@/components/sections/ExpertsSection";
 
 export const metadata: Metadata = {
-  title: "About FitWay | AI-Powered Fitness & Nutrition Experts",
+  title: "About FitWay: AI Fitness & Nutrition Experts",
   description: "Meet the team behind FitWay. Discover our mission to transform your health through science-backed workout programs and AI-driven nutrition planning.",
   alternates: {
     canonical: "/about",
@@ -84,20 +84,49 @@ export default async function About() {
             We're dedicated to helping you achieve your fitness goals through expert guidance,
             supportive community, and state-of-the-art facilities.
           </p>
+
+          {/* Prominent Brand & Hub CTAs */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <Link
+              href="/workouts"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[#C25700] hover:bg-[#A34600] text-white font-bold transition-colors shadow-[0_0_20px_rgba(194,87,0,0.3)]"
+            >
+              <Dumbbell className="h-5 w-5" />
+              <span>Explore Workout Programs</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/tools"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold transition-colors"
+            >
+              <Calculator className="h-5 w-5 text-[#FF8C00]" />
+              <span>Open Fitness Calculators</span>
+            </Link>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/15 text-gray-200 hover:text-white font-semibold transition-colors"
+            >
+              <HomeIcon className="h-5 w-5 text-[#FF8C00]" />
+              <span>FitWay Home</span>
+            </Link>
+          </div>
         </div>
 
         {/* Values Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 md:mb-16">
-          {values.map((value, index) => (
-            <div key={index} className="card text-center">
-              <div className="flex justify-center mb-4">
-                {value.icon}
+        <section aria-labelledby="core-values-heading">
+          <h2 id="core-values-heading" className="sr-only">Core Values</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 md:mb-16">
+            {values.map((value, index) => (
+              <div key={index} className="card text-center">
+                <div className="flex justify-center mb-4">
+                  {value.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{value.title}</h3>
+                <p className="text-gray-300">{value.description}</p>
               </div>
-              <h3 className="text-xl font-bold mb-2">{value.title}</h3>
-              <p className="text-gray-300">{value.description}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
 
         {/* Team Section */}
         <div className="mb-8 md:mb-16">
