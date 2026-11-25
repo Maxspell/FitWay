@@ -48,6 +48,11 @@ flowchart TD
   - **RPM Optimization**: Проектирование рекламных слотов с `min-h-[250px]` для защиты Core Web Vitals (CLS < 0.1).
   - **Next.js & Strapi Standards**: Соблюдение Service Layer pattern, чистоты каноникалов и разметки Schema.org.
 
+### Engineering & Design Subagents (Added 2026-11-25)
+- **`senior-backend-architect`** (`.agents/agents/senior-backend-architect.md`): Strapi v5.9.0 collections (`backend/src/api/`), Document Service API (`documentId`), API Token & Public permissions, pagination safety, Next.js Route Handlers (`/api/contact`, `/api/newsletter`), and `NODE_OPTIONS="--max-old-space-size=2048" npm run build` lifecycle. Pairs with `.agents/skills/strapi-v5-expert/SKILL.md`.
+- **`senior-frontend-engineer`** (`.agents/agents/senior-frontend-engineer.md`): Next.js 14 App Router, TypeScript strictness, Service Layer (`frontend/src/services/*.service.ts`), ISR/SSG, Metadata Cascade & `Schema.org` `@graph`, hydration/Stretched Link integrity, and CWV optimization. Pairs with `.agents/skills/vercel-react-best-practices/SKILL.md`.
+- **`senior-ux-ui-designer`** (`.agents/agents/senior-ux-ui-designer.md`): FitWay dark-mode design system (`#1B2B3B`, `#243447`, `#C25700` WCAG AA CTAs, `#D1D5DB` muted text), sequential heading order, Framer Motion vs Tailwind safety, mobile-first 320px+ layouts, zero-CLS containers, and GA4 dwell-time optimization. Pairs with `.agents/skills/frontend-design/SKILL.md`.
+
 ---
 
 ## 🛠️ 2. Модернизированный пул навыков FitWay
