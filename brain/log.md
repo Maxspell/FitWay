@@ -1,6 +1,49 @@
 # Knowledge Base Activity Log
 
+## 2026-11-21
+- **New Blog Post Creation & Strapi Production Draft Import (`high-protein-meal-prep-muscle-growth-fat-loss`)**:
+  - **Topic & Intent**: Authored comprehensive high-intent nutrition guide "High-Protein Meal Prep for Muscle Growth and Fat Loss: 5-Day Blueprint" (`high-protein-meal-prep-muscle-growth-fat-loss`). Targets practical meal batching, leucine threshold per-meal distribution, and cold storage safety to break aesthetic monotony on the blog grid.
+  - **Visual Diversity & CTR Defense**: Specifically solved visual repetition feedback (previous 3 posts featured identical moody gym male barbell lifters) by providing vibrant, warm culinary editorial photography prompts and healthy active kitchen moments, complete with strict negative prompts preventing dark moody gyms or barbells.
+  - **E-E-A-T & Peer Review**: Authored by clinical sports dietitian Sarah Johnson, MS, RD, CDN (ID: 3) and peer-reviewed by strength coach Mike Chen, CSCS, CISSN (ID: 5). Category: Nutrition (ID: 1).
+  - **Clinical Grounding (PubMed)**: Cited 3 verified studies with exact PMIDs: Schoenfeld & Aragon (2018, PMID: 29497353) on per-meal protein distribution (0.40–0.55 g/kg/meal); Morton et al. (2018, PMID: 28698222) meta-analysis on total daily protein thresholds (1.6–2.2 g/kg/day); Longland et al. (2016, PMID: 26817506) randomized trial on high protein (2.4 g/kg) for lean mass preservation and fat loss during severe energy deficit.
+  - **Rich Tables & Structural Depth**: Integrated 2 comprehensive tables (Table 1: 5-Day High-Protein Batch Plan with exact macro breakdowns; Table 2: USDA-aligned Food Safety & Shelf Life Matrix for refrigeration and freezing).
+  - **Internal Hub & Spoke Matrix**: Integrated 5 contextual links to `/tools/macro-calculator`, `/tools/calorie-calculator`, `/workouts/full-body-strength-workout-compound-barbell-dumbbell`, `/workouts/beginner-bodyweight-workout-muscle-gain-no-equipment`, and `/blog/category/nutrition`.
+  - **Humanizer Anti-AI Enforcement**: Passed strict 26-pattern humanizer check (zero em/en dashes, zero "not X but Y", zero staged run-ups, zero overused AI vocabulary, natural lists, sentence-case headings). Total word count: 1781 words.
+  - **Strapi Production Push**: Saved in `backend/scripts/posts.json` and successfully uploaded as DRAFT to production Strapi (`https://api.fitway.best`) with Draft ID `156`.
+  - **Registry**: Updated `.agents/skills/fitway-blog-post-generator/references/existing-posts.md` (Total count incremented to 33).
+
 ## 2026-11-19
+- **Google Analytics 4 (GA4) Data API Integration & SEO-Architect Tooling (`scripts/ga4_client.py`)**:
+  - **Live Verification**: Successfully connected to GA4 Property ID `538560832` via Google Cloud Service Account (`credentials/fitway-514214-b1d64b203620.json`) and Google Analytics Data API v1beta (`https://www.googleapis.com/auth/analytics.readonly`).
+  - **CLI Client Architecture (`scripts/ga4_client.py`)**: Authored a production CLI tool mirroring `gsc_client.py`. Queries 28-day overview metrics (55 active users, 78 sessions, 326 page views, avg session duration 10m 04s, 50.0% engagement rate), landing page performance, traffic acquisition channels, device breakdowns, and 14-day daily timeline.
+  - **AdSense Defense & Quality Control Signals**: Implemented automated detection of "zombie pages" (views $\ge 5$ with avg dwell time < 15s or bounce rate > 80%) to proactively safeguard against Google AdSense "Low Value Content" rejections. Included Tier-1 traffic ratio tracking (32.73% from US, UK, CA, AU, NZ, DE) and automated filtering for AI search referrers (`chatgpt.com`, `perplexity.ai`, `claude.ai`).
+  - **Agent Manifesto & Workflow Updates**: Updated `.agents/agents/seo-adsense-architect.md` with explicit commands, output ingestion guidelines (`brain/data/ga4-latest.json`), and dual-source correlation heuristics (GSC pre-click CTR $\leftrightarrow$ GA4 post-click dwell time).
+  - **Documentation & Indexation**: Created architecture note [[frontend/ga4-api-integration]], registered [[data/ga4-latest.json]] and note in [[index]].
+
+- **Repository Hygiene & Agent Workflow Enforcement (`AGENTS.md`, Root Cleanup)**:
+  - **Scratch & Pycache Removal**: Purged temporary artifacts generated during Strapi blog post authoring (`scratch/build_post.py`, `scratch/test_post.json`, `scratch/validate_post.py`) and cached bytecode (`__pycache__` in root and `backend/scripts/__pycache__`). Confirmed `.gitignore` rules prevent tracking.
+  - **Audit & Legacy Plan Deprecation**: Analyzed legacy audit artifacts (`FULL-AUDIT-REPORT.md` and `ACTION-PLAN.md`). Verified that 100% of audit recommendations (`llms.txt`, meta descriptions, E-E-A-T authors, Schema.org types, UGC reviews, internal link matrix) were already implemented and documented across [[frontend/seo]], [[frontend/agentic-web-llms-txt]], and [[frontend/authors-system]]. Safely deleted both files and removed stale references in `AGENTS.md`.
+  - **Context Consolidation & Deletion of `AI_CONTEXT.md`**: Audited redundant `AI_CONTEXT.md`. Extracted valuable engineering guidelines (Maintenance Principles for persistent memory) into `AGENTS.md` under `Documentation & Knowledge Base (brain/)` and removed the obsolete file.
+  - **LLM Wiki Pattern Enforcement**: Formally codified the [[core/llm-wiki]] pattern into `AGENTS.md` (under `Documentation & Knowledge Base`, `Safe Change Workflow` step 5, and `Validation Checklist`), mandating automatic end-of-session logging in `brain/log.md`, topic note updates, `brain/index.md` indexation, and bidirectional `[[...]]` wikilinking.
+
+- **Google Indexing API Integration & Autonomous Agent Refactoring (`scripts/indexing/`)**:
+  - **Refactoring & Clean Project Architecture**: Migrated loose root folder `google-index-api` into standard project structure: CLI client moved to `scripts/indexing/index.js`, dependencies to `scripts/indexing/package.json`, and credentials to `credentials/google_indexing_client_secret.json`. Removed legacy folder and unneeded artifacts.
+  - **Dynamic CLI & URL Handling**: Eliminated hardcoded URLs array. Added dynamic positional arguments, `--file` batch processing, `--status` notification metadata inspection, and `--type URL_UPDATED / URL_DELETED` support.
+  - **Dual Authentication & Token Persistence**:
+    - Resolved critical flaw where OAuth tokens were lost on every run: implemented persistent caching in `credentials/google_indexing_token.json` with automatic token refresh via `google-auth-library`.
+    - Implemented fallback to Google Service Account (`credentials/fitway-514214-*.json`), enabling 100% headless submission once the Web Search Indexing API toggle is enabled on project `772584293974`.
+  - **Live Verification**: Successfully verified live submission using Service Account (`fitway-gsc-agent@fitway-514214.iam.gserviceaccount.com`) for cornerstone post `https://fitway.best/blog/best-compound-exercises-muscle-growth` (HTTP 200 `urlNotificationMetadata` received). Full autonomous indexing pipeline is now active.
+  - **Documentation**: Added comprehensive guide `brain/frontend/google-indexing-api.md` and linked in `brain/index.md`.
+
+- **New Blog Post Creation & Strapi Production Draft Import (`best-compound-exercises-muscle-growth`)**:
+  - **Topic & Intent**: Authored comprehensive cornerstone guide "Best Compound Exercises for Full-Body Muscle Growth: Science and Form" (`best-compound-exercises-muscle-growth`) targeting multi-joint lifts, striking distance GSC queries (`barbell compound`, `compound barbell gym`, `hypertrophy training`, `overload training`), and Hub & Spoke architecture.
+  - **E-E-A-T & Peer Review**: Authored by Mike Chen (CSCS, CISSN, ID: 5) and medically/scientifically reviewed by Richard Botich (NASM-CPT, CES, ID: 1). Category: Muscle Building (ID: 12).
+  - **Clinical Grounding (PubMed)**: Cited 4 verified studies with exact PMIDs: Paoli et al. (2017, PMID: 29312007) on multi-joint vs single-joint adaptations; Gentil et al. (2017, PMID: 27677913) on acute and chronic multi-joint adaptations; Schoenfeld (2010, PMID: 20847704) on mechanical tension mechanisms; Schoenfeld et al. (2017, PMID: 27433992) on dose-response volume curves.
+  - **Internal Hub & Spoke Linking**: Integrated high-intent links to `/tools/one-rep-max-calculator` and `/tools/calorie-calculator`, workouts `/workouts/full-body-strength-workout-compound-barbell-dumbbell` and `/workouts/advanced-powerlifting-workout-maximum-strength-gym`, and category hub `/blog/category/muscle-building`.
+  - **Humanizer Anti-AI Enforcement**: Passed strict 26-pattern humanizer check (zero em/en dashes, zero "not X but Y", zero staged run-ups, zero overused AI vocabulary, natural lists, sentence-case headings). Total word count: 1782 words.
+  - **Strapi Production Push**: Staged in `backend/scripts/posts.json` and successfully uploaded as DRAFT to production Strapi (`https://api.fitway.best`) with Draft ID `154`.
+  - **Registry**: Updated `references/existing-posts.md` (Total count incremented to 32).
+
 - **Knowledge Base Language Policy Enforcement (`AGENTS.md`, `brain/index.md`)**:
   - Enforced a strict project-level rule requiring all knowledge base entries, documentation, notes, bug logs, and activity records in `brain/` to be authored exclusively in English.
   - Updated `AGENTS.md` (under `Documentation & Knowledge Base (brain/)` and `Validation Checklist`) to guarantee persistent agent compliance across all turns.

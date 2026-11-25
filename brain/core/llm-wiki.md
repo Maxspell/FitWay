@@ -29,3 +29,10 @@ Instead of rediscovering data from scratch each time, the agent maintains a muta
 ## Challenges
 - Duplicate pages for similar concepts.
 - Maintaining a meaningful hierarchy of importance.
+
+## FitWay Protocol & Workflows
+In the FitWay repository, this wiki acts as long-term engineering memory for all AI agents:
+1. **Activity Logging**: Every feature, bugfix, or refactoring session ends with a chronological entry in [[log]].
+2. **Cataloging & Ingestion**: New architectural discoveries, APIs, or persistent bug solutions are captured in atomic domain notes (`brain/frontend/`, `brain/backend/`, `brain/bugs/`, etc.) and registered in [[index]].
+3. **Language Policy**: In accordance with project policy, all knowledge base entries and logs are written strictly in English.
+4. **Agent Integration**: Mandated as Step 5 ("Document (LLM Wiki)") in the Safe Change Workflow of `AGENTS.md`.

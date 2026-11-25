@@ -127,6 +127,17 @@ User -> Next.js Frontend -> Strapi REST API -> Database.
   - Known Bugs/Fixes: `brain/bugs/`
   - Deployment: `brain/deploy/`
   - Frontend SEO: `brain/frontend/seo.md`
+- **Maintenance Principles**:
+  - Prefer updating existing notes instead of creating duplicate files.
+  - Document reusable architecture, decisions, and debugging knowledge only (never document trivial code changes).
+  - Keep notes concise, atomic, and use clear semantic filenames.
+- **Session Wrap-Up & Knowledge Compounding (LLM Wiki Pattern)**:
+  - Adhere strictly to `brain/core/llm-wiki.md`.
+  - Every time a feature, bugfix, refactoring, or architectural change is completed:
+    1. Log all implemented changes in `brain/log.md` (dated, structured, in English).
+    2. Update relevant topic notes or create new atomic notes in `brain/` when architectural or technical patterns change.
+    3. Register any new notes in `brain/index.md`.
+    4. Connect related notes using bidirectional wiki links (`[[path/note-name]]`).
 
 ## Common Pitfalls
 - Canonical Inheritance: Forgetting to set a local canonical on /blog/category/[slug], leading to Google indexing them as duplicates of the homepage.
@@ -141,12 +152,14 @@ User -> Next.js Frontend -> Strapi REST API -> Database.
 ## Safe Change Workflow
 
 1. Inspect: Read relevant brain/ notes and existing implementation.
-2. Verify: For SEO changes, check brain/frontend/seo.md and ACTION-PLAN.md.
+2. Verify: For SEO changes, check brain/frontend/seo.md.
 3. Smallest Change: Apply the most targeted fix possible.
 4. Validate: 
    - Run npm run lint and npm run build (locally if possible) to check for metadata/type errors.
    - Verify canonical tags and structured data in HTML.
    - Check if new API endpoints require token permission updates.
+5. Document (LLM Wiki):
+   - Update `brain/log.md`, relevant `brain/` notes, and `brain/index.md` with cross-links (`[[...]]`) in accordance with `brain/core/llm-wiki.md`.
 
 
 ## Validation Checklist
@@ -154,5 +167,5 @@ User -> Next.js Frontend -> Strapi REST API -> Database.
 - [ ] Does this change impact Core Web Vitals or LCP?
 - [ ] Are all new images localized or configured in remotePatterns?
 - [ ] Does the page have the correct self-referential canonical tag?
-- [ ] Did I update the brain/ knowledge base (in English) if I discovered a new architectural pattern or bug?
+- [ ] Did I log session changes in `brain/log.md` and update `brain/` notes / `brain/index.md` with wikilinks (`[[...]]`) in English?
 - [ ] If backend changes were made, did I rebuild the Strapi admin?
