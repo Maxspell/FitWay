@@ -54,7 +54,6 @@ brain/data/*.json
 thumbs.db
 
 # Agent/Tool specific
-.agents/
 skills-lock.json
 .bolt/
 .claude/
