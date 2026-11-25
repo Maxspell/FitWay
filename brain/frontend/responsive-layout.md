@@ -36,6 +36,10 @@
 - **Проблема:** Десктопные отступы `py-24` или `py-32` создавали избыточные пустоты на экранах мобильных устройств, а заголовки с левым выравниванием смотрелись несогласованно с центрированными блоками вроде FAQ.
 - **Стандарт вертикальных отступов секций:**
   Использовать адаптивные классы `py-12 md:py-24 lg:py-32` во всех ключевых секциях (`WhyFitWay`, `StepsSection`, `FeaturedWorkouts`, `ExpertsSection`, `TestimonialsSection`, `NewsletterSection`).
+- **Homepage Hero Section (`Hero.tsx`, `HeroContent.tsx`):**
+  - Because `Header.tsx` uses `sticky top-0` (`72px` / `4.5rem` in-flow height), `Hero.tsx` must use `pt-8 pb-16 md:pt-12 md:pb-20 lg:py-12 lg:min-h-[calc(100vh-4.5rem)]` instead of `min-h-[900px] lg:min-h-screen pt-20 lg:pt-0`.
+  - This eliminates the excessive `80px` mobile gap, guarantees at least `48px` clearance below the sticky header on short desktop/MacBook Pro viewports (`1440x740–785`, `1280x720`), and keeps `hero.bottom` aligned with the fold at `1440x900`.
+  - `HeroContent.tsx` vertical spacing (`space-y-6 lg:space-y-7`, `pt-1 lg:pt-2` on CTA buttons, `pt-2 lg:pt-4` on trust indicators) keeps intrinsic content height around `~690px` on `lg+`.
 - **Стандарт шапок секций:**
   На мобильных экранах заголовок, бейдж и подзаголовок центрируются, а на десктопе возвращаются к левому краю (либо остаются по центру, если это предусмотрено стилем блока):
   `text-center md:text-left mx-auto md:mx-0`.

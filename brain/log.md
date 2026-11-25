@@ -1,6 +1,15 @@
 # Knowledge Base Activity Log
 
 ## 2026-11-25
+- **Homepage Hero Responsive Vertical Spacing Fix (`frontend/src/components/hero/Hero.tsx`, `frontend/src/components/hero/HeroContent.tsx`)**:
+  - Replaced `min-h-[900px] lg:min-h-screen pt-20 lg:pt-0` on `<section>` in `Hero.tsx` with `lg:min-h-[calc(100vh-4.5rem)] pt-8 pb-16 md:pt-12 md:pb-20 lg:py-12` (accounting for the `72px` / `4.5rem` in-flow `sticky top-0` header in `Header.tsx`).
+  - Added `pointer-events-none` to the bottom decorative gradient overlay in `Hero.tsx`.
+  - Tightened `HeroContent.tsx` vertical rhythm (`space-y-6 lg:space-y-7`, `pt-1 lg:pt-2` on buttons, `pt-2 lg:pt-4` on trust indicators) so desktop content fits comfortably inside `calc(100vh - 4.5rem)` at `1440x900` while guaranteeing `>= 48px` top clearance on shorter `1440x740–785` / `1280x720` viewports and clean `32px` / `48px` breathing room on mobile/tablet.
+  - Updated [[frontend/responsive-layout]].
+- **Senior QA Engineer Subagent Created (`.agents/agents/senior-qa-engineer.md`)**:
+  - Authored `senior-qa-engineer` subagent manifest matching FitWay's `.agents/agents/` convention (`subagent: true`, `mainAgent: false`, project-tailored tools & evidence-first QA protocol).
+  - Embedded full FitWay surface coverage: Next.js 14 public & dynamic routes (`/`, `/workouts`, `/blog`, `/blog/category`, `/tools/*`, `/authors/*`, `/sitemap.xml`, `/robots.txt`), Route Handlers (`/api/contact`, `/api/newsletter`), Strapi v5.9.0 REST contracts (`documentId`, `pagination[pageSize]`, token permissions, null media), calculator math & edge-case matrix, `brain/bugs/*` regression watchlist, WCAG AA contrast/heading rules, and Browser QA escalation checklist.
+  - Registered the new agent in [[index]] and [[frontend/ai-agents-skills-architecture]].
 - **Strapi Production P0 & P1 Content/Metadata Optimization Sprint**:
   - **8 Blog Posts Updated & Published via Production Strapi API (`https://api.fitway.best`)**:
     - `mobility-training-flexibility-workout-plan` (`id=158`): Shortened title to `Mobility Drills Workout Plan: How to Do Them Correctly` (54 chars), updated excerpt (155 chars), added `### How to Do Mobility Drills Correctly (5 Form Rules)` and linked to `/workouts/beginner-flexibility-mobility-routine-home`.

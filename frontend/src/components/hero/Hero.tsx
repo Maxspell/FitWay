@@ -5,7 +5,7 @@ import HeroVisuals from "./HeroVisuals";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[900px] lg:min-h-screen flex items-center overflow-hidden bg-[#1B2B3B] pt-20 lg:pt-0">
+    <section className="relative lg:min-h-[calc(100vh-4.5rem)] flex items-center overflow-hidden bg-[#1B2B3B] pt-8 pb-16 md:pt-12 md:pb-20 lg:py-12">
       {/* Dynamic Background Elements */}
       <div className="absolute inset-0 z-0">
         {/* Glows */}
@@ -33,7 +33,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom Gradient Fade */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#1B2B3B] to-transparent z-10"></div>
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#1B2B3B] to-transparent z-10 pointer-events-none"></div>
     </section>
   );
 }

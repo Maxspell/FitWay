@@ -27,7 +27,7 @@ export default function HeroContent() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="flex flex-col space-y-8"
+      className="flex flex-col space-y-6 lg:space-y-7"
     >
       {/* Badge */}
       <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 w-fit">
@@ -59,7 +59,7 @@ export default function HeroContent() {
       </motion.div>
 
       {/* Buttons */}
-      <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-4">
+      <motion.div variants={itemVariants} className="flex flex-wrap gap-4 pt-1 lg:pt-2">
         <Link 
           href="/workouts" 
           className="group relative px-8 py-4 bg-[#C25700] text-white rounded-2xl font-bold transition-all hover:bg-[#A34600] hover:shadow-[0_0_20px_rgba(194,87,0,0.4)] flex items-center gap-2"
@@ -79,7 +79,7 @@ export default function HeroContent() {
       </motion.div>
 
       {/* Trust Indicators */}
-      <motion.div variants={itemVariants} className="pt-8 flex items-center gap-12">
+      <motion.div variants={itemVariants} className="pt-2 lg:pt-4 flex items-center gap-12">
         <div className="flex flex-col">
           <div className="flex -space-x-3 mb-2">
             {[1, 2, 3, 4].map((i) => (
