@@ -1,7 +1,7 @@
 # Existing Workouts Registry (FitWay Workouts)
 
 Реестр опубликованных программ тренировок. Используется для проверки уникальности ПЕРЕД генерацией.
-Всего тренировок: 13. Последнее обновление: 2026-11-18.
+Всего тренировок: 14. Последнее обновление: 2026-11-25.
 
 ## Правила использования
 1. Новый `slug` НЕ должен совпадать ни с одним slug из реестра.
@@ -25,4 +25,5 @@
 | 11 | `intermediate-legs-hiit-bodyweight-fat-burn` | Intermediate Legs HIIT: 8 Bodyweight Exercises for Fat Burn | `weight-loss` | Intermediate | Bodyweight |
 | 12 | `intermediate-dumbbell-muscle-builder-upper-body-hypertrophy` | Intermediate Dumbbell Muscle Builder: Upper Body Hypertrophy | `muscle-gain` | Intermediate | Dumbbells, Adjustable Bench |
 | 13 | `intermediate-lower-body-hypertrophy-quads-glutes-hamstrings` | Intermediate Lower Body Hypertrophy: Quads, Glutes & Hamstrings | `muscle-gain` | Intermediate | Barbell, Dumbbells, Machines |
+| 14 | `intermediate-mobility-drills-workout-plan-hips-spine` | Mobility Drills Workout Plan: Hip, Spine & Shoulder Flow | `flexibility` | Intermediate | Foam Roller, Resistance Band, Light Kettlebell, Exercise Mat |
 

@@ -36,14 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const imageObj = imageUrl
     ? [
-        {
-          url: imageUrl,
-          secureUrl: imageUrl,
-          width: 1200,
-          height: 630,
-          alt: workout.title,
-        },
-      ]
+      {
+        url: imageUrl,
+        secureUrl: imageUrl,
+        width: 1200,
+        height: 630,
+        alt: workout.title,
+      },
+    ]
     : [];
 
   return {
@@ -103,9 +103,11 @@ export default async function WorkoutDetailsPage({ params }: Props) {
               </div>
             )}
             <ExpertTips category={workout.category} expertTips={workout.expertTips} />
-            
+            {workout.reviewedBy && workout.reviewedBy.length > 0 && (
+              <WorkoutExpertReviewBox reviewer={workout.reviewedBy[0]} />
+            )}
             {/* Social Share Section */}
-            <ShareButtons 
+            <ShareButtons
               id="share-section"
               title={workout.title}
               description={workout.description}
@@ -115,9 +117,6 @@ export default async function WorkoutDetailsPage({ params }: Props) {
             />
 
             <ReviewSystem workoutTitle={workout.title} workoutDocumentId={workout.documentId} />
-            {workout.reviewedBy && workout.reviewedBy.length > 0 && (
-              <WorkoutExpertReviewBox reviewer={workout.reviewedBy[0]} />
-            )}
           </div>
 
           {/* Sidebar */}
