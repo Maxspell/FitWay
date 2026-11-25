@@ -305,6 +305,50 @@ export default function OneRepMaxCalculatorPage() {
               </div>
             </section>
 
+            {/* 4B. 1RM Percentage Chart (50% to 95%) */}
+            <section className="space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                1RM Percentage Chart (50% to 95% Load Reference)
+              </h2>
+              <p className="text-sm text-gray-300">
+                Use this quick <strong>1RM percentage</strong> chart to load the barbell for squat, bench press, and deadlift cycles without recalculating every session:
+              </p>
+
+              <div className="overflow-x-auto rounded-2xl border border-white/10">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-white/5 text-gray-300 uppercase text-xs font-semibold border-b border-white/10">
+                    <tr>
+                      <th className="py-3 px-4">% of 1RM</th>
+                      <th className="py-3 px-4">100 kg (225 lb) Max</th>
+                      <th className="py-3 px-4">140 kg (315 lb) Max</th>
+                      <th className="py-3 px-4">180 kg (405 lb) Max</th>
+                      <th className="py-3 px-4">Typical Use</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/5 font-medium">
+                    {[
+                      { pct: "95%", w1: "95 kg / 214 lb", w2: "133 kg / 299 lb", w3: "171 kg / 385 lb", use: "2-rep heavy peak" },
+                      { pct: "90%", w1: "90 kg / 203 lb", w2: "126 kg / 284 lb", w3: "162 kg / 365 lb", use: "3-4 rep strength work" },
+                      { pct: "85%", w1: "85 kg / 191 lb", w2: "119 kg / 268 lb", w3: "153 kg / 344 lb", use: "5-6 rep heavy compound" },
+                      { pct: "80%", w1: "80 kg / 180 lb", w2: "112 kg / 252 lb", w3: "144 kg / 324 lb", use: "7-8 rep strength-hypertrophy" },
+                      { pct: "75%", w1: "75 kg / 169 lb", w2: "105 kg / 236 lb", w3: "135 kg / 304 lb", use: "8-10 rep hypertrophy volume" },
+                      { pct: "70%", w1: "70 kg / 158 lb", w2: "98 kg / 221 lb", w3: "126 kg / 284 lb", use: "10-12 rep volume sets" },
+                      { pct: "60%", w1: "60 kg / 135 lb", w2: "84 kg / 189 lb", w3: "108 kg / 243 lb", use: "Speed work or deload" },
+                      { pct: "50%", w1: "50 kg / 113 lb", w2: "70 kg / 158 lb", w3: "90 kg / 203 lb", use: "Warm-up and technique" },
+                    ].map((row) => (
+                      <tr key={row.pct} className="hover:bg-white/5">
+                        <td className="py-3 px-4 text-[#FF8C00] font-bold">{row.pct}</td>
+                        <td className="py-3 px-4 text-white">{row.w1}</td>
+                        <td className="py-3 px-4 text-white">{row.w2}</td>
+                        <td className="py-3 px-4 text-white">{row.w3}</td>
+                        <td className="py-3 px-4 text-gray-300 text-xs">{row.use}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             {/* 5. Actionable Next Steps */}
             <section className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#243447] to-[#1B2B3B] border border-white/10 space-y-4">
               <h2 className="text-2xl font-bold text-white">Take Your 1RM Numbers to the Gym</h2>
@@ -314,13 +358,13 @@ export default function OneRepMaxCalculatorPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2">
                   <h3 className="font-bold text-white text-sm">Follow a Strength Routine</h3>
-                  <p className="text-xs text-gray-400">
-                    Browse our <Link href="/workouts" className="text-[#FF8C00] underline">full-body and compound barbell workouts</Link> designed around progressive overload.
+                  <p className="text-xs text-gray-300">
+                    Try our <Link href="/workouts/advanced-powerlifting-workout-maximum-strength-gym" className="text-[#FF8C00] underline">advanced powerlifting workout</Link> or read our guide to the <Link href="/blog/best-compound-exercises-muscle-growth" className="text-[#FF8C00] underline">best compound exercises</Link>.
                   </p>
                 </div>
                 <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2">
                   <h3 className="font-bold text-white text-sm">Fuel Your Recovery</h3>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-gray-300">
                     Heavy lifting demands adequate nutrition. Calculate your daily protein and energy needs with our <Link href="/tools/macro-calculator" className="text-[#FF8C00] underline">Macro Splitter</Link>.
                   </p>
                 </div>

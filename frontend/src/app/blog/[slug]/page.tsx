@@ -28,6 +28,48 @@ function flatten(text: string, child: React.ReactNode): string {
   return text;
 }
 
+/**
+ * Extract FAQ question/answer pairs from the article's "## Frequently Asked Questions" markdown block for FAQPage JSON-LD.
+ */
+function extractFaqItemsFromMarkdown(markdown: string): Array<{ question: string; answer: string }> {
+  if (!markdown) return [];
+  const faqHeadingMatch = markdown.match(/^##\s+(?:Frequently Asked Questions|FAQ)\s*$/im);
+  if (!faqHeadingMatch || faqHeadingMatch.index === undefined) return [];
+
+  const afterHeading = markdown.slice(faqHeadingMatch.index + faqHeadingMatch[0].length);
+  const nextH2Match = afterHeading.match(/\n##\s+[^#]/);
+  const faqBlock = nextH2Match && nextH2Match.index !== undefined
+    ? afterHeading.slice(0, nextH2Match.index)
+    : afterHeading;
+
+  const items: Array<{ question: string; answer: string }> = [];
+  const questionRegex = /^###\s+(.+)$/gm;
+  const matches = Array.from(faqBlock.matchAll(questionRegex));
+
+  for (let i = 0; i < matches.length; i++) {
+    const current = matches[i];
+    const startIdx = (current.index ?? 0) + current[0].length;
+    const endIdx = i + 1 < matches.length ? (matches[i + 1].index ?? faqBlock.length) : faqBlock.length;
+    const rawQuestion = current[1].trim();
+    const rawAnswer = faqBlock.slice(startIdx, endIdx).trim();
+
+    const cleanText = (value: string) =>
+      value
+        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+        .replace(/[*_`>#]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const question = cleanText(rawQuestion);
+    const answer = cleanText(rawAnswer);
+    if (question && answer) {
+      items.push({ question, answer });
+    }
+  }
+
+  return items;
+}
+
 interface Props {
   params: {
     slug: string;
@@ -144,7 +186,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : [];
 
   return {
-    title: `${post.title} | Blog`,
+    title: post.title,
     description: post.excerpt,
     alternates: {
       canonical: `/blog/${params.slug}`,
@@ -180,6 +222,69 @@ export default async function BlogPost({ params }: Props) {
 
   // First reviewer if available
   const primaryReviewer = post.reviewedBy && post.reviewedBy.length > 0 ? post.reviewedBy[0] : null;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://fitway.best";
+  const articleUrl = `${siteUrl}/blog/${post.slug}`;
+  const faqItems = extractFaqItemsFromMarkdown(post.content);
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${articleUrl}#article`,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": articleUrl,
+        },
+        "headline": post.title,
+        "description": post.excerpt,
+        "image": getPostImage(post, "large"),
+        ...(post.author && {
+          "author": {
+            "@type": "Person",
+            "name": post.author.name,
+            "url": `${siteUrl}/authors/${post.author.slug}`,
+          },
+        }),
+        ...(post.reviewedBy && post.reviewedBy.length > 0 && {
+          "reviewedBy": post.reviewedBy.map((reviewer) => ({
+            "@type": "Person",
+            "name": reviewer.name,
+            "url": `${siteUrl}/authors/${reviewer.slug}`,
+          })),
+        }),
+        "publisher": {
+          "@type": "Organization",
+          "@id": `${siteUrl}/#organization`,
+          "name": "FitWay",
+          "url": siteUrl,
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${siteUrl}/favicon.svg`,
+          },
+        },
+        "datePublished": post.publishedAt,
+        "dateModified": post.updatedAt || post.publishedAt,
+        "articleSection": post.category?.name,
+      },
+      ...(faqItems.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": `${articleUrl}#faq`,
+              "mainEntity": faqItems.map((faq) => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": faq.answer,
+                },
+              })),
+            },
+          ]
+        : []),
+    ],
+  };
 
   return (
     <article className="py-8 sm:py-12">
@@ -427,29 +532,7 @@ export default async function BlogPost({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": post.title,
-            "description": post.excerpt,
-            "image": getPostImage(post, "large"),
-            ...(post.author && {
-              "author": {
-                "@type": "Person",
-                "name": post.author.name,
-                "url": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/authors/${post.author.slug}`
-              }
-            }),
-            ...(post.reviewedBy && post.reviewedBy.length > 0 && {
-              "reviewedBy": post.reviewedBy.map(reviewer => ({
-                "@type": "Person",
-                "name": reviewer.name,
-                "url": `${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/authors/${reviewer.slug}`
-              }))
-            }),
-            "datePublished": post.publishedAt,
-            "articleSection": post.category?.name,
-          }),
+          __html: JSON.stringify(structuredData),
         }}
       />
     </article>

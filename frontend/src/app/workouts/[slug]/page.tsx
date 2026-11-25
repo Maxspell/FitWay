@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : [];
 
   return {
-    title: `${workout.title} | Premium Fitness Workout`,
+    title: workout.title,
     description: workout.description,
     alternates: {
       canonical: `/workouts/${params.slug}`,

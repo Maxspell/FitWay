@@ -254,6 +254,53 @@ export default function MacroCalculatorPage() {
               </div>
             </section>
 
+            {/* 3B. Goal-Specific Macro Split Presets */}
+            <section className="space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                Goal-Specific Macro Split Presets (Cut, Recomp &amp; Lean Bulk)
+              </h2>
+              <p className="text-sm text-gray-300">
+                Choose a clinically grounded macronutrient ratio based on your current body composition phase:
+              </p>
+
+              <div className="overflow-x-auto rounded-2xl border border-white/10">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-white/5 text-gray-300 uppercase text-xs font-semibold border-b border-white/10">
+                    <tr>
+                      <th className="py-3 px-4">Phase</th>
+                      <th className="py-3 px-4">Calorie Target</th>
+                      <th className="py-3 px-4 text-[#FF8C00]">Protein</th>
+                      <th className="py-3 px-4 text-blue-400">Dietary Fat</th>
+                      <th className="py-3 px-4 text-emerald-400">Carbohydrates</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/5 font-medium">
+                    <tr className="hover:bg-white/5">
+                      <td className="py-3 px-4 text-white font-bold">Fat Loss (Cut)</td>
+                      <td className="py-3 px-4 text-gray-300">TDEE minus 300 to 500 kcal</td>
+                      <td className="py-3 px-4 text-[#FF8C00]">2.0 to 2.4 g/kg</td>
+                      <td className="py-3 px-4 text-gray-200">25% to 30%</td>
+                      <td className="py-3 px-4 text-gray-200">Remaining calories</td>
+                    </tr>
+                    <tr className="hover:bg-white/5">
+                      <td className="py-3 px-4 text-white font-bold">Body Recomposition</td>
+                      <td className="py-3 px-4 text-gray-300">Maintenance (TDEE &plusmn; 100 kcal)</td>
+                      <td className="py-3 px-4 text-[#FF8C00]">1.8 to 2.2 g/kg</td>
+                      <td className="py-3 px-4 text-gray-200">25% to 30%</td>
+                      <td className="py-3 px-4 text-gray-200">Fueled around lifting</td>
+                    </tr>
+                    <tr className="hover:bg-white/5">
+                      <td className="py-3 px-4 text-white font-bold">Lean Muscle Gain</td>
+                      <td className="py-3 px-4 text-gray-300">TDEE plus 200 to 350 kcal</td>
+                      <td className="py-3 px-4 text-[#FF8C00]">1.6 to 2.0 g/kg</td>
+                      <td className="py-3 px-4 text-gray-200">20% to 25%</td>
+                      <td className="py-3 px-4 text-gray-200">45% to 55%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
             {/* 4. Actionable Next Steps */}
             <section className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#243447] to-[#1B2B3B] border border-white/10 space-y-4">
               <h2 className="text-2xl font-bold text-white">How to Execute Your Macro Target</h2>
@@ -262,14 +309,14 @@ export default function MacroCalculatorPage() {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2">
-                  <h3 className="font-bold text-white text-sm">Need a Calorie Baseline?</h3>
-                  <p className="text-xs text-gray-400">
-                    If you haven&apos;t calculated your maintenance calories yet, use our <Link href="/tools/calorie-calculator" className="text-[#FF8C00] underline">Daily Calorie Calculator</Link> to establish your foundation.
+                  <h3 className="font-bold text-white text-sm">Need a Calorie Baseline or Meal Prep?</h3>
+                  <p className="text-xs text-gray-300">
+                    Use our <Link href="/tools/calorie-calculator" className="text-[#FF8C00] underline">Daily Calorie Calculator</Link> and follow our <Link href="/blog/high-protein-meal-prep-muscle-growth-fat-loss" className="text-[#FF8C00] underline">5-day high-protein meal prep blueprint</Link>.
                   </p>
                 </div>
                 <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2">
                   <h3 className="font-bold text-white text-sm">Put Your Protein to Work</h3>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-gray-300">
                     Explore our <Link href="/workouts" className="text-[#FF8C00] underline">free progressive training plans</Link> and test your strength baseline with our <Link href="/tools/one-rep-max-calculator" className="text-[#FF8C00] underline">1RM Calculator</Link>.
                   </p>
                 </div>

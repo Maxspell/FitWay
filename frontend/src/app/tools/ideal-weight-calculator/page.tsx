@@ -69,6 +69,13 @@ const idealWeightFaqs = [
       "If you lift weights or participate in athletic sports, having weight above the IBW estimate is completely normal and healthy, reflecting high muscle and bone density rather than excess adipose tissue. If body fat reduction is your goal, use our Calorie Calculator to plan a sustainable 300–500 kcal deficit.",
     category: "Application",
   },
+  {
+    id: 7,
+    question: "What is the IBW formula and how do you calculate it manually?",
+    answer:
+      "The standard Devine IBW formula starts with a 5-foot (60-inch) baseline and adds 2.3 kg for every additional inch of height. Men start at 50.0 kg and women start at 45.5 kg. For example, a 5'10\" (70-inch) man adds 10 inches × 2.3 kg = 23 kg to 50.0 kg, giving an IBW of 73.0 kg (161 lbs).",
+    category: "Formulas",
+  },
 ];
 
 const heightWeightChart = [
@@ -246,6 +253,42 @@ export default function IdealWeightCalculatorPage() {
               </div>
             </section>
 
+            {/* 3B. Step-by-Step How to Calculate Ideal Body Weight */}
+            <section className="space-y-4">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">
+                How to Calculate Ideal Body Weight (Step-by-Step Formula Guide)
+              </h2>
+              <p>
+                To perform an <strong>ideal body weight calculation</strong> by hand, convert your height into total inches above 5 feet (60 inches), multiply those extra inches by the formula&apos;s per-inch coefficient, and add the 5-foot base weight.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-5 rounded-2xl bg-[#243447] border border-white/10 space-y-2">
+                  <h3 className="font-bold text-white text-base">Example 1: 5&apos;10&quot; (178 cm) Male</h3>
+                  <p className="text-sm text-gray-300">
+                    Inches over 5 ft: 70 - 60 = 10 inches. Using Devine (50.0 + 2.3 kg/in): 50.0 + (10 &times; 2.3) = <strong className="text-[#FF8C00]">73.0 kg (161 lbs)</strong>. Using Robinson (52.0 + 1.9 kg/in): <strong className="text-blue-400">71.0 kg (156.5 lbs)</strong>.
+                  </p>
+                </div>
+                <div className="p-5 rounded-2xl bg-[#243447] border border-white/10 space-y-2">
+                  <h3 className="font-bold text-white text-base">Example 2: 5&apos;4&quot; (163 cm) Female</h3>
+                  <p className="text-sm text-gray-300">
+                    Inches over 5 ft: 64 - 60 = 4 inches. Using Devine (45.5 + 2.3 kg/in): 45.5 + (4 &times; 2.3) = <strong className="text-[#FF8C00]">54.7 kg (120.6 lbs)</strong>. Using Robinson (49.0 + 1.7 kg/in): <strong className="text-purple-400">55.8 kg (123.0 lbs)</strong>.
+                  </p>
+                </div>
+                <div className="p-5 rounded-2xl bg-[#243447] border border-white/10 space-y-2">
+                  <h3 className="font-bold text-white text-base">Example 3: 5&apos;7&quot; (170 cm) Male</h3>
+                  <p className="text-sm text-gray-300">
+                    Inches over 5 ft: 67 - 60 = 7 inches. Devine yields 50.0 + 16.1 = <strong className="text-[#FF8C00]">66.1 kg (145.7 lbs)</strong>, while Miller gives 56.2 + (7 &times; 1.41) = <strong className="text-emerald-400">66.1 kg (145.7 lbs)</strong>.
+                  </p>
+                </div>
+                <div className="p-5 rounded-2xl bg-[#243447] border border-white/10 space-y-2">
+                  <h3 className="font-bold text-white text-base">Example 4: 6&apos;0&quot; (183 cm) Male</h3>
+                  <p className="text-sm text-gray-300">
+                    Inches over 5 ft: 72 - 60 = 12 inches. Devine yields 50.0 + 27.6 = <strong className="text-[#FF8C00]">77.6 kg (171.1 lbs)</strong>, within the WHO BMI 18.5 to 24.9 healthy range (61.9 to 83.3 kg).
+                  </p>
+                </div>
+              </div>
+            </section>
+
             {/* 4. Ideal vs BMI Range */}
             <section className="space-y-4">
               <h2 className="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
@@ -288,14 +331,14 @@ export default function IdealWeightCalculatorPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                 <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2">
                   <h3 className="font-bold text-white text-sm">Calculate Your Deficit or Surplus</h3>
-                  <p className="text-xs text-gray-400">
-                    Use our <Link href="/tools/calorie-calculator" className="text-[#FF8C00] underline">Daily Calorie Calculator</Link> to establish the exact daily caloric intake required to reach your target weight safely.
+                  <p className="text-xs text-gray-300">
+                    Use our <Link href="/tools/calorie-calculator" className="text-[#FF8C00] underline">Daily Calorie Calculator</Link> and read our <Link href="/blog/calorie-deficit-how-to-calculate" className="text-[#FF8C00] underline">calorie deficit guide</Link> to set a sustainable daily intake.
                   </p>
                 </div>
                 <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2">
-                  <h3 className="font-bold text-white text-sm">Target Your Daily Macros</h3>
-                  <p className="text-xs text-gray-400">
-                    Ensure adequate protein intake to protect lean tissue by checking your numbers on our <Link href="/tools/macro-calculator" className="text-[#FF8C00] underline">Macro Splitter</Link>.
+                  <h3 className="font-bold text-white text-sm">Target Macros &amp; Belly Fat Loss</h3>
+                  <p className="text-xs text-gray-300">
+                    Protect lean tissue on our <Link href="/tools/macro-calculator" className="text-[#FF8C00] underline">Macro Splitter</Link> or learn <Link href="/blog/lose-belly-fat-what-actually-works" className="text-[#FF8C00] underline">how to lose belly fat safely</Link>.
                   </p>
                 </div>
               </div>

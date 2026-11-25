@@ -49,7 +49,7 @@ export default function HeroContent() {
               transition={{ duration: 1, delay: 1.5 }}
               className="absolute -bottom-2 left-0 h-1.5 bg-[#FF8C00]/30 rounded-full"
             />
-          </span>
+          </span>{" "}
           <br />
           with AI Precision
         </h1>

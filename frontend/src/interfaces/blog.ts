@@ -32,4 +32,5 @@ export interface BlogPost {
   readTime: string;
   publishedAt: string;
   createdAt: string;
+  updatedAt?: string;
 }

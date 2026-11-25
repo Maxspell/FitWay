@@ -1,4 +1,4 @@
-import { Clock, User, Calendar } from "lucide-react";
+import { Clock, User, Calendar, Calculator, BookOpen, ArrowDownRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -7,6 +7,39 @@ import { getPostImage } from "@/utils/image";
 import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+
+const CATEGORY_QUICK_TOOLS: Record<string, { label: string; href: string; takeaway: string }> = {
+  nutrition: {
+    label: "Open Macro Calculator",
+    href: "/tools/macro-calculator",
+    takeaway: "Dial in daily protein, carbohydrate, and fat targets matched to peer-reviewed clinical ranges.",
+  },
+  "weight-loss": {
+    label: "Open Calorie Deficit Calculator",
+    href: "/tools/calorie-calculator",
+    takeaway: "Set a sustainable 300-500 kcal deficit to lose body fat while preserving lean muscle mass.",
+  },
+  "muscle-building": {
+    label: "Open 1RM Strength Calculator",
+    href: "/tools/one-rep-max-calculator",
+    takeaway: "Anchor your hypertrophy working sets to exact percentages of your submaximal one-rep max.",
+  },
+  training: {
+    label: "Open 1RM Strength Calculator",
+    href: "/tools/one-rep-max-calculator",
+    takeaway: "Structure progressive overload, training splits, and mobility drills with clear load targets.",
+  },
+  lifestyle: {
+    label: "Open Ideal Weight Calculator",
+    href: "/tools/ideal-weight-calculator",
+    takeaway: "Pair sustainable sleep, recovery, and daily movement habits with realistic body composition baselines.",
+  },
+  motivation: {
+    label: "Open BMI & Health Calculator",
+    href: "/tools/bmi-calculator",
+    takeaway: "Turn short-term bursts into automatic training habits backed by behavioral psychology.",
+  },
+};
 
 async function getCategoryBySlug(slug: string): Promise<Category | null> {
   try {
@@ -31,7 +64,7 @@ async function getCategoryBySlug(slug: string): Promise<Category | null> {
 async function getPostsByCategory(categorySlug: string): Promise<BlogPost[]> {
   try {
     const API_URL = process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
-    const response = await fetch(`${API_URL}/api/posts?filters[category][slug][$eq]=${categorySlug}&populate[0]=image&populate[1]=author&sort=createdAt:desc`, {
+    const response = await fetch(`${API_URL}/api/posts?filters[category][slug][$eq]=${categorySlug}&populate[0]=image&populate[1]=author&sort=createdAt:desc&pagination[pageSize]=250`, {
       method: "GET",
       headers: {
         "Authorization": `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
@@ -87,11 +120,16 @@ export default async function CategoryPage({ params }: { params: { slug: string 
 
   const posts = await getPostsByCategory(slug);
   const displayTitle = category.title?.trim() ? category.title.trim() : `${category.name} Articles`;
+  const quickTool = CATEGORY_QUICK_TOOLS[slug] ?? {
+    label: "Explore Fitness Calculators",
+    href: "/tools",
+    takeaway: "Combine evidence-based articles with FitWay calculators and structured training routines.",
+  };
 
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <header className="max-w-3xl mx-auto text-center mb-12">
+        <header className="max-w-3xl mx-auto text-center mb-8">
           <h1 className="section-title text-center mb-4">{displayTitle}</h1>
           {category.intro?.trim() && (
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
@@ -99,6 +137,45 @@ export default async function CategoryPage({ params }: { params: { slug: string 
             </p>
           )}
         </header>
+
+        {/* Above-the-fold Quick Start & Interactive Tool Hub */}
+        <section
+          aria-label="Category Quick Start"
+          className="mb-10 rounded-2xl bg-[#243447] border border-white/10 p-4 sm:p-6 shadow-lg"
+        >
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div className="space-y-1.5 max-w-2xl">
+              <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#FF8C00]">
+                <BookOpen className="h-4 w-4" />
+                <span>Quick Start &amp; Key Takeaways</span>
+                <span className="text-gray-300 font-normal normal-case">
+                  ({posts.length} {posts.length === 1 ? "peer-reviewed guide" : "peer-reviewed guides"})
+                </span>
+              </div>
+              <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+                {quickTool.takeaway}
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              {category.text?.trim() && (
+                <a
+                  href="#category-guide"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-semibold text-gray-200 transition-colors"
+                >
+                  <span>Read Topic Guide &amp; FAQ</span>
+                  <ArrowDownRight className="h-4 w-4 text-[#FF8C00]" />
+                </a>
+              )}
+              <Link
+                href={quickTool.href}
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#C25700] hover:bg-[#A34600] text-sm font-bold text-white transition-colors"
+              >
+                <Calculator className="h-4 w-4" />
+                <span>{quickTool.label}</span>
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {posts.length === 0 ? (
           <div className="text-center py-20">
@@ -154,7 +231,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
         )}
 
         {category.text?.trim() && (
-          <section className="mt-16 pt-12 border-t border-white/10">
+          <section id="category-guide" className="mt-16 pt-12 border-t border-white/10 scroll-mt-24">
             <div className="card p-4 sm:p-6 md:p-8 lg:p-10 rounded-2xl sm:rounded-3xl prose prose-invert prose-orange max-w-none break-words">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
