@@ -33,24 +33,24 @@ export default function NutritionTips({ advice }: Props) {
   ];
 
   return (
-    <div className="p-8 rounded-3xl bg-[#243447] border border-white/5 overflow-hidden relative">
-      <div className="absolute top-0 right-0 p-8 opacity-5">
+    <div className="p-5 sm:p-8 rounded-3xl bg-[#243447] border border-white/5 overflow-hidden relative">
+      <div className="absolute top-0 right-0 p-6 sm:p-8 opacity-5 pointer-events-none" aria-hidden="true">
         <Utensils className="w-32 h-32" />
       </div>
 
-      <h2 className="text-2xl font-black uppercase tracking-tight mb-8 flex items-center gap-3">
-        <Utensils className="w-6 h-6 text-[#FF8C00]" />
-        Nutrition & Fueling Tips
+      <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight mb-6 sm:mb-8 flex items-center gap-3 relative z-10">
+        <Utensils className="w-6 h-6 text-[#FF8C00] shrink-0" />
+        Nutrition &amp; Fueling Tips
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
         {sections.map((section, index) => (
           <div key={index} className="space-y-3">
             <div className={`flex items-center gap-2 ${section.color}`}>
-              <section.icon className="w-4 h-4" />
+              <section.icon className="w-4 h-4 shrink-0" />
               <h3 className="text-xs font-black uppercase tracking-widest">{section.title}</h3>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <p className="text-sm text-gray-300 leading-relaxed">
               {section.content}
             </p>
           </div>

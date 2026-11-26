@@ -9,6 +9,7 @@ interface ShareButtonsProps {
   description?: string;
   subtitle?: string;
   heading?: string;
+  headingAs?: "h2" | "h3" | "h4";
   id?: string;
   className?: string;
 }
@@ -19,9 +20,11 @@ export default function ShareButtons({
   description,
   subtitle = "Spread the knowledge",
   heading = "Found this helpful? Share it!",
+  headingAs = "h2",
   id,
   className = "",
 }: ShareButtonsProps) {
+  const HeadingTag = headingAs;
   const [copied, setCopied] = useState(false);
   const [canShare, setCanShare] = useState(false);
 
@@ -118,9 +121,9 @@ export default function ShareButtons({
           <span className="text-xs font-semibold uppercase tracking-wider text-[#FF8C00]">
             {subtitle}
           </span>
-          <h4 className="text-lg font-bold text-white tracking-tight">
+          <HeadingTag className="text-lg font-bold text-white tracking-tight">
             {heading}
-          </h4>
+          </HeadingTag>
         </div>
 
         <div className="flex flex-wrap items-center gap-2.5">

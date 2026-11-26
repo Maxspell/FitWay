@@ -8,8 +8,8 @@ const Footer = () => {
   return (
     <footer className="bg-[#243447] py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-          <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-8">
+          <div className="sm:col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Dumbbell className="h-8 w-8 text-[#FF8C00]" />
               <span className="text-2xl font-bold">FitWay</span>
@@ -20,7 +20,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <h2 className="text-xl font-bold mb-4">Quick Links</h2>
             <ul className="space-y-2">
               <li><Link href="/workouts" className="nav-link">Workouts</Link></li>
               <li><Link href="/authors" className="nav-link">Authors</Link></li>
@@ -33,7 +33,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold mb-4">Legal & Trust</h3>
+            <h2 className="text-xl font-bold mb-4">Legal &amp; Trust</h2>
             <ul className="space-y-2">
               <li><Link href="/editorial-policy" className="nav-link">Editorial Policy</Link></li>
               <li><Link href="/privacy-policy" className="nav-link">Privacy Policy</Link></li>
@@ -41,18 +41,26 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-xl font-bold mb-4">Contact</h3>
+          <div className="min-w-0">
+            <h2 className="text-xl font-bold mb-4">Contact</h2>
             <ul className="space-y-2 text-gray-300">
-              <li>Digital Fitness & Health Platform</li>
-              <li>Email: <a href="mailto:support@fitway.best" className="hover:text-white underline decoration-gray-500 hover:decoration-white transition-colors">support@fitway.best</a></li>
+              <li>Digital Fitness &amp; Health Platform</li>
+              <li className="break-words">
+                Email:{" "}
+                <a
+                  href="mailto:support@fitway.best"
+                  className="hover:text-white underline decoration-gray-500 hover:decoration-white transition-colors break-words"
+                >
+                  support@fitway.best
+                </a>
+              </li>
               <li>Support: Mon – Fri (Response within 24h)</li>
               <li><Link href="/contact" className="nav-link text-sm text-[#FF8C00] hover:underline">Send a Message →</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-xl font-bold mb-4">Follow Us</h3>
+            <h2 className="text-xl font-bold mb-4">Follow Us</h2>
             <div className="flex gap-4">
               <a
                 href="https://www.pinterest.com/fitway_best/"

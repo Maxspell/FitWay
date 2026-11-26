@@ -33,7 +33,7 @@ export async function getWorkoutBySlug(slug: string): Promise<Workout | null> {
 export async function getReviewsByWorkoutId(workoutId: string) {
   try {
     const response = await fetch(
-      `${STRAPI_URL}/api/reviews?filters[workout][documentId][$eq]=${workoutId}&sort=createdAt:desc`,
+      `${STRAPI_URL}/api/reviews?filters[workout][documentId][$eq]=${workoutId}&sort=createdAt:desc&pagination[pageSize]=50`,
       {
         headers: {
           Authorization: `Bearer ${STRAPI_TOKEN}`,

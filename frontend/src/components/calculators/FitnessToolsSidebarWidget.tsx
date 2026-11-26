@@ -34,7 +34,7 @@ export const TOOLS_DATA: FitnessToolItem[] = [
     slug: "one-rep-max-calculator",
     href: "/tools/one-rep-max-calculator",
     title: "1RM & Training Zones",
-    shortName: "1RM Max",
+    shortName: "1RM",
     badge: "Strength",
     description: "Calculate your single-rep max and calibrated percentage zones for compound lifts.",
     formula: "Epley & Brzycki formulas",
@@ -48,7 +48,7 @@ export const TOOLS_DATA: FitnessToolItem[] = [
     slug: "calorie-calculator",
     href: "/tools/calorie-calculator",
     title: "Daily Calorie & TDEE",
-    shortName: "Calories",
+    shortName: "Kcal",
     badge: "Metabolism",
     description: "Determine exact maintenance energy and target deficit/surplus calorie counts.",
     formula: "Mifflin-St Jeor formula",
@@ -76,7 +76,7 @@ export const TOOLS_DATA: FitnessToolItem[] = [
     slug: "ideal-weight-calculator",
     href: "/tools/ideal-weight-calculator",
     title: "Ideal Body Weight",
-    shortName: "Ideal Wt",
+    shortName: "Weight",
     badge: "Body Comp",
     description: "Discover healthy reference body weight across 4 clinical formulas and WHO standards.",
     formula: "Devine, Robinson & Miller",
@@ -90,7 +90,7 @@ export const TOOLS_DATA: FitnessToolItem[] = [
     slug: "bmi-calculator",
     href: "/tools/bmi-calculator",
     title: "BMI Calculator",
-    shortName: "BMI Index",
+    shortName: "BMI",
     badge: "Health",
     description: "Quickly assess body mass index against World Health Organization criteria.",
     formula: "WHO Adult Criteria",
@@ -164,7 +164,7 @@ export default function FitnessToolsSidebarWidget({
 
   return (
     <div
-      className={`rounded-3xl bg-[#243447] border border-white/10 p-6 shadow-xl relative overflow-hidden group ${activeTool.glowColor} transition-shadow duration-500 ${className}`}
+      className={`rounded-3xl bg-[#243447] border border-white/10 p-5 sm:p-6 shadow-xl relative overflow-hidden group ${activeTool.glowColor} transition-shadow duration-500 ${className}`}
     >
       {/* Subtle background glow effect matching active tool */}
       <div className="absolute top-0 right-0 -mr-16 -mt-16 w-44 h-44 rounded-full bg-[#FF8C00]/5 blur-3xl pointer-events-none" />
@@ -178,7 +178,7 @@ export default function FitnessToolsSidebarWidget({
 
         <Link
           href="/tools"
-          className="text-xs font-medium text-gray-400 hover:text-white inline-flex items-center gap-1 transition-colors group/link"
+          className="text-xs font-medium text-gray-300 hover:text-white inline-flex items-center gap-1 transition-colors group/link"
           title="Open all tools catalog"
         >
           <span>All Tools</span>
@@ -187,14 +187,14 @@ export default function FitnessToolsSidebarWidget({
       </div>
 
       <div className="mb-4">
-        <h3 className="text-xl font-bold text-white tracking-tight">{title}</h3>
-        <p className="text-xs text-gray-400 mt-1 leading-relaxed">
-          Calibrate your training & nutrition with scientifically validated formulas.
+        <h2 className="text-xl font-bold text-white tracking-tight">{title}</h2>
+        <p className="text-xs text-gray-300 mt-1 leading-relaxed">
+          Calibrate your training &amp; nutrition with scientifically validated formulas.
         </p>
       </div>
 
       {/* Mini Icon Tabs Selector */}
-      <div className="grid grid-cols-5 gap-1.5 p-1.5 bg-[#1B2B3B]/80 rounded-2xl border border-white/5 mb-5">
+      <div className="grid grid-cols-5 gap-1 p-1 bg-[#1B2B3B]/80 rounded-2xl border border-white/5 mb-5">
         {TOOLS_DATA.map((tool) => {
           const Icon = tool.icon;
           const isActive = tool.slug === activeSlug;
@@ -206,17 +206,18 @@ export default function FitnessToolsSidebarWidget({
               type="button"
               onClick={() => setActiveSlug(tool.slug)}
               title={`${tool.title} ${isRec ? "(Recommended)" : ""}`}
-              className={`relative flex flex-col items-center justify-center py-2 px-1 rounded-xl transition-all duration-200 ${
+              aria-label={`${tool.title}${isRec ? " (Recommended)" : ""}`}
+              className={`relative flex flex-col items-center justify-center py-2 px-0.5 rounded-xl transition-all duration-200 ${
                 isActive
                   ? `${tool.bgAccent} border text-white shadow-sm`
-                  : "text-gray-400 hover:text-gray-200 hover:bg-white/5 border border-transparent"
+                  : "text-gray-300 hover:text-white hover:bg-white/5 border border-transparent"
               }`}
             >
               {isRec && (
                 <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#FF8C00] ring-2 ring-[#243447]" />
               )}
               <Icon className={`w-4 h-4 ${isActive ? tool.accentColor : ""}`} />
-              <span className="text-[10px] font-medium mt-1 truncate max-w-full">
+              <span className="text-[10px] font-medium mt-1 whitespace-nowrap leading-tight">
                 {tool.shortName}
               </span>
             </button>
@@ -233,10 +234,10 @@ export default function FitnessToolsSidebarWidget({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h4 className="text-sm font-bold text-white">{activeTool.title}</h4>
+                <h3 className="text-sm font-bold text-white">{activeTool.title}</h3>
               </div>
               <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="text-[11px] font-semibold text-gray-400">
+                <span className="text-[11px] font-semibold text-gray-300">
                   {activeTool.badge}
                 </span>
                 {isRecommended && (
@@ -254,7 +255,7 @@ export default function FitnessToolsSidebarWidget({
           {activeTool.description}
         </p>
 
-        <div className="inline-flex items-center gap-1.5 text-[11px] text-gray-400 font-mono bg-black/30 px-2.5 py-1 rounded-lg border border-white/5 w-full truncate">
+        <div className="inline-flex items-center gap-1.5 text-[11px] text-gray-300 font-mono bg-black/30 px-2.5 py-1 rounded-lg border border-white/5 w-full truncate">
           <span className="text-[#FF8C00] font-bold">Standard:</span>
           <span className="truncate">{activeTool.formula}</span>
         </div>
@@ -262,7 +263,7 @@ export default function FitnessToolsSidebarWidget({
         {/* CTA Launch Button */}
         <Link
           href={activeTool.href}
-          className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#FF8C00] to-[#E67E00] text-white text-xs font-bold flex items-center justify-center gap-2 hover:brightness-110 shadow-lg shadow-[#FF8C00]/20 transition-all group/btn"
+          className="w-full py-2.5 px-4 rounded-xl bg-[#C25700] hover:bg-[#A34600] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-lg shadow-[#C25700]/25 transition-colors group/btn"
         >
           <span>Calculate Now</span>
           <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />

@@ -14,7 +14,7 @@ export default function AuthorSidebarCard({ author }: AuthorSidebarCardProps) {
 
   return (
     <div className="card h-full">
-      <h3 className="text-xl font-bold mb-4">About the Author</h3>
+      <h2 className="text-xl font-bold mb-4">About the Author</h2>
       <Link
         href={`/authors/${author.slug}`}
         className="flex items-center gap-4 group"
@@ -32,10 +32,10 @@ export default function AuthorSidebarCard({ author }: AuthorSidebarCardProps) {
             <User className="h-8 w-8 text-[#FF8C00]" />
           )}
         </div>
-        <div className="flex flex-col">
-          <h4 className="font-bold text-white group-hover:text-[#FF8C00] transition-colors duration-300">
+        <div className="flex flex-col min-w-0">
+          <h3 className="font-bold text-white group-hover:text-[#FF8C00] transition-colors duration-300">
             {author.name}
-          </h4>
+          </h3>
           <p className="text-[#FF8C00] text-sm font-medium">
             {author.credentials || author.jobTitle || 'Fitness Expert'}
           </p>

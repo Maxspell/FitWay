@@ -93,21 +93,25 @@ export default function Breadcrumbs({
   return (
     <nav 
       aria-label="Breadcrumb" 
-      className={`w-full overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] py-3 ${className}`}
+      className={`w-full overflow-hidden py-3 ${className}`}
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ol className="flex items-center space-x-1 text-[13px] md:text-sm font-medium text-white/50 whitespace-nowrap min-w-max">
+      <ol className="flex items-center w-full min-w-0 text-[13px] md:text-sm font-medium text-white/80">
         {breadcrumbs.map((item, index) => {
           const isLast = index === breadcrumbs.length - 1;
 
           return (
-            <li key={item.href} className="flex items-center">
+            <li
+              key={item.href}
+              className={isLast ? "flex items-center min-w-0 flex-1" : "flex items-center shrink-0"}
+            >
               {isLast ? (
-                <span 
-                  className="text-[#FF8C00] drop-shadow-[0_0_8px_rgba(255,140,0,0.3)] ml-1" 
+                <span
+                  className="text-[#FF8C00] drop-shadow-[0_0_8px_rgba(255,140,0,0.3)] truncate block"
+                  title={item.label}
                   aria-current="page"
                 >
                   {item.label}
@@ -116,12 +120,12 @@ export default function Breadcrumbs({
                 <>
                   <Link
                     href={item.href}
-                    className="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-[2px] after:left-0 after:w-0 after:h-[1px] after:bg-white after:transition-all hover:after:w-full ml-1"
+                    className="hover:text-white transition-colors duration-300 relative after:content-[''] after:absolute after:-bottom-[2px] after:left-0 after:w-0 after:h-[1px] after:bg-white after:transition-all hover:after:w-full whitespace-nowrap"
                   >
                     {item.label}
                   </Link>
                   <svg
-                    className="w-3.5 h-3.5 mx-1.5 text-white/30 flex-shrink-0"
+                    className="w-3.5 h-3.5 mx-1 sm:mx-1.5 text-white/50 flex-shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

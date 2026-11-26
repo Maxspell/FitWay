@@ -28,6 +28,7 @@
 ### 2. Динамические даты и часовые пояса
 * **Проблема**: Использование функций форматирования дат с зависимостью от локали пользователя (`toLocaleDateString`) при SSR. Если на сервере таймзона UTC, а у клиента UTC+3, даты могут отличаться.
 * **Решение**: Фиксация локали и таймзоны (например `en-US`), либо использование единых форматов. Подробнее: [[frontend/blog-date-sorting-metadata]].
+* **Workout Reviews Case (`ReviewSystem.tsx`)**: Passing SSR `initialReviews` as SWR `fallbackData` exposed `new Date(review.createdAt).toLocaleDateString()` without options, causing hydration mismatches (`"9/12/2026"` on SSR vs `"12.09.2026"` on non-US browser locales). Fixed by enforcing `toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" })`. Related: [[frontend/responsive-layout]].
 
 ### 3. Обращение к `window`, `localStorage` или cookie до монтирования
 * **Проблема**: Проверка условий вроде `typeof window !== 'undefined'` в теле компонента на первом рендере.

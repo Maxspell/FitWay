@@ -27,7 +27,13 @@
 - Использование ARIA-атрибутов (`aria-expanded`, `aria-controls`, `aria-label`, `aria-hidden` для декоративного бекдропа).
 - Выделение фокуса при клавиатурной навигации через `focus-visible`.
 
+## Stacking Context & React Portal
+- Because `Header.tsx` uses `sticky top-0 ... z-40`, any drawer rendered inside `<header>` is trapped inside a `z-40` stacking context and can be covered by page-level `z-50` overlays (`ScrollToTop` or `ExerciseList` floating rest timer).
+- `MobileMenu.tsx` portals both its backdrop (`z-[60]`) and drawer (`z-[70]`) directly to `document.body` via `createPortal` (guarded by `mounted` state for hydration safety), with an in-drawer close button so the drawer always layers above all page overlays.
+
 ## Связанные документы базы знаний
 - [[frontend/navigation-mega-menu]] — Двухуровневое выпадающее меню навигации (Desktop Mega-Dropdown & Mobile Accordion).
 - [[frontend/fitness-calculators-pseo]] — Архитектура интерактивных калькуляторов и Programmatic SEO.
 - [[frontend/trust-signals-contacts]] — Trust-сигналы, верифицированные соцсети и контакты платформы.
+- [[frontend/responsive-layout]] — Mobile-first layout patterns and viewport clearance rules.
+- [[frontend/breadcrumbs]] — Global overlay breadcrumbs clearance and truncation.

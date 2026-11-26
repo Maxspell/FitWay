@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
@@ -67,10 +68,15 @@ const socialLinks = [
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const [isToolsExpanded, setIsToolsExpanded] = useState(pathname.startsWith("/tools"));
   const [isAuthorsExpanded, setIsAuthorsExpanded] = useState(pathname.startsWith("/authors"));
   const menuRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close menu on route change & keep submenu open if on matching route
   useEffect(() => {
@@ -167,42 +173,52 @@ export default function MobileMenu() {
         </div>
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              variants={backdropVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
-              aria-hidden="true"
-            />
-
-            {/* Menu Panel */}
-            <motion.nav
-              id="mobile-menu"
-              ref={menuRef}
-              variants={menuVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              className="fixed top-0 right-0 bottom-0 w-full max-w-[320px] bg-[#1a2635] border-l border-white/5 z-50 flex flex-col overflow-y-auto overscroll-contain shadow-2xl"
-              aria-label="Mobile Navigation"
-            >
-              {/* Drawer Header with Logo & Spacing for Close Button */}
-              <div className="h-[72px] px-5 pr-14 flex items-center border-b border-white/5 flex-shrink-0">
-                <Link
-                  href="/"
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <>
+                {/* Backdrop */}
+                <motion.div
+                  variants={backdropVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2 group"
+                  className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
+                  aria-hidden="true"
+                />
+
+                {/* Menu Panel */}
+                <motion.nav
+                  id="mobile-menu"
+                  ref={menuRef}
+                  variants={menuVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  className="fixed top-0 right-0 bottom-0 w-full max-w-[320px] bg-[#1a2635] border-l border-white/5 z-[70] flex flex-col overflow-y-auto overscroll-contain shadow-2xl"
+                  aria-label="Mobile Navigation"
                 >
-                  <Dumbbell className="h-7 w-7 text-[#FF8C00] group-hover:scale-110 transition-transform" />
-                  <span className="text-xl font-bold tracking-tight text-white">FITWAY</span>
-                </Link>
-              </div>
+                  {/* Drawer Header with Logo & Dedicated Close Button */}
+                  <div className="h-[72px] px-5 flex items-center justify-between border-b border-white/5 flex-shrink-0">
+                    <Link
+                      href="/"
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center gap-2 group"
+                    >
+                      <Dumbbell className="h-7 w-7 text-[#FF8C00] group-hover:scale-110 transition-transform" />
+                      <span className="text-xl font-bold tracking-tight text-white">FITWAY</span>
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => setIsOpen(false)}
+                      className="p-2 text-gray-300 hover:text-[#FF8C00] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] rounded-xl"
+                      aria-label="Close navigation menu"
+                    >
+                      <X className="w-6 h-6" />
+                    </button>
+                  </div>
 
               {/* Navigation Links */}
               <div className="flex-1 px-4 py-6 flex flex-col gap-1.5">
@@ -376,7 +392,9 @@ export default function MobileMenu() {
             </motion.nav>
           </>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+          document.body
+        )}
     </div>
   );
 }

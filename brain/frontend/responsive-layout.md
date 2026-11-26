@@ -40,6 +40,13 @@
   - Because `Header.tsx` uses `sticky top-0` (`72px` / `4.5rem` in-flow height), `Hero.tsx` must use `pt-8 pb-16 md:pt-12 md:pb-20 lg:py-12 lg:min-h-[calc(100vh-4.5rem)]` instead of `min-h-[900px] lg:min-h-screen pt-20 lg:pt-0`.
   - This eliminates the excessive `80px` mobile gap, guarantees at least `48px` clearance below the sticky header on short desktop/MacBook Pro viewports (`1440x740–785`, `1280x720`), and keeps `hero.bottom` aligned with the fold at `1440x900`.
   - `HeroContent.tsx` vertical spacing (`space-y-6 lg:space-y-7`, `pt-1 lg:pt-2` on CTA buttons, `pt-2 lg:pt-4` on trust indicators) keeps intrinsic content height around `~690px` on `lg+`.
+- **Workout Detail Page (`workouts/[slug]/page.tsx`, `WorkoutHero.tsx`, `WorkoutMetadata.tsx`, `ExerciseList.tsx`, `ExerciseCard.tsx`, `ReviewSystem.tsx`, `Footer.tsx`):**
+  - Never combine fixed viewport heights (`h-[70vh]`) with `flex items-end` and `overflow-hidden` on `WorkoutHero` without explicit top clearance (`pt-20 sm:pt-24`) for the root-level absolute `Breadcrumbs` overlay (`~52px` zone). Use content-driven `min-h-[460px] sm:min-h-[520px] lg:min-h-[560px]` and fluid `<h1>` scaling (`text-2xl sm:text-4xl md:text-5xl xl:text-6xl leading-[1.12] max-w-5xl break-words`). See [[frontend/breadcrumbs]].
+  - Do not wrap an entire multi-widget sidebar taller than `100vh` inside `sticky top-24`; keep upper cards in normal flow and apply `lg:sticky lg:top-24` only to the final CTA widget (`FitnessToolsSidebarWidget`).
+  - Never combine Tailwind horizontal centering (`left-1/2 -translate-x-1/2`) directly on a Framer Motion `<motion.div>` that animates `y` or `scale`, as Framer Motion's inline `transform` overrides `-translate-x-1/2`. Place centering on a static wrapper (`fixed ... inset-x-0 flex justify-center pointer-events-none`).
+  - Inside `lg:col-span-2` main columns (`1024px` viewport), avoid 4-column card grids (`WorkoutMetadata`: use `grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4`) and side-by-side split forms (`ReviewSystem`: use `xl:flex-row`) that squeeze inner columns below ~220px.
+  - On `ExerciseCard`, add `shrink-0` to fixed circular badges, stack Pro Tips / Avoid (`grid-cols-1 sm:grid-cols-2`) on mobile, and prevent action button wrapping (`flex-col sm:flex-row ... shrink-0 whitespace-nowrap`).
+  - `Footer.tsx` uses `sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5` with `break-words` so tablet/small-desktop layouts do not leave orphan rows or clip email addresses.
 - **Стандарт шапок секций:**
   На мобильных экранах заголовок, бейдж и подзаголовок центрируются, а на десктопе возвращаются к левому краю (либо остаются по центру, если это предусмотрено стилем блока):
   `text-center md:text-left mx-auto md:mx-0`.

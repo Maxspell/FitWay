@@ -31,7 +31,12 @@ This ensures the breadcrumbs gracefully overlay hero backgrounds while remaining
 > 
 > **Standard Implementation Rule**:
 > - Never import or render `<Breadcrumbs />` inside subpage components.
-> - Reserve vertical clearance for the overlay breadcrumbs by giving page hero sections or top containers `pt-12` or `pt-16`.
+> - Reserve vertical clearance for the overlay breadcrumbs by giving page hero sections or top containers `pt-12` or `pt-16` (or `pt-20 sm:pt-24` on `flex items-end` heroes like `WorkoutHero` with a top gradient scrim for contrast).
+
+## Mobile Truncation & Overflow Guard
+- Avoid `min-w-max` and `overflow-x-auto` on the breadcrumb `<ol>`, which forces long dynamic titles (`>340px`) to clip mid-word at the right edge on `375px`/`390px` mobile screens.
+- Use `w-full overflow-hidden` on `<nav>`, `w-full min-w-0` on `<ol>`, `shrink-0` on parent crumbs/separators, and `min-w-0 flex-1` + `truncate block` on the final `aria-current="page"` item.
+- Related: [[frontend/mobile-menu]], [[frontend/responsive-layout]].
 
 ## Related Links
 - [[frontend/fitness-calculators-pseo]] — Архитектура посадочных страниц калькуляторов и устранение локальных дубликатов крошек.

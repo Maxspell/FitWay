@@ -22,11 +22,11 @@ export default function WorkoutExpertReviewBox({ reviewer }: WorkoutExpertReview
         <CheckCircle2 size={24} />
       </div>
 
-      <div className="flex-1">
-        <h4 className="text-sm uppercase tracking-wider text-white/50 font-bold mb-2">Reviewed By</h4>
+      <div className="flex-1 min-w-0">
+        <h2 className="text-sm uppercase tracking-wider text-gray-300 font-bold mb-2">Reviewed By</h2>
         
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 relative bg-black/20">
+          <div className="w-10 h-10 shrink-0 rounded-full overflow-hidden border border-white/10 relative bg-black/20">
             {reviewer.photo?.url ? (
               <Image 
                 src={imageUrl} 

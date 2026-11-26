@@ -96,8 +96,12 @@ export default function ExpertTips({ category, expertTips }: ExpertTipsProps) {
   const mistakes = parsedMistakes.length > 0 ? parsedMistakes : fallback.mistakes;
 
   return (
-    <div className="space-y-6 mt-12">
-      <div className="bg-[#243447] rounded-2xl p-6 border border-white/5 shadow-lg">
+    <section className="space-y-6 mt-12">
+      <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight">
+        Training Guidance &amp; Form Notes
+      </h2>
+
+      <div className="bg-[#243447] rounded-2xl p-5 sm:p-6 border border-white/5 shadow-lg">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 bg-[#FF8C00]/20 rounded-lg">
             <Lightbulb className="h-6 w-6 text-[#FF8C00]" />
@@ -114,7 +118,7 @@ export default function ExpertTips({ category, expertTips }: ExpertTipsProps) {
         </ul>
       </div>
 
-      <div className="bg-[#2d4258]/50 rounded-2xl p-6 border border-red-500/20 shadow-lg">
+      <div className="bg-[#2d4258]/50 rounded-2xl p-5 sm:p-6 border border-red-500/20 shadow-lg">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 bg-red-500/20 rounded-lg">
             <AlertCircle className="h-6 w-6 text-red-500" />
@@ -130,6 +134,6 @@ export default function ExpertTips({ category, expertTips }: ExpertTipsProps) {
           ))}
         </ul>
       </div>
-    </div>
+    </section>
   );
 }

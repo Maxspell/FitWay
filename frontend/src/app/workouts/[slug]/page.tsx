@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getWorkoutBySlug, getRelatedWorkouts, getReviewsByWorkoutId } from "@/services/workout.service";
 import WorkoutHero from "@/components/workouts/WorkoutHero";
@@ -9,10 +10,9 @@ import NutritionTips from "@/components/workouts/NutritionTips";
 import ExpertTips from "@/components/workouts/ExpertTips";
 import ReviewSystem from "@/components/workouts/ReviewSystem";
 import WorkoutExpertReviewBox from "@/components/common/WorkoutExpertReviewBox";
-import AuthorBox from "@/components/common/AuthorBox";
 import AuthorSidebarCard from "@/components/common/AuthorSidebarCard";
 import ReactMarkdown from "react-markdown";
-import { Workout } from "@/interfaces/workout";
+import remarkGfm from "remark-gfm";
 import ShareButtons from "@/components/BlogPost/ShareButtons";
 import { getStrapiMedia } from "@/lib/utils";
 import FitnessToolsSidebarWidget from "@/components/calculators/FitnessToolsSidebarWidget";
@@ -23,16 +23,22 @@ interface Props {
   };
 }
 
+function getAbsoluteImageUrl(url?: string): string {
+  if (!url) return "";
+  let imageUrl = getStrapiMedia(url);
+  if (imageUrl && !imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://fitway.best";
+    imageUrl = `${siteUrl}${imageUrl.startsWith("/") ? "" : "/"}${imageUrl}`;
+  }
+  return imageUrl;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const workout = await getWorkoutBySlug(params.slug);
 
   if (!workout) return { title: "Workout Not Found" };
 
-  let imageUrl = workout.image?.url ? getStrapiMedia(workout.image.url) : "";
-  if (imageUrl && !imageUrl.startsWith("http://") && !imageUrl.startsWith("https://")) {
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://fitway.best";
-    imageUrl = `${siteUrl}${imageUrl.startsWith("/") ? "" : "/"}${imageUrl}`;
-  }
+  const imageUrl = getAbsoluteImageUrl(workout.image?.url);
 
   const imageObj = imageUrl
     ? [
@@ -80,26 +86,77 @@ export default async function WorkoutDetailsPage({ params }: Props) {
     getReviewsByWorkoutId(workout.documentId)
   ]);
 
+  const absoluteImageUrl = getAbsoluteImageUrl(workout.image?.url);
   const averageRating = reviews.length
     ? (reviews.reduce((acc: number, curr: any) => acc + curr.rating, 0) / reviews.length).toFixed(1)
     : "0.0";
   const reviewCount = reviews.length;
 
   return (
-    <main className="min-h-screen bg-[#1B2B3B] text-white">
+    <div className="min-h-screen bg-[#1B2B3B] text-white">
       {/* Hero Section */}
       <WorkoutHero workout={workout} />
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="container mx-auto px-4 py-8 sm:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-12">
+          <div className="lg:col-span-2 space-y-12 min-w-0">
             <WorkoutMetadata workout={workout} />
             <ExerciseList exercises={workout.exercises} />
             <NutritionTips advice={workout.nutritionAdvice} />
             {workout.text && (
-              <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed">
-                <ReactMarkdown>{workout.text}</ReactMarkdown>
+              <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed prose-headings:text-white prose-strong:text-white prose-a:text-[#FF8C00] hover:prose-a:text-[#FFA500]">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    h1: ({ node, children, ...props }) => (
+                      <h2 className="text-2xl sm:text-3xl font-bold text-white mt-8 mb-4" {...props}>
+                        {children}
+                      </h2>
+                    ),
+                    table: ({ node, children, ...props }) => (
+                      <div className="my-6 w-full overflow-hidden rounded-xl border border-white/10 bg-[#1A2634]/60 shadow-md">
+                        <div className="overflow-x-auto">
+                          <table className="w-full min-w-[520px] border-collapse text-left text-xs sm:text-sm" {...props}>
+                            {children}
+                          </table>
+                        </div>
+                      </div>
+                    ),
+                    thead: ({ node, children, ...props }) => (
+                      <thead className="bg-[#121C26]/90 text-[#FF8C00] text-xs uppercase tracking-wider font-semibold border-b border-white/10" {...props}>
+                        {children}
+                      </thead>
+                    ),
+                    th: ({ node, children, ...props }) => (
+                      <th className="px-3.5 sm:px-4 py-3 font-semibold text-white/90 border-b border-white/10 whitespace-nowrap" {...props}>
+                        {children}
+                      </th>
+                    ),
+                    td: ({ node, children, ...props }) => (
+                      <td className="px-3.5 sm:px-4 py-3 border-b border-white/5 text-gray-300 text-xs sm:text-sm leading-normal" {...props}>
+                        {children}
+                      </td>
+                    ),
+                    a: ({ node, href, children, ...props }) => {
+                      const isExternal = href?.startsWith("http://") || href?.startsWith("https://");
+                      if (isExternal) {
+                        return (
+                          <a href={href} target="_blank" rel="noopener noreferrer" {...props}>
+                            {children}
+                          </a>
+                        );
+                      }
+                      return (
+                        <Link href={href || "#"} {...props}>
+                          {children}
+                        </Link>
+                      );
+                    },
+                  }}
+                >
+                  {workout.text}
+                </ReactMarkdown>
               </div>
             )}
             <ExpertTips category={workout.category} expertTips={workout.expertTips} />
@@ -116,23 +173,27 @@ export default async function WorkoutDetailsPage({ params }: Props) {
               url={`${process.env.NEXT_PUBLIC_SITE_URL || 'https://fitway.best'}/workouts/${workout.slug}`}
             />
 
-            <ReviewSystem workoutTitle={workout.title} workoutDocumentId={workout.documentId} />
+            <ReviewSystem
+              workoutTitle={workout.title}
+              workoutDocumentId={workout.documentId}
+              initialReviews={reviews}
+            />
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-8">
-            <div className="sticky top-24 space-y-8">
-              {/* Author Box */}
-              {workout.author && (
-                <AuthorSidebarCard author={workout.author} />
-              )}
+          <aside className="space-y-8 min-w-0">
+            {/* Author Box */}
+            {workout.author && (
+              <AuthorSidebarCard author={workout.author} />
+            )}
 
-              <RelatedWorkouts workouts={relatedWorkouts} />
+            <RelatedWorkouts workouts={relatedWorkouts} />
 
-              {/* Fitness Tools Suite Widget */}
+            {/* Sticky Fitness Tools Suite Widget */}
+            <div className="lg:sticky lg:top-24">
               <FitnessToolsSidebarWidget category={workout.category} />
             </div>
-          </div>
+          </aside>
         </div>
       </div>
 
@@ -147,7 +208,7 @@ export default async function WorkoutDetailsPage({ params }: Props) {
             "description": workout.description,
             "exerciseType": workout.category,
             "duration": `PT${workout.duration}M`,
-            "image": workout.image?.url || "",
+            "image": absoluteImageUrl,
             "educationalLevel": workout.difficulty,
             ...(reviewCount > 0 && {
               "aggregateRating": {
@@ -198,6 +259,6 @@ export default async function WorkoutDetailsPage({ params }: Props) {
           }),
         }}
       />
-    </main>
+    </div>
   );
 }

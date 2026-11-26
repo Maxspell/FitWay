@@ -1,4 +1,4 @@
-import { Dumbbell, Target, RefreshCcw, Info, Box } from "lucide-react";
+import { Dumbbell, Target, RefreshCcw, Box } from "lucide-react";
 import { Workout } from "@/interfaces/workout";
 
 interface Props {
@@ -30,14 +30,14 @@ export default function WorkoutMetadata({ workout }: Props) {
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4">
       {items.map((item, index) => (
         <div 
           key={index}
-          className="p-6 rounded-2xl bg-[#243447] border border-white/5 hover:border-[#FF8C00]/30 transition-colors group"
+          className="p-4 sm:p-5 rounded-2xl bg-[#243447] border border-white/5 hover:border-[#FF8C00]/30 transition-colors group"
         >
           <div className="flex flex-col items-center text-center">
-            <item.icon className="w-8 h-8 text-[#FF8C00] mb-3 group-hover:scale-110 transition-transform" />
+            <item.icon className="w-7 h-7 sm:w-8 sm:h-8 text-[#FF8C00] mb-2.5 sm:mb-3 group-hover:scale-110 transition-transform" />
             <span className="text-xs text-gray-400 uppercase tracking-widest mb-1">{item.label}</span>
             <span className="text-sm font-bold">{item.value}</span>
           </div>
