@@ -53,6 +53,7 @@ flowchart TD
 - **`senior-frontend-engineer`** (`.agents/agents/senior-frontend-engineer.md`): Next.js 14 App Router, TypeScript strictness, Service Layer (`frontend/src/services/*.service.ts`), ISR/SSG, Metadata Cascade & `Schema.org` `@graph`, hydration/Stretched Link integrity, and CWV optimization. Pairs with `.agents/skills/vercel-react-best-practices/SKILL.md`.
 - **`senior-ux-ui-designer`** (`.agents/agents/senior-ux-ui-designer.md`): FitWay dark-mode design system (`#1B2B3B`, `#243447`, `#C25700` WCAG AA CTAs, `#D1D5DB` muted text), sequential heading order, Framer Motion vs Tailwind safety, mobile-first 320px+ layouts, zero-CLS containers, and GA4 dwell-time optimization. Pairs with `.agents/skills/frontend-design/SKILL.md`, `.agents/skills/ui-ux-pro-max/SKILL.md` (domain/UX queries without overriding FitWay tokens), `.agents/skills/web-design-guidelines/SKILL.md` (UI audit checklist), and `.agents/skills/vercel-react-best-practices/SKILL.md`.
 - **`senior-qa-engineer`** (`.agents/agents/senior-qa-engineer.md`): Senior QA Engineer & Test Automation Specialist owning E2E/regression testing across Next.js 14 (`fitway.best`) and Strapi 5 (`api.fitway.best`), `/api/contact` and `/api/newsletter` contract validation, pSEO calculator math & edge-case checks, SEO/Schema.org/canonical verification, hydration/WCAG AA auditing, and `brain/bugs/` regression guarding.
+- **`smm-growth-strategist`** (`.agents/agents/smm-growth-strategist.md`): Health & Fitness Social Media Growth Strategist & Visual SEO Content Manager driving US/Tier-1 referral traffic back to `fitway.best` (supporting Phase 4 in [[roadmap/adsense-approval-plan]]). Prioritizes **Pinterest** (`fitway_best`) as a visual search engine, **YouTube Shorts** (with lightweight `9:16` cross-posting to Instagram Reels `@fitway.best` and TikTok), **X/Twitter** (`@fitway_best`), and on-demand white-hat **Reddit** seeding, while excluding Facebook and LinkedIn. Enforces [[.agents/skills/humanizer/SKILL.md]] (zero em dashes, zero AI tells), `brain/data/gsc-latest.json` keyword alignment, verified URL registries, and FitWay's dark-mode palette (`#1B2B3B`, `#243447`, `#FF8C00`, `#C25700`, `#FFFFFF`, `#D1D5DB`). Pairs with `.agents/skills/fitway-social-generator/SKILL.md` and shared references from `.agents/skills/social/references/`.
 
 ---
 
@@ -97,6 +98,11 @@ flowchart TD
   - Замена размытых ссылок ("experts suggest") на конкретные цитаты PubMed с проверенными PMID или утверждения от первого лица сертифицированных авторов (§17).
   - Очистка списков от шаблонного bold-оформления каждого пункта (`- **Name:** desc`) (§19).
   - Обеспечение естественного живого тренерского и диетологического тона (E-E-A-T) для безупречного прохождения модерации Google AdSense.
+
+### 5. `fitway-social-generator`
+- **File**: `.agents/skills/fitway-social-generator/SKILL.md` (with `references/existing-pins.md`, `references/pinterest-seo-guide.md`, and `references/platform-playbooks.md`).
+- **Purpose**: Repurposes FitWay blog articles, workouts, and `/tools/*` calculators into Tier-1 traffic assets — either **per individual platform on demand** (Pinterest only, YouTube Shorts only, X only, Reddit only) or as a full multi-platform bundle. Synced with the 5 live boards and 5 published pins on `pinterest.com/fitway_best` (including UTM campaign tracking and `Nutrition & Macro Tracking` priority fill), and stages queued Pins in `scripts/pinterest/queue.json` for automated publishing via `scripts/pinterest/index.js` (Pinterest API v5 `POST /v5/pins`).
+- **Guardrails & Reuse**: Reuses `.agents/skills/social/references/short-form-video.md` and `platform-limits.md` for hook structures and platform caps, validates URLs against `existing-posts.md`, `existing-workouts.md`, and `internal-links.md`, deduplicates Pins against `existing-pins.md`, mines `brain/data/gsc-latest.json`, and enforces `.agents/skills/humanizer/SKILL.md` (zero em dashes and YMYL/AdSense compliance).
 
 ---
 

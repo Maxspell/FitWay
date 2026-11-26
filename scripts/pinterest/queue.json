@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "pins": [
+    {
+      "id": "protein-muscle-chart-pin6",
+      "status": "pending",
+      "board": "Nutrition & Macro Tracking",
+      "title": "How Much Protein to Build Muscle? Daily Chart by Body Weight",
+      "description": "How much protein to build muscle do you actually need? Skip the guesswork and stop overpaying for extra shakes. Research places the optimal muscle-building range at 0.7 to 1.0g per pound of body weight (1.6 to 2.2g/kg): 140 lbs = 98 to 140g, 165 lbs = 115 to 165g, 185 lbs = 130 to 185g, 210 lbs = 147 to 210g. See the full protein sources guide and macro calculator at fitway.best. #proteinintake #musclebuilding #nutritiontips",
+      "alt_text": "Dark-mode FitWay chart showing daily protein targets by body weight from 140 lbs to 210 lbs and top protein food sources",
+      "link": "https://fitway.best/blog/how-much-protein-build-muscle?utm_source=pinterest&utm_medium=social&utm_campaign=protein_chart_pin6",
+      "image": "protein-muscle-chart-pin6.jpg",
+      "visual_angle": "Body-Weight Protein Reference Chart (0.7-1.0g/lb)",
+      "scheduled_for": "2026-11-28T15:00:00Z",
+      "sandbox_tested_pin_id": "241224123789974918",
+      "sandbox_tested_at": "2026-11-26T19:55:06.342Z"
+    },
+    {
+      "id": "creatine-dosage-guide-pin7",
+      "status": "pending",
+      "board": "Nutrition & Macro Tracking",
+      "title": "Creatine Monohydrate Dosage: How Much to Take Daily (Science)",
+      "description": "Creatine monohydrate dosage does not require a harsh loading phase or pricey designer blends. Clinical studies show 3 to 5g daily reaches full muscle saturation in 3 to 4 weeks with zero stomach upset, supporting 5 to 15% strength gains and faster cellular recovery. Compare creatine monohydrate vs HCL and check timing tips at fitway.best. #creatine #sportsnutrition #strengthtraining",
+      "alt_text": "Dark-mode FitWay infographic comparing daily 3 to 5g creatine monohydrate dosing versus loading and supplement forms",
+      "link": "https://fitway.best/blog/creatine-benefits-dosage-who-should-take?utm_source=pinterest&utm_medium=social&utm_campaign=creatine_dosage_pin7",
+      "image": "creatine-dosage-guide-pin7.jpg",
+      "visual_angle": "Dosing Protocol & Form Comparison Card (3-5g/day)",
+      "scheduled_for": "2026-11-30T15:00:00Z"
+    }
+  ]
+}

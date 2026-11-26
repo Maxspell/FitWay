@@ -9,6 +9,7 @@
 - [[.agents/agents/senior-frontend-engineer]] — Senior Frontend Engineer manifest (Next.js 14 App Router, TypeScript, ISR, Service Layer, Technical SEO/Schema.org, hydration & CWV).
 - [[.agents/agents/senior-ux-ui-designer]] — Senior UX/UI Designer & Design System Architect manifest (dark editorial palette, WCAG AA/AAA contrast, zero-CLS layouts, dwell-time UX).
 - [[.agents/agents/senior-qa-engineer]] — Senior QA Engineer & Test Automation Specialist manifest (E2E/regression testing, Strapi 5 & Route Handler API contracts, calculator math edge cases, SEO/Schema.org/canonical checks, hydration & WCAG AA verification).
+- [[.agents/agents/smm-growth-strategist]] — Health & Fitness Social Media Growth Strategist & Visual SEO Content Manager manifest (Pinterest-first visual search SEO, YouTube Shorts + Reels/TikTok cross-posting, X/Twitter threads, white-hat Reddit seeding, and Tier-1 referral traffic to `fitway.best`).
 - [[data/gsc-latest.json]] — Свежий кэш поисковой аналитики Google Search Console (клики, показы, CTR, низковисящие плоды), генерируемый `scripts/gsc_client.py`.
 - [[data/ga4-latest.json]] — Свежий кэш пользовательской аналитики Google Analytics 4 (активные пользователи, время на сайте, zombie-страницы, трафик из AI-поисковиков), генерируемый `scripts/ga4_client.py`.
 
