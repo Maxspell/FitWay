@@ -1,6 +1,11 @@
 # Knowledge Base Activity Log
 
 ## 2026-11-26
+- **Homepage Blog Section Redesign (`frontend/src/components/sections/blog/LatestPosts.tsx`, `frontend/src/services/post.service.ts`)**:
+  - Redesigned `LatestPosts` into a modern dark-editorial section aligned with `FeaturedWorkouts` (`senior-ux-ui-designer`) and verified across `375x812`, `768x1024`, `1024x768`, `1280x720`, and `1440x900` (`RELEASE_PASS` by `senior-qa-engineer`).
+  - Added an `Evidence-Based Journal` eyebrow pill, two-tone `Latest from Our Blog` heading, subtitle, and WCAG AA `View All Posts` CTA button (`#C25700` / `#A34600` arrow badge); replaced boxy `.card` inset thumbnails with `rounded-[2rem]` edge-to-edge `aspect-[16/10]` cover cards, bottom gradient scrim, glassmorphic category and `readTime` pills, `line-clamp-2` title / `line-clamp-3` excerpt, and grounded footer with author avatar, deterministic UTC date (`timeZone: "UTC"`), and `Read` pill.
+  - Exported `LatestPostsSkeleton` matching the new card geometry, added `useReducedMotion()` support without `transition-all` flicker, and updated `getBlogPosts()` in `post.service.ts` to populate `category` and `author.photo`.
+  - Updated [[frontend/blog-ui]] and [[frontend/responsive-layout]].
 - **Workout Sidebar Stretching & Footer Overlap Hotfix (`frontend/src/components/common/AuthorSidebarCard.tsx`)**:
   - Fixed regression where `AuthorSidebarCard` used `className="card h-full"` inside `<aside className="space-y-8 min-w-0">` (a direct CSS Grid child in `frontend/src/app/workouts/[slug]/page.tsx`). Because CSS Grid stretches `<aside>` to the grid row height (`align-self: stretch`), `h-full` expanded `AuthorSidebarCard` to 100% of `<aside>`'s height on both desktop and mobile, pushing `RelatedWorkouts` and `FitnessToolsSidebarWidget` below `<aside>` directly over `<Footer>`.
   - Removed `h-full` from `AuthorSidebarCard.tsx` (`<div className="card">`), verified `tsc --noEmit`, `eslint`, and `npm run build` (exit 0), and confirmed `RELEASE_PASS` via headless Chrome across `375x812`, `390x844`, `768x1024`, `1024x768`, `1280x720`, and `1440x900` at top/mid/bottom scroll (`AuthorSidebarCard` `142–174px` tall, `32px` widget gaps, `48px` clearance above `<footer>`, `0` console/HTTP errors).

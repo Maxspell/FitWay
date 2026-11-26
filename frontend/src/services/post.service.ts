@@ -21,7 +21,7 @@ export interface PaginatedPostsResponse {
 export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
     const response = await fetch(
-      `${STRAPI_URL}/api/posts?populate[0]=image&populate[1]=author&sort=createdAt:desc&pagination[pageSize]=3`,
+      `${STRAPI_URL}/api/posts?populate[0]=image&populate[1]=category&populate[2]=author.photo&sort=createdAt:desc&pagination[pageSize]=3`,
       {
         method: "GET",
         headers: {
