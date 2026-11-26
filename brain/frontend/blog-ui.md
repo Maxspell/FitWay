@@ -30,8 +30,9 @@ The blog listing page was updated to improve UX and information density.
   - Filtered by category (`filters[category][slug][$eq]=...`) matching the current post, with fallback to latest articles to ensure 3 recommendations.
   - Layout upgraded from 2 columns to a 3-column responsive grid (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`). See [[frontend/related-articles]].
 - **Homepage Blog Section (`LatestPosts.tsx`, `post.service.ts`)**:
-  - Upgraded from boxed `.card` inset thumbnails to modern `rounded-[2rem]` full-bleed `aspect-[16/10]` editorial cards with bottom gradient scrim, floating glassmorphic category and `readTime` pills, `line-clamp-2`/`line-clamp-3` text rhythm, author avatar + deterministic UTC `<time>` footer, and `LatestPostsSkeleton`.
-  - Section header features an `Evidence-Based Journal` eyebrow pill, two-tone `Latest from Our Blog` `<h2>`, subtitle, and `View All Posts` pill CTA with WCAG AA `#C25700` / `#A34600` arrow badge.
+  - Upgraded from boxed `.card` inset thumbnails to modern `rounded-[2rem]` full-bleed `aspect-[16/10]` editorial cards with solid `#243447` surfaces, `-inset-px` bottom gradient scrim overbleed + `scale-[1.01]` / `transform-gpu` (preventing subpixel hover seams), floating category and `readTime` pills, `line-clamp-2`/`line-clamp-3` text rhythm, author avatar + deterministic UTC `<time>` footer, and `LatestPostsSkeleton`.
+  - Uses the Stretched Link pattern (`after:absolute after:inset-0 after:z-10` on the title `<Link>`) with `z-20` sub-links so the category pill links to `/blog/category/[slug]`, the author block links to `/authors/[slug]`, and the rest of the card links to `/blog/[slug]` without nested `<a>` tags.
+  - Section header features an `Evidence-Based Journal` eyebrow pill, two-tone `Latest from Our Blog` `<h2>`, subtitle, and `View All Posts` pill CTA matching `FeaturedWorkouts` (`px-8 py-4 rounded-2xl font-bold`, `group-hover:rotate-45` icon badge in WCAG AA `#C25700`).
   - `getBlogPosts()` in `post.service.ts` explicitly populates `image`, `category`, and `author.photo` for homepage cards.
 
 **Related:**

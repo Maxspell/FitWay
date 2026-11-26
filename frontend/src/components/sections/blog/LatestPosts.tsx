@@ -153,14 +153,14 @@ export default function LatestPosts({ posts }: LatestPostsProps) {
           >
             <Link
               href="/blog"
-              className="group inline-flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#FF8C00]/40 px-6 sm:px-7 py-3.5 rounded-2xl text-white font-semibold text-sm sm:text-base transition-[background-color,border-color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1B2B3B] w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-3 bg-white/5 hover:bg-[#FF8C00]/10 border border-white/10 hover:border-[#FF8C00]/30 px-8 py-4 rounded-2xl text-white font-bold transition-all w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1B2B3B]"
             >
-              <span>View All Posts</span>
+              View All Posts
               <span
-                className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-[#C25700] group-hover:bg-[#A34600] text-white transition-colors duration-200"
+                className="inline-flex bg-[#C25700] rounded-lg p-1 group-hover:rotate-45 transition-transform"
                 aria-hidden="true"
               >
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="h-4 w-4 text-white" />
               </span>
             </Link>
           </motion.div>
@@ -173,9 +173,52 @@ export default function LatestPosts({ posts }: LatestPostsProps) {
             const rawDate = post.publishedAt || post.createdAt;
             const formattedDate = formatPostDate(rawDate);
             const authorName = post.author?.name?.trim() || "FitWay Editorial";
+            const authorSlug = post.author?.slug?.trim();
+            const categoryName = post.category?.name?.trim();
+            const categorySlug = post.category?.slug?.trim();
             const authorPhotoUrl = post.author?.photo?.url
               ? getStrapiMedia(post.author.photo.url)
               : null;
+
+            const authorContent = (
+              <>
+                {authorPhotoUrl ? (
+                  <div
+                    className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 border border-white/15 group-hover/author:border-[#FF8C00]/70 transition-colors bg-[#1B2B3B]"
+                    aria-hidden="true"
+                  >
+                    <Image
+                      src={authorPhotoUrl}
+                      alt=""
+                      fill
+                      sizes="36px"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="w-9 h-9 rounded-full shrink-0 border border-[#FF8C00]/30 group-hover/author:border-[#FF8C00]/70 bg-[#FF8C00]/15 text-[#FF8C00] font-bold text-xs flex items-center justify-center transition-colors"
+                    aria-hidden="true"
+                  >
+                    {getAuthorInitial(authorName)}
+                  </div>
+                )}
+
+                <div className="flex flex-col min-w-0">
+                  <span className="text-xs sm:text-sm font-semibold text-gray-200 group-hover/author:text-[#FF8C00] transition-colors truncate">
+                    {authorName}
+                  </span>
+                  {formattedDate && (
+                    <time
+                      dateTime={rawDate}
+                      className="text-xs text-gray-400 tabular-nums truncate"
+                    >
+                      {formattedDate}
+                    </time>
+                  )}
+                </div>
+              </>
+            );
 
             return (
               <motion.div
@@ -189,114 +232,104 @@ export default function LatestPosts({ posts }: LatestPostsProps) {
                 viewport={{ once: true }}
                 className="h-full"
               >
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="group block h-full rounded-[2rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1B2B3B]"
-                >
-                  <article className="h-full flex flex-col rounded-[2rem] bg-[#243447]/90 border border-white/10 group-hover:border-[#FF8C00]/40 overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.22)] group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.38)] transition-[transform,border-color,box-shadow] duration-300 ease-out group-hover:-translate-y-1.5">
-                    {/* Edge-to-Edge Cover Image */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#1B2B3B]">
-                      <Image
-                        src={coverUrl}
-                        alt={post.title}
-                        fill
-                        sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                      />
+                <article className="group relative h-full flex flex-col rounded-[2rem] bg-[#243447] border border-white/10 hover:border-[#FF8C00]/40 overflow-hidden shadow-[0_12px_36px_rgba(0,0,0,0.22)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.38)] transition-[transform,border-color,box-shadow] duration-300 ease-out hover:-translate-y-1.5 transform-gpu">
+                  {/* Edge-to-Edge Cover Image */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#243447]">
+                    <Image
+                      src={coverUrl}
+                      alt={post.title}
+                      fill
+                      sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                      className="object-cover scale-[1.01] group-hover:scale-[1.06] transition-transform duration-500 ease-out transform-gpu"
+                    />
 
-                      {/* Bottom Scrim Blending Into Card Surface */}
-                      <div
-                        className="absolute inset-0 bg-gradient-to-t from-[#243447] via-[#243447]/20 to-black/25 pointer-events-none"
-                        aria-hidden="true"
-                      />
+                    {/* Bottom Scrim Blending Seamlessly Into #243447 Card Surface (1px overbleed prevents subpixel hover seams) */}
+                    <div
+                      className="absolute -inset-px bg-gradient-to-t from-[#243447] via-[#243447]/20 to-black/25 pointer-events-none"
+                      aria-hidden="true"
+                    />
 
-                      {/* Floating Glassmorphic Category & Read-Time Pills */}
-                      <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between gap-2">
-                        {post.category?.name ? (
+                    {/* Floating Glassmorphic Category & Read-Time Pills */}
+                    <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between gap-2 pointer-events-none">
+                      {categoryName ? (
+                        categorySlug ? (
+                          <Link
+                            href={`/blog/category/${categorySlug}`}
+                            aria-label={`View all ${categoryName} posts`}
+                            className="pointer-events-auto relative inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1B2B3B]/85 hover:bg-[#1B2B3B] backdrop-blur-md border border-white/15 hover:border-[#FF8C00]/60 text-[#FF8C00] text-xs font-semibold tracking-wide shadow-sm min-w-0 max-w-[65%] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00]"
+                          >
+                            <span
+                              className="w-1.5 h-1.5 rounded-full bg-[#FF8C00] shrink-0"
+                              aria-hidden="true"
+                            />
+                            <span className="truncate">{categoryName}</span>
+                          </Link>
+                        ) : (
                           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1B2B3B]/85 backdrop-blur-md border border-white/15 text-[#FF8C00] text-xs font-semibold tracking-wide shadow-sm min-w-0 max-w-[65%]">
                             <span
                               className="w-1.5 h-1.5 rounded-full bg-[#FF8C00] shrink-0"
                               aria-hidden="true"
                             />
-                            <span className="truncate">{post.category.name}</span>
+                            <span className="truncate">{categoryName}</span>
                           </span>
-                        ) : (
-                          <span aria-hidden="true" />
-                        )}
+                        )
+                      ) : (
+                        <span aria-hidden="true" />
+                      )}
 
-                        {post.readTime && (
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#1B2B3B]/85 backdrop-blur-md border border-white/15 text-gray-200 text-xs font-medium shrink-0 shadow-sm">
-                            <Clock
-                              className="h-3.5 w-3.5 text-[#FF8C00] shrink-0"
-                              aria-hidden="true"
-                            />
-                            <span>{post.readTime}</span>
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Card Body */}
-                    <div className="p-5 sm:p-7 flex flex-col flex-grow">
-                      <h3 className="text-lg sm:text-xl font-bold text-white leading-snug mb-3 line-clamp-2 group-hover:text-[#FF8C00] transition-colors duration-200 text-pretty">
-                        {post.title}
-                      </h3>
-
-                      <p className="text-sm text-gray-300 leading-relaxed line-clamp-3 mb-6 flex-grow">
-                        {post.excerpt}
-                      </p>
-
-                      {/* Grounded Editorial Footer */}
-                      <div className="border-t border-white/10 pt-4 mt-auto flex items-center justify-between gap-3">
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          {authorPhotoUrl ? (
-                            <div
-                              className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 border border-white/15 bg-[#1B2B3B]"
-                              aria-hidden="true"
-                            >
-                              <Image
-                                src={authorPhotoUrl}
-                                alt=""
-                                fill
-                                sizes="36px"
-                                className="object-cover"
-                              />
-                            </div>
-                          ) : (
-                            <div
-                              className="w-9 h-9 rounded-full shrink-0 border border-[#FF8C00]/30 bg-[#FF8C00]/15 text-[#FF8C00] font-bold text-xs flex items-center justify-center"
-                              aria-hidden="true"
-                            >
-                              {getAuthorInitial(authorName)}
-                            </div>
-                          )}
-
-                          <div className="flex flex-col min-w-0">
-                            <span className="text-xs sm:text-sm font-semibold text-gray-200 truncate">
-                              {authorName}
-                            </span>
-                            {formattedDate && (
-                              <time
-                                dateTime={rawDate}
-                                className="text-xs text-gray-400 tabular-nums truncate"
-                              >
-                                {formattedDate}
-                              </time>
-                            )}
-                          </div>
-                        </div>
-
-                        <span className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 group-hover:bg-[#C25700] border border-white/10 group-hover:border-[#C25700] text-gray-200 group-hover:text-white text-xs font-semibold transition-colors duration-200">
-                          <span>Read</span>
-                          <ArrowRight
-                            className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+                      {post.readTime && (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#1B2B3B]/85 backdrop-blur-md border border-white/15 text-gray-200 text-xs font-medium shrink-0 shadow-sm">
+                          <Clock
+                            className="h-3.5 w-3.5 text-[#FF8C00] shrink-0"
                             aria-hidden="true"
                           />
+                          <span>{post.readTime}</span>
                         </span>
-                      </div>
+                      )}
                     </div>
-                  </article>
-                </Link>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="p-5 sm:p-7 flex flex-col flex-grow bg-[#243447]">
+                    <h3 className="text-lg sm:text-xl font-bold text-white leading-snug mb-3 line-clamp-2 group-hover:text-[#FF8C00] transition-colors duration-200 text-pretty">
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="focus:outline-none after:absolute after:inset-0 after:z-10 after:rounded-[2rem] focus-visible:after:ring-2 focus-visible:after:ring-[#FF8C00] focus-visible:after:ring-inset"
+                      >
+                        {post.title}
+                      </Link>
+                    </h3>
+
+                    <p className="text-sm text-gray-300 leading-relaxed line-clamp-3 mb-6 flex-grow">
+                      {post.excerpt}
+                    </p>
+
+                    {/* Grounded Editorial Footer */}
+                    <div className="border-t border-white/10 pt-4 mt-auto flex items-center justify-between gap-3">
+                      {authorSlug ? (
+                        <Link
+                          href={`/authors/${authorSlug}`}
+                          aria-label={`View author profile: ${authorName}`}
+                          className="group/author relative z-20 flex items-center gap-2.5 min-w-0 rounded-xl py-0.5 pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00]"
+                        >
+                          {authorContent}
+                        </Link>
+                      ) : (
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          {authorContent}
+                        </div>
+                      )}
+
+                      <span className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 group-hover:bg-[#C25700] border border-white/10 group-hover:border-[#C25700] text-gray-200 group-hover:text-white text-xs font-semibold transition-colors duration-200">
+                        <span>Read</span>
+                        <ArrowRight
+                          className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                </article>
               </motion.div>
             );
           })}
