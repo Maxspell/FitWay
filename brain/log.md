@@ -1,6 +1,10 @@
 # Knowledge Base Activity Log
 
 ## 2026-11-26
+- **Workout Sidebar Stretching & Footer Overlap Hotfix (`frontend/src/components/common/AuthorSidebarCard.tsx`)**:
+  - Fixed regression where `AuthorSidebarCard` used `className="card h-full"` inside `<aside className="space-y-8 min-w-0">` (a direct CSS Grid child in `frontend/src/app/workouts/[slug]/page.tsx`). Because CSS Grid stretches `<aside>` to the grid row height (`align-self: stretch`), `h-full` expanded `AuthorSidebarCard` to 100% of `<aside>`'s height on both desktop and mobile, pushing `RelatedWorkouts` and `FitnessToolsSidebarWidget` below `<aside>` directly over `<Footer>`.
+  - Removed `h-full` from `AuthorSidebarCard.tsx` (`<div className="card">`), verified `tsc --noEmit`, `eslint`, and `npm run build` (exit 0), and confirmed `RELEASE_PASS` via headless Chrome across `375x812`, `390x844`, `768x1024`, `1024x768`, `1280x720`, and `1440x900` at top/mid/bottom scroll (`AuthorSidebarCard` `142–174px` tall, `32px` widget gaps, `48px` clearance above `<footer>`, `0` console/HTTP errors).
+  - Updated [[frontend/responsive-layout]].
 - **Workout Detail Page (`/workouts/[slug]`) Responsive Layout, Accessibility & QA Verification Sprint**:
   - Audited live and local `/workouts/[slug]` across 8 desktop, tablet, and mobile viewports (`375x812`, `390x844`, `768x1024`, `1024x768`, `1280x720`, `1440x720`, `1440x780`, `1440x900`) via `senior-qa-engineer`, followed by fixes across 17 files by `senior-frontend-engineer` and post-fix headless Chrome CDP `RELEASE_PASS` verification.
   - **Hero & Breadcrumbs Clearance (`frontend/src/components/workouts/WorkoutHero.tsx`, `frontend/src/components/common/Breadcrumbs.tsx`)**: Replaced fixed `h-[70vh]` with content-driven `min-h-[460px] sm:min-h-[520px] lg:min-h-[560px] pt-20 sm:pt-24 pb-10 sm:pb-12`, added a top gradient scrim for breadcrumb legibility, scaled `<h1>` fluidly (`text-2xl sm:text-4xl md:text-5xl xl:text-6xl leading-[1.12] max-w-5xl break-words`), and replaced `min-w-max` on `Breadcrumbs` `<ol>` with `w-full min-w-0` + `truncate` on the active crumb so long titles never clip off mobile edges or collide with hero content.

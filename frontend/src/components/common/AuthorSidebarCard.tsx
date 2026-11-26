@@ -13,7 +13,7 @@ export default function AuthorSidebarCard({ author }: AuthorSidebarCardProps) {
   const imageUrl = getStrapiMedia(author.photo?.url);
 
   return (
-    <div className="card h-full">
+    <div className="card">
       <h2 className="text-xl font-bold mb-4">About the Author</h2>
       <Link
         href={`/authors/${author.slug}`}
