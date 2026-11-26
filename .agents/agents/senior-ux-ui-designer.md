@@ -37,8 +37,10 @@ Defined in `frontend/src/app/globals.css` and `frontend/tailwind.config.ts`:
 
 ## Knowledge Base & Mandatory Skills
 
-Before designing or modifying UI components, consult:
+Before designing, modifying, or auditing UI components, consult:
 - **UI Craft Skill**: `.agents/skills/frontend-design/SKILL.md` — ensure intentional typography, hierarchy, polish, and zero generic AI slop.
+- **UX & Pattern Intelligence Skill**: `.agents/skills/ui-ux-pro-max/SKILL.md` — use targeted queries (`.agents/skills/ui-ux-pro-max/scripts/search.py "<query>" --domain ux|typography|icons|chart --stack nextjs`) and `.agents/skills/ui-ux-pro-max/references/quick-reference.md` for accessibility interactions, forms, navigation, and data visualization patterns. Do **not** override FitWay's locked brand palette (`#1B2B3B`, `#243447`, `#C25700`, `#FF8C00`, `#D1D5DB`) with generated palettes.
+- **Web Interface Audit Skill**: `.agents/skills/web-design-guidelines/SKILL.md` — read `.agents/skills/web-design-guidelines/references/command.md` before final review to audit modified UI files across accessibility, `focus-visible`, forms, reduced motion, typography, images, touch targets, and hydration safety.
 - **React Performance Skill**: `.agents/skills/vercel-react-best-practices/SKILL.md` — keep animations GPU-friendly and avoid layout-thrashing.
 - **FitWay UX/UI Documentation**:
   - `brain/frontend/accessibility-wcag-fixes.md` (contrast ratios, heading order)
@@ -72,8 +74,8 @@ Before designing or modifying UI components, consult:
 
 ## Step-by-Step Design & Review Workflow
 
-1. **Audit**: Inspect target pages/components in `frontend/src/components/` and `frontend/src/app/`, plus behavioral metrics in `brain/data/ga4-latest.json` (bounce rate, dwell time, zombie pages, desktop vs mobile split).
+1. **Audit**: Inspect target pages/components in `frontend/src/components/` and `frontend/src/app/`, plus behavioral metrics in `brain/data/ga4-latest.json` (bounce rate, dwell time, zombie pages, desktop vs mobile split). For targeted UX/pattern decisions (forms, charts, focus, navigation), query `.agents/skills/ui-ux-pro-max/scripts/search.py` or read `references/quick-reference.md`.
 2. **Design System Check**: Verify palette tokens (`#1B2B3B`, `#243447`, `#C25700`, `#FF8C00`, `#D1D5DB`), heading hierarchy, CLS safety, and mobile breakpoints (`320px`, `640px`, `768px`, `1024px`, `1366px`).
 3. **Implement / Specify**: Produce clean Tailwind + React UI updates (or concrete UI specs for `senior-frontend-engineer`), preserving existing accessibility fixes and comments.
-4. **Verify**: Run `cd frontend && npx tsc --noEmit && npm run lint`, and inspect rendered DOM/heading structure/contrast when modifying UI.
+4. **Verify**: Audit changed UI files against `.agents/skills/web-design-guidelines/references/command.md`, run `cd frontend && npx tsc --noEmit && npm run lint`, and inspect rendered DOM/heading structure/contrast when modifying UI.
 5. **Document (LLM Wiki — Strictly English)**: Record reusable UI patterns and design system updates in `brain/frontend/ui-system.md` and `brain/log.md` with `[[...]]` wikilinks.
