@@ -1,6 +1,9 @@
 # Knowledge Base Activity Log
 
 ## 2026-11-28
+- **Disable CPU-Heavy AVIF Image Encoding to Fix VPS `ERR_TIMED_OUT` (`frontend/next.config.mjs`, `scripts/pagespeed/index.js`)**:
+  - Switched `images.formats` in `frontend/next.config.mjs` from `["image/avif", "image/webp"]` to `["image/webp"]` (keeping `minimumCacheTTL: 2592000`) after PSI `errors-in-console` revealed `Failed to load resource: net::ERR_TIMED_OUT` on concurrent AVIF Sharp transcodes on the VPS.
+  - Lowered default `--concurrency` in `scripts/pagespeed/index.js` from `3` to `2` to avoid saturating origin image optimization during multi-URL audits.
 - **Eliminate Global `framer-motion` Bundle from Header & Workout Cards + Image Cache Tuning (`Navbar.tsx`, `MobileMenu.tsx`, `WorkoutCard.tsx`, `next.config.mjs`)**:
   - Removed `framer-motion` from `Navbar.tsx` (replaced desktop mega-dropdown `AnimatePresence`/`motion.div` with pure CSS `opacity`/`transform`/`visibility` transitions) and `MobileMenu.tsx` (replaced drawer slide-in and submenu accordions with CSS transitions and `grid-rows-[1fr]/[0fr]` accordion), preventing ~110 KiB of animation JS from shipping on every route via `Header` / `layout.tsx`.
   - Converted `WorkoutCard.tsx` to a pure Server Component (removing `framer-motion` `initial={{ opacity: 0, y: 24 }}` / `whileInView`) to eliminate the floating mobile CLS (`0.182`) on `/workouts` and shrink `/workouts` First Load JS.

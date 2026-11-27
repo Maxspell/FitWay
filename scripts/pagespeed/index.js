@@ -75,7 +75,7 @@ function parseArgs(argv) {
     categories: [...ALL_CATEGORIES],
     output: DEFAULT_OUTPUT,
     key: null,
-    concurrency: 3,
+    concurrency: 2,
     help: false,
   };
 
@@ -444,7 +444,7 @@ Options:
   -c, --categories <list>  Comma-separated categories (default: performance,accessibility,best-practices,seo)
   -o, --output <path>      Output JSON path relative to repo root (default: ${DEFAULT_OUTPUT})
   -k, --key <api_key>      Google PSI API key (overrides env and credentials/)
-      --concurrency <1-5>  Max concurrent API calls (default: 3)
+      --concurrency <1-5>  Max concurrent API calls (default: 2)
   -h, --help               Show this help message
 `);
 }
