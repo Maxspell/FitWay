@@ -1,6 +1,3 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import { Clock, Flame, Target, ChevronRight, Play, Dumbbell } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,25 +23,14 @@ function getWorkoutCoverUrl(workout: Workout): string {
 
 export default function WorkoutCard({
   workout,
-  index = 0,
   headingAs = "h3",
   priority = false,
 }: WorkoutCardProps) {
   const HeadingTag = headingAs;
-  const prefersReducedMotion = useReducedMotion();
   const coverUrl = getWorkoutCoverUrl(workout);
 
   return (
-    <motion.div
-      initial={priority || prefersReducedMotion ? false : { opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.5,
-        delay: prefersReducedMotion ? 0 : (index % 9) * 0.08,
-      }}
-      viewport={{ once: true }}
-      className="group relative h-full"
-    >
+    <div className="group relative h-full">
       <Link
         href={`/workouts/${workout.slug}`}
         className="block h-full rounded-[2rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1B2B3B]"
@@ -144,6 +130,6 @@ export default function WorkoutCard({
           </div>
         </article>
       </Link>
-    </motion.div>
+    </div>
   );
 }

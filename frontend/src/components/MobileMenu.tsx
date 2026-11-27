@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { 
   Home, 
   FileText, 
@@ -114,41 +113,6 @@ export default function MobileMenu() {
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
-  // Animation variants
-  const backdropVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.3 } },
-    exit: { opacity: 0, transition: { duration: 0.3 } }
-  };
-
-  const menuVariants: Variants = {
-    hidden: { x: "100%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] } },
-    visible: { 
-      x: 0, 
-      transition: { 
-        duration: 0.4, 
-        ease: [0.76, 0, 0.24, 1],
-        staggerChildren: 0.05,
-        delayChildren: 0.1
-      } 
-    },
-    exit: { 
-      x: "100%", 
-      transition: { 
-        duration: 0.3, 
-        ease: [0.76, 0, 0.24, 1],
-        staggerChildren: 0.02,
-        staggerDirection: -1
-      } 
-    }
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, x: 20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" } },
-    exit: { opacity: 0, x: 10, transition: { duration: 0.15 } }
-  };
-
   return (
     <div className="md:hidden">
       {/* Trigger Button with Animated Hamburger/Close Icon */}
@@ -175,31 +139,26 @@ export default function MobileMenu() {
 
       {mounted &&
         createPortal(
-          <AnimatePresence>
-            {isOpen && (
-              <>
-                {/* Backdrop */}
-                <motion.div
-                  variants={backdropVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  onClick={() => setIsOpen(false)}
-                  className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
-                  aria-hidden="true"
-                />
+          <>
+            {/* Backdrop */}
+            <div
+              onClick={() => setIsOpen(false)}
+              className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] transition-[opacity,visibility] duration-300 ${
+                isOpen ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"
+              }`}
+              aria-hidden="true"
+            />
 
-                {/* Menu Panel */}
-                <motion.nav
-                  id="mobile-menu"
-                  ref={menuRef}
-                  variants={menuVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  className="fixed top-0 right-0 bottom-0 w-full max-w-[320px] bg-[#1a2635] border-l border-white/5 z-[70] flex flex-col overflow-y-auto overscroll-contain shadow-2xl"
-                  aria-label="Mobile Navigation"
-                >
+            {/* Menu Panel */}
+            <nav
+              id="mobile-menu"
+              ref={menuRef}
+              aria-hidden={!isOpen}
+              className={`fixed top-0 right-0 bottom-0 w-full max-w-[320px] bg-[#1a2635] border-l border-white/5 z-[70] flex flex-col overflow-y-auto overscroll-contain shadow-2xl transition-[transform,visibility] duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                isOpen ? "translate-x-0 visible pointer-events-auto" : "translate-x-full invisible pointer-events-none"
+              }`}
+              aria-label="Mobile Navigation"
+            >
                   {/* Drawer Header with Logo & Dedicated Close Button */}
                   <div className="h-[72px] px-5 flex items-center justify-between border-b border-white/5 flex-shrink-0">
                     <Link
@@ -240,9 +199,9 @@ export default function MobileMenu() {
                     const subItems = item.submenuKey === "authors" ? authorSubItems : toolSubItems;
 
                     return (
-                      <motion.div key={item.href} variants={itemVariants} className="space-y-1">
+                      <div key={item.href} className="space-y-1">
                         <div
-                          className={`flex items-center justify-between rounded-xl transition-all duration-200 ${
+                          className={`flex items-center justify-between rounded-xl transition-colors duration-200 ${
                             isActive
                               ? "bg-[#FF8C00]/10 text-[#FF8C00]"
                               : "text-gray-300 hover:bg-white/5 hover:text-white"
@@ -281,15 +240,14 @@ export default function MobileMenu() {
                         </div>
 
                         {/* Accordion Submenu */}
-                        <AnimatePresence initial={false}>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.25, ease: "easeInOut" }}
-                              className="overflow-hidden pl-3 ml-4 border-l border-white/10 space-y-1 pt-1 pb-1"
-                            >
+                        <div
+                          aria-hidden={!isExpanded}
+                          className={`grid transition-[grid-template-rows,opacity] duration-200 ease-in-out ${
+                            isExpanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 pointer-events-none"
+                          }`}
+                        >
+                          <div className="overflow-hidden">
+                            <div className="pl-3 ml-4 border-l border-white/10 space-y-1 pt-1 pb-1">
                               {subItems.map((sub) => {
                                 const isSubActive = pathname === sub.href;
                                 const SubIcon = sub.icon;
@@ -297,6 +255,7 @@ export default function MobileMenu() {
                                   <Link
                                     key={sub.href}
                                     href={sub.href}
+                                    tabIndex={isExpanded ? 0 : -1}
                                     onClick={() => setIsOpen(false)}
                                     className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs transition-colors group ${
                                       isSubActive
@@ -320,20 +279,20 @@ export default function MobileMenu() {
                                   </Link>
                                 );
                               })}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     );
                   }
 
                   // Standard Top-Level Menu Items
                   return (
-                    <motion.div key={item.href} variants={itemVariants}>
+                    <div key={item.href}>
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 group
+                        className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-colors duration-200 group
                           ${isActive 
                             ? "bg-[#FF8C00]/10 text-[#FF8C00]" 
                             : "text-gray-300 hover:bg-white/5 hover:text-white"
@@ -347,14 +306,14 @@ export default function MobileMenu() {
                         />
                         <span className="font-semibold text-base">{item.label}</span>
                       </Link>
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
 
               {/* CTA Section */}
               <div className="px-4 py-5 border-t border-white/5">
-                <motion.div variants={itemVariants} className="bg-gradient-to-br from-[#243447] to-[#1a2635] rounded-2xl p-5 border border-white/5 relative overflow-hidden group">
+                <div className="bg-gradient-to-br from-[#243447] to-[#1a2635] rounded-2xl p-5 border border-white/5 relative overflow-hidden group">
                   <div className="absolute inset-0 bg-[#FF8C00]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <h3 className="text-white font-bold text-base mb-1 relative z-10">Start Your Fitness Journey</h3>
                   <p className="text-gray-400 text-xs mb-3.5 relative z-10">Access science-backed workout routines.</p>
@@ -365,7 +324,7 @@ export default function MobileMenu() {
                   >
                     <span>Browse Workouts</span>
                   </Link>
-                </motion.div>
+                </div>
               </div>
 
               {/* Drawer Footer with Social Links */}
@@ -389,10 +348,8 @@ export default function MobileMenu() {
                   })}
                 </div>
               </div>
-            </motion.nav>
-          </>
-        )}
-      </AnimatePresence>,
+            </nav>
+          </>,
           document.body
         )}
     </div>

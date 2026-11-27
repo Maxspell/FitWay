@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
   Scale,
@@ -209,16 +208,15 @@ const Navbar = () => {
           </div>
 
           {/* Premium Desktop Tools Dropdown */}
-          <AnimatePresence>
-            {isToolsOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="absolute top-full left-0 pt-2 z-50 w-[450px] pointer-events-auto"
-              >
-                <div className="relative rounded-2xl bg-[#1a2635]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] p-3 overflow-hidden">
+          <div
+            aria-hidden={!isToolsOpen}
+            className={`absolute top-full left-0 pt-2 z-50 w-[450px] transition-[opacity,transform,visibility] duration-200 ease-out ${
+              isToolsOpen
+                ? "opacity-100 translate-y-0 visible pointer-events-auto"
+                : "opacity-0 translate-y-2 invisible pointer-events-none"
+            }`}
+          >
+            <div className="relative rounded-2xl bg-[#1a2635]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] p-3 overflow-hidden">
                   {/* Subtle Top Glow */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-[#FF8C00]/40 to-transparent" />
 
@@ -296,9 +294,7 @@ const Navbar = () => {
                     })}
                   </div>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          </div>
         </li>
 
         {/* Authors Dropdown Item */}
@@ -338,16 +334,15 @@ const Navbar = () => {
           </div>
 
           {/* Premium Desktop Authors Dropdown */}
-          <AnimatePresence>
-            {isAuthorsOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="absolute top-full left-0 pt-2 z-50 w-[420px] pointer-events-auto"
-              >
-                <div className="relative rounded-2xl bg-[#1a2635]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] p-3 overflow-hidden">
+          <div
+            aria-hidden={!isAuthorsOpen}
+            className={`absolute top-full left-0 pt-2 z-50 w-[420px] transition-[opacity,transform,visibility] duration-200 ease-out ${
+              isAuthorsOpen
+                ? "opacity-100 translate-y-0 visible pointer-events-auto"
+                : "opacity-0 translate-y-2 invisible pointer-events-none"
+            }`}
+          >
+            <div className="relative rounded-2xl bg-[#1a2635]/95 backdrop-blur-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] p-3 overflow-hidden">
                   {/* Subtle Top Glow */}
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-[#FF8C00]/40 to-transparent" />
 
@@ -425,9 +420,7 @@ const Navbar = () => {
                     })}
                   </div>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          </div>
         </li>
 
         <li>

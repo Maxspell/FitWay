@@ -1,6 +1,11 @@
 # Knowledge Base Activity Log
 
 ## 2026-11-28
+- **Eliminate Global `framer-motion` Bundle from Header & Workout Cards + Image Cache Tuning (`Navbar.tsx`, `MobileMenu.tsx`, `WorkoutCard.tsx`, `next.config.mjs`)**:
+  - Removed `framer-motion` from `Navbar.tsx` (replaced desktop mega-dropdown `AnimatePresence`/`motion.div` with pure CSS `opacity`/`transform`/`visibility` transitions) and `MobileMenu.tsx` (replaced drawer slide-in and submenu accordions with CSS transitions and `grid-rows-[1fr]/[0fr]` accordion), preventing ~110 KiB of animation JS from shipping on every route via `Header` / `layout.tsx`.
+  - Converted `WorkoutCard.tsx` to a pure Server Component (removing `framer-motion` `initial={{ opacity: 0, y: 24 }}` / `whileInView`) to eliminate the floating mobile CLS (`0.182`) on `/workouts` and shrink `/workouts` First Load JS.
+  - Enabled `formats: ["image/avif", "image/webp"]` and `minimumCacheTTL: 2592000` in `frontend/next.config.mjs` to eliminate 60s image revalidation misses.
+  - Updated [[frontend/performance-third-party-scripts]].
 - **Mobile LCP/Performance & WCAG 2.5.3 Optimization (`frontend/src/app/layout.tsx`, `frontend/src/app/page.tsx`, `frontend/src/components/hero/Hero.tsx`, `HeroContent.tsx`, `HeroVisuals.tsx`, `WorkoutCard.tsx`, `WorkoutView.tsx`, `BlogPostCard.tsx`)**:
   - Deferred GA4 (`gtag/js`) to `strategy="lazyOnload"` in `layout.tsx`, added `display: "swap"` on `Inter`, and added `<link rel="preconnect">` / `dns-prefetch` hints for `api.fitway.best` and `www.googletagmanager.com`.
   - Eliminated initial `opacity: 0` hydration/animation gating on above-the-fold Hero content (`HeroContent.tsx` `initial={false}`) and the homepage LCP image (`HeroVisuals.tsx` `hero-fitness.webp`, `quality={70}`), and disabled the expensive `feTurbulence` SVG overlay on mobile (`Hero.tsx`).
