@@ -55,6 +55,7 @@
 - [[frontend/gsc-api-integration]] — Интеграция с Google Search Console API через сервисный аккаунт Google Cloud, CLI-клиент `scripts/gsc_client.py`, кэширование аналитики в `brain/data/gsc-latest.json` и URL Inspection API.
 - [[frontend/ga4-api-integration]] — Интеграция с Google Analytics 4 (Data API v1beta) через сервисный аккаунт Google Cloud, CLI-клиент `scripts/ga4_client.py`, аудит удержания, выявление «zombie-страниц» и защита от санкций AdSense.
 - [[frontend/google-indexing-api]] — Google Indexing API service (`scripts/indexing/index.js`), dual OAuth 2.0 / Service Account auth, persistent token caching, and automated URL indexing for AI agents.
+- [[frontend/psi-api-integration]] — Google PageSpeed Insights (PSI) API v5 client (`scripts/pagespeed/index.js`), API key storage in `credentials/`, Lab/CrUX Core Web Vitals extraction, and `brain/data/psi-latest.json` cache.
 - [[frontend/gsc-crawled-not-indexed-resolution]] — Разбор и ликвидация статуса GSC «Проскановано – наразі не проіндексовано» (15 URL), устранение каннибализации запросов (Dumbbell Overload) и кольцевая перелинковка.
 - [[frontend/ai-agents-skills-architecture]] — Архитектура AI-агентов (`seo-adsense-architect`) и контентных навыков FitWay, E-E-A-T рецензенты (`reviewedBy`), анти-AI фильтры (запрет em dash) и Hub & Spoke перелинковка.
 

@@ -1,9 +1,6 @@
 import React from "react";
 import {
-  Clock,
-  User,
   Tag,
-  Calendar,
   Dumbbell,
   Apple,
   Flame,
@@ -12,10 +9,9 @@ import {
   Sparkles,
   ChevronRight,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { BlogPost, Category } from "@/interfaces/blog";
-import { getPostImage } from "@/utils/image";
+import BlogPostCard from "@/components/BlogPost/BlogPostCard";
 import Pagination from "@/components/common/Pagination";
 
 // Mapping category slugs to semantic Lucide icons
@@ -105,114 +101,15 @@ export default function BlogView({
 
         {/* 9 Blog Posts Grid (3x3 on Desktop) */}
         {posts.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post, index) => {
-              const isFirstOnPageOne = isFirstPage && index === 0;
-
-              return (
-                <article
-                  key={post.slug}
-                  className={`card relative group transition-all duration-300 flex flex-col justify-between hover:ring-2 hover:ring-[#FF8C00] ${
-                    isFirstOnPageOne ? "border-[#FF8C00]/30 shadow-lg shadow-orange-500/5" : ""
-                  }`}
-                >
-                  <div>
-                    {/* Media Container with Floating Badges */}
-                    <div className="relative h-48 sm:h-52 mb-4 overflow-hidden rounded-xl bg-[#1B2B3B]">
-                      <Image
-                        src={getPostImage(post, "large")}
-                        alt={post.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-
-                      {/* Subtle gradient for badge contrast */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B3B]/60 via-transparent to-black/30 pointer-events-none" />
-
-                      {/* Top Badges (Category & Latest) */}
-                      <div className="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-2">
-                        {post.category && (
-                          <Link
-                            href={`/blog/category/${post.category.slug}`}
-                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1B2B3B]/85 hover:bg-[#FF8C00] text-[#FF8C00] hover:text-white text-xs font-semibold backdrop-blur-md border border-white/10 hover:border-[#FF8C00] transition-all shadow-md"
-                            title={`Explore all ${post.category.name} articles`}
-                          >
-                            <Tag className="w-3 h-3 shrink-0" />
-                            <span>{post.category.name}</span>
-                          </Link>
-                        )}
-
-                        {isFirstOnPageOne && (
-                          <span className="px-2.5 py-1 rounded-full bg-[#FF8C00] text-white text-[10px] font-black uppercase tracking-wider shadow-md">
-                            Latest
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Metadata Line with Clickable Author (E-E-A-T) */}
-                    <div className="flex flex-wrap items-center gap-3 text-gray-400 text-xs mb-3">
-                      {post.author?.name && (
-                        post.author.slug ? (
-                          <Link
-                            href={`/authors/${post.author.slug}`}
-                            className="relative z-10 flex items-center gap-1 text-[#FF8C00] hover:text-white transition-colors font-medium"
-                            title={`View author profile of ${post.author.name}`}
-                          >
-                            <User className="h-3.5 w-3.5 shrink-0" />
-                            <span className="truncate max-w-[120px]">{post.author.name}</span>
-                          </Link>
-                        ) : (
-                          <span className="flex items-center gap-1 text-[#FF8C00] font-medium">
-                            <User className="h-3.5 w-3.5 shrink-0" />
-                            <span className="truncate max-w-[120px]">{post.author.name}</span>
-                          </span>
-                        )
-                      )}
-                      <span className="flex items-center gap-1">
-                        <Calendar className="h-3.5 w-3.5 shrink-0" />
-                        <span>
-                          {new Date(post.createdAt).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                          })}
-                        </span>
-                      </span>
-                      {post.readTime && (
-                        <span className="flex items-center gap-1">
-                          <Clock className="h-3.5 w-3.5 shrink-0" />
-                          <span>{post.readTime}</span>
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Title with Stretched Link expanding over the entire card */}
-                    <h3 className="text-xl font-bold mb-2.5 text-white group-hover:text-[#FF8C00] transition-colors line-clamp-2 leading-snug">
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="focus:outline-none after:absolute after:inset-0 after:z-0"
-                      >
-                        {post.title}
-                      </Link>
-                    </h3>
-
-                    {/* Excerpt */}
-                    <p className="text-gray-300 text-sm mb-4 line-clamp-3 leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                  </div>
-
-                  {/* Footer Action Button */}
-                  <div className="pt-2 mt-auto">
-                    <span className="btn-primary inline-flex items-center gap-1.5 text-sm py-2 px-4 pointer-events-none">
-                      <span>Read Article</span>
-                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                </article>
-              );
-            })}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {posts.map((post, index) => (
+              <BlogPostCard
+                key={post.slug}
+                post={post}
+                headingAs="h2"
+                priority={isFirstPage && index === 0}
+              />
+            ))}
           </div>
         )}
 

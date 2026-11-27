@@ -29,11 +29,13 @@ The blog listing page was updated to improve UX and information density.
 - **Related Articles**:
   - Filtered by category (`filters[category][slug][$eq]=...`) matching the current post, with fallback to latest articles to ensure 3 recommendations.
   - Layout upgraded from 2 columns to a 3-column responsive grid (`grid-cols-1 md:grid-cols-2 lg:grid-cols-3`). See [[frontend/related-articles]].
-- **Homepage Blog Section (`LatestPosts.tsx`, `post.service.ts`)**:
-  - Upgraded from boxed `.card` inset thumbnails to modern `rounded-[2rem]` full-bleed `aspect-[16/10]` editorial cards with solid `#243447` surfaces, `-inset-px` bottom gradient scrim overbleed + `scale-[1.01]` / `transform-gpu` (preventing subpixel hover seams), floating category and `readTime` pills, `line-clamp-2`/`line-clamp-3` text rhythm, author avatar + deterministic UTC `<time>` footer, and `LatestPostsSkeleton`.
+- **Shared Editorial Card Component (`BlogPostCard.tsx`, `LatestPosts.tsx`, `BlogView.tsx`, `post.service.ts`)**:
+  - Extracted `BlogPostCard.tsx` (`src/components/BlogPost/BlogPostCard.tsx`) as the single source of truth for both homepage `LatestPosts` and `/blog` (`BlogView`, `/blog/page/[page]`).
+  - Upgraded from boxed `.card` inset thumbnails to modern `rounded-[2rem]` full-bleed `aspect-[16/10]` editorial cards with solid `#243447` surfaces, `-inset-px` bottom gradient scrim overbleed + `scale-[1.01]` / `transform-gpu` (preventing subpixel hover seams), floating category and `readTime` pills, `line-clamp-2`/`line-clamp-3` text rhythm, author avatar + deterministic UTC `<time>` footer, and `Read` pill CTA (`group-hover:bg-[#C25700]`, eliminating the low-contrast `#FF8C00` `.btn-primary` and `Latest` badge flagged by PageSpeed Insights).
+  - Supports `headingAs="h2" | "h3"` (`h2` in `BlogView` directly under `<h1>` to fix `heading-order` skipping, `h3` in `LatestPosts` under `<h2>`) and `priority` (`isFirstPage && index === 0` in `BlogView`) plus `medium` image format + responsive `sizes` (`(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw`) to fix `image-delivery-insight` and `LCP request discovery`.
   - Uses the Stretched Link pattern (`after:absolute after:inset-0 after:z-10` on the title `<Link>`) with `z-20` sub-links so the category pill links to `/blog/category/[slug]`, the author block links to `/authors/[slug]`, and the rest of the card links to `/blog/[slug]` without nested `<a>` tags.
-  - Section header features an `Evidence-Based Journal` eyebrow pill, two-tone `Latest from Our Blog` `<h2>`, subtitle, and `View All Posts` pill CTA matching `FeaturedWorkouts` (`px-8 py-4 rounded-2xl font-bold`, `group-hover:rotate-45` icon badge in WCAG AA `#C25700`).
-  - `getBlogPosts()` in `post.service.ts` explicitly populates `image`, `category`, and `author.photo` for homepage cards.
+  - Section header in `LatestPosts.tsx` features an `Evidence-Based Journal` eyebrow pill, two-tone `Latest from Our Blog` `<h2>`, subtitle, and `View All Posts` pill CTA matching `FeaturedWorkouts` (`px-8 py-4 rounded-2xl font-bold`, `group-hover:rotate-45` icon badge in WCAG AA `#C25700`).
+  - Both `getBlogPosts()` and `getPaginatedBlogPosts()` in `post.service.ts` explicitly populate `image`, `category`, and `author.photo`.
 
 **Related:**
 - [[frontend/related-articles]] - Category-based matching, fallback strategy, and 3-column layout.

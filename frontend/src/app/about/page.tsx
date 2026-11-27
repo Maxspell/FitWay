@@ -1,4 +1,4 @@
-import { Award, Users, Target, Heart, ArrowRight, Dumbbell, Calculator, Home as HomeIcon } from "lucide-react";
+import { Award, Users, Target, Heart, ArrowRight, Dumbbell, Calculator, Home as HomeIcon, BookOpen, Compass, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
 import { getAuthors } from "@/services/author.service";
@@ -30,6 +30,11 @@ export const metadata: Metadata = {
 
 export default async function About() {
   const authors = await getAuthors();
+
+  const inlineLinkClass =
+    "text-[#FF8C00] font-medium underline underline-offset-4 decoration-[#FF8C00]/60 hover:decoration-[#FF8C00] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1B2B3B] rounded-sm";
+  const cardCtaClass =
+    "inline-flex items-center justify-between w-full min-h-[44px] px-4 py-2.5 rounded-xl bg-white/5 hover:bg-[#C25700] border border-white/10 hover:border-[#C25700] text-sm font-semibold text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00]";
 
   const values = [
     {
@@ -158,61 +163,146 @@ export default async function About() {
         </div>
 
         {/* Mission Section */}
-        <div className="card text-left">
-          <h2 className="text-3xl font-bold mb-6 text-center">Our Mission: Practical Exercise Science</h2>
+        <section
+          aria-labelledby="mission-heading"
+          className="relative overflow-hidden bg-[#243447] rounded-2xl sm:rounded-3xl md:rounded-[32px] border border-white/10 p-6 sm:p-8 md:p-12 shadow-xl text-left"
+        >
+          <div
+            className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-[#FF8C00]/5 blur-3xl"
+            aria-hidden="true"
+          />
 
-          <div className="space-y-8">
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center leading-relaxed">
+          <div className="relative z-10 max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1B2B3B]/80 border border-white/10 text-[#FF8C00] text-xs sm:text-sm font-semibold tracking-wide uppercase mb-4">
+              <Compass className="h-4 w-4 shrink-0" aria-hidden="true" />
+              <span>Methodology &amp; Standards</span>
+            </div>
+
+            <h2
+              id="mission-heading"
+              className="text-3xl sm:text-4xl font-bold text-white tracking-tight text-balance mb-5"
+            >
+              Our Mission: Practical Exercise Science
+            </h2>
+
+            <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
               FitWay brings together structured workout programs, clinical health calculators, and nutrition
               guides reviewed by certified coaches and sports nutritionists. Every routine and article follows
               peer-reviewed exercise science so you can plan your training around clear numbers.
             </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="space-y-3">
-                <h3 className="text-xl font-bold text-[#FF8C00]">Formula-Based Precision</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Use our{" "}
-                  <Link href="/tools" className="text-[#FF8C00] hover:underline">free fitness calculators</Link>{" "}
-                  to estimate BMI, TDEE maintenance calories, macro splits, ideal weight ranges, and 1RM working
-                  weights with established equations like Mifflin-St Jeor, Epley, and WHO criteria.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <h3 className="text-xl font-bold text-[#FF8C00]">Science-First Education</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Through our{" "}
-                  <Link href="/blog" className="text-[#FF8C00] hover:underline">educational blog</Link>{" "}
-                  and{" "}
-                  <Link href="/editorial-policy" className="text-[#FF8C00] hover:underline">Editorial Policy</Link>,
-                  we publish evidence-based nutrition guides and training breakdowns backed by PubMed citations
-                  and coach review.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <h3 className="text-xl font-bold text-[#FF8C00]">Training for Every Level</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Whether you are starting your first{" "}
-                  <Link href="/workouts" className="text-[#FF8C00] hover:underline">beginner workout</Link>{" "}
-                  at home or refining a structured lifting split, our workout library covers strength,
-                  hypertrophy, fat loss, and mobility with clear form cues.
-                </p>
-              </div>
-            </div>
-
-            <div className="text-center pt-8 border-t border-gray-700 mt-8">
-              <p className="text-sm text-gray-300 max-w-2xl mx-auto">
-                All guides and calculators on FitWay are reviewed under our{" "}
-                <Link href="/editorial-policy" className="text-[#FF8C00] hover:underline">Editorial Policy</Link>{" "}
-                for educational reference and do not replace individualized medical advice. Read our{" "}
-                <Link href="/terms-of-service" className="text-[#FF8C00] hover:underline">Terms of Service</Link>{" "}
-                for full health disclaimers.
-              </p>
-            </div>
           </div>
-        </div>
+
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 md:mt-12">
+            {/* Pillar 1 */}
+            <article className="bg-[#1B2B3B]/75 border border-white/10 hover:border-white/20 transition-colors rounded-2xl p-6 flex flex-col">
+              <div className="flex items-center justify-between gap-3 mb-5">
+                <div className="w-11 h-11 rounded-xl bg-[#FF8C00]/10 border border-[#FF8C00]/25 flex items-center justify-center text-[#FF8C00]">
+                  <Calculator className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <span className="text-xs font-semibold tracking-wider text-gray-300 tabular-nums" aria-hidden="true">
+                  01
+                </span>
+              </div>
+
+              <h3 className="text-xl font-bold text-white mb-3">Formula-Based Precision</h3>
+              <p className="text-gray-300 leading-relaxed mb-6 flex-grow">
+                Use our{" "}
+                <Link href="/tools" className={inlineLinkClass}>
+                  free fitness calculators
+                </Link>{" "}
+                to estimate BMI, TDEE maintenance calories, macro splits, ideal weight ranges, and 1RM working
+                weights with established equations like Mifflin-St Jeor, Epley, and WHO criteria.
+              </p>
+
+              <div className="pt-4 border-t border-white/10">
+                <Link href="/tools" className={cardCtaClass}>
+                  <span>Open Fitness Calculators</span>
+                  <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </Link>
+              </div>
+            </article>
+
+            {/* Pillar 2 */}
+            <article className="bg-[#1B2B3B]/75 border border-white/10 hover:border-white/20 transition-colors rounded-2xl p-6 flex flex-col">
+              <div className="flex items-center justify-between gap-3 mb-5">
+                <div className="w-11 h-11 rounded-xl bg-[#FF8C00]/10 border border-[#FF8C00]/25 flex items-center justify-center text-[#FF8C00]">
+                  <BookOpen className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <span className="text-xs font-semibold tracking-wider text-gray-300 tabular-nums" aria-hidden="true">
+                  02
+                </span>
+              </div>
+
+              <h3 className="text-xl font-bold text-white mb-3">Science-First Education</h3>
+              <p className="text-gray-300 leading-relaxed mb-6 flex-grow">
+                Through our{" "}
+                <Link href="/blog" className={inlineLinkClass}>
+                  educational blog
+                </Link>{" "}
+                and{" "}
+                <Link href="/editorial-policy" className={inlineLinkClass}>
+                  Editorial Policy
+                </Link>
+                , we publish evidence-based nutrition guides and training breakdowns backed by PubMed citations
+                and coach review.
+              </p>
+
+              <div className="pt-4 border-t border-white/10">
+                <Link href="/blog" className={cardCtaClass}>
+                  <span>Read Research Guides</span>
+                  <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </Link>
+              </div>
+            </article>
+
+            {/* Pillar 3 */}
+            <article className="bg-[#1B2B3B]/75 border border-white/10 hover:border-white/20 transition-colors rounded-2xl p-6 flex flex-col">
+              <div className="flex items-center justify-between gap-3 mb-5">
+                <div className="w-11 h-11 rounded-xl bg-[#FF8C00]/10 border border-[#FF8C00]/25 flex items-center justify-center text-[#FF8C00]">
+                  <Dumbbell className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <span className="text-xs font-semibold tracking-wider text-gray-300 tabular-nums" aria-hidden="true">
+                  03
+                </span>
+              </div>
+
+              <h3 className="text-xl font-bold text-white mb-3">Training for Every Level</h3>
+              <p className="text-gray-300 leading-relaxed mb-6 flex-grow">
+                Whether you are starting your first{" "}
+                <Link href="/workouts" className={inlineLinkClass}>
+                  beginner workout
+                </Link>{" "}
+                at home or refining a structured lifting split, our workout library covers strength,
+                hypertrophy, fat loss, and mobility with clear form cues.
+              </p>
+
+              <div className="pt-4 border-t border-white/10">
+                <Link href="/workouts" className={cardCtaClass}>
+                  <span>Explore Workout Library</span>
+                  <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+                </Link>
+              </div>
+            </article>
+          </div>
+
+          {/* Disclaimer Bar */}
+          <div className="relative z-10 mt-8 sm:mt-10 rounded-2xl bg-[#1B2B3B]/80 border border-white/10 p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+            <div className="w-9 h-9 rounded-xl bg-[#FF8C00]/10 border border-[#FF8C00]/20 flex items-center justify-center text-[#FF8C00] shrink-0">
+              <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              All guides and calculators on FitWay are reviewed under our{" "}
+              <Link href="/editorial-policy" className={inlineLinkClass}>
+                Editorial Policy
+              </Link>{" "}
+              for educational reference and do not replace individualized medical advice. Read our{" "}
+              <Link href="/terms-of-service" className={inlineLinkClass}>
+                Terms of Service
+              </Link>{" "}
+              for full health disclaimers.
+            </p>
+          </div>
+        </section>
       </div>
     </div>
   );

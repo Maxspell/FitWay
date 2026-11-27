@@ -50,6 +50,26 @@
 
 ---
 
+## 3. Inline Links in Text Blocks (`link-in-text-block` - WCAG 1.4.1 Use of Color)
+
+### Problem
+PageSpeed Insights / axe-core flags inline `<Link>` elements inside prose paragraphs (`text-gray-300` `#D1D5DB`) when they rely solely on `#FF8C00` text color at rest (`hover:underline` only):
+- *Lighthouse warning*: `Links rely on color to be distinguishable` (`link-in-text-block`).
+- When the contrast ratio between link text (`#FF8C00`) and surrounding body copy (`#D1D5DB`) is below 3:1 without an underline or non-color visual cue, the audit fails.
+
+### Solution
+Every inline `<Link>` inside a text block must include a permanent underline treatment and visible keyboard focus state:
+```tsx
+className="text-[#FF8C00] font-medium underline underline-offset-4 decoration-[#FF8C00]/60 hover:decoration-[#FF8C00] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1B2B3B] rounded-sm"
+```
+
+### Updated Pages & Components
+- `frontend/src/app/about/page.tsx`: Upgraded all 6 inline links inside the Mission Section (`/tools`, `/blog`, `/editorial-policy`, `/workouts`, `/terms-of-service`) and redesigned the 3 mission pillars into structured dark-mode editorial cards with dedicated bottom CTAs (`min-h-[44px]`, `#C25700` hover fill) and an accessible bottom disclaimer bar.
+- `frontend/src/components/hero/HeroContent.tsx`: Fixed `aria-prohibited-attr` on the star rating container by adding `role="img"` alongside `aria-label="Rated ... out of 5"` and marking the inner decorative star `<div>` wrappers `aria-hidden="true"`.
+- `frontend/src/components/workouts/WorkoutView.tsx` & `WorkoutCard.tsx`: Fixed `color-contrast` on active category filter pills (`bg-[#FF8C00]` -> `bg-[#C25700]` + `text-gray-300` inactive text) and fixed `heading-order` (`headingAs="h2"` on `/workouts` cards under `<h1>`, and `<h3>` on the 5 lower category summary cards under `<h2>`).
+
+---
+
 ## Связанные документы
 - [[frontend/responsive-layout]] — Адаптивная верстка и доступность на мобильных устройствах.
 - [[frontend/seo]] — Семантическая структура разметки и E-E-A-T сигналы.

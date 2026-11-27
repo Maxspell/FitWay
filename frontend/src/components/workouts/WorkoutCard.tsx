@@ -10,6 +10,7 @@ import { getStrapiMedia } from "@/lib/utils";
 interface WorkoutCardProps {
   workout: Workout;
   index?: number;
+  headingAs?: "h2" | "h3";
 }
 
 function getWorkoutCoverUrl(workout: Workout): string {
@@ -22,7 +23,12 @@ function getWorkoutCoverUrl(workout: Workout): string {
   return rawUrl ? getStrapiMedia(rawUrl) : "";
 }
 
-export default function WorkoutCard({ workout, index = 0 }: WorkoutCardProps) {
+export default function WorkoutCard({
+  workout,
+  index = 0,
+  headingAs = "h3",
+}: WorkoutCardProps) {
+  const HeadingTag = headingAs;
   const prefersReducedMotion = useReducedMotion();
   const coverUrl = getWorkoutCoverUrl(workout);
 
@@ -91,9 +97,9 @@ export default function WorkoutCard({ workout, index = 0 }: WorkoutCardProps) {
 
           {/* Content */}
           <div className="p-6 sm:p-8 relative flex flex-col flex-grow">
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-[#FF8C00] transition-colors leading-snug line-clamp-2">
+            <HeadingTag className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-[#FF8C00] transition-colors leading-snug line-clamp-2">
               {workout.title}
-            </h3>
+            </HeadingTag>
 
             <p className="text-gray-300 text-sm line-clamp-2 mb-6">
               {workout.description}

@@ -51,7 +51,7 @@ export async function getPaginatedBlogPosts(
 ): Promise<PaginatedPostsResponse> {
   try {
     const response = await fetch(
-      `${STRAPI_URL}/api/posts?populate[0]=image&populate[1]=category&populate[2]=author&sort=createdAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
+      `${STRAPI_URL}/api/posts?populate[0]=image&populate[1]=category&populate[2]=author.photo&sort=createdAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
       {
         method: "GET",
         headers: {

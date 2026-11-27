@@ -69,10 +69,10 @@ export default function WorkoutView({
                 <Link
                   key={filter.id}
                   href={`/workouts${filter.id === "all" ? "" : `?category=${filter.id}`}`}
-                  className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+                  className={`px-4 py-2 rounded-xl text-sm font-bold transition-colors ${
                     selectedCategory === filter.id
-                      ? "bg-[#FF8C00] text-white shadow-lg shadow-[#FF8C00]/20"
-                      : "text-gray-400 hover:text-white hover:bg-white/5"
+                      ? "bg-[#C25700] text-white shadow-lg shadow-[#C25700]/25"
+                      : "text-gray-300 hover:text-white hover:bg-white/5"
                   }`}
                 >
                   {filter.label}
@@ -87,7 +87,7 @@ export default function WorkoutView({
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {workouts.map((workout, index) => (
-                <WorkoutCard key={workout.id} workout={workout} index={index} />
+                <WorkoutCard key={workout.id} workout={workout} index={index} headingAs="h2" />
               ))}
             </div>
 
@@ -124,39 +124,39 @@ export default function WorkoutView({
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left mt-8 mb-8">
             <div className="p-4 bg-[#243447] rounded-xl border border-white/5">
-              <h4 className="text-white font-bold mb-2 flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#FF8C00] rounded-full"></span>
+              <h3 className="text-white font-bold mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF8C00] rounded-full" aria-hidden="true"></span>
                 Weight Loss
-              </h4>
-              <p className="text-xs">Focuses on metabolic conditioning and caloric expenditure to help you lean out and improve cardiovascular health.</p>
+              </h3>
+              <p className="text-xs text-gray-300">Focuses on metabolic conditioning and caloric expenditure to help you lean out and improve cardiovascular health.</p>
             </div>
             <div className="p-4 bg-[#243447] rounded-xl border border-white/5">
-              <h4 className="text-white font-bold mb-2 flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#FF8C00] rounded-full"></span>
+              <h3 className="text-white font-bold mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF8C00] rounded-full" aria-hidden="true"></span>
                 Muscle Gain
-              </h4>
-              <p className="text-xs">Emphasizes resistance training and hypertrophy-specific rep ranges to build strength and lean muscle mass.</p>
+              </h3>
+              <p className="text-xs text-gray-300">Emphasizes resistance training and hypertrophy-specific rep ranges to build strength and lean muscle mass.</p>
             </div>
             <div className="p-4 bg-[#243447] rounded-xl border border-white/5">
-              <h4 className="text-white font-bold mb-2 flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#FF8C00] rounded-full"></span>
+              <h3 className="text-white font-bold mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF8C00] rounded-full" aria-hidden="true"></span>
                 Toning
-              </h4>
-              <p className="text-xs">A balanced approach combining light weights and high reps to define muscle and improve overall body composition.</p>
+              </h3>
+              <p className="text-xs text-gray-300">A balanced approach combining light weights and high reps to define muscle and improve overall body composition.</p>
             </div>
             <div className="p-4 bg-[#243447] rounded-xl border border-white/5">
-              <h4 className="text-white font-bold mb-2 flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#FF8C00] rounded-full"></span>
+              <h3 className="text-white font-bold mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF8C00] rounded-full" aria-hidden="true"></span>
                 Flexibility
-              </h4>
-              <p className="text-xs">Enhances joint mobility, posture, and elasticity to reduce injury risk, speed up recovery, and support longevity.</p>
+              </h3>
+              <p className="text-xs text-gray-300">Enhances joint mobility, posture, and elasticity to reduce injury risk, speed up recovery, and support longevity.</p>
             </div>
             <div className="p-4 bg-[#243447] rounded-xl border border-white/5">
-              <h4 className="text-white font-bold mb-2 flex items-center gap-2">
-                <span className="w-2 h-2 bg-[#FF8C00] rounded-full"></span>
+              <h3 className="text-white font-bold mb-2 flex items-center gap-2">
+                <span className="w-2 h-2 bg-[#FF8C00] rounded-full" aria-hidden="true"></span>
                 Strength
-              </h4>
-              <p className="text-xs">Targets heavy compound movements, neuromuscular power, and maximal force production for pure physical strength.</p>
+              </h3>
+              <p className="text-xs text-gray-300">Targets heavy compound movements, neuromuscular power, and maximal force production for pure physical strength.</p>
             </div>
           </div>
           <p>

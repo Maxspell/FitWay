@@ -159,13 +159,17 @@ export default function HeroContent({
             </Link>
           </div>
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-0.5" aria-label={`Rated ${formattedRating} out of 5`}>
+            <div
+              role="img"
+              className="flex items-center gap-0.5"
+              aria-label={`Rated ${formattedRating} out of 5`}
+            >
               {[1, 2, 3, 4, 5].map((i) => {
                 const fillPercent = Math.round(
                   Math.min(Math.max(ratingValue - (i - 1), 0), 1) * 100
                 );
                 return (
-                  <div key={i} className="relative h-4 w-4">
+                  <div key={i} className="relative h-4 w-4" aria-hidden="true">
                     <Star className="h-4 w-4 text-white/15" />
                     {fillPercent > 0 && (
                       <div
