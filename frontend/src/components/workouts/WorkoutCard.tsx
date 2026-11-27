@@ -11,6 +11,7 @@ interface WorkoutCardProps {
   workout: Workout;
   index?: number;
   headingAs?: "h2" | "h3";
+  priority?: boolean;
 }
 
 function getWorkoutCoverUrl(workout: Workout): string {
@@ -27,6 +28,7 @@ export default function WorkoutCard({
   workout,
   index = 0,
   headingAs = "h3",
+  priority = false,
 }: WorkoutCardProps) {
   const HeadingTag = headingAs;
   const prefersReducedMotion = useReducedMotion();
@@ -34,7 +36,7 @@ export default function WorkoutCard({
 
   return (
     <motion.div
-      initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+      initial={priority || prefersReducedMotion ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.5,
@@ -55,6 +57,7 @@ export default function WorkoutCard({
                 src={coverUrl}
                 alt={workout.image?.alternativeText || workout.title}
                 fill
+                priority={priority}
                 sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                 className="object-cover scale-[1.01] transition-transform duration-500 ease-out group-hover:scale-[1.06] transform-gpu"
               />

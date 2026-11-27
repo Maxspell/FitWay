@@ -1,19 +1,22 @@
+import dynamic from "next/dynamic";
 import Hero from "@/components/hero/Hero";
-import CalculatorPreview from "@/components/sections/CalculatorPreview";
-import TestimonialsSection from "@/components/sections/testimonials/TestimonialsSection";
-import NewsletterSection from "@/components/sections/NewsletterSection";
-import FeaturedWorkouts from "@/components/sections/workouts/FeaturedWorkouts";
-import LatestPosts from "@/components/sections/blog/LatestPosts";
 import { getWorkouts, getLatestReviews } from "@/services/workout.service";
 import { getBlogPosts } from "@/services/post.service";
 import { getAuthors } from "@/services/author.service";
 import { getStrapiMedia } from "@/lib/utils";
 import { Review } from "@/interfaces/review";
 
-import StepsSection from "@/components/sections/steps/StepsSection";
-import FAQSection from "@/components/sections/faq/FAQSection";
-import WhyFitWay from "@/components/sections/WhyFitWay";
-import ExpertsSection from "@/components/sections/ExpertsSection";
+const StepsSection = dynamic(() => import("@/components/sections/steps/StepsSection"));
+const WhyFitWay = dynamic(() => import("@/components/sections/WhyFitWay"));
+const ExpertsSection = dynamic(() => import("@/components/sections/ExpertsSection"));
+const CalculatorPreview = dynamic(() => import("@/components/sections/CalculatorPreview"));
+const FeaturedWorkouts = dynamic(() => import("@/components/sections/workouts/FeaturedWorkouts"));
+const TestimonialsSection = dynamic(
+  () => import("@/components/sections/testimonials/TestimonialsSection")
+);
+const LatestPosts = dynamic(() => import("@/components/sections/blog/LatestPosts"));
+const FAQSection = dynamic(() => import("@/components/sections/faq/FAQSection"));
+const NewsletterSection = dynamic(() => import("@/components/sections/NewsletterSection"));
 
 async function getFAQs() {
   try {

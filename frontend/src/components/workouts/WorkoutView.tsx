@@ -87,7 +87,13 @@ export default function WorkoutView({
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {workouts.map((workout, index) => (
-                <WorkoutCard key={workout.id} workout={workout} index={index} headingAs="h2" />
+                <WorkoutCard
+                  key={workout.id}
+                  workout={workout}
+                  index={index}
+                  headingAs="h2"
+                  priority={currentPage === 1 && index === 0}
+                />
               ))}
             </div>
 

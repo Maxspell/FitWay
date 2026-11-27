@@ -47,6 +47,15 @@
 
 ---
 
+## Deferred GA4 Loading, Preconnect & Critical-Path LCP Optimization
+
+1. **Deferred GA4 (`frontend/src/app/layout.tsx`)**: Replaced eager `@next/third-parties/google` (`afterInteractive`) with `next/script` `strategy="lazyOnload"` for `gtag/js` and inline `gtag('config', ...)`, preventing GA4 (~183 KiB) from competing with mobile FCP/LCP and main-thread hydration. Added `<link rel="preconnect" href="https://api.fitway.best" crossOrigin="anonymous" />`, `dns-prefetch` hints for `api.fitway.best` and `www.googletagmanager.com`, and `display: "swap"` on `Inter`.
+2. **Above-the-Fold Hero SSR Visibility (`HeroContent.tsx`, `HeroVisuals.tsx`, `Hero.tsx`)**: Removed `initial="hidden"` / `initial={{ opacity: 0, scale: 0.8 }}` on the critical Hero text container and LCP image (`hero-fitness.webp`, `quality={70}`), and hid the heavy `feTurbulence` SVG noise filter on mobile (`hidden md:block`) so FCP and LCP render immediately without waiting for Framer Motion hydration or 0.8s entrance delays.
+3. **Code-Splitting Below-the-Fold Homepage Sections (`frontend/src/app/page.tsx`)**: Converted below-the-fold client sections (including `TestimonialsSection` with `Swiper`, `CalculatorPreview`, `FeaturedWorkouts`, `LatestPosts`, `FAQSection`, `NewsletterSection`, `StepsSection`, `WhyFitWay`, `ExpertsSection`) to `next/dynamic` imports while preserving SSR HTML (`ssr: true` default) for zero CLS and full SEO crawlability.
+4. **Workouts LCP & Blog Author Accessible Name (`WorkoutCard.tsx`, `WorkoutView.tsx`, `BlogPostCard.tsx`)**: Added `priority` prop (`index === 0` on `/workouts` page 1) for immediate visibility and `fetchPriority="high"`, and separated the `authorName` `<Link>` from `<time>` in `BlogPostCard.tsx` to satisfy WCAG 2.5.3 `label-content-name-mismatch`.
+
+---
+
 ## Ссылки на связанные документы
 - [[frontend/image-delivery-optimization]] — Оптимизация доставки изображений первого экрана, локализация WebP и размеры аватаров.
 - [[frontend/seo]] — Комплексный SEO-аудит и подготовка страниц под требования Google AdSense (E-E-A-T, Thin Content mitigation).

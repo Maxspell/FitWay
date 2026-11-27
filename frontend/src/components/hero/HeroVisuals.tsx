@@ -7,27 +7,23 @@ import Image from "next/image";
 export default function HeroVisuals() {
   return (
     <div className="relative w-full h-[500px] lg:h-[600px] flex items-center justify-center">
-      {/* Main Image with Glow */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative w-[300px] h-[450px] lg:w-[380px] lg:h-[550px] z-10"
-      >
-        <div className="absolute inset-0 bg-[#FF8C00]/20 blur-[100px] rounded-full -z-10 animate-pulse"></div>
+      {/* Main Image with Glow (rendered immediately at opacity 1 for fast mobile LCP) */}
+      <div className="relative w-[300px] h-[450px] lg:w-[380px] lg:h-[550px] z-10">
+        <div className="hidden md:block absolute inset-0 bg-[#FF8C00]/20 blur-[100px] rounded-full -z-10" aria-hidden="true"></div>
         <div className="relative w-full h-full rounded-[32px] overflow-hidden border border-white/10 shadow-2xl">
-          <Image 
+          <Image
             src="/images/hero-fitness.webp"
             alt="Fitness Training"
             fill
-            sizes="(max-width: 1024px) 300px, 380px"
+            sizes="(max-width: 1023px) 300px, 380px"
+            quality={70}
             className="object-cover"
             priority
           />
           {/* Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B3B] via-transparent to-transparent opacity-60"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B3B] via-transparent to-transparent opacity-60 pointer-events-none"></div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Floating Cards */}
       

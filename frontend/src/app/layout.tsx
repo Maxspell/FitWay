@@ -6,9 +6,8 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import ScrollToTop from "@/components/common/ScrollToTop";
 import Script from "next/script";
-import { GoogleAnalytics } from "@next/third-parties/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fitway.best"),
@@ -59,6 +58,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://api.fitway.best" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://api.fitway.best" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
       <body className={inter.className} suppressHydrationWarning>
         <div className="min-h-screen flex flex-col">
           <Header />
@@ -115,9 +119,23 @@ export default function RootLayout({
           />
         )} */}
 
-        {/* Google Analytics */}
+        {/* Google Analytics (deferred until lazyOnload so gtag/js never blocks FCP/LCP) */}
         {process.env.NEXT_PUBLIC_GA_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+          <>
+            <Script
+              id="ga4-gtag-src"
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="lazyOnload"
+            />
+            <Script id="ga4-gtag-init" strategy="lazyOnload">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){window.dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+              `}
+            </Script>
+          </>
         )}
       </body>
     </html>

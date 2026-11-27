@@ -45,9 +45,9 @@ export default function HeroContent({
   };
 
   return (
-    <motion.div 
+    <motion.div
       variants={containerVariants}
-      initial="hidden"
+      initial={false}
       animate="visible"
       className="flex flex-col space-y-6 lg:space-y-7"
     >

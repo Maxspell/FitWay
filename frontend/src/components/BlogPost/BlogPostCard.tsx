@@ -56,44 +56,26 @@ export default function BlogPostCard({
     ? getStrapiMedia(post.author.photo.url)
     : null;
 
-  const authorContent = (
-    <>
-      {authorPhotoUrl ? (
-        <div
-          className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 border border-white/15 group-hover/author:border-[#FF8C00]/70 transition-colors bg-[#1B2B3B]"
-          aria-hidden="true"
-        >
-          <Image
-            src={authorPhotoUrl}
-            alt=""
-            fill
-            sizes="36px"
-            className="object-cover"
-          />
-        </div>
-      ) : (
-        <div
-          className="w-9 h-9 rounded-full shrink-0 border border-[#FF8C00]/30 group-hover/author:border-[#FF8C00]/70 bg-[#FF8C00]/15 text-[#FF8C00] font-bold text-xs flex items-center justify-center transition-colors"
-          aria-hidden="true"
-        >
-          {getAuthorInitial(authorName)}
-        </div>
-      )}
-
-      <div className="flex flex-col min-w-0">
-        <span className="text-xs sm:text-sm font-semibold text-gray-200 group-hover/author:text-[#FF8C00] transition-colors truncate">
-          {authorName}
-        </span>
-        {formattedDate && (
-          <time
-            dateTime={rawDate}
-            className="text-xs text-gray-400 tabular-nums truncate"
-          >
-            {formattedDate}
-          </time>
-        )}
-      </div>
-    </>
+  const avatarNode = authorPhotoUrl ? (
+    <div
+      className="relative w-9 h-9 rounded-full overflow-hidden shrink-0 border border-white/15 hover:border-[#FF8C00]/70 transition-colors bg-[#1B2B3B]"
+      aria-hidden="true"
+    >
+      <Image
+        src={authorPhotoUrl}
+        alt=""
+        fill
+        sizes="36px"
+        className="object-cover"
+      />
+    </div>
+  ) : (
+    <div
+      className="w-9 h-9 rounded-full shrink-0 border border-[#FF8C00]/30 hover:border-[#FF8C00]/70 bg-[#FF8C00]/15 text-[#FF8C00] font-bold text-xs flex items-center justify-center transition-colors"
+      aria-hidden="true"
+    >
+      {getAuthorInitial(authorName)}
+    </div>
   );
 
   return (
@@ -172,19 +154,44 @@ export default function BlogPostCard({
 
         {/* Grounded Editorial Footer */}
         <div className="border-t border-white/10 pt-4 mt-auto flex items-center justify-between gap-3">
-          {authorSlug ? (
-            <Link
-              href={`/authors/${authorSlug}`}
-              aria-label={`View author profile: ${authorName}`}
-              className="group/author relative z-20 flex items-center gap-2.5 min-w-0 rounded-xl py-0.5 pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00]"
-            >
-              {authorContent}
-            </Link>
-          ) : (
-            <div className="flex items-center gap-2.5 min-w-0">
-              {authorContent}
+          <div className="flex items-center gap-2.5 min-w-0">
+            {authorSlug ? (
+              <Link
+                href={`/authors/${authorSlug}`}
+                tabIndex={-1}
+                aria-hidden="true"
+                className="relative z-20 shrink-0 rounded-full"
+              >
+                {avatarNode}
+              </Link>
+            ) : (
+              avatarNode
+            )}
+
+            <div className="flex flex-col min-w-0">
+              {authorSlug ? (
+                <Link
+                  href={`/authors/${authorSlug}`}
+                  title={`View author profile: ${authorName}`}
+                  className="relative z-20 text-xs sm:text-sm font-semibold text-gray-200 hover:text-[#FF8C00] transition-colors truncate rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00]"
+                >
+                  {authorName}
+                </Link>
+              ) : (
+                <span className="text-xs sm:text-sm font-semibold text-gray-200 truncate">
+                  {authorName}
+                </span>
+              )}
+              {formattedDate && (
+                <time
+                  dateTime={rawDate}
+                  className="text-xs text-gray-400 tabular-nums truncate"
+                >
+                  {formattedDate}
+                </time>
+              )}
             </div>
-          )}
+          </div>
 
           <span className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 group-hover:bg-[#C25700] border border-white/10 group-hover:border-[#C25700] text-gray-200 group-hover:text-white text-xs font-semibold transition-colors duration-200">
             <span>Read</span>

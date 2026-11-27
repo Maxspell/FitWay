@@ -1,6 +1,12 @@
 # Knowledge Base Activity Log
 
 ## 2026-11-28
+- **Mobile LCP/Performance & WCAG 2.5.3 Optimization (`frontend/src/app/layout.tsx`, `frontend/src/app/page.tsx`, `frontend/src/components/hero/Hero.tsx`, `HeroContent.tsx`, `HeroVisuals.tsx`, `WorkoutCard.tsx`, `WorkoutView.tsx`, `BlogPostCard.tsx`)**:
+  - Deferred GA4 (`gtag/js`) to `strategy="lazyOnload"` in `layout.tsx`, added `display: "swap"` on `Inter`, and added `<link rel="preconnect">` / `dns-prefetch` hints for `api.fitway.best` and `www.googletagmanager.com`.
+  - Eliminated initial `opacity: 0` hydration/animation gating on above-the-fold Hero content (`HeroContent.tsx` `initial={false}`) and the homepage LCP image (`HeroVisuals.tsx` `hero-fitness.webp`, `quality={70}`), and disabled the expensive `feTurbulence` SVG overlay on mobile (`Hero.tsx`).
+  - Dynamic-imported below-the-fold homepage sections (`Swiper` / `TestimonialsSection`, `FeaturedWorkouts`, `LatestPosts`, etc.) in `frontend/src/app/page.tsx` via `next/dynamic` (keeping SSR HTML).
+  - Added `priority={currentPage === 1 && index === 0}` on `/workouts` (`WorkoutView.tsx` + `WorkoutCard.tsx`) to resolve `LCP request discovery` and immediate LCP paint, and separated `authorName` `<Link>` from `<time>` in `BlogPostCard.tsx` to resolve WCAG 2.5.3 `label-content-name-mismatch`.
+  - Updated [[frontend/performance-third-party-scripts]].
 - **Homepage & `/workouts` PageSpeed Insights Accessibility Fixes (`frontend/src/components/hero/HeroContent.tsx`, `frontend/src/components/workouts/WorkoutCard.tsx`, `frontend/src/components/workouts/WorkoutView.tsx`)**:
   - Fixed `aria-prohibited-attr` on `/` in `HeroContent.tsx` by adding `role="img"` to the star rating container carrying `aria-label` and `aria-hidden="true"` to the individual decorative star layers.
   - Fixed `color-contrast` on `/workouts` in `WorkoutView.tsx` by updating the active category filter pill from `bg-[#FF8C00] text-white` to WCAG AA `bg-[#C25700] text-white` (and inactive filter text from `text-gray-400` to `text-gray-300`).
