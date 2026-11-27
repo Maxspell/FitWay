@@ -81,11 +81,6 @@ export default function CalorieCalculatorPage() {
           "price": "0",
           "priceCurrency": "USD",
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "892",
-        },
         "featureList": [
           "Mifflin-St Jeor BMR calculation",
           "5 physical activity multipliers",

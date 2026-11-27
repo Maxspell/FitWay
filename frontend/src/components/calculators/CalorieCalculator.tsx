@@ -16,6 +16,8 @@ interface CalorieCalculatorProps {
   showDeepLinks?: boolean;
 }
 
+const MIN_SAFE_CALORIES = 1200;
+
 export default function CalorieCalculator({ showDeepLinks = false }: CalorieCalculatorProps) {
   const [height, setHeight] = useState<string>("");
   const [weight, setWeight] = useState<string>("");
@@ -27,21 +29,32 @@ export default function CalorieCalculator({ showDeepLinks = false }: CalorieCalc
   const heightId = useId();
   const weightId = useId();
 
-  const estimate = useMemo(() => {
+  const { estimate, outOfRange } = useMemo(() => {
     const h = parseFloat(height);
     const w = parseFloat(weight);
     const a = parseFloat(age);
+    const hasAllInputs = height.trim() !== "" && weight.trim() !== "" && age.trim() !== "";
     if (!Number.isFinite(h) || !Number.isFinite(w) || !Number.isFinite(a) || h <= 0 || w <= 0 || a <= 0) {
-      return null;
+      return { estimate: null, outOfRange: false };
+    }
+    if (h < 100 || h > 250 || w < 30 || w > 300 || a < 14 || a > 100) {
+      return { estimate: null, outOfRange: hasAllInputs };
     }
 
     // Mifflin-St Jeor Equation
     let bmr = 10 * w + 6.25 * h - 5 * a;
     bmr = gender === "male" ? bmr + 5 : bmr - 161;
+    const tdee = Math.round(bmr * activity);
+    const rawLoss = tdee - 500;
 
     return {
-      bmr: Math.round(bmr),
-      tdee: Math.round(bmr * activity),
+      estimate: {
+        bmr: Math.round(bmr),
+        tdee,
+        lossTarget: Math.max(MIN_SAFE_CALORIES, rawLoss),
+        belowSafeFloor: rawLoss < MIN_SAFE_CALORIES,
+      },
+      outOfRange: false,
     };
   }, [height, weight, age, gender, activity]);
 
@@ -76,7 +89,8 @@ export default function CalorieCalculator({ showDeepLinks = false }: CalorieCalc
           <input
             id={ageId}
             type="number"
-            min={1}
+            min={14}
+            max={100}
             value={age}
             onChange={(e) => setAge(e.target.value)}
             className="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-2.5 focus:ring-2 focus:ring-[#FF8C00] focus:outline-none transition-colors"
@@ -89,7 +103,8 @@ export default function CalorieCalculator({ showDeepLinks = false }: CalorieCalc
           <input
             id={heightId}
             type="number"
-            min={1}
+            min={100}
+            max={250}
             value={height}
             onChange={(e) => setHeight(e.target.value)}
             placeholder="175"
@@ -103,7 +118,8 @@ export default function CalorieCalculator({ showDeepLinks = false }: CalorieCalc
           <input
             id={weightId}
             type="number"
-            min={1}
+            min={30}
+            max={300}
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
             placeholder="70"
@@ -150,9 +166,15 @@ export default function CalorieCalculator({ showDeepLinks = false }: CalorieCalc
             <div className="flex gap-4">
               <div className="text-center px-4 py-2 bg-white/5 rounded-xl border border-white/10">
                 <p className="text-[10px] text-gray-300 uppercase tracking-wider mb-1">
-                  Weight Loss (-500)
+                  {estimate.belowSafeFloor ? "Safe Floor*" : "Weight Loss (-500)"}
                 </p>
-                <p className="text-lg font-bold text-blue-400">{estimate.tdee - 500}</p>
+                <p className="text-lg font-bold text-blue-400">
+                  {estimate.belowSafeFloor
+                    ? estimate.tdee <= MIN_SAFE_CALORIES
+                      ? `${estimate.tdee}`
+                      : `${MIN_SAFE_CALORIES} min`
+                    : estimate.lossTarget}
+                </p>
               </div>
               <div className="text-center px-4 py-2 bg-white/5 rounded-xl border border-white/10">
                 <p className="text-[10px] text-gray-300 uppercase tracking-wider mb-1">
@@ -166,7 +188,9 @@ export default function CalorieCalculator({ showDeepLinks = false }: CalorieCalc
           <p className="mt-4 text-sm text-gray-300 flex gap-2">
             <Info className="h-4 w-4 shrink-0 text-[#FF8C00] mt-0.5" aria-hidden="true" />
             <span>
-              These results are estimates based on your inputs. Individual metabolism may vary.
+              {estimate.belowSafeFloor
+                ? "*A 500 kcal deficit falls below 1,200 kcal/day. Avoid dropping below 1,200 kcal/day without medical supervision; consider a smaller 200–300 kcal deficit."
+                : "These results are estimates based on your inputs. Individual metabolism may vary."}
             </span>
           </p>
 
@@ -192,7 +216,11 @@ export default function CalorieCalculator({ showDeepLinks = false }: CalorieCalc
       ) : (
         <div className="p-10 border-2 border-dashed border-white/10 rounded-2xl flex flex-col items-center justify-center text-center text-gray-300">
           <Apple className="h-11 w-11 mb-3 opacity-50" aria-hidden="true" />
-          <p className="font-medium">Fill in all fields to calculate your daily TDEE</p>
+          <p className="font-medium">
+            {outOfRange
+              ? "Enter values between 14–100 yrs, 100–250 cm, and 30–300 kg"
+              : "Fill in all fields to calculate your daily TDEE"}
+          </p>
           <p className="text-xs text-gray-300 mt-1">Uses the Mifflin-St Jeor equation (metric units)</p>
         </div>
       )}

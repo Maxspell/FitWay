@@ -108,11 +108,6 @@ export default function IdealWeightCalculatorPage() {
           "price": "0",
           "priceCurrency": "USD",
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "ratingCount": "620",
-        },
         "featureList": [
           "4 validated medical equations comparison (Devine, Robinson, Miller, Hamwi)",
           "Complete Height to Ideal Weight reference chart for men and women",

@@ -92,7 +92,7 @@ const mainPages: StaticPageLink[] = [
   {
     title: "About FitWay",
     href: "/about",
-    description: "Our mission to democratize elite fitness coaching with AI technology and exercise science.",
+    description: "Our certified coaching team, exercise science methodology, and editorial standards.",
   },
   {
     title: "Contact & Support",

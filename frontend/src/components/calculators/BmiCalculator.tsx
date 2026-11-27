@@ -18,12 +18,18 @@ export default function BmiCalculator({ showDeepLinks = false }: BmiCalculatorPr
   const heightId = useId();
   const weightId = useId();
 
-  const bmi = useMemo(() => {
+  const { bmi, outOfRange } = useMemo(() => {
     const hCm = parseFloat(height);
     const w = parseFloat(weight);
-    if (!Number.isFinite(hCm) || !Number.isFinite(w) || hCm <= 0 || w <= 0) return null;
+    const hasBothInputs = height.trim() !== "" && weight.trim() !== "";
+    if (!Number.isFinite(hCm) || !Number.isFinite(w) || hCm <= 0 || w <= 0) {
+      return { bmi: null, outOfRange: false };
+    }
+    if (hCm < 100 || hCm > 250 || w < 25 || w > 350) {
+      return { bmi: null, outOfRange: hasBothInputs };
+    }
     const h = hCm / 100;
-    return Math.round((w / (h * h)) * 10) / 10;
+    return { bmi: Math.round((w / (h * h)) * 10) / 10, outOfRange: false };
   }, [height, weight]);
 
   const getBmiStatus = (val: number) => {
@@ -47,7 +53,8 @@ export default function BmiCalculator({ showDeepLinks = false }: BmiCalculatorPr
           <input
             id={heightId}
             type="number"
-            min={1}
+            min={100}
+            max={250}
             value={height}
             onChange={(e) => setHeight(e.target.value)}
             placeholder="175"
@@ -61,7 +68,8 @@ export default function BmiCalculator({ showDeepLinks = false }: BmiCalculatorPr
           <input
             id={weightId}
             type="number"
-            min={1}
+            min={25}
+            max={350}
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
             placeholder="70"
@@ -130,7 +138,11 @@ export default function BmiCalculator({ showDeepLinks = false }: BmiCalculatorPr
       ) : (
         <div className="p-10 border-2 border-dashed border-white/10 rounded-2xl flex flex-col items-center justify-center text-center text-gray-300">
           <Scale className="h-11 w-11 mb-3 opacity-50" aria-hidden="true" />
-          <p className="font-medium">Enter height (cm) and weight (kg) to see your BMI</p>
+          <p className="font-medium">
+            {outOfRange
+              ? "Enter adult values between 100–250 cm and 25–350 kg"
+              : "Enter height (cm) and weight (kg) to see your BMI"}
+          </p>
           <p className="text-xs text-gray-300 mt-1">Uses WHO adult screening categories (metric units)</p>
         </div>
       )}

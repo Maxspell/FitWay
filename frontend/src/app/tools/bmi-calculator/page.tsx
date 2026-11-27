@@ -81,11 +81,6 @@ export default function BmiCalculatorPage() {
           "price": "0",
           "priceCurrency": "USD",
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "ratingCount": "1254",
-        },
         "featureList": [
           "Instant BMI calculation",
           "Visual classification bracket gauge",

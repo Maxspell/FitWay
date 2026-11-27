@@ -81,11 +81,6 @@ export default function MacroCalculatorPage() {
           "price": "0",
           "priceCurrency": "USD",
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "740",
-        },
         "featureList": [
           "Protein, fat, and carb gram calculation",
           "3 scientific diet distribution presets",

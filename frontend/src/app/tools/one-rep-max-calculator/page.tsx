@@ -101,11 +101,6 @@ export default function OneRepMaxCalculatorPage() {
           "price": "0",
           "priceCurrency": "USD",
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "915",
-        },
         "featureList": [
           "Epley, Brzycki, and Lombardi mathematical models",
           "NASM submaximal 1RM estimation protocol & conversion table",

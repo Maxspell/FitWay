@@ -50,7 +50,7 @@ flowchart TD
 
 | Страница | Маршрут | Интерактивный компонент | Научные формулы и стандарты |
 | :--- | :--- | :--- | :--- |
-| **BMI Calculator** | `/tools/bmi-calculator` | `BMICalculator.tsx` | Классификация ВОЗ (Underweight, Normal, Overweight, Obese I–III), метрическая и имперская формулы $BMI = \frac{\text{weight (kg)}}{\text{height (m)}^2}$. |
+| **BMI Calculator** | `/tools/bmi-calculator` | `BmiCalculator.tsx` | WHO adult classification (Underweight, Normal, Overweight, Obesity), metric formula $BMI = \frac{\text{weight (kg)}}{\text{height (m)}^2}$ (100–250 cm, 25–350 kg bounds). |
 | **Daily Calorie & TDEE** | `/tools/calorie-calculator` | `CalorieCalculator.tsx` | Формула Миффлина — Сан-Жеора (Mifflin-St Jeor), коэффициенты физической активности PAL (1.2–1.9), расчет дефицита (-15%, -20%) и профицита (+10%). |
 | **Macro Splitter (P/F/C)** | `/tools/macro-calculator` | `MacroCalculator.tsx` | Стандарты ISSN (International Society of Sports Nutrition): 1.6–2.2 г белка на кг веса тела, процентные и граммовые сплиты для похудения, поддержания и набора массы, разбивка по приемам пищи. |
 | **One-Rep Max (1RM)** | `/tools/one-rep-max-calculator` | `OneRepMaxCalculator.tsx` | Формулы Эпли (Epley: $w \cdot (1 + r/30)$) и Бжицки (Brzycki: $w \cdot \frac{36}{37 - r}$), тренировочные зоны от 95% до 50% (Power, Strength, Hypertrophy, Endurance) и таблица расчетных повторов от 1 до 12. |
@@ -64,7 +64,7 @@ flowchart TD
 - **Путь**: `frontend/src/components/calculators/MacroCalculator.tsx`
 - **Возможности**:
   - Выбор цели: `Fat Loss` (высокий белок 2.2 г/кг, умеренные жиры, низкие углеводы), `Maintenance` (сбалансированный сплит 30/30/40), `Muscle Gain` (высокоуглеводный профицит 25/20/55).
-  - Поддержка метрической и имперской систем с мгновенной конвертацией.
+  - Uses metric weight input (`kg`) alongside calorie input (`800–10,000 kcal`) for protein density (`g/kg`) validation.
   - Интерактивный визуальный прогресс-бар макронутриентов с акцентными цветами (Белки — синий, Жиры — янтарный, Углеводы — изумрудный).
   - Калькулятор разбивки по приемам пищи (от 3 до 6 приемов в день).
 
@@ -79,7 +79,7 @@ flowchart TD
 ### 3. `IdealWeightCalculator.tsx`
 - **Путь**: `frontend/src/components/calculators/IdealWeightCalculator.tsx`
 - **Возможности**:
-  - Выбор пола (мужской/женский) и системы единиц (см/кг vs ft/in/lbs).
+  - Выбор пола (мужской/женский) и ввод параметров в метрической системе (`130–230 cm`, `kg`).
   - Сводный индикатор среднего идеального веса и сравнение с текущим весом пользователя (дефицит/профицит).
   - Сравнительная таблица клинических формул (Devine, Robinson, Miller, Hamwi) с указанием года разработки и сферы применения.
   - Здоровый диапазон веса по стандартам Всемирной организации здравоохранения (ВОЗ).
@@ -114,6 +114,8 @@ flowchart TD
    - `operatingSystem`: `All`
    - `offers`: `{ @type: "Offer", price: "0", priceCurrency: "USD" }`
    - `featureList`: Список функциональных возможностей калькулятора.
+   - Note: Hardcoded `aggregateRating` nodes were removed from `/tools` and `/tools/*` so `SoftwareApplication` schema never declares ratings unsupported by visible user reviews.
+   - Input & calorie floor guardrails: `BmiCalculator` enforces adult bounds (`100–250 cm`, `25–350 kg`); `CalorieCalculator` enforces (`14–100 yrs`, `100–250 cm`, `30–300 kg`) and clamps `Weight Loss (-500)` against a `1,200 kcal/day` minimum safe floor warning.
 2. **`FAQPage`**:
    - Включает 4–5 глубоких вопросов-ответов с разметкой `mainEntity` (`Question` + `AcceptedAnswer`). Позволяет поисковым системам генерировать расширенные сниппеты (Rich Snippets).
 3. **Самореферентный Canonical Tag**:

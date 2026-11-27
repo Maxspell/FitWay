@@ -1,15 +1,30 @@
 import { Award, Users, Target, Heart, ArrowRight, Dumbbell, Calculator, Home as HomeIcon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { getAuthors } from "@/services/author.service";
 import ExpertsSection from "@/components/sections/ExpertsSection";
+import { Author } from "@/interfaces/author";
+import { getStrapiMedia } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "About FitWay: AI Fitness & Nutrition Experts",
-  description: "Meet the team behind FitWay. Discover our mission to transform your health through science-backed workout programs and AI-driven nutrition planning.",
+  title: "About Us: FitWay Team, Mission & Methodology",
+  description:
+    "Meet the certified coaches and sports nutritionists behind FitWay. Learn how we build science-backed workout programs, clinical health calculators, and nutrition guides.",
   alternates: {
     canonical: "/about",
+  },
+  openGraph: {
+    title: "About Us: FitWay Team, Mission & Methodology | FitWay",
+    description:
+      "Meet the certified coaches and sports nutritionists behind FitWay. Explore our exercise science methodology and editorial standards.",
+    url: "/about",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About FitWay | Certified Coaches & Exercise Science",
+    description:
+      "Meet the certified coaches and nutrition specialists behind FitWay's workouts, guides, and free calculators.",
   },
 };
 
@@ -18,24 +33,24 @@ export default async function About() {
 
   const values = [
     {
-      icon: <Target className="h-12 w-12 text-[#FF8C00]" />,
-      title: "Goal-Oriented",
-      description: "We focus on helping you achieve your fitness goals through personalized programs."
+      icon: <Target className="h-12 w-12 text-[#FF8C00]" aria-hidden="true" />,
+      title: "Goal-Focused Programs",
+      description: "Structured workout routines built around fat loss, strength, hypertrophy, and mobility."
     },
     {
-      icon: <Users className="h-12 w-12 text-[#FF8C00]" />,
-      title: "Community",
-      description: "Build lasting relationships with like-minded individuals on their fitness journey."
+      icon: <Users className="h-12 w-12 text-[#FF8C00]" aria-hidden="true" />,
+      title: "Coach-Reviewed Guides",
+      description: "Every training plan and nutrition breakdown is reviewed by certified fitness specialists."
     },
     {
-      icon: <Award className="h-12 w-12 text-[#FF8C00]" />,
-      title: "Excellence",
-      description: "Committed to providing the highest quality fitness education and training."
+      icon: <Award className="h-12 w-12 text-[#FF8C00]" aria-hidden="true" />,
+      title: "Research Standards",
+      description: "Calculators and guides grounded in clinical formulas and peer-reviewed PubMed studies."
     },
     {
-      icon: <Heart className="h-12 w-12 text-[#FF8C00]" />,
-      title: "Passion",
-      description: "We are passionate about helping you live a healthier, more active lifestyle."
+      icon: <Heart className="h-12 w-12 text-[#FF8C00]" aria-hidden="true" />,
+      title: "Practical Consistency",
+      description: "Clear exercise cues, realistic calorie targets, and sustainable weekly training habits."
     }
   ];
 
@@ -47,26 +62,35 @@ export default async function About() {
         "@id": "https://fitway.best/about",
         "url": "https://fitway.best/about",
         "name": "About FitWay",
-        "description": "Learn more about FitWay's mission and the expert team of fitness and nutrition specialists.",
+        "description": "Learn more about FitWay's methodology, editorial standards, and team of certified fitness and nutrition specialists.",
         "mainEntity": {
           "@type": "Organization",
+          "@id": "https://fitway.best/#organization",
           "name": "FitWay",
           "url": "https://fitway.best",
           "logo": "https://fitway.best/favicon.svg"
         }
       },
-      ...authors.map((author: any) => ({
-        "@type": "Person",
-        "name": author.name,
-        "jobTitle": author.role,
-        "description": author.description,
-        "image": author.image,
-        "sameAs": author.linkedin ? [author.linkedin] : [],
-        "worksFor": {
-          "@type": "Organization",
-          "name": "FitWay"
-        }
-      }))
+      ...authors.map((author: Author) => {
+        const photoUrl = author.photo?.url ? getStrapiMedia(author.photo.url) : undefined;
+        const sameAs = [author.linkedin, author.twitter, author.instagram].filter(
+          (url): url is string => Boolean(url)
+        );
+        return {
+          "@type": "Person",
+          "name": author.name,
+          "url": `https://fitway.best/authors/${author.slug}`,
+          ...(author.jobTitle ? { "jobTitle": author.jobTitle } : {}),
+          ...(author.bio ? { "description": author.bio } : {}),
+          ...(photoUrl ? { "image": photoUrl } : {}),
+          ...(sameAs.length > 0 ? { "sameAs": sameAs } : {}),
+          "worksFor": {
+            "@type": "Organization",
+            "@id": "https://fitway.best/#organization",
+            "name": "FitWay"
+          }
+        };
+      })
     ]
   };
 
@@ -81,8 +105,8 @@ export default async function About() {
         <div className="text-center mb-8 md:mb-16">
           <h1 className="section-title mb-4">About FitWay</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We&apos;re dedicated to helping you achieve your fitness goals through expert guidance,
-            supportive community, and state-of-the-art facilities.
+            Structured workout programs, clinical health calculators, and nutrition guides reviewed by
+            certified coaches and sports nutritionists.
           </p>
 
           {/* Prominent Brand & Hub CTAs */}
@@ -135,51 +159,56 @@ export default async function About() {
 
         {/* Mission Section */}
         <div className="card text-left">
-          <h2 className="text-3xl font-bold mb-6 text-center">Our Mission: Redefining Your Fitness Journey</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center">Our Mission: Practical Exercise Science</h2>
 
           <div className="space-y-8">
             <p className="text-xl text-gray-300 max-w-3xl mx-auto text-center leading-relaxed">
-              At FitWay, we believe that fitness is not a one-size-fits-all approach. Our mission is to democratize
-              elite-level health coaching by combining cutting-edge AI technology with rigorous exercise science,
-              making optimal health accessible to everyone, everywhere.
+              FitWay brings together structured workout programs, clinical health calculators, and nutrition
+              guides reviewed by certified coaches and sports nutritionists. Every routine and article follows
+              peer-reviewed exercise science so you can plan your training around clear numbers.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
               <div className="space-y-3">
-                <h3 className="text-xl font-bold text-[#FF8C00]">AI-Driven Precision</h3>
+                <h3 className="text-xl font-bold text-[#FF8C00]">Formula-Based Precision</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  We move beyond generic templates. By leveraging our
-                  <Link href="/tools" className="text-[#FF8C00] hover:underline ml-1">advanced fitness tools</Link>,
-                  we help you calculate precise caloric needs and BMI, ensuring your path to weight loss or
-                  muscle gain is backed by real data.
+                  Use our{" "}
+                  <Link href="/tools" className="text-[#FF8C00] hover:underline">free fitness calculators</Link>{" "}
+                  to estimate BMI, TDEE maintenance calories, macro splits, ideal weight ranges, and 1RM working
+                  weights with established equations like Mifflin-St Jeor, Epley, and WHO criteria.
                 </p>
               </div>
 
               <div className="space-y-3">
                 <h3 className="text-xl font-bold text-[#FF8C00]">Science-First Education</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Knowledge is the foundation of progress. Through our
-                  <Link href="/blog" className="text-[#FF8C00] hover:underline ml-1">educational blog</Link>,
-                  we provide evidence-based nutrition guides and training tips that strip away the myths
-                  of the fitness industry.
+                  Through our{" "}
+                  <Link href="/blog" className="text-[#FF8C00] hover:underline">educational blog</Link>{" "}
+                  and{" "}
+                  <Link href="/editorial-policy" className="text-[#FF8C00] hover:underline">Editorial Policy</Link>,
+                  we publish evidence-based nutrition guides and training breakdowns backed by PubMed citations
+                  and coach review.
                 </p>
               </div>
 
               <div className="space-y-3">
-                <h3 className="text-xl font-bold text-[#FF8C00]">Inclusive Training</h3>
+                <h3 className="text-xl font-bold text-[#FF8C00]">Training for Every Level</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Whether you&apos;re starting your first
-                  <Link href="/workouts" className="text-[#FF8C00] hover:underline ml-1">beginner workout</Link>
-                  at home or optimizing a professional athlete&apos;s routine, our library of science-backed
-                  programs ensures safety and efficiency for every body type.
+                  Whether you are starting your first{" "}
+                  <Link href="/workouts" className="text-[#FF8C00] hover:underline">beginner workout</Link>{" "}
+                  at home or refining a structured lifting split, our workout library covers strength,
+                  hypertrophy, fat loss, and mobility with clear form cues.
                 </p>
               </div>
             </div>
 
             <div className="text-center pt-8 border-t border-gray-700 mt-8">
-              <p className="text-gray-400 italic">
-                &quot;Our goal is not just to change bodies, but to change lives by empowering people with
-                the right tools and knowledge to take control of their own health.&quot;
+              <p className="text-sm text-gray-300 max-w-2xl mx-auto">
+                All guides and calculators on FitWay are reviewed under our{" "}
+                <Link href="/editorial-policy" className="text-[#FF8C00] hover:underline">Editorial Policy</Link>{" "}
+                for educational reference and do not replace individualized medical advice. Read our{" "}
+                <Link href="/terms-of-service" className="text-[#FF8C00] hover:underline">Terms of Service</Link>{" "}
+                for full health disclaimers.
               </p>
             </div>
           </div>
