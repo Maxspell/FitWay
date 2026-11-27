@@ -17,20 +17,21 @@
 Компонент вынесен в отдельный переиспользуемый модуль:
 `src/components/workouts/WorkoutCard.tsx`
 
+### Сортировка на главной странице и в каталоге (`workout.service.ts`)
+- В `getWorkouts()` и `getPaginatedWorkouts()` используется `sort[0]=createdAt:desc` (вместо `publishedAt:desc`, который смещал отредактированные старые тренировки наверх при перепубликации в Strapi 5).
+- В `getWorkouts()` добавлен явный лимит `pagination[pageSize]=100`, чтобы не срабатывало дефолтное ограничение Strapi (25 записей).
+
 ### Дизайн-система карточки
-- **Форма и фон**: `rounded-[2rem] bg-[#243447]/50 backdrop-blur-xl border border-white/5` с интерактивной оранжевой рамкой `hover:border-[#FF8C00]/30` и мягким подъёмом `hover:-translate-y-2`.
-- **Glow-эффект**: Неоновое рассеянное свечение `group-hover:via-[#FF8C00]/10 blur-2xl` при наведении курсора.
+- **Форма и фон**: `rounded-[2rem] bg-[#243447] border border-white/10` с интерактивной рамкой `hover:border-[#FF8C00]/40` и подъёмом `hover:-translate-y-1.5 transform-gpu` (без `transition-all` на `<motion.div>` во избежание мерцания из [[bugs/framer-motion-animation-flicker]]).
+- **Выравнивание сетки**: `h-full` на `motion.div` и `Link`, `h-full flex flex-col` на `<article>`, `mt-auto` на метаданных и футере для ровной высоты карточек в 3-колоночной сетке (`FeaturedWorkouts` и `WorkoutView`).
 - **Медиа-контейнер**:
-  - Высота `h-64 overflow-hidden` с плавным приближением фото `group-hover:scale-110 duration-700`.
-  - Градиентная подложка `from-[#1B2B3B] via-[#1B2B3B]/20 to-transparent`.
-  - Оранжевая кнопка `Play` по центру, плавно проявляющаяся и масштабирующаяся на hover.
-  - Бейджи в левом верхнем углу: сложность (`workout.difficulty` оранжевым бейджем) и категория (`workout.category` полупрозрачным бейджем `bg-white/10 backdrop-blur-md`).
-- **Блок метаданных**:
-  - Информационные капсулы `bg-white/5 border border-white/5 group-hover:bg-[#FF8C00]/5`: длительность (`Duration`) и сожжённые калории (`Calories`) с фирменными иконками `Clock` и `Flame`.
-- **Футер карточки**:
-  - Целевые мышечные группы (`Target` + `workout.targetMuscleGroups`).
-  - Интерактивный призыв `Start ->` с анимацией смещения стрелки `ChevronRight`.
-- **Анимации появления**: `framer-motion` со ступенчатой задержкой по индексу: `delay: (index % 9) * 0.08`.
+  - Высота `h-64 overflow-hidden` с выбором оптимального размера (`formats.medium -> large -> small -> url`), `sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"`, fallback при `null` изображении и плавным зумом `group-hover:scale-[1.06]`.
+  - Градиентная подложка `-inset-px bg-gradient-to-t from-[#243447] via-[#243447]/20 to-black/25`.
+  - Бейджи в левом верхнем углу: сложность (`bg-[#C25700] text-white` по WCAG AA) и категория (`bg-[#1B2B3B]/85 backdrop-blur-md text-gray-100`).
+  - Иконка `Play` по центру (`bg-[#C25700]`), плавно проявляющаяся на hover (`pointer-events-none`).
+- **Доступность (WCAG AA/AAA) и Reduce Motion**:
+  - Подписи метаданных и текст используют `text-gray-300` вместо `text-gray-500`/`text-gray-400` ([[frontend/accessibility-wcag-fixes]]).
+  - В `FeaturedWorkouts.tsx` и `WorkoutCard.tsx` подключён `useReducedMotion()`, а кнопка `View All Workouts` использует WCAG AA бейдж `bg-[#C25700]` и `focus-visible` обводку.
 
 ---
 

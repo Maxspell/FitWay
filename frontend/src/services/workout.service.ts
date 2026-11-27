@@ -98,7 +98,7 @@ export async function getPaginatedWorkouts(
       ? `&filters[category][$eq]=${encodeURIComponent(category)}`
       : "";
 
-    const query = `?populate=*&sort[0]=publishedAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}${categoryFilter}`;
+    const query = `?populate=*&sort[0]=createdAt:desc&pagination[page]=${page}&pagination[pageSize]=${pageSize}${categoryFilter}`;
 
     const response = await fetch(`${STRAPI_URL}/api/workouts${query}`, {
       headers: {
@@ -139,7 +139,7 @@ export async function getWorkouts(category?: string): Promise<Workout[]> {
       ? `?filters[category][$eq]=${category}&populate=*`
       : "?populate=*";
 
-    const query = `${base}&sort[0]=publishedAt:desc`;
+    const query = `${base}&sort[0]=createdAt:desc&pagination[pageSize]=100`;
 
     const response = await fetch(`${STRAPI_URL}/api/workouts${query}`, {
       headers: {

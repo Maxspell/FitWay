@@ -26,9 +26,17 @@ export interface Workout {
   duration: number;
   calories: number;
   category: string;
-  image: {
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
+  image?: {
     url: string;
     alternativeText?: string;
+    formats?: {
+      small?: { url: string };
+      medium?: { url: string };
+      large?: { url: string };
+    };
   };
   video?: {
     url: string;

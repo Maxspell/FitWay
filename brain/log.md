@@ -1,5 +1,15 @@
 # Knowledge Base Activity Log
 
+## 2026-11-27
+- **Homepage `FeaturedWorkouts` Audit, Sorting Fix (`createdAt:desc`) & Accessibility Upgrade (`frontend/src/services/workout.service.ts`, `frontend/src/components/sections/workouts/FeaturedWorkouts.tsx`, `frontend/src/components/workouts/WorkoutCard.tsx`, `frontend/src/interfaces/workout.ts`)**:
+  - Fixed workout sorting in `getWorkouts()` and `getPaginatedWorkouts()` (`frontend/src/services/workout.service.ts`) from `sort[0]=publishedAt:desc` to `sort[0]=createdAt:desc` (matching `post.service.ts`), preventing updated/republished older workouts from jumping ahead of newer programs on the homepage `FeaturedWorkouts` grid and `/workouts` catalog. Also added `pagination[pageSize]=100` to `getWorkouts()` to avoid Strapi 5's 25-item default cap.
+  - Audited and upgraded `FeaturedWorkouts.tsx` and `WorkoutCard.tsx`: added `h-full flex flex-col` grid height alignment (`mt-auto` metadata/footer), `useReducedMotion()`, `pointer-events-none` on decorative glows, safe `Workout.image` null fallback (`Dumbbell` placeholder) with `formats.medium` selection and `sizes` attribute, `-inset-px` hover overbleed scrim, WCAG AA contrast fixes (`#C25700` badges/CTA icon badge and `text-gray-300` descriptions/labels instead of `text-gray-500`/`text-gray-400`), `truncate` on long `targetMuscleGroups`, and removed `transition-all` / heavy `blur-2xl` flicker patterns (`[[bugs/framer-motion-animation-flicker]]`).
+  - Updated [[frontend/workouts-ui]].
+- **New SEO Workout Draft Created & Pushed to Production Strapi (`Desk Worker Mobility: 15-Minute Lower Back & Hip Routine`)**:
+  - Generated following `.agents/skills/fitway-workout-generator/SKILL.md` and `.agents/skills/humanizer/SKILL.md` to fulfill Phase 4.4 P2 roadmap item (`brain/roadmap/adsense-approval-plan.md`), targeting the zero-equipment desk-worker mobility niche (`flexibility`, `Beginner`, `15 min`, `75 kcal`, 6 drills).
+  - Configured E-E-A-T cross-review (`author`: Richard Botich `id=1`, `reviewedBy`: Mike Chen `id=5`), contextual links to `/tools/calorie-calculator`, `/workouts/intermediate-mobility-drills-workout-plan-hips-spine`, and `/blog/mobility-training-flexibility-workout-plan`, and pushed to production Strapi as DRAFT (`id=63`, `documentId=hshnc44wvw4t08fdbbv8js6q`, `publishedAt=null`).
+  - Registered workout #15 in `.agents/skills/fitway-workout-generator/references/existing-workouts.md` and generated a 16:9 editorial hero image via `image-generator`.
+
 ## 2026-11-26
 - **Pinterest API v5 Auto-Publishing Pipeline (`scripts/pinterest/index.js`, `scripts/pinterest/queue.json`, `scripts/pinterest/README.md`)**:
   - Built zero-dependency Node.js CLI (`scripts/pinterest/index.js`, compatible with Node 22 locally and Node 20+ on Ubuntu VPS) implementing Pinterest API v5 OAuth 2.0 (`--auth`, `--code`, with `boards:read,boards:write,pins:read,pins:write` scopes and isolated `--sandbox` token/board cache support) with automatic `refresh_token` rotation persisted to gitignored `credentials/pinterest_token.json` / `credentials/pinterest_sandbox_token.json`.

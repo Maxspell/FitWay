@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Clock, Flame, Target, ChevronRight, Play } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Clock, Flame, Target, ChevronRight, Play, Dumbbell } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Workout } from "@/interfaces/workout";
@@ -12,96 +12,128 @@ interface WorkoutCardProps {
   index?: number;
 }
 
+function getWorkoutCoverUrl(workout: Workout): string {
+  const rawUrl =
+    workout.image?.formats?.medium?.url ||
+    workout.image?.formats?.large?.url ||
+    workout.image?.formats?.small?.url ||
+    workout.image?.url;
+
+  return rawUrl ? getStrapiMedia(rawUrl) : "";
+}
+
 export default function WorkoutCard({ workout, index = 0 }: WorkoutCardProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const coverUrl = getWorkoutCoverUrl(workout);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: (index % 9) * 0.08 }}
+      transition={{
+        duration: 0.5,
+        delay: prefersReducedMotion ? 0 : (index % 9) * 0.08,
+      }}
       viewport={{ once: true }}
-      className="group relative"
+      className="group relative h-full"
     >
-      <Link href={`/workouts/${workout.slug}`} className="block">
-        <div className="relative overflow-hidden rounded-[2rem] bg-[#243447]/50 backdrop-blur-xl border border-white/5 hover:border-[#FF8C00]/30 transition-all duration-500 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] group-hover:-translate-y-2">
-          
-          {/* Glow Effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#FF8C00]/0 via-[#FF8C00]/0 to-[#FF8C00]/0 group-hover:via-[#FF8C00]/10 transition-all duration-1000 blur-2xl opacity-0 group-hover:opacity-100" />
-
+      <Link
+        href={`/workouts/${workout.slug}`}
+        className="block h-full rounded-[2rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8C00] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1B2B3B]"
+      >
+        <article className="relative h-full flex flex-col overflow-hidden rounded-[2rem] bg-[#243447] border border-white/10 hover:border-[#FF8C00]/40 transition-[transform,border-color,box-shadow] duration-300 ease-out shadow-[0_12px_36px_rgba(0,0,0,0.22)] group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.38)] group-hover:-translate-y-1.5 transform-gpu">
           {/* Image Container */}
-          <div className="relative h-64 overflow-hidden">
-            <Image
-              src={getStrapiMedia(workout.image?.url)}
-              alt={workout.title}
-              fill
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          <div className="relative h-64 w-full overflow-hidden bg-[#1B2B3B] shrink-0">
+            {coverUrl ? (
+              <Image
+                src={coverUrl}
+                alt={workout.image?.alternativeText || workout.title}
+                fill
+                sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                className="object-cover scale-[1.01] transition-transform duration-500 ease-out group-hover:scale-[1.06] transform-gpu"
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-[#1B2B3B]" aria-hidden="true">
+                <Dumbbell className="h-12 w-12 text-[#FF8C00]/30" />
+              </div>
+            )}
+
+            {/* Overlays (1px overbleed prevents subpixel seams on hover) */}
+            <div
+              className="absolute -inset-px bg-gradient-to-t from-[#243447] via-[#243447]/20 to-black/25 pointer-events-none"
+              aria-hidden="true"
             />
-            
-            {/* Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B3B] via-[#1B2B3B]/20 to-transparent opacity-80" />
-            <div className="absolute inset-0 bg-[#FF8C00]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div
+              className="absolute inset-0 bg-[#FF8C00]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              aria-hidden="true"
+            />
 
             {/* Badges */}
-            <div className="absolute top-6 left-6 flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-[#FF8C00] text-white text-[10px] font-black uppercase tracking-wider rounded-full shadow-lg shadow-[#FF8C00]/20">
+            <div className="absolute top-5 left-5 right-5 flex flex-wrap gap-2">
+              <span className="px-3 py-1 bg-[#C25700] text-white text-[11px] font-black uppercase tracking-wider rounded-full shadow-lg shadow-black/25">
                 {workout.difficulty}
               </span>
-              <span className="px-3 py-1 bg-white/10 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-wider rounded-full border border-white/10">
+              <span className="px-3 py-1 bg-[#1B2B3B]/85 backdrop-blur-md text-gray-100 text-[11px] font-black uppercase tracking-wider rounded-full border border-white/15">
                 {workout.category}
               </span>
             </div>
 
             {/* Play Button Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
-              <div className="w-16 h-16 bg-[#FF8C00] rounded-full flex items-center justify-center shadow-2xl shadow-[#FF8C00]/40 transform">
+            <div
+              className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-[opacity,transform] duration-300 scale-90 group-hover:scale-100 pointer-events-none"
+              aria-hidden="true"
+            >
+              <div className="w-16 h-16 bg-[#C25700] rounded-full flex items-center justify-center shadow-2xl shadow-black/40">
                 <Play className="h-7 w-7 text-white fill-current ml-1" />
               </div>
             </div>
           </div>
 
           {/* Content */}
-          <div className="p-8 relative">
-            <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-[#FF8C00] transition-colors leading-tight">
+          <div className="p-6 sm:p-8 relative flex flex-col flex-grow">
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-[#FF8C00] transition-colors leading-snug line-clamp-2">
               {workout.title}
             </h3>
-            
-            <p className="text-gray-400 text-sm line-clamp-2 mb-6 group-hover:text-gray-300 transition-colors">
+
+            <p className="text-gray-300 text-sm line-clamp-2 mb-6">
               {workout.description}
             </p>
 
             {/* Metadata Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5 group-hover:bg-[#FF8C00]/5 group-hover:border-[#FF8C00]/10 transition-all">
-                <div className="w-8 h-8 rounded-xl bg-[#FF8C00]/10 flex items-center justify-center">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 mt-auto">
+              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5 group-hover:bg-[#FF8C00]/5 group-hover:border-[#FF8C00]/15 transition-colors">
+                <div className="w-8 h-8 rounded-xl bg-[#FF8C00]/10 flex items-center justify-center shrink-0" aria-hidden="true">
                   <Clock className="w-4 h-4 text-[#FF8C00]" />
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Duration</span>
-                  <span className="text-xs font-bold text-white">{workout.duration} Min</span>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[10px] text-gray-300 uppercase font-bold tracking-wider">Duration</span>
+                  <span className="text-xs font-bold text-white tabular-nums">{workout.duration} Min</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5 group-hover:bg-[#FF8C00]/5 group-hover:border-[#FF8C00]/10 transition-all">
-                <div className="w-8 h-8 rounded-xl bg-[#FF8C00]/10 flex items-center justify-center">
+              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white/5 border border-white/5 group-hover:bg-[#FF8C00]/5 group-hover:border-[#FF8C00]/15 transition-colors">
+                <div className="w-8 h-8 rounded-xl bg-[#FF8C00]/10 flex items-center justify-center shrink-0" aria-hidden="true">
                   <Flame className="w-4 h-4 text-[#FF8C00]" />
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Calories</span>
-                  <span className="text-xs font-bold text-white">{workout.calories} Kcal</span>
+                <div className="flex flex-col min-w-0">
+                  <span className="text-[10px] text-gray-300 uppercase font-bold tracking-wider">Calories</span>
+                  <span className="text-xs font-bold text-white tabular-nums">{workout.calories} Kcal</span>
                 </div>
               </div>
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between pt-6 border-t border-white/5">
-              <div className="flex items-center gap-2">
-                <Target className="w-4 h-4 text-[#FF8C00]" />
-                <span className="text-xs font-medium text-gray-400">{workout.targetMuscleGroups}</span>
+            <div className="flex items-center justify-between gap-3 pt-5 border-t border-white/10">
+              <div className="flex items-center gap-2 min-w-0">
+                <Target className="w-4 h-4 text-[#FF8C00] shrink-0" aria-hidden="true" />
+                <span className="text-xs font-medium text-gray-300 truncate">{workout.targetMuscleGroups}</span>
               </div>
-              <div className="flex items-center gap-1 text-[#FF8C00] font-bold text-xs uppercase tracking-widest group-hover:gap-2 transition-all">
-                Start <ChevronRight className="w-4 h-4" />
+              <div className="flex items-center gap-1 text-[#FF8C00] font-bold text-xs uppercase tracking-widest shrink-0">
+                <span>Start</span>
+                <ChevronRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true" />
               </div>
             </div>
           </div>
-        </div>
+        </article>
       </Link>
     </motion.div>
   );
