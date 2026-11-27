@@ -1,7 +1,7 @@
 # Existing Posts Registry (FitWay Blog)
 
 Реестр опубликованных статей. Используется для проверки уникальности ПЕРЕД генерацией.
-Всего статей: 34. Последнее обновление: 2026-11-26.
+Всего статей: 35. Последнее обновление: 2026-11-28.
 
 ## Правила использования
 
@@ -49,10 +49,11 @@
 | 32 | `best-compound-exercises-muscle-growth` | https://fitway.best/blog/best-compound-exercises-muscle-growth |
 | 33 | `high-protein-meal-prep-muscle-growth-fat-loss` | https://fitway.best/blog/high-protein-meal-prep-muscle-growth-fat-loss |
 | 34 | `mifflin-st-jeor-vs-harris-benedict` | https://fitway.best/blog/mifflin-st-jeor-vs-harris-benedict |
+| 35 | `gain-weight-first-week-calorie-deficit` | https://fitway.best/blog/gain-weight-first-week-calorie-deficit |
 
 ## Покрытые темы (для быстрой сверки)
 
-- **Weight loss:** why weight loss stalls, cardio vs strength for weight loss, lose weight without losing muscle, intermittent fasting for fat loss, lose belly fat
+- **Weight loss:** why weight loss stalls, cardio vs strength for weight loss, lose weight without losing muscle, intermittent fasting for fat loss, lose belly fat, calorie deficit calculation, why you gain weight in the first week of a calorie deficit (water & glycogen)
 - **Muscle building:** hypertrophy guide, progressive overload (2 статьи), build muscle after 40, how much protein to build muscle, bodyweight vs weight training, best back exercises, increase testosterone naturally, push pull legs (PPL) hypertrophy split guide, upper lower split hypertrophy routine, best compound exercises for full-body muscle growth
 - **Nutrition and supplements:** creatine, magnesium, vitamin D, omega-3, pre-workout meal, post-workout meal, high-protein meal prep for muscle growth and fat loss (5-day blueprint), Mifflin-St Jeor vs Harris-Benedict calorie formulas
 - **Training for beginners / habits:** how to start working out, best full-body workout for beginners at home, build a consistent workout habit, fitness goals, psychology of motivation and consistency, how to stay motivated when results are slow

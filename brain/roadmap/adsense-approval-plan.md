@@ -107,12 +107,12 @@
 
 #### P2: Long-Tail Sniper Content, pSEO & Referral Scaling (Weeks 2–4 | Target: 15–30+ clicks/day)
 - [ ] **Publish 2 Long-Tail/VS articles + 1 workout per week (de-duplicated against `existing-posts.md` / `existing-workouts.md`)**:
-  - *Mifflin-St Jeor vs Harris-Benedict: Which Calorie Formula Is More Accurate?*
-  - *Why You Gain Weight in the First Week of a Calorie Deficit (Water & Glycogen Science)*
+  - ~~*Mifflin-St Jeor vs Harris-Benedict: Which Calorie Formula Is More Accurate?*~~ *(published 2026-11-26, indexed)*
+  - ~~*Why You Gain Weight in the First Week of a Calorie Deficit (Water & Glycogen Science)*~~ *(published 2026-11-28, submitted to Indexing API)*
   - *Ankle Mobility Drills for Deeper Squats: 5-Minute Pre-Lift Routine*
   - *Romanian Deadlift (RDL) vs Conventional Deadlift: Muscles Worked & Which to Choose*
   - *Creatine Monohydrate vs Creatine HCL: Absorption, Bloating & Cost Comparison*
-  - Workout: *15-Minute Desk Worker Mobility & Lower Back Relief Routine* (no equipment)
+  - ~~Workout: *15-Minute Desk Worker Mobility & Lower Back Relief Routine* (no equipment)~~ *(published 2026-11-27, indexed)*
 - [x] **Expand pSEO long-tail blocks on `/tools/one-rep-max-calculator` and `/tools/macro-calculator`**: Added `1RM Percentage Chart (50% to 95% Load Reference)` (with links to `/workouts/advanced-powerlifting-workout-maximum-strength-gym` and `/blog/best-compound-exercises-muscle-growth`) and `Goal-Specific Macro Split Presets (Cut, Recomp & Lean Bulk)` (with link to `/blog/high-protein-meal-prep-muscle-growth-fat-loss`) ([[frontend/fitness-calculators-pseo]]).
 - [ ] **Scale Pinterest & niche community seeding**: Publish 3–5 infographic pins/week (confirmed 100% GA4 engagement on `pinterest.com / referral`) linking to calculators and hubs, plus 3–4 helpful responses/week on `r/fitness`, `r/loseit`, and `r/flexibility` to grow Tier-1 share toward >= 40%.
 
