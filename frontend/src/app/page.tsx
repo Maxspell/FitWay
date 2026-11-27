@@ -47,7 +47,7 @@ const fallbackFAQs = [
   {
     id: 1,
     question: "How do I start my fitness journey?",
-    answer: "Getting started is easy! We recommend beginning with our Goal Setting tool to define your objectives, then choosing a 'Beginner' workout plan from our collections. Consistency is key!",
+    answer: "Start by checking your baseline with our BMI and Daily Calorie calculators, then choose a Beginner workout plan from our library. Staying consistent two to three days a week matters most.",
     category: "general"
   },
   {
@@ -134,49 +134,6 @@ export default async function Home() {
             "reviewBody": rev.content,
           })),
         }),
-      },
-      {
-        "@type": "SoftwareApplication",
-        "name": "BMI Calculator",
-        "applicationCategory": "HealthApplication",
-        "operatingSystem": "Web",
-        "url": `${siteUrl}/#bmi`,
-        "description": "Free online BMI calculator based on height and weight.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.8",
-          "ratingCount": "1254",
-        },
-        "featureList": ["Body Mass Index calculation", "Instant results", "Metric units"],
-      },
-      {
-        "@type": "SoftwareApplication",
-        "name": "Daily Calorie Calculator",
-        "applicationCategory": "HealthApplication",
-        "operatingSystem": "Web",
-        "url": `${siteUrl}/#calories`,
-        "description": "Calculate your daily calorie needs for weight loss, maintenance, or muscle gain.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "892",
-        },
-        "featureList": [
-          "TDEE calculation",
-          "Weight loss targets",
-          "Muscle gain targets",
-          "Activity level adjustment",
-        ],
       },
     ],
   };

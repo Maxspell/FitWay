@@ -98,6 +98,11 @@ flowchart TD
   - **Премиальный UI/UX**: цветовая адаптация под бренд FitWay, тонкий glow-эффект, бейдж «⚡ Recommended» и прямая кнопка перехода «Calculate Now».
   - **Устранение шаблонных заглушек**: на страницах тренировок заменил нефункциональный статический баннер «Upgrade to Pro» на реальный интерактивный инструмент.
 
+### 6. `CalculatorPreview.tsx` (Homepage Quick Preview & 5-Spoke Router)
+- **Path**: `frontend/src/components/sections/CalculatorPreview.tsx`
+- **Role**: Keeps `/` lightweight with 2 quick-preview tabs (`BMI Calculator` + dynamically loaded `Calories & TDEE` via `next/dynamic`) while routing internal link equity and user sessions directly to all 5 `/tools/*` spoke pages (`ALL_CALCULATORS` directory grid + `/tools` hub card + `showDeepLinks` result CTAs in `BmiCalculator` and `CalorieCalculator`).
+- **Note**: Homepage `SoftwareApplication` JSON-LD nodes were removed from `frontend/src/app/page.tsx` so the dedicated `/tools/*` spoke routes maintain canonical entity ownership without competing `/#bmi` / `/#calories` anchors.
+
 ---
 
 ## 🔍 SEO & Структурированные данные (Schema.org)
