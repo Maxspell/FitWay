@@ -81,7 +81,7 @@ export default async function About() {
         <div className="text-center mb-8 md:mb-16">
           <h1 className="section-title mb-4">About FitWay</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We're dedicated to helping you achieve your fitness goals through expert guidance,
+            We&apos;re dedicated to helping you achieve your fitness goals through expert guidance,
             supportive community, and state-of-the-art facilities.
           </p>
 
@@ -168,9 +168,9 @@ export default async function About() {
               <div className="space-y-3">
                 <h3 className="text-xl font-bold text-[#FF8C00]">Inclusive Training</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Whether you're starting your first
+                  Whether you&apos;re starting your first
                   <Link href="/workouts" className="text-[#FF8C00] hover:underline ml-1">beginner workout</Link>
-                  at home or optimizing a professional athlete's routine, our library of science-backed
+                  at home or optimizing a professional athlete&apos;s routine, our library of science-backed
                   programs ensures safety and efficiency for every body type.
                 </p>
               </div>
@@ -178,8 +178,8 @@ export default async function About() {
 
             <div className="text-center pt-8 border-t border-gray-700 mt-8">
               <p className="text-gray-400 italic">
-                "Our goal is not just to change bodies, but to change lives by empowering people with
-                the right tools and knowledge to take control of their own health."
+                &quot;Our goal is not just to change bodies, but to change lives by empowering people with
+                the right tools and knowledge to take control of their own health.&quot;
               </p>
             </div>
           </div>

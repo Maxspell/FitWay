@@ -121,7 +121,7 @@ export default function NewsletterSection() {
                       >
                         <CheckCircle2 className="w-8 h-8 text-[#1B2B3B]" />
                       </motion.div>
-                      <h3 className="text-2xl font-bold mb-2">You're In!</h3>
+                      <h3 className="text-2xl font-bold mb-2">You&apos;re In!</h3>
                       <p className="text-gray-400">{message}</p>
                       <motion.button
                         whileHover={{ scale: 1.05 }}

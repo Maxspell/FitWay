@@ -117,10 +117,10 @@ export default function WorkoutView({
             Science-Backed Training Programs for Every Goal
           </h2>
           <p className="mb-4">
-            Welcome to the FitWay Workout Library, your comprehensive destination for science-backed fitness programming designed to deliver real, sustainable results. Our library is built on the principle of functional movement and progressive overload, ensuring that every routine—whether it's a high-intensity fat-burning session or a focused hypertrophy program—is optimized for safety and effectiveness.
+            Welcome to the FitWay Workout Library, your comprehensive destination for science-backed fitness programming designed to deliver real, sustainable results. Our library is built on the principle of functional movement and progressive overload, ensuring that every routine—whether it&apos;s a high-intensity fat-burning session or a focused hypertrophy program—is optimized for safety and effectiveness.
           </p>
           <p className="mb-4">
-            We believe that fitness should be accessible and adaptable. That's why our curated collection spans a wide spectrum of goals and experience levels. From beginners looking to build a solid foundation to advanced athletes seeking to break through plateaus, our routines provide the structure and guidance needed to stay consistent and motivated.
+            We believe that fitness should be accessible and adaptable. That&apos;s why our curated collection spans a wide spectrum of goals and experience levels. From beginners looking to build a solid foundation to advanced athletes seeking to break through plateaus, our routines provide the structure and guidance needed to stay consistent and motivated.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left mt-8 mb-8">
             <div className="p-4 bg-[#243447] rounded-xl border border-white/5">
